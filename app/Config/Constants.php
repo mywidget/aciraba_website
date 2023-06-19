@@ -102,17 +102,18 @@ define('NAMA_PEMILIK', "ACIRABA_RESTO_JOGLO_MANIS");
 define('DOMAIN_REGISTER', "https://seirasetyawan.com");
 define('KODE_UNIK_MEMBER', "1000001");
 define('TOKENAPI', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYyNDI2MTk1NywiZXhwIjoxNjM5ODEzOTU3fQ.MSLX2hbVGle88bofGlCAgMdkUjs54ntyinQljs6_RCI");
-
+$server_name = !empty($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost:8080';
+$base = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $server_name . '/';
 if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
     $protocol = 'https';
 }else {
     $protocol = 'http';
 }
 $hostdynamic = $protocol;
-$hostdynamic .= "://" . $_SERVER['HTTP_HOST'];
+$hostdynamic .= "://" . $server_name;
 $hostdynamic .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 defined('DYBASESEURL') || define('DYBASESEURL',$hostdynamic);
-if ($_SERVER['HTTP_HOST'] == "localhost" || $_SERVER['HTTP_HOST'] == "127.0.0.1"){
+if ($server_name == "localhost" || $server_name == "127.0.0.1"){
   define('BASEURLAPI',str_replace("/:",":",$hostdynamic.':1111/'));
 }else{
   define('BASEURLAPI','https://api.seirasetyawan.com/');
