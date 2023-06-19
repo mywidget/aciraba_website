@@ -25,15 +25,36 @@ Aciraba adalah sistem Integrasi dengan Sistem Eksternal: Beberapa aplikasi POS b
 1. Pengetahuan dasar mengenai CODEIGNITER 4 baik secara logika maupun struktur directory.
 2. API KEY untuk verifikasi jika meminta VERIFIKASI API KEY (GRATIS). Join Discord ![Pandawa Cipta Karya](https://discordapp.com/api/guilds/1111461269602566185/widget.png?style=banner2)
 3. Visual Code
+4. Composer 2.3.x ke atas
 ## Installation
 Berikut adalah cara pemasangan / install webservice untuk aciraba pada perangkat anda
 1. Usahakan anda pernah menginstall CODEIGNITER 4 sampai HELLO WORLD
 2. Download project ini atau clone project ini kedalam perangkat anda
 ```bash
-  git clone https://github.com/Meteor95/aciraba_website.git
-  cd aciraba_website
+git clone https://github.com/Meteor95/aciraba_website.git
+cd aciraba_website
 ```
+3. Pasang semua komponen yang dibutuhkan untuk menjalankan ACIRABA dengan cara
+```bash
+composer install
+composer update
+```
+4. Langkah terakhir seharusnya anda sudah bisa menikmati sistem yang disajikan oleh ACIRABA
+```bash
+php spark serve
 
+CodeIgniter v4.3.6 Command Line Tool - Server Time: 2023-06-19 12:55:30 UTC+00:00
+
+CodeIgniter development server started on http://localhost:8080
+Press Control-C to stop.
+[Mon Jun 19 19:55:30 2023] PHP 8.2.0 Development Server (http://localhost:8080) started
+```
+5. Violaaa....<br>
+![LOGIN](https://cdn.seirasetyawan.com/images/login_form.png)
+## DEMO ??
+[DEMO ACIRABA](https://aciraba.seirasetyawan.com)<br>
+username : seira<br>
+password : salam1jiwa<br>
 ## Persyaratan Perangkat
 Diperlukan PHP versi 7.4 atau lebih tinggi, dengan ekstensi berikut wajib terpasang:
 - [intl](http://php.net/manual/en/intl.requirements.php)
