@@ -1,0 +1,16 @@
+{
+    "name": "aciraba/aciraba-1.0.0-beta",
+    "description": "Aplikasi POS",
+    "autoload": {
+        "psr-4": {
+            "Aciraba\\Aciraba100Beta\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Meteor95",
+            "email": "mochamad.aries.styawan@gmail.com"
+        }
+    ],
+    "require": {}
+}

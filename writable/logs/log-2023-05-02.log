@@ -1,0 +1,1053 @@
+INFO - 2023-05-02 00:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:00 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:00 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:02 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:02 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-05-02 07:37:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 00:37:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:16 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:17 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:17 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:17 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:17 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:18 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:18 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 00:37:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 00:37:22 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:04:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:04:48 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:04:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:04:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:04:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:04:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:04:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:04:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:04:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 01:06:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 01:06:02 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:13:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:13:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:13:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:44 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:13:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:44 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:13:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:47 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:13:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:48 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-05-02 19:13:48 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 12:13:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:13:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:13:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 19:14:00 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'aciraba_local', 3306, '', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+#4 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-05-02 19:14:00 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 01_tms_keranjang')
+ 3 APPPATH\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 12:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:14:00 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:14:00 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:14:00 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:14:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:14:00 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 12:14:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 12:14:04 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:34:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:34:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:34:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:34:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:34:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:34:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:34:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:34:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 20:34:29 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'aciraba_local', 3306, '', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+#4 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-05-02 20:34:29 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 01_tms_keranjang')
+ 3 APPPATH\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:34:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:34:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:34:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:34:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:43:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:43:01 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-05-02 20:43:01 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:43:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:43:13 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:43:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:43:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:43:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:43:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:43:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:43:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 20:43:18 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'aciraba_local', 3306, '', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+#4 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-05-02 20:43:18 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\KasirModel.php(17): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 01_tms_keranjang')
+ 3 APPPATH\Controllers\Penjualan.php(1027): App\Models\KasirModel->bacakeranjangkasir()
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->bacakeranjangkasir()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:43:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:43:18 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:43:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:43:19 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:45:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:45:04 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:45:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:45:35 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:46:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:46:10 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:46:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:46:33 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:46:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:46:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:47:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:47:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:47:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:47:39 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:48:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:48:10 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:50:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:50:39 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:50:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:50:40 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:50:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:50:42 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:50:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:50:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:50:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:50:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:50:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:50:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:50:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:50:54 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:07 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:08 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:10 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:20 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:21 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:46 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:47 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:47 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:47 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-05-02 13:51:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penyesuaian::$penyesuaianModel is deprecated in APPPATH\Controllers\Penyesuaian.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Penyesuaian->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:51:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:51 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-05-02 13:51:51 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penyesuaian::$penyesuaianModel is deprecated in APPPATH\Controllers\Penyesuaian.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Penyesuaian->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:51:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:51 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 20:51:55 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'aciraba_local', 3306, '', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\PenyesuaianModel.php(77): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penyesuaian.php(364): App\Models\PenyesuaianModel->daftarmutasilocal(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penyesuaian->daftarmutasilocal()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penyesuaian))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\webserver\htdocs\acirabawebsiteci4\app\Models\PenyesuaianModel.php(77): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penyesuaian.php(364): App\Models\PenyesuaianModel->daftarmutasilocal(Array)
+#4 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penyesuaian->daftarmutasilocal()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penyesuaian))
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-05-02 20:51:55 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\PenyesuaianModel.php(77): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 01_trs_mutasibarang_detail')
+ 3 APPPATH\Controllers\Penyesuaian.php(364): App\Models\PenyesuaianModel->daftarmutasilocal([...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penyesuaian->daftarmutasilocal()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penyesuaian))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:51:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:51:56 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:52:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:52:31 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:53:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:53:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 20:53:53 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'aciraba_local', 3306, '', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1101): App\Models\KasirModel->add(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1101): App\Models\KasirModel->add(Array)
+#4 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-05-02 20:53:53 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 01_tms_keranjang WHERE BARANG_ID = \'B-1501328010101\' LIMIT 1')
+ 3 APPPATH\Controllers\Penjualan.php(1101): App\Models\KasirModel->add([...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:53:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:53:53 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 20:53:58 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'aciraba_local', 3306, '', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1101): App\Models\KasirModel->add(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1101): App\Models\KasirModel->add(Array)
+#4 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-05-02 20:53:58 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 01_tms_keranjang WHERE BARANG_ID = \'B-1501328120136017414010101\' LIMIT 1')
+ 3 APPPATH\Controllers\Penjualan.php(1101): App\Models\KasirModel->add([...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:54:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:09 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 20:54:14 --> Error connecting to the database: mysqli_sql_exception: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:173
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(173): mysqli->real_connect('localhost', 'root', Object(SensitiveParameterValue), 'aciraba_local', 3306, '', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1101): App\Models\KasirModel->add(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+
+Next CodeIgniter\Database\Exceptions\DatabaseException: No connection could be made because the target machine actively refused it in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:218
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(391): CodeIgniter\Database\MySQLi\Connection->connect(false)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+#2 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 0...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1101): App\Models\KasirModel->add(Array)
+#4 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2023-05-02 20:54:14 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it
+in SYSTEMPATH\Database\BaseConnection.php on line 427.
+ 1 SYSTEMPATH\Database\BaseConnection.php(573): CodeIgniter\Database\BaseConnection->initialize()
+ 2 APPPATH\Models\KasirModel.php(31): CodeIgniter\Database\BaseConnection->query('SELECT * FROM 01_tms_keranjang WHERE BARANG_ID = \'B-1501328010101\' LIMIT 1')
+ 3 APPPATH\Controllers\Penjualan.php(1101): App\Models\KasirModel->add([...])
+ 4 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+ 5 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 6 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:54:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 20:54:17 --> mysqli_sql_exception: MySQL server has gone away in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_...', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_...')
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(42): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1101): App\Models\KasirModel->add(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-02 20:54:17 --> MySQL server has gone away
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_tms_keranjang (`AI`,`BARANG_ID`,`NAMA_BARANG`,`QTY`,`HARGA_JUAL`,`HARGA_BELI`,`POTONGANGLOBAL`,`DARIPERUSAHAAN`, `KETERANGAN`, `APAKAHVARIAN`,`STOKDAPATMINUS`,`JSONTAMBAHAN`,`BRAND_ID`,`PRINCIPAL_ID`,`HARGAASLI`) VALUES (\'\',\'B-1501328120136017414010101\', \'PANCI BUNGA REONA 3 SUSUN TUTUP\', \'1\', \'73500\', \'66885\', \'0\',\'0\',\'TIDAK ADA KETERANGAN\', \'TIDAK AKTIF\', \'DAPAT MINUS\', \'eyJqZW5pc3ZhcmlhbiI6W119\', \'0\', \'0\', \'73500\') ON DUPLICATE KEY UPDATE QTY = QTY + \'1\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_tms_keranjang (`AI`,`BARANG_ID`,`NAMA_BARANG`,`QTY`,`HARGA_JUAL`,`HARGA_BELI`,`POTONGANGLOBAL`,`DARIPERUSAHAAN`, `KETERANGAN`, `APAKAHVARIAN`,`STOKDAPATMINUS`,`JSONTAMBAHAN`,`BRAND_ID`,`PRINCIPAL_ID`,`HARGAASLI`) VALUES (\'\',\'B-1501328120136017414010101\', \'PANCI BUNGA REONA 3 SUSUN TUTUP\', \'1\', \'73500\', \'66885\', \'0\',\'0\',\'TIDAK ADA KETERANGAN\', \'TIDAK AKTIF\', \'DAPAT MINUS\', \'eyJqZW5pc3ZhcmlhbiI6W119\', \'0\', \'0\', \'73500\') ON DUPLICATE KEY UPDATE QTY = QTY + \'1\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_tms_keranjang (`AI`,`BARANG_ID`,`NAMA_BARANG`,`QTY`,`HARGA_JUAL`,`HARGA_BELI`,`POTONGANGLOBAL`,`DARIPERUSAHAAN`, `KETERANGAN`, `APAKAHVARIAN`,`STOKDAPATMINUS`,`JSONTAMBAHAN`,`BRAND_ID`,`PRINCIPAL_ID`,`HARGAASLI`) VALUES (\'\',\'B-1501328120136017414010101\', \'PANCI BUNGA REONA 3 SUSUN TUTUP\', \'1\', \'73500\', \'66885\', \'0\',\'0\',\'TIDAK ADA KETERANGAN\', \'TIDAK AKTIF\', \'DAPAT MINUS\', \'eyJqZW5pc3ZhcmlhbiI6W119\', \'0\', \'0\', \'73500\') ON DUPLICATE KEY UPDATE QTY = QTY + \'1\'')
+ 4 APPPATH\Models\KasirModel.php(42): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_tms_keranjang (`AI`,`BARANG_ID`,`NAMA_BARANG`,`QTY`,`HARGA_JUAL`,`HARGA_BELI`,`POTONGANGLOBAL`,`DARIPERUSAHAAN`, `KETERANGAN`, `APAKAHVARIAN`,`STOKDAPATMINUS`,`JSONTAMBAHAN`,`BRAND_ID`,`PRINCIPAL_ID`,`HARGAASLI`) VALUES (\'\',\'B-1501328120136017414010101\', \'PANCI BUNGA REONA 3 SUSUN TUTUP\', \'1\', \'73500\', \'66885\', \'0\',\'0\',\'TIDAK ADA KETERANGAN\', \'TIDAK AKTIF\', \'DAPAT MINUS\', \'eyJqZW5pc3ZhcmlhbiI6W119\', \'0\', \'0\', \'73500\') ON DUPLICATE KEY UPDATE QTY = QTY + \'1\'')
+ 5 APPPATH\Controllers\Penjualan.php(1101): App\Models\KasirModel->add([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjang()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 13:54:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:28 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:54:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:28 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:54:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:32 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:54:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:32 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:33 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:54:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:33 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:54:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:34 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:54:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:54:35 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:28 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:28 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:30 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:30 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:40 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:53 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:53 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:54 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:55:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:55:54 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:56:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:56:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:56:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:56:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:56:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:56:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:56:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:56:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:56:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:56:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:56:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:56:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:59:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:59:19 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 13:59:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 13:59:42 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:00:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:00:32 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:00:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:00:36 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:00:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:00:38 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:00:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:00:59 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:01:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:01:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:01:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:01:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:01:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:01:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:01:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:01:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:02:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:02:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:02:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:02:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:02:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:02:27 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 21:02:27 --> mysqli_sql_exception: Duplicate entry '1' for key 'PRIMARY' in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_...', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_...')
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(52): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1106): App\Models\KasirModel->copytabelkepending(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjangpending()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-02 21:02:27 --> Duplicate entry '1' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 4 APPPATH\Models\KasirModel.php(52): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 5 APPPATH\Controllers\Penjualan.php(1106): App\Models\KasirModel->copytabelkepending([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjangpending()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 14:02:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:02:30 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 21:02:30 --> mysqli_sql_exception: Duplicate entry '1' for key 'PRIMARY' in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_...', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_...')
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(52): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1106): App\Models\KasirModel->copytabelkepending(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjangpending()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-02 21:02:30 --> Duplicate entry '1' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 4 APPPATH\Models\KasirModel.php(52): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 5 APPPATH\Controllers\Penjualan.php(1106): App\Models\KasirModel->copytabelkepending([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjangpending()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 14:02:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:02:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+ERROR - 2023-05-02 21:02:43 --> mysqli_sql_exception: Duplicate entry '1' for key 'PRIMARY' in C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_...', 0)
+#1 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_...')
+#2 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_...')
+#3 C:\webserver\htdocs\acirabawebsiteci4\app\Models\KasirModel.php(52): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_...')
+#4 C:\webserver\htdocs\acirabawebsiteci4\app\Controllers\Penjualan.php(1106): App\Models\KasirModel->copytabelkepending(Array)
+#5 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjangpending()
+#6 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+#7 C:\webserver\htdocs\acirabawebsiteci4\vendor\codeigniter4\framework\system\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\webserver\htdocs\acirabawebsiteci4\public\index.php(67): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2023-05-02 21:02:43 --> Duplicate entry '1' for key 'PRIMARY'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(691): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 3 SYSTEMPATH\Database\BaseConnection.php(605): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 4 APPPATH\Models\KasirModel.php(52): CodeIgniter\Database\BaseConnection->query('INSERT INTO 01_tms_keranjang_pending SELECT * FROM 01_tms_keranjang')
+ 5 APPPATH\Controllers\Penjualan.php(1106): App\Models\KasirModel->copytabelkepending([...])
+ 6 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahkeranjangpending()
+ 7 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 8 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 14:03:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:16 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:19 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:20 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:20 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:20 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:20 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:23 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:28 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:03:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:03:41 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:04:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:04:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:04:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:04:42 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:05:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:05:01 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:05:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:05:11 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:05:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:05:12 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:05:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:05:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:05:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:05:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:05:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:05:17 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:05:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:05:19 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:11:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:11:36 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:11:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:11:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:11:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:11:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:11:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:11:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:11:37 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:12:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:12:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:12:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:12:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:12:50 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:16:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:16:56 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:18:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:18:06 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:18:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:18:06 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:18:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:18:06 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:18:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:18:07 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:17 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:17 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:18 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:18 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:18 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:26 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:26 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:27 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:19:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:19:27 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:20:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:20:52 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:20:53 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:20:53 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:20:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:20:53 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:06 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:06 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:06 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:06 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:07 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:07 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:07 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:08 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:56 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:57 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:57 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:58 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:58 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:58 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:58 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:21:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:21:58 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:20 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:21 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:21 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:21 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:23 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:35 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:35 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:36 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:36 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:36 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:39 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:40 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:41 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:23:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:23:42 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:10 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:16 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:26 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:26 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:24:57 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:24:57 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:26:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:26:29 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:26:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:26:31 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:26:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:26:31 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:26:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:26:31 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:26:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:26:31 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:26:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:26:32 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:27:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:27:08 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:27:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:27:08 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:27:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:27:09 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:27:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:27:09 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:27:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:27:09 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:27:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:27:09 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:27:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:27:09 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:33:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:33:05 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-05-02 21:33:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 14:33:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:33:08 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:33:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:33:09 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:49:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:49:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:49:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:49:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:49:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:49:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:49:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 14:49:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 14:49:15 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:48 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:49 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:20:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:20:54 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:21:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:21:21 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:21:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:21:21 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:21:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:21:30 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:25:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:25:13 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:25:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:25:22 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:25:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:25:22 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:25:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:25:22 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:25:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:25:22 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:25:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:25:23 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:27:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:27:54 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:27:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:27:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:27:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:27:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:27:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:27:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:27:55 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:30:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:19 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-05-02 22:30:19 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:30:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:30:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+CRITICAL - 2023-05-02 22:30:27 --> 7 : Failed to connect to localhost port 1111 after 2250 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2250 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/resto/ajaxpanggillantai')
+ 4 APPPATH\Controllers\Resto.php(61): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/resto/ajaxpanggillantai', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Resto->ajaxpanggillantai()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Resto))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:27 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+CRITICAL - 2023-05-02 22:30:30 --> 7 : Failed to connect to localhost port 1111 after 2253 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2253 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/notamenupenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(34): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/notamenupenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->notamenupenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:30 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+CRITICAL - 2023-05-02 22:30:32 --> 7 : Failed to connect to localhost port 1111 after 2226 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2226 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/daftarbarangkasir')
+ 4 APPPATH\Controllers\Penjualan.php(902): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/daftarbarangkasir', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->ajaxdaftarbarang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:32 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:30:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:34 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+CRITICAL - 2023-05-02 22:30:36 --> 7 : Failed to connect to localhost port 1111 after 2234 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2234 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/notamenupenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(34): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/notamenupenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->notamenupenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:38 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:30:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:38 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+CRITICAL - 2023-05-02 22:30:40 --> 7 : Failed to connect to localhost port 1111 after 2241 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2241 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/resto/ajaxpanggillantai')
+ 4 APPPATH\Controllers\Resto.php(61): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/resto/ajaxpanggillantai', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Resto->ajaxpanggillantai()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Resto))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:40 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+CRITICAL - 2023-05-02 22:30:43 --> 7 : Failed to connect to localhost port 1111 after 2239 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2239 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/notamenupenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(34): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/notamenupenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->notamenupenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 15:30:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:43 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+CRITICAL - 2023-05-02 22:30:45 --> 7 : Failed to connect to localhost port 1111 after 2236 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2236 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/daftarbarangkasir')
+ 4 APPPATH\Controllers\Penjualan.php(902): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/daftarbarangkasir', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->ajaxdaftarbarang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-05-02 15:30:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 15:30:45 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:20 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:21 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:23 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:23 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:25 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:51:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:51:26 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:13 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:13 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:13 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:14 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:14 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:22 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:23 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:23 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:24 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:38 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:38 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:52:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:52:44 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-05-02 22:53:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-05-02 22:53:18 --> Session: Sessions is enabled, and one exists.Please don't $session->start();

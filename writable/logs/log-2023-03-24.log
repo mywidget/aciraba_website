@@ -1,0 +1,518 @@
+CRITICAL - 2023-03-24 12:53:05 --> 7 : Failed to connect to localhost port 1111 after 2245 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2245 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/auth/loginapps')
+ 4 APPPATH\Controllers\Auth.php(23): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/auth/loginapps', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->ajax_login()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 13:42:54 --> 22 : The requested URL returned error: 404
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('22', 'The requested URL returned error: 404')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/detailpiutang')
+ 4 APPPATH\Controllers\Penjualan.php(781): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/detailpiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->tambahpiutangdagang('BHGDPSTEE5120230322-2')
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:18:16 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang')
+ 4 APPPATH\Controllers\Penjualan.php(1218): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:41:32 --> 7 : Failed to connect to localhost port 1111 after 2244 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2244 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/auth/loginapps')
+ 4 APPPATH\Controllers\Auth.php(23): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/auth/loginapps', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->ajax_login()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:42:02 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang')
+ 4 APPPATH\Controllers\Penjualan.php(1218): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:42:33 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang')
+ 4 APPPATH\Controllers\Penjualan.php(1218): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:42:39 --> 7 : Failed to connect to localhost port 1111 after 2249 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2249 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang')
+ 4 APPPATH\Controllers\Penjualan.php(1218): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:42:41 --> 7 : Failed to connect to localhost port 1111 after 2246 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2246 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang')
+ 4 APPPATH\Controllers\Penjualan.php(1218): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:42:44 --> 7 : Failed to connect to localhost port 1111 after 2237 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2237 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang')
+ 4 APPPATH\Controllers\Penjualan.php(1218): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/detailtransaksipiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:44:24 --> Undefined property: stdClass::$NAMAMEMBER
+in APPPATH\Controllers\Penjualan.php on line 1236.
+ 1 APPPATH\Controllers\Penjualan.php(1236): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$NAMAMEMBER', 'APPPATH\\Controllers\\Penjualan.php', 1236)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:44:42 --> Undefined property: stdClass::$NAMAMEMBER
+in APPPATH\Controllers\Penjualan.php on line 1236.
+ 1 APPPATH\Controllers\Penjualan.php(1236): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$NAMAMEMBER', 'APPPATH\\Controllers\\Penjualan.php', 1236)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:45:55 --> Undefined property: stdClass::$NAMAMEMBER
+in APPPATH\Controllers\Penjualan.php on line 1236.
+ 1 APPPATH\Controllers\Penjualan.php(1236): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$NAMAMEMBER', 'APPPATH\\Controllers\\Penjualan.php', 1236)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:53:54 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:54:32 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:55:14 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:56:53 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 14:57:13 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 15:01:09 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(73): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 15:01:25 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(73): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 15:04:53 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(73): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 15:08:18 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(73): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 15:09:34 --> Undefined property: stdClass::$msg
+in APPPATH\Controllers\Penjualan.php on line 1227.
+ 1 APPPATH\Controllers\Penjualan.php(1227): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$msg', 'APPPATH\\Controllers\\Penjualan.php', 1227)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->detailtransaksipiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(73): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:05:48 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/ajaxdaftarpiutang')
+ 4 APPPATH\Controllers\Penjualan.php(1116): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/ajaxdaftarpiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->ajaxdaftarpiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:18:53 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/daftarreturpenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(257): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/daftarreturpenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsondaftarreturpenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:27:47 --> 7 : Failed to connect to localhost port 1111 after 2243 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2243 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/daftarreturpenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(257): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/daftarreturpenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsondaftarreturpenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:38:00 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/cekpotongpiutang')
+ 4 APPPATH\Controllers\Penjualan.php(470): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/cekpotongpiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:38:02 --> 7 : Failed to connect to localhost port 1111 after 2233 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2233 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/daftarbarang')
+ 4 APPPATH\Controllers\MasterData.php(29): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/daftarbarang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->panggilbarangglobal()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:38:11 --> 7 : Failed to connect to localhost port 1111 after 2252 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2252 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/mastermember')
+ 4 APPPATH\Controllers\MasterData.php(1620): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/mastermember', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->ajaxdaftarmember()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:47:47 --> 7 : Failed to connect to localhost port 1111 after 2236 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2236 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/notamenupenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(27): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/notamenupenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->notamenupenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:47:50 --> 7 : Failed to connect to localhost port 1111 after 2248 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2248 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/cekpotongpiutang')
+ 4 APPPATH\Controllers\Penjualan.php(470): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/cekpotongpiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:47:52 --> 7 : Failed to connect to localhost port 1111 after 2228 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2228 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/daftarbarang')
+ 4 APPPATH\Controllers\MasterData.php(29): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/daftarbarang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->panggilbarangglobal()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:47:54 --> 7 : Failed to connect to localhost port 1111 after 2248 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2248 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/mastermember')
+ 4 APPPATH\Controllers\MasterData.php(1620): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/mastermember', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->ajaxdaftarmember()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:50:21 --> 7 : Failed to connect to localhost port 1111 after 2224 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2224 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/notamenupenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(27): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/notamenupenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->notamenupenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:50:22 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/cekpotongpiutang')
+ 4 APPPATH\Controllers\Penjualan.php(470): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/cekpotongpiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:50:25 --> 7 : Failed to connect to localhost port 1111 after 2248 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2248 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/daftarbarang')
+ 4 APPPATH\Controllers\MasterData.php(29): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/daftarbarang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->panggilbarangglobal()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:50:27 --> 7 : Failed to connect to localhost port 1111 after 2231 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2231 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/mastermember')
+ 4 APPPATH\Controllers\MasterData.php(1620): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/mastermember', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->ajaxdaftarmember()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:51:26 --> 7 : Failed to connect to localhost port 1111 after 2228 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2228 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/daftarbarang')
+ 4 APPPATH\Controllers\MasterData.php(29): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/daftarbarang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->panggilbarangglobal()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 20:51:28 --> 7 : Failed to connect to localhost port 1111 after 2247 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2247 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/mastermember')
+ 4 APPPATH\Controllers\MasterData.php(1620): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/mastermember', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->ajaxdaftarmember()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:03:32 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 489.
+ 1 APPPATH\Controllers\Penjualan.php(489): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 489)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:07:11 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 489.
+ 1 APPPATH\Controllers\Penjualan.php(489): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 489)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:11:24 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 489.
+ 1 APPPATH\Controllers\Penjualan.php(489): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 489)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:17:55 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 489.
+ 1 APPPATH\Controllers\Penjualan.php(489): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 489)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:26:41 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 489.
+ 1 APPPATH\Controllers\Penjualan.php(489): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 489)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:28:22 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 493.
+ 1 APPPATH\Controllers\Penjualan.php(493): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 493)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:30:26 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 493.
+ 1 APPPATH\Controllers\Penjualan.php(493): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 493)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:31:15 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 493.
+ 1 APPPATH\Controllers\Penjualan.php(493): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 493)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:33:37 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 492.
+ 1 APPPATH\Controllers\Penjualan.php(492): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 492)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:39:58 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 493.
+ 1 APPPATH\Controllers\Penjualan.php(493): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 493)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:42:36 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 498.
+ 1 APPPATH\Controllers\Penjualan.php(498): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 498)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:43:08 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 488.
+ 1 APPPATH\Controllers\Penjualan.php(488): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 488)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:45:50 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/cekpotongpiutang')
+ 4 APPPATH\Controllers\Penjualan.php(469): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/cekpotongpiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:49:05 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 492.
+ 1 APPPATH\Controllers\Penjualan.php(492): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 492)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:50:07 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 492.
+ 1 APPPATH\Controllers\Penjualan.php(492): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 492)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:53:27 --> 56 : Recv failure: Connection was reset
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('56', 'Recv failure: Connection was reset')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/cekpotongpiutang')
+ 4 APPPATH\Controllers\Penjualan.php(473): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/cekpotongpiutang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:53:30 --> 7 : Failed to connect to localhost port 1111 after 2258 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2258 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/daftarbarang')
+ 4 APPPATH\Controllers\MasterData.php(29): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/daftarbarang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->panggilbarangglobal()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:53:32 --> 7 : Failed to connect to localhost port 1111 after 2230 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2230 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/mastermember')
+ 4 APPPATH\Controllers\MasterData.php(1620): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/mastermember', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->ajaxdaftarmember()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:53:41 --> 7 : Failed to connect to localhost port 1111 after 2234 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2234 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/penjualan/notamenupenjualan')
+ 4 APPPATH\Controllers\Penjualan.php(27): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/penjualan/notamenupenjualan', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->notamenupenjualan()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:53:43 --> 7 : Failed to connect to localhost port 1111 after 2250 ms: Connection refused
+in SYSTEMPATH\HTTP\CURLRequest.php on line 666.
+ 1 SYSTEMPATH\HTTP\CURLRequest.php(666): CodeIgniter\HTTP\Exceptions\HTTPException::forCurlError('7', 'Failed to connect to localhost port 1111 after 2250 ms: Connection refused')
+ 2 SYSTEMPATH\HTTP\CURLRequest.php(372): CodeIgniter\HTTP\CURLRequest->sendRequest([...])
+ 3 SYSTEMPATH\HTTP\CURLRequest.php(134): CodeIgniter\HTTP\CURLRequest->send('POST', 'http://localhost:1111/masterdata/daftarbarang')
+ 4 APPPATH\Controllers\MasterData.php(29): CodeIgniter\HTTP\CURLRequest->request('POST', 'http://localhost:1111/masterdata/daftarbarang', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Masterdata->panggilbarangglobal()
+ 6 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Masterdata))
+ 7 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 21:54:23 --> Undefined property: stdClass::$TERAKHIR
+in APPPATH\Controllers\Penjualan.php on line 492.
+ 1 APPPATH\Controllers\Penjualan.php(492): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined property: stdClass::$TERAKHIR', 'APPPATH\\Controllers\\Penjualan.php', 492)
+ 2 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Penjualan->jsonambiltrxpiutang()
+ 3 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Penjualan))
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2023-03-24 22:33:53 --> Undefined variable $menuaktif
+in APPPATH\Views\backend\main.php on line 85.
+ 1 APPPATH\Views\backend\main.php(85): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $menuaktif', 'APPPATH\\Views\\backend\\main.php', 85)
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\backend\\main.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\View\View.php(229): CodeIgniter\View\View->render('backend/main', [], true)
+ 5 SYSTEMPATH\Common.php(1177): CodeIgniter\View\View->render('backend/pembelian/kontendaftarpembelian', [], true)
+ 6 APPPATH\Controllers\Pembelian.php(53): view('backend/pembelian/kontendaftarpembelian', [...])
+ 7 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Pembelian->daftarpembelian()
+ 8 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Pembelian))
+ 9 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+10 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

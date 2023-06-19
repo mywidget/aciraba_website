@@ -1,0 +1,118 @@
+INFO - 2023-06-05 13:58:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:58:56 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-05 20:58:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 20:58:56 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:58:56 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:58:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 20:58:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 20:58:59 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:58:59 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:58:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:59:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:59:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:59:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 13:59:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:59:00 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:00 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:59:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 20:59:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 20:59:01 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-05 20:59:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 20:59:01 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-05 13:59:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:59:01 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:01 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:01 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 13:59:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:59:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:59:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$breadcrumb is deprecated in APPPATH\Controllers\Laporan.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Laporan->masteritem()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Laporan))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 13:59:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:59:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:06 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 13:59:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:59:20 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:20 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:20 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+WARNING - 2023-06-05 20:59:20 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$breadcrumb is deprecated in APPPATH\Controllers\Laporan.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Laporan->masteritem()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Laporan))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 13:59:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:59:25 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:25 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:25 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+INFO - 2023-06-05 13:59:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-05 13:59:38 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:38 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-05 20:59:38 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(907): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()

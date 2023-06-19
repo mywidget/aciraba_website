@@ -1,0 +1,18 @@
+WARNING - 2023-04-12 12:08:48 --> [DEPRECATED] Creation of dynamic property App\Controllers\Pembelian::$pembelianModel is deprecated in APPPATH\Controllers\Pembelian.php on line 12.
+ 1 SYSTEMPATH\CodeIgniter.php(906): App\Controllers\Pembelian->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(490): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+INFO - 2023-04-12 12:08:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-04-12 12:08:48 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-04-12 12:08:48 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-04-12 12:08:48 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-04-12 12:08:53 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-04-12 12:08:53 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+INFO - 2023-04-12 12:08:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-04-12 12:08:54 --> Session: Sessions is enabled, and one exists.Please don't $session->start();
+WARNING - 2023-04-12 19:08:54 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 19.
+ 1 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()

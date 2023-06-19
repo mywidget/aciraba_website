@@ -1,0 +1,63 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('fonts/icomoon.eot?wn1gkh');
+  src:  url('fonts/icomoon.eot?wn1gkh#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?wn1gkh') format('truetype'),
+    url('fonts/icomoon.woff?wn1gkh') format('woff'),
+    url('fonts/icomoon.svg?wn1gkh#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-reservation-completed-icon:before {
+  content: "\e902";
+}
+.icon-dine-in:before {
+  content: "\e903";
+}
+.icon-takeaway-icon .path1:before {
+  content: "\e904";
+  color: rgb(33, 33, 33);
+}
+.icon-takeaway-icon .path2:before {
+  content: "\e905";
+  margin-left: -0.7822265625em;
+  color: rgb(255, 255, 255);
+}
+.icon-takeaway-icon .path3:before {
+  content: "\e906";
+  margin-left: -0.7822265625em;
+  color: rgb(0, 0, 0);
+}
+.icon-takeaway-icon .path4:before {
+  content: "\e907";
+  margin-left: -0.7822265625em;
+  color: rgb(231, 34, 39);
+}
+.icon-takeaway-icon .path5:before {
+  content: "\e908";
+  margin-left: -0.7822265625em;
+  color: rgb(231, 34, 39);
+}
+.icon-cooking-svgrepo-com:before {
+  content: "\e900";
+}
+.icon-restaurant-table-and-chairs-svgrepo-com:before {
+  content: "\e901";
+}
