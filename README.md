@@ -2,7 +2,7 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com) [![forthebadge](https://cdn.seirasetyawan.com/images/made-with-php---codeigniter-4.svg)](https://forthebadge.com) [![forthebadge](https://cdn.seirasetyawan.com/images/semi-open-source.svg)](https://forthebadge.com) 
 # Apa sih ACIRABA itu ?
 Aciraba adalah sistem Integrasi dengan Sistem Eksternal: Beberapa aplikasi POS berbasis website dapat diintegrasikan dengan sistem eksternal seperti sistem akuntansi, sistem manajemen gudang, atau platform e-commerce. Ini memungkinkan sinkronisasi data antara berbagai sistem dan mengurangi kerja yang berulang.<br>
-[TRAILER](https://cdn.seirasetyawan.com/images/Animation.gif)
+
 > **Note** UMUM <br>
 > 1. Script hanya digunakan untuk 1 nama brand outlet dengan 1 pemilik utama.
 > 2. Tidak dapat merubah domain apabila lisensi sudah terinstall.
