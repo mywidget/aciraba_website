@@ -23,7 +23,7 @@ Aciraba adalah sistem Integrasi dengan Sistem Eksternal: Beberapa aplikasi POS b
 
 ## Alat perang sebelum install
 1. Pengetahuan dasar mengenai CODEIGNITER 4 baik secara logika maupun struktur directory.
-2. API KEY untuk verifikasi jika meminta VERIFIKASI API KEY (GRATIS). Join Discord ![Pandawa Cipta Karya](https://discordapp.com/api/guilds/1111461269602566185/widget.png?style=banner2)
+2. API KEY untuk verifikasi jika meminta VERIFIKASI API KEY (GRATIS). Join Discord ![Pandawa Cipta Karya](https://discord.gg/K3fsg32a6n)
 3. Visual Code
 4. Composer 2.3.x ke atas
 ## Installation
