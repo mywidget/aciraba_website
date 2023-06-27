@@ -5,7 +5,12 @@
 !system/cache/*
 !*/cache/index.html
 !*/cache/.htaccess
+
 .env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
 
 user_guide_src/build/*
 user_guide_src/cilexer/build/*
