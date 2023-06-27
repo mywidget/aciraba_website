@@ -17,6 +17,7 @@
 	<script src="<?=base_url();?>scripts/globalfn.js" type="text/javascript" ></script>
 	<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment-with-locales.min.js" integrity="sha512-42PE0rd+wZ2hNXftlM78BSehIGzezNeQuzihiBCvUEB3CVxHvsShF86wBWwQORNxNINlBPuq7rG4WWhNiTVHFg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
 	<script type="text/javascript">
 	var baseurljavascript = '<?= DYBASESEURL;?>';
 	var baseurlsocket = '<?= BASEURLAPI;?>';
@@ -542,9 +543,20 @@
 					<div class="portlet-icon">
 						<i class="fa fa-users"></i>
 					</div>
-					<h3 class="portlet-title"><?= session('jenismerchant') == "OW" ? "MERCHANT" : "PEGAWAI" ;?></h3>
+					<h3 class="portlet-title">PEGAWAI</h3>
 					<div class="portlet-addon">
 					<a href="<?= base_url() ;?>masterdata/informasimerchant"><button class="btn btn-label-primary btn-icon">
+							<i class="fa fa-plus"></i>
+						</button></a>
+					</div>
+				</div>
+				<div class="portlet-header portlet-header-bordered">
+					<div class="portlet-icon">
+						<i class="fa fa-building"></i>
+					</div>
+					<h3 class="portlet-title">OUTLET</h3>
+					<div class="portlet-addon">
+					<a href="<?= base_url() ;?>masterdata/outlet"><button class="btn btn-label-primary btn-icon">
 							<i class="fa fa-plus"></i>
 						</button></a>
 					</div>
@@ -572,7 +584,7 @@
 							</div>
 							<div class="rich-list-content">
 								<h4 class="rich-list-title">Hak Akses Apliaksi</h4>
-								<span class="rich-list-subtitle">Administrator</span>
+								<span class="rich-list-subtitle"><?= session('hakakses') ;?></span>
 							</div>
 						</a>
 					</div>
@@ -600,9 +612,6 @@
 <script type="text/javascript" src="<?= base_url() ;?>scripts/dashboard1.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/core.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/vendor.js"></script>
-<script type="text/javascript" src="<?= base_url() ;?>scripts/autoNumeric.js"></script>
-<script type="text/javascript" src="<?= base_url() ;?>scripts/autoNumeric.js"></script>
-<script type="text/javascript" src="<?= base_url() ;?>scripts/hakakses.js"></script>
 <script type="text/javascript">
 function launchCalc(){
 	window.open('Calculator:///');
@@ -611,6 +620,7 @@ function launchCalc(){
 $(document).ready(function() {
 	$.get('https://www.cloudflare.com/cdn-cgi/trace', function(data) {data = data.trim().split('\n').reduce(function(obj, pair) {pair = pair.split('=');return obj[pair[0]] = pair[1], obj;}, {})
 	$('#ipaddresspublic').html(data.ip)
+	getCsrfTokenCallback(function() {});
 	/*console.log(window.screen.availHeight)
 	console.log(window.screen.availWidth)
 	document.body.style.zoom = "10%";*/ 
@@ -625,12 +635,14 @@ $('#cmblokasioutlet').select2({
 		delay: 500,
 		data: function (params) {
 			return {
+				csrf_aciraba: csrfTokenGlobal,
 				KATAKUNCIPENCARIAN: "",
 				KODEUNIKMEMBER: session_kodeunikmember,
 			}
 		},
 		processResults: function (data) {
 			parseJSON = JSON.parse(data);
+			getCsrfTokenCallback(function() {});
 			return {
 				results: $.map(parseJSON, function (item) {
 					return {
@@ -639,13 +651,21 @@ $('#cmblokasioutlet').select2({
 					}
 				})
 			}
+		},
+		error: function(xhr, status, error) {
+			getCsrfTokenCallback(function() {});
+			toastr["error"](xhr.responseJSON.message);
 		}
 	},
 });
 $("#cmblokasioutlet").change(function () {
+	pindahoutlet($("#cmblokasioutlet").val());
+});
+});	
+function pindahoutlet(kodeoutlet){
 	Swal.fire({
-		title: "Apakah anda ingin beralih KE OUTLET : " + $("#cmblokasioutlet").val(),
-		text: "Informasi saat ini akan diubah dengan informasi yang berkaitan dengan KODE OUTLET "+$("#cmblokasioutlet").val()+". Anda dapat kembali ke outlet sebelumnya dengan cara yang sama",
+		title: "Apakah anda ingin beralih KE OUTLET : " + kodeoutlet,
+		text: "Informasi saat ini akan diubah dengan informasi yang berkaitan dengan KODE OUTLET "+kodeoutlet+". Anda dapat kembali ke outlet sebelumnya dengan cara yang sama",
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: '#3085d6',
@@ -653,11 +673,10 @@ $("#cmblokasioutlet").change(function () {
 		confirmButtonText: 'Oke, Teleport!!'
 	}).then((result) => {
 		if (result.isConfirmed) {
-			window.location = baseurljavascript+"auth/ubahoutlet/"+$("#cmblokasioutlet").val();
+			window.location = baseurljavascript+"auth/ubahoutlet/"+kodeoutlet;
 		}
 	})
-});
-});	
+}
 function verifikasikeluar(){
 	Swal.fire({
 		title: 'Keluar Dari Sistem?',

@@ -4,7 +4,13 @@ namespace App\Controllers;
 
 class Masterdata extends BaseController{
 	protected $session,$breadcrumb,$sidetitle = "Master Data",$hakakses = [];
-	function __construct(){}
+	function __construct(){
+		$this->session = \Config\Services::session();
+        $this->session->start();
+		if ($this->session->get("punyaoutlet") > 0){
+			header('Location: '.base_url());
+		}
+	}
 	public function panggilbarangglobal(){
 		helper('number');
 		$client = \Config\Services::curlrequest();
@@ -26,7 +32,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarbarang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -69,14 +75,14 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar item */
 	public function daftaritem(){
-		if ($this->session->get("jenismerchant") != "OW" && $this->session->get("jenismerchant") != "ADM"){
+		/*if ($this->session->get("hakakses") != "OW" && $this->session->get("hakakses") != "ADM"){
 			header('Location: '.base_url().'auth/area403/');
 			exit(); 
 		}
 		if (searchForMenu("ha_daftaritem",$this->hakakses->menuakses) == "0"){
 			header('Location: '.base_url().'auth/area403/');
 			exit(); 
-		}
+		}*/
 		$this->breadcrumb  = array( 
 			"Daftar Item" => base_url()."masterdata/daftaritem",
 		);
@@ -92,10 +98,6 @@ class Masterdata extends BaseController{
 		return view('backend/daftaritem/kontendaftaritem',$data);
 	}
 	public function jsonsuplierselect(){
-		if ($this->session->get("kodeunikmember") == ""){
-			$jsonobj = '{"apakahlogin":"false"}';
-			return json_encode($jsonobj);
-		}
 		$client = \Config\Services::curlrequest();
 		$datapost = [
 			'KONDISI' => '15',
@@ -115,7 +117,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarsuplierselect", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -148,7 +150,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftakategoriselect", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -170,7 +172,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftakategoriselectkasir", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -207,7 +209,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarsatuanselect", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -229,7 +231,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarperusahaan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -253,7 +255,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jenispembayarantransaksi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -277,7 +279,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarprincipal", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -299,7 +301,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarbrand", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -321,7 +323,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jsonmemberselect", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -355,7 +357,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarbarang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -414,7 +416,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarvoucherbarang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -459,10 +461,6 @@ class Masterdata extends BaseController{
 		return json_encode($outputDT);
 	}
 	public function daftaritemdetail(){
-		if ($this->session->get("jenismerchant") != "OW" && $this->session->get("jenismerchant") != "ADM"){
-			header('Location: '.base_url().'auth/area403/');
-			exit(); 
-		}
 		helper('url');
 		$this->breadcrumb  = array( 
 			"Daftar Item" => base_url()."masterdata/daftaritem",
@@ -528,7 +526,7 @@ class Masterdata extends BaseController{
 			$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarbarangdetail", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -602,18 +600,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahbarangitem", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		$no = 0;
-		if ($datajson->hasilinserttambahitem[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->hasilinserttambahitem[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->hasilinserttambahitem[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hasilinserttambahitem[0]);
 	}
 	public function tambahitemajaxbulk(){
 		$client = \Config\Services::curlrequest();
@@ -625,7 +617,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahitemajaxbulk", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -658,18 +650,13 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/pecahsatuan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
 		$no = 0;
-		if ($datajson->pecahsatuan[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->pecahsatuan[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->pecahsatuan[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->pecahsatuan[0]);
 	}
 	public function tambahvoucherjax(){
 		
@@ -691,7 +678,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahbarangvoucher", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -717,7 +704,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/rebuildstok", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -771,7 +758,7 @@ class Masterdata extends BaseController{
 					$json_data = $client->request("POST", BASEURLAPI."masterdata/manajemencitraitem", [
 						"headers" => [
 							"Accept" => "application/json",
-							"Authorization" => "Bearer ".TOKENAPI,
+							"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 						],
 						"form_params" => $datapost
 					]);
@@ -797,11 +784,12 @@ class Masterdata extends BaseController{
 			$json_data = $client->request("POST", BASEURLAPI."masterdata/manajemencitraitem", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
-			return json_decode($json_data->getBody());
+			$datajson = json_decode($json_data->getBody());
+			return json_encode($datajson->manajemencitraitem[0]);
 		}
 	}
 	public function daftarcitraitem(){
@@ -817,7 +805,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/manajemencitraitem", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -862,7 +850,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/kartustok", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -917,10 +905,6 @@ class Masterdata extends BaseController{
 		return view('backend/daftaritem/kontendaftardiskon',$data);
 	}
 	public function jsontampildiskonbelanja(){
-		if ($this->session->get("kodeunikmember") == ""){
-			$jsonobj = '{"apakahlogin":"false"}';
-			return json_encode($jsonobj);
-		}
 		helper('number');
 		$client = \Config\Services::curlrequest();
 		$datapost = [
@@ -941,7 +925,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/diskonpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1011,7 +995,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahdiskonpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1034,7 +1018,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapusdiskonpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1063,10 +1047,6 @@ class Masterdata extends BaseController{
 		return view('backend/daftaritem/kontendaftarkupon',$data);
 	}
 	public function jsontampilvoucherbelanja(){
-		if ($this->session->get("kodeunikmember") == ""){
-			$jsonobj = '{"apakahlogin":"false"}';
-			return json_encode($jsonobj);
-		}
 		helper('number');
 		$client = \Config\Services::curlrequest();
 		$datapost = [
@@ -1080,21 +1060,21 @@ class Masterdata extends BaseController{
 			'DIMANA7' => '',
 			'DIMANA8' => '',
 			'DIMANA9' => '',
-			'DIMANA10' => '',
+			'DIMANA10' => $this->session->get("kodeunikmember"),
 			'DATAKE' => service('request')->getPost('DATAKE'),
 			'LIMIT' => service('request')->getPost('LIMIT'),
 		];
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/kuponbelanja", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
 		if ($datajson->kuponbelanja[0]->success == "false"){
 			$outputDT = [
-				"draw" => 1,
+				"draw" => 0,
 				"recordsTotal" => 0,
 				"recordsFiltered" => 0,
 				"data" => []
@@ -1157,17 +1137,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahkuponbelanja", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->tambahkuponbelanja[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->tambahkuponbelanja[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->tambahkuponbelanja[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->tambahkuponbelanja[0]);
 	}
 	public function jsonhapuskuponbelanja(){
 		$client = \Config\Services::curlrequest();
@@ -1179,17 +1154,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapuskuponbelanja", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->hapuskuponbelanja[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->hapuskuponbelanja[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->hapuskuponbelanja[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hapuskuponbelanja[0]);
 	}
 	/* area algoritma daftar suplier */
 	public function daftarsuplier(){
@@ -1208,14 +1178,10 @@ class Masterdata extends BaseController{
 		return view('backend/daftaritem/kontendaftarsuplier',$data);
 	}
 	public function ajaxdaftarsuplier(){
-		if ($this->session->get("kodeunikmember") == ""){
-			$jsonobj = '{"apakahlogin":"false"}';
-			return json_encode($jsonobj);
-		}
 		$client = \Config\Services::curlrequest();
 		$datapost = [
 			'KONDISI' => '19',
-			'DIMANA1' => service('request')->getPost('KODEUNIKMEMBER'),
+			'DIMANA1' => '',
 			'DIMANA2' => '1',
 			'DIMANA3' => service('request')->getPost('KATAKUNCIPENCARIAN'),
 			'DIMANA4' => '',
@@ -1224,21 +1190,21 @@ class Masterdata extends BaseController{
 			'DIMANA7' => '',
 			'DIMANA8' => '',
 			'DIMANA9' => '',
-			'DIMANA10' => '',
+			'DIMANA10' => $this->session->get("kodeunikmember"),
 			'DATAKE' => service('request')->getPost('DATAKE'),
 			'LIMIT' => service('request')->getPost('LIMIT'),
 		];
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/mastersuplier", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
 		if ($datajson->mastersuplier[0]->success == "false"){
 			$outputDT = [
-				"draw" => 1,
+				"draw" => 0,
 				"recordsTotal" => 0,
 				"recordsFiltered" => 0,
 				"data" => []
@@ -1287,17 +1253,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahmastersuplier", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->tambahmastersuplier[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->tambahmastersuplier[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->tambahmastersuplier[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->tambahmastersuplier[0]);
 	}
 	public function jsonhapusdaftarsuplier(){
 		$client = \Config\Services::curlrequest();
@@ -1309,21 +1270,15 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapusmastersuplier", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->hapusmastersuplier[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->hapusmastersuplier[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->hapusmastersuplier[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hapusmastersuplier[0]);
 	}
 	public function detailsuplier(){
 		helper('url');
-		
 		$this->breadcrumb  = array( 
 			"Daftar Suplier" => base_url()."masterdata/daftarsuplier",
 			"Tambah Suplier" => base_url()."masterdata/detailsuplier",
@@ -1334,7 +1289,6 @@ class Masterdata extends BaseController{
 			"submenuaktif" => "5",
 			"breadcrumb"=>$this->breadcrumb,
 			"sidetitle" => $this->sidetitle,
-			
 			"kodeitem" => "",
 		];
 		$data['KODESUPPLIER'] = "";
@@ -1353,7 +1307,7 @@ class Masterdata extends BaseController{
 			$client = \Config\Services::curlrequest();
 			$datapost = [
 				'KONDISI' => '19',
-				'DIMANA1' => $this->session->get("kodeunikmember"),
+				'DIMANA1' => '',
 				'DIMANA2' => '1',
 				'DIMANA3' => $this->request->uri->getSegment(3),
 				'DIMANA4' => '',
@@ -1362,14 +1316,14 @@ class Masterdata extends BaseController{
 				'DIMANA7' => '',
 				'DIMANA8' => '',
 				'DIMANA9' => '',
-				'DIMANA10' => '',
+				'DIMANA10' => $this->session->get("kodeunikmember"),
 				'DATAKE' => 0,
 				'LIMIT' => 1,
 			];
 			$json_data = $client->request("POST", BASEURLAPI."masterdata/mastersuplier", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -1469,7 +1423,7 @@ class Masterdata extends BaseController{
 			$json_data = $client->request("POST", BASEURLAPI."masterdata/detailmember", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -1498,7 +1452,7 @@ class Masterdata extends BaseController{
 			$data['JENIS'] = $datajson->detailmember[0]->dataquery[0]->JENIS;
 			$data['GRUP'] = $datajson->detailmember[0]->dataquery[0]->GRUP;
 			$data['STATUSAKTIF'] = $datajson->detailmember[0]->dataquery[0]->STATUSAKTIF;
-			$data['AKHIRAKTIFA'] = $datajson->detailmember[0]->dataquery[0]->AKHIRAKTIF;
+			$data['AKHIRAKTIFA'] = date("Y-m-d", strtotime($datajson->detailmember[0]->dataquery[0]->AKHIRAKTIF));
 			$data['PINTRX'] = "";
 			$data['APIKEY'] = $datajson->detailmember[0]->dataquery[0]->APIKEY;
 			$data['MARKUP'] = $datajson->detailmember[0]->dataquery[0]->MARKUP;
@@ -1533,7 +1487,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/mastermember", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1561,7 +1515,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/mastersalesmankasir", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1606,7 +1560,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/mastermemberkasir", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1651,7 +1605,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/mastermemberkasir", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1684,7 +1638,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/mastermember", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1718,7 +1672,7 @@ class Masterdata extends BaseController{
 					$row[] = $datajson->mastermember[0]->dataquery[$no]->EMAIL;
 					$row[] = formatuang('IDR',$datajson->mastermember[0]->dataquery[$no]->MINIMALPOIN,'Rp ');
 					$row[] = formatuang('IDR',$datajson->mastermember[0]->dataquery[$no]->LIMITJUMLAHPIUTANG,'Rp ');
-					$row[] = ($datajson->mastermember[0]->dataquery[$no]->AKHIRAKTIF == "0000-00-00" ? "AON" : date("d-m-Y", strtotime($datajson->mastermember[0]->dataquery[$no]->AKHIRAKTIF)));
+					$row[] = (date("Y-m-d", strtotime($datajson->mastermember[0]->dataquery[$no]->AKHIRAKTIF)) == "9999-12-31" ? "AON" : date("d-m-Y", strtotime($datajson->mastermember[0]->dataquery[$no]->AKHIRAKTIF)));
 					$data[] = $row;
 				}
 			}
@@ -1742,7 +1696,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/statusmember", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1805,17 +1759,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahmember", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->tambahmember[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->tambahmember[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->tambahmember[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->tambahmember[0]);
 	}
 	/* area algoritma daftar sales */
 	public function daftarsales(){
@@ -1857,7 +1806,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/mastersales", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1916,7 +1865,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahmastersales", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1938,7 +1887,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapussales", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1994,7 +1943,7 @@ class Masterdata extends BaseController{
 			$json_data = $client->request("POST", BASEURLAPI."masterdata/mastersuplier", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -2052,7 +2001,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/datasatuan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2067,7 +2016,7 @@ class Masterdata extends BaseController{
 		}else{
 			for ($no = 0; $no < $datajson->datasatuan[0]->totaldatadataquery; $no++) {
 				$row = [];
-				$row[] = "<button onclick=\"onclickdeletesatuan('". $datajson->datasatuan[0]->dataquery[$no]->NAMASATUAN."','".$datajson->datasatuan[0]->dataquery[$no]->KETERANGAN."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button>";
+				$row[] = "<button id=\"onclickdeletesatuan".trim($datajson->datasatuan[0]->dataquery[$no]->NAMASATUAN)."\" onclick=\"onclickdeletesatuan('". $datajson->datasatuan[0]->dataquery[$no]->NAMASATUAN."','".$datajson->datasatuan[0]->dataquery[$no]->KETERANGAN."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button>";
 				$row[] = $datajson->datasatuan[0]->dataquery[$no]->NAMASATUAN;
 				$row[] = $datajson->datasatuan[0]->dataquery[$no]->KETERANGAN;
 				$data[] = $row;
@@ -2090,17 +2039,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapussatuan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->hapussatuan[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->hapussatuan[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->hapussatuan[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hapussatuan[0]);
 	}
 	public function jsontambahsatuan(){
 		$client = \Config\Services::curlrequest();
@@ -2112,17 +2056,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahsatuan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->tambahsatuan[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->tambahsatuan[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->tambahsatuan[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->tambahsatuan[0]);
 	}
 	/* area algoritma daftar satuan item */
 	public function daftarkategoribarang(){
@@ -2164,7 +2103,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/datakategori", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2179,7 +2118,7 @@ class Masterdata extends BaseController{
 		}else{
 			for ($no = 0; $no < $datajson->datakategori[0]->totaldatadataquery; $no++) {
 				$row = [];
-				$row[] = "<button onclick=\"onclickdeletekategori('". $datajson->datakategori[0]->dataquery[$no]->KATEGORIPARENT_ID."','".$datajson->datakategori[0]->dataquery[$no]->NAMAKATEGORI."')\" class=\"btn btn-danger mr-2\"><i class=\"fas fa-trash\"></i> Hapus</button> <button onclick=\"panggilformbebanmanufaktur('". $datajson->datakategori[0]->dataquery[$no]->KATEGORIPARENT_ID."','".$datajson->datakategori[0]->dataquery[$no]->NAMAKATEGORI."','".$datajson->datakategori[0]->dataquery[$no]->BEBANGAJI."','".$datajson->datakategori[0]->dataquery[$no]->BEBANPACKING."','".$datajson->datakategori[0]->dataquery[$no]->BEBANPROMO."','".$datajson->datakategori[0]->dataquery[$no]->BEBANTRANSPORT."')\" class=\"btn btn-warning\"><i class=\"fas fa-object-group\"></i> Beban Manufaktur</button>";
+				$row[] = "<button id=\"hapuskategori".$datajson->datakategori[0]->dataquery[$no]->KATEGORIPARENT_ID."\" onclick=\"onclickdeletekategori('". $datajson->datakategori[0]->dataquery[$no]->KATEGORIPARENT_ID."','".$datajson->datakategori[0]->dataquery[$no]->NAMAKATEGORI."')\" class=\"btn btn-danger mr-2\"><i class=\"fas fa-trash\"></i> Hapus</button> <button onclick=\"panggilformbebanmanufaktur('". $datajson->datakategori[0]->dataquery[$no]->KATEGORIPARENT_ID."','".$datajson->datakategori[0]->dataquery[$no]->NAMAKATEGORI."','".$datajson->datakategori[0]->dataquery[$no]->BEBANGAJI."','".$datajson->datakategori[0]->dataquery[$no]->BEBANPACKING."','".$datajson->datakategori[0]->dataquery[$no]->BEBANPROMO."','".$datajson->datakategori[0]->dataquery[$no]->BEBANTRANSPORT."')\" class=\"btn btn-warning\"><i class=\"fas fa-object-group\"></i> Beban Manufaktur</button>";
 				$row[] = $datajson->datakategori[0]->dataquery[$no]->KATEGORIPARENT_ID;
 				$row[] = $datajson->datakategori[0]->dataquery[$no]->NAMAKATEGORI;
 				$data[] = $row;
@@ -2208,7 +2147,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapuskategori", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2229,7 +2168,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapuskategori", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2246,13 +2185,13 @@ class Masterdata extends BaseController{
 		$datapost = [
 			'KATEGORIPARENT_ID' => service('request')->getPost('KATEGORIPARENT_ID'),
 			'NAMAKATEGORI' => service('request')->getPost('NAMAKATEGORI'),
-			'KATEGORICHILD' => service('request')->getPost('KATEGORICHILD'),
+			'LOGOKATEGORI' => service('request')->getPost('LOGOKATEGORI'),
 			'KODEUNIKMEMBER' => service('request')->getPost('KODEUNIKMEMBER'),
 		];
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahkategori", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2321,14 +2260,14 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/datakategorianggota", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
 		if ($datajson->datakategorianggota[0]->success == "false"){
 			$outputDT = [
-				"draw" => 1,
+				"draw" => 0,
 				"recordsTotal" => 0,
 				"recordsFiltered" => 0,
 				"data" => []
@@ -2336,7 +2275,7 @@ class Masterdata extends BaseController{
 		}else{
 			for ($no = 0; $no < $datajson->datakategorianggota[0]->totaldatadataquery; $no++) {
 				$row = [];
-				$row[] = "<button onclick=\"onclickdeletekategori('". $datajson->datakategorianggota[0]->dataquery[$no]->KODEGRUP."','".$datajson->datakategorianggota[0]->dataquery[$no]->GRUP."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button>";
+				$row[] = "<button id=\"hapuskategorimember".$datajson->datakategorianggota[0]->dataquery[$no]->KODEGRUP."\" onclick=\"onclickdeletekategori('". $datajson->datakategorianggota[0]->dataquery[$no]->KODEGRUP."','".$datajson->datakategorianggota[0]->dataquery[$no]->GRUP."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button>";
 				$row[] = $datajson->datakategorianggota[0]->dataquery[$no]->KODEGRUP;
 				$row[] = $datajson->datakategorianggota[0]->dataquery[$no]->JENIS;
 				$row[] = $datajson->datakategorianggota[0]->dataquery[$no]->GRUP;
@@ -2360,7 +2299,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/hapuskategorianggota", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2383,7 +2322,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/tambahkategorianggota", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2402,7 +2341,7 @@ class Masterdata extends BaseController{
 			"Kelola Informasi" => base_url()."masterdata/informasimerchant",
 		);
 		$data = [
-			"titleheader"=> $this->session->get("jenismerchant") == "OW" ? "INFORMASI MERCHANT" : "INFORMASI PEGAWAI",
+			"titleheader"=> $this->session->get("hakakses") == "OW" ? "INFORMASI MERCHANT" : "INFORMASI PEGAWAI",
 			"menuaktif" => "",
 			"submenuaktif" => "",
 			"breadcrumb"=>$this->breadcrumb,
@@ -2425,7 +2364,7 @@ class Masterdata extends BaseController{
 			'KODEUNIKMEMBER' => service('request')->getPost('KODEUNIKMEMBER'),
 			'STATUSMEMBER' => service('request')->getPost('STATUSMEMBER'),
 			'KETERANGAN' => service('request')->getPost('KETERANGAN'),
-			'SESSIONKODEUNIKMEMBER' => "XLE".service('request')->getPost('SESSIONKODEUNIKMEMBER'),
+			'NAMAOUTLET' => service('request')->getPost('NAMAOUTLET'),
 			'PASSWORDWEB' => service('request')->getPost('PASSWORDWEB'),
 			'TOTALDEPOSIT' => service('request')->getPost('TOTALDEPOSIT'),
 			'JSONMENU' => service('request')->getPost('JSONMENU'),
@@ -2438,7 +2377,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."auth/registerapps", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2465,7 +2404,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/daftarpembayarannontunai", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2499,7 +2438,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jasondaftarbrand", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2514,7 +2453,7 @@ class Masterdata extends BaseController{
 		}else{
 			for ($no = 0; $no < $datajson->jasondaftarbrand[0]->totaldata; $no++) {
 				$row = [];
-				$row[] = "<button onclick=\"hapusbrand('".$datajson->jasondaftarbrand[0]->dataquery[$no]->BRAND_ID."','".$datajson->jasondaftarbrand[0]->dataquery[$no]->NAMA_BRAND."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus Brand</button>";
+				$row[] = "<button id=\"hapusid".$datajson->jasondaftarbrand[0]->dataquery[$no]->BRAND_ID."\" onclick=\"hapusbrand('".$datajson->jasondaftarbrand[0]->dataquery[$no]->BRAND_ID."','".$datajson->jasondaftarbrand[0]->dataquery[$no]->NAMA_BRAND."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus Brand</button>";
 				$row[] = $datajson->jasondaftarbrand[0]->dataquery[$no]->BRAND_ID;
 				$row[] = $datajson->jasondaftarbrand[0]->dataquery[$no]->NAMA_BRAND;
 				$data[] = $row;
@@ -2537,17 +2476,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jsonhapusbrand", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->jsonhapusbrand[0]->success == "true"){
-			$jsonobj = '{"status":"true"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->jsonhapusbrand[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hasiljson[0]);
 	}
 	public function jsontambahbrand(){
 		$client = \Config\Services::curlrequest();
@@ -2559,17 +2493,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jsontambahbrand", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->jsontambahbrand[0]->success == "true"){
-			$jsonobj = '{"status":"true"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->jsontambahbrand[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hasiljson[0]);
 	}
 	public function principal(){
 		
@@ -2598,7 +2527,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jasondaftarprincipal", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2613,7 +2542,7 @@ class Masterdata extends BaseController{
 		}else{
 			for ($no = 0; $no < $datajson->jasondaftarprincipal[0]->totaldata; $no++) {
 				$row = [];
-				$row[] = "<button onclick=\"hapusprincipal('".$datajson->jasondaftarprincipal[0]->dataquery[$no]->PRINCIPAL_ID."','".$datajson->jasondaftarprincipal[0]->dataquery[$no]->NAMA_PRINCIPAL."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus Brand</button>";
+				$row[] = "<button id=\"hapusprincipal".$datajson->jasondaftarprincipal[0]->dataquery[$no]->PRINCIPAL_ID."\" onclick=\"hapusprincipal('".$datajson->jasondaftarprincipal[0]->dataquery[$no]->PRINCIPAL_ID."','".$datajson->jasondaftarprincipal[0]->dataquery[$no]->NAMA_PRINCIPAL."')\" class=\"btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus Principal</button>";
 				$row[] = $datajson->jasondaftarprincipal[0]->dataquery[$no]->PRINCIPAL_ID;
 				$row[] = $datajson->jasondaftarprincipal[0]->dataquery[$no]->NAMA_PRINCIPAL;
 				$data[] = $row;
@@ -2637,17 +2566,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jsontambahprincipal", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->jsontambahprincipal[0]->success == "true"){
-			$jsonobj = '{"status":"true"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->jsontambahprincipal[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->jsontambahprincipal[0]);
 	}
 	public function jsonhapusprincipal(){
 		$client = \Config\Services::curlrequest();
@@ -2658,17 +2582,12 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/jsonhapusprincipal", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->jsonhapusprincipal[0]->success == "true"){
-			$jsonobj = '{"status":"true"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->jsonhapusprincipal[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->jsonhapusprincipal[0]);
 	}
 	public function informasirow1dashboard(){
 		$client = \Config\Services::curlrequest();
@@ -2680,7 +2599,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/informasirow1dashboard", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2696,7 +2615,7 @@ class Masterdata extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."masterdata/informasirow2dashboard", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2713,7 +2632,7 @@ class Masterdata extends BaseController{
 		$posts_data = $client->request("POST", BASEURLAPI."masterdata/selectvaluereport", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -2735,5 +2654,17 @@ class Masterdata extends BaseController{
 		$jsontext = substr_replace($jsontext, '', -1);
 		$jsontext .= "]";
 		return json_encode($jsontext);
+	}
+	public function outlet()
+	{
+		$this->breadcrumb  = array("Dashboard" => "masterdata",);
+		$data = [
+			"titleheader"=> "OUTLET TERDAFTAR",
+			"menuaktif" => "0",
+			"submenuaktif" => "0",
+			"breadcrumb"=>$this->breadcrumb,
+			"sidetitle" => $this->sidetitle,
+		];
+		return view('backend/outlet/indexoutlet',$data);
 	}
 }

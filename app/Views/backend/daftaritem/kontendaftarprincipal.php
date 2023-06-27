@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="modal-footer modal-footer-bordered">
-                <button id="simpanprincipal" class="btn btn-primary mr-2">Tambah Brand Baru</button>
+                <button id="simpanprincipal" class="btn btn-primary mr-2">Tambah Principal Baru</button>
             </div>
         </div>
     </div>
@@ -84,6 +84,7 @@
 <script src="<?= base_url();?>/scripts/masterdata/masteritem.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+    getCsrfTokenCallback(function() {
         $("#masteritem_daftarprincipal").DataTable({
             language: {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
@@ -118,19 +119,23 @@ $(document).ready(function () {
                 "url": baseurljavascript + 'masterdata/jasondaftarprincipal',
                 "method": 'POST',
                 "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
                     d.NAMA_PRINCIPAL = $('#txtnamaprincipal').val();
                     d.DATAKE = 0;
                     d.LIMIT = 500;
                 },
             }
         });
+    });
 });
 $('#txtnamaprincipal').on('input', debounce(function (e) {
-    $('#masteritem_daftarprincipal').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#masteritem_daftarprincipal').DataTable().ajax.reload();
+    });
 }, 500));
 function hapusprincipal(principaldid,namaprincipal){
     Swal.fire({
-        title: "Hapus Brand Terpilih",
+        title: "Hapus Principal Terpilih",
         text: "Anda akan menghapus Principal : " + namaprincipal + " [" + principaldid + "] pada aplikasi. Jika terhapus maka informasi mengenai PRINCIPAL ini tidak muncul pada laporan, tetapi data atas PRINCIPAL ini tidak hilang",
         icon: 'question',
         showCancelButton: true,
@@ -139,17 +144,26 @@ function hapusprincipal(principaldid,namaprincipal){
         confirmButtonText: 'Oke, Hapus Sekarang!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#hapusprincipal'+principaldid).prop("disabled",true);
+            $('#hapusprincipal'+principaldid).html('<i class="fa fa-spin fa-spinner"></i> Proses Hapus');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsonhapusprincipal',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     PRINCIPAL_ID: principaldid,
                 },
+                complete:function(){
+                    $('#hapusprincipal'+principaldid).prop("disabled",false);
+                    $('#hapusprincipal'+principaldid).html('<i class="fa fa-trash"></i> Hapus');
+                },
                 success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true") {
-                        $('#masteritem_daftarprincipal').DataTable().ajax.reload();
+                    if (response.success == "true"){
+                        getCsrfTokenCallback(function() {
+                            $('#masteritem_daftarprincipal').DataTable().ajax.reload();
+                        });
                         Swal.fire(
                             'Berhasil.. Horee!',
                             "Informasi PRINCIPAL: "+namaprincipal+" berhasil dihapus. Informasi mengenai brand ini tidak ditampilkan lagi pada sistem",
@@ -158,11 +172,15 @@ function hapusprincipal(principaldid,namaprincipal){
                     } else {
                         Swal.fire(
                             'Gagal.. Uhhhhh!',
-                            obj.msg,
+                            response.msg,
                             'warning'
                         )
                     }
+                },
+                error: function(xhr, status, error) {
+                    toastr["error"](xhr.responseJSON.message);
                 }
+            });
             });
         }
     });
@@ -188,18 +206,27 @@ $("#simpanprincipal").click(function() {
         confirmButtonText: 'Oke, Tambahkan!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#simpanprincipal').prop("disabled",true);
+            $('#simpanprincipal').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsontambahprincipal',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     PRINCIPAL_ID: $("#tambahkodeprincipal").val(),
                     NAMA_PRINCIPAL: $("#tambahnamaprincipal").val(),
                 },
+                complete:function(){
+                    $('#simpanprincipal').prop("disabled",false);
+                    $('#simpanprincipal').html('Tambah Principal Baru');
+                },
                 success: function (response) {
-                    var obj = $.parseJSON(response);
-                    $('#masteritem_daftarprincipal').DataTable().ajax.reload();
-                    if (obj.status == "true"){
+                    getCsrfTokenCallback(function() {
+                        $('#masteritem_daftarprincipal').DataTable().ajax.reload();
+                    });
+                    if (response.success == "true"){
                         Swal.fire(
                             'Berhasil.. Horee!',
                             "Informasi dari PRINCIPAL PRODUK: "+$("#tambahnamaprincipal").val()+" berhasil ditambahkan pada sistem. Silahkan gunakan principal ini agar ditambahkan pada informasi barang anda",
@@ -211,11 +238,15 @@ $("#simpanprincipal").click(function() {
                     }else{
                         Swal.fire(
                             'Gagal.. Uhhhhh!',
-                            obj.msg,
+                            response.msg,
                             'warning'
                         )
                     }
+                },
+                error: function(xhr, status, error) {
+                    toastr["error"](xhr.responseJSON.message);
                 }
+            });
             });
         }
     });

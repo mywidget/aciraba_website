@@ -106,6 +106,12 @@
                             <!-- BEGIN Tab -->
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="info_member_biodata">
+                                    <div id="statusmembernya" class="btn-group btn-block btn-group-toggle" data-toggle="buttons">
+                                        <label style="cursor:pointer" id="btn-status-item-1" class="btn-status-item btn btn-flat-success <?= $STATUSAKTIF == "1" ? "active" : "" ;?>">
+                                            <input type="radio" name="rb_statusmembernya" value="1" id="rb_aktif">Member Ini Aktif </label>
+                                        <label style="cursor:pointer" id="btn-status-item-0" class="btn-status-item btn btn-flat-warning <?= $STATUSAKTIF == "0" ? "active" : "" ;?>">
+                                            <input type="radio" name="rb_statusmembernya" value="0" id="rb_tidakaktif"> Member Ini Tidak Aktif </label>
+                                    </div><hr>
                                     <div class="form-group row">
                                         <label for="kodemember" class="col-sm-2 col-form-label">Kode Member</label>
                                         <div class="col-sm-10">
@@ -113,9 +119,7 @@
                                                 <input value="<?= $MEMBER_ID ;?>" type="text" id="kodemember" class="form-control"
                                                     placeholder="Tentukan Kode Member">
                                                 <div class="input-group-prepend">
-                                                    <span id="generateiditem"
-                                                        class="input-group-text btn-warning btn">Generate
-                                                        ID</span>
+                                                    <span id="generateiditem" class="input-group-text btn-warning btn">Generate ID</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -138,7 +142,7 @@
                                                 <select id="jeniskelamin" data-size="3" class="selectpicker" data-live-search="true">
                                                     <option value="L">Laki-laki</option>
                                                     <option value="P">Perempuan</option>
-                                                    <option value="A">Alien</option>
+                                                    <option value="ALIEN">Alien</option>
                                                 </select>
 											</div>
 										</div>
@@ -185,10 +189,8 @@
 											</div>
 										</div>
 										<!-- END Form Group -->
-										<label for="keteranganmember">Keterangan Member</label>
-										<textarea class="form-control" id="keteranganmember" rows="3"><?= $KETERANGAN ;?></textarea>
-										<!-- END Form Group -->
-										
+										<label for="keteranganmember mb-3">Keterangan Member</label>
+										<textarea class="form-control " id="keteranganmember" rows="3"><?= $KETERANGAN ;?></textarea>
                                 </div>
                                 <div class="tab-pane fade" id="info_member_pengaturan">
                                     <div class="form-row">
@@ -254,9 +256,9 @@
                                         <div class="form-group col-md-6">
                                             <label for="statusmember">Masa Aktif Member Anda</label><br>
                                             <div id="statusmember" class="btn-group btn-group-toggle" data-toggle="buttons">
-                                                <label id="btn-status-item-1" class="btn-status-item btn btn-flat-success <?= $AKHIRAKTIFA == "0000-00-00" ? "active" : "" ;?>">
+                                                <label style="cursor:pointer" id="btn-status-item-1" class="btn-status-item btn btn-flat-success <?= $AKHIRAKTIFA == "9999-12-31" ? "active" : "" ;?>">
                                                     <input type="radio" name="rb_statusmember" value="1" id="rb_barangaktif">Always ON </label>
-                                                <label id="btn-status-item-0" class="btn-status-item btn btn-flat-warning <?= $AKHIRAKTIFA !== "0000-00-00" ? "active" : "" ;?>">
+                                                <label style="cursor:pointer" id="btn-status-item-0" class="btn-status-item btn btn-flat-warning <?= $AKHIRAKTIFA !== "9999-12-31" ? "active" : "" ;?>">
                                                     <input type="radio" name="rb_statusmember" value="0" id="rb_barangtidakaktif"> Sampai Tanggal </label>
                                             </div>
                                         </div>
@@ -345,17 +347,19 @@
 </div>
 <script src="<?= base_url();?>/scripts/masterdata/member.js"></script>
 <script>
-    $(document).ready(function () {
-        $("#akhiraktifmember").datepicker({autoclose:true, format: 'dd-mm-yyyy', });
-        <?php if ($MEMBER_ID != ""){ ?> 
-            $("#isinsert").removeAttr("checked");
-            $("#jeniskelamin").val("<?= $JK ;?>").change();
-            $("#jenismember").val("<?= $JENIS ;?>").change();
-            $("#akhiraktifmember").datepicker('update', '<?= ($AKHIRAKTIFA == "0000-00-00" ? "01-01-9999" : $AKHIRAKTIFA)  ;?>');
-        <?php } ?>
-        $('#limitmember, #jatuhtempomember, #minbelanjaperpoint, #limitbarangmember').on('input', function (e) {
-            this.value = addCommas(this.value.replace(/[^0-9]/g, ''));
-        });
+var limitmember = new AutoNumeric("#limitmember", {decimalCharacter : ',',digitGroupSeparator : '.',})
+var jatuhtempomember = new AutoNumeric("#jatuhtempomember", {decimalCharacter : ',',digitGroupSeparator : '.',})
+var minbelanjaperpoint = new AutoNumeric("#minbelanjaperpoint", {decimalCharacter : ',',digitGroupSeparator : '.',})
+var limitbarangmember = new AutoNumeric("#limitbarangmember", {decimalCharacter : ',',digitGroupSeparator : '.',})
+$(document).ready(function () {
+    $("#akhiraktifmember").datepicker({autoclose:true, format: 'dd-mm-yyyy', });
+    <?php if ($MEMBER_ID != ""){ ?> 
+        $("#isinsert").removeAttr("checked");
+        $("#jeniskelamin").val("<?= $JK ;?>").change();
+        $("#jenismember").val("<?= $JENIS ;?>").change();
+        $("#akhiraktifmember").datepicker('update', '<?= ($AKHIRAKTIFA == "9999-12-31" ? "31-12-9999" : $AKHIRAKTIFA)  ;?>');
+    <?php } ?>
+    getCsrfTokenCallback(function() {
         $('#membergroup').select2({
             allowClear: true,
             placeholder: 'Berdasarkan Member Group',
@@ -366,6 +370,7 @@
                 delay: 500,
                 data: function (params) {
                     return {
+                        csrf_aciraba: csrfTokenGlobal,
                         KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                         DIMANA10: session_kodeunikmember,
                         DATAKE: 0,
@@ -374,6 +379,7 @@
                 },
                 processResults: function (data) {
                     parseJSON = JSON.parse(data);
+                    getCsrfTokenCallback(function() {});
                     return {
                         results: $.map(parseJSON, function (item) {
                             return {
@@ -382,20 +388,24 @@
                             }
                         })
                     }
+                },
+                error: function(xhr, status, error) {
+                    getCsrfTokenCallback(function() {});
+                    toastr["error"](xhr.responseJSON.message);
                 }
             },
         });
     });
-    $("#generateiditem").on("click", function () {
-        $('#kodemember').val("SOHIB" + session_kodeunikmember +
-            Math.floor(Date.now() / 1000));
-    });
-    $("#statusbarang").on("click", function () {
-        if ($('input[name="rb_statusmember"]:checked').val() == 1) {
-            $("#akhiraktifmember").removeAttr('readonly');
-        } else {
-            $('#akhiraktifmember').prop('readonly', true);
-        }
-    });
+});
+$("#generateiditem").on("click", function () {
+    $('#kodemember').val("SOHIB" + session_kodeunikmember + Math.floor(Date.now() / 1000));
+});
+$("#statusbarang").on("click", function () {
+    if ($('input[name="rb_statusmember"]:checked').val() == 1) {
+        $("#akhiraktifmember").removeAttr('readonly');
+    } else {
+        $('#akhiraktifmember').prop('readonly', true);
+    }
+});
 </script>
 <?= $this->endSection(); ?>

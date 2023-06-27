@@ -95,10 +95,7 @@ function loadmore(){
             },
         },
         fnRowCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            if (aData[10] == "0")
-            {
-                $('td', nRow).css('background-color', 'Yellow');
-            }
+            if (aData[10] == "0"){ $('td', nRow).css('background-color', 'Yellow'); }
         }
     });
 }
@@ -185,8 +182,6 @@ $("#kirimulangtrx").on("click", function(){
             KODEPRODUK : $('#produknyaulang').html(),
         },
         success: function (response) {
-            csrfName = response[1].csrfName;
-            csrfHash = response[2].csrfHash;
             Swal.fire(
                 'INFORMASI DARI DEALER',
                 "ID : "+$(".idtranskasisekarang").html()+" ["+$('#produknyaulang').html()+"] dengan TUJAUN "+$('#nomortujuanulang').html()+" berstatus "+response[0].data.status+" dengan keterangan "+response[0].data.message,

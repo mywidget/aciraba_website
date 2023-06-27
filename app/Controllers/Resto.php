@@ -45,7 +45,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/ajaxpanggilmeja", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -61,7 +61,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/ajaxpanggillantai", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -81,7 +81,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/ajaxdetailpesanan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -134,7 +134,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/ajaxfullcalendarevent", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -153,7 +153,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/updatestatuspemesanan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -171,7 +171,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/hapusinformasimeja", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -196,7 +196,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/simpaninformasimeja", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -214,7 +214,7 @@ class Resto extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/panggildetailmakanan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);

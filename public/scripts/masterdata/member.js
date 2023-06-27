@@ -1,4 +1,4 @@
-let statusmember = 1;
+let statusmember = 1,masaaktif = 0;
 $(function () {
     loadtabelutama();
     $('#filterawalkartustok').val(moment().format('DD-MM-YYYY'));
@@ -7,6 +7,7 @@ $(function () {
     $("#filteraakhirkartustok").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
 });
 function loadtabelutama() {
+getCsrfTokenCallback(function() {
     $("#tabelmember").DataTable({
         fixedColumns:{leftColumns: 2},
         columnDefs: [
@@ -44,6 +45,7 @@ function loadtabelutama() {
             "url": baseurljavascript + 'masterdata/ajaxdaftarmember',
             "method": 'POST',
             "data": function (d) {
+                d.csrf_aciraba = csrfTokenGlobal;
                 d.KATAKUNCIPENCARIAN = $('#kodemember').val() == null ? "" : $('#kodemember').val();
                 d.KONDISIQUERY = '1';
                 d.DIMANA1 = "ASCKODEMEMBER";
@@ -58,6 +60,7 @@ function loadtabelutama() {
             },
         }
     });
+});
 }
 function onclickdisablemember(kodemember, namamember,kondisiitem){
     Swal.fire({
@@ -70,33 +73,41 @@ function onclickdisablemember(kodemember, namamember,kondisiitem){
         confirmButtonText: kondisiitem == "0" ? "Aktifkan member sekarang" : "Oke, Jadikan tidak aktif"
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'masterdata/statusmember',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KONDISI : kondisiitem,
-                    KODEMEMBER: kodemember,
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                    NAMAMEMBER: namamember,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        $('#tabelmember').DataTable().ajax.reload();
-                        Swal.fire(
-                            'Berhasil.. Horee!',
-                            obj.msg,
-                            'success'
-                        )
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            obj.msg,
-                            'success'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/statusmember',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        KONDISI : kondisiitem,
+                        KODEMEMBER: kodemember,
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                        NAMAMEMBER: namamember,
+                    },
+                    success: function (response) {
+                        var obj = $.parseJSON(response);
+                        if (obj.status == "true"){
+                            getCsrfTokenCallback(function() {
+                                $('#tabelmember').DataTable().ajax.reload();
+                            });
+                            Swal.fire(
+                                'Berhasil.. Horee!',
+                                obj.msg,
+                                'success'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Gagal.. Uhhhhh!',
+                                obj.msg,
+                                'success'
+                            )
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     });
@@ -122,87 +133,108 @@ $("#simpanmember").on("click", function(){
         confirmButtonText: $('#isinsert').is(":checked") == false ? 'Oke, Ubah Data' : 'Oke, Tambah Info Member!'
     }).then((result) => {
         if (result.isConfirmed) {
-            if ($('input[name="rb_statusmember"]:checked').val() == 1) {
-                statusmember = 1;
-            } else {
-                statusmember = 0;
-            }
-            $.ajax({
-                url: baseurljavascript + 'masterdata/jsontambahmember',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    MEMBER_ID : $('#kodemember').val(),
-                    NAMA: $('#namadepan').val()+"::"+$('#namabelkang').val(),
-                    ALAMAT: $('#alamatmember').val(),
-                    KECAMATAN: $('#kecamatan').val(),
-                    KOTA: $('#kotamember').val(),
-                    PROVINSI: $('#provinsi').val(),
-                    NEGARA: $('#negaramember').val(),
-                    KODEPOS: $('#kodepos').val(),
-                    JK:  $('#jeniskelamin').val(),
-                    EMAIL:  $('#emailmember').val(),
-                    TELEPON:  $('#notelpmember').val(),
-                    FAX: "",
-                    AKHIRAKTIF: statusmember == 1 ? "00-00-0000" :  $('#akhiraktifmember').val(),
-                    STATUSAKTIF : statusmember,
-                    POINT: "0",
-                    NOREK: "",
-                    PEMILIKREK: "",
-                    BANK: "",
-                    NPWP: "",
-                    KETERANGAN: $('#keteranganmember').val(),
-                    LIMITJUMLAHPIUTANG: $('#limitmember').val().replace(".", ""),
-                    JENIS: $('#jenismember').val(),
-                    GRUP: $('#membergroup').val(),
-                    MINIMALPOIN: $('#minbelanjaperpoint').val().replace(".", ""),
-                    BATASTAMBAHKREDIT: $('#jatuhtempomember').val(),
-                    KEJARTARGET : "0",
-                    NAMAFILE : "",
-                    USERNAME: $('#usernameid').val(),
-                    PASSWORD: $('#passwordakses').val(),
-                    CATATAN: "",
-                    LIMITBARANGONLINE: "",
-                    LOGO: "",
-                    LIMIT_BRG: $('#limitbarangmember').val(),
-                    NISBACKUP: "",
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                    OUTLET: session_outlet,
-                    NOMOR: statusmember == 1 ? "1" : "0",
-                    TOTALDEPOSIT: "0",
-                    ISRESELLER: "0",
-                    ANGKAKESUKAAN: Math.floor((Math.random() * 10) + 1),
-                    ISINSERT : $('#isinsert').is(":checked"),
-                    PINTRX : $('#pintrx').val(),
-                    APIKEY : $('#apikey').val(),
-                    MARKUP : $('#markuphargaagen').val(),
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        Swal.fire({
-                            title: "Berhasil Horeee!!!",
-                            target: '#modalPecahsatuan',
-                            text: obj.msg,
-                            icon: 'success',
-                        });
-                        /*$('#kodemember').val("");
-                        $('#namadepan').val("");
-                        $('#namabelkang').val("");
-                        $('#alamatmember').val("");
-                        $('#kotamember').val("");
-                        $('#kodepos').val("");
-                        $('#notelpmember').val("");
-                        $('#emailmember').val("");
-                        $('#keteranganmember').val("");*/
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Uhhh",
-                            text: obj.msg,
-                            icon: 'warning',
-                        });
+            if ($('input[name="rb_statusmembernya"]:checked').val() == 1) { statusmember = 1;} else { statusmember = 0;}
+            if ($('input[name="rb_statusmember"]:checked').val() == 1) { masaaktif = 1;} else { masaaktif = 0;}
+            $('#simpanmember').prop("disabled",true);
+            $('#simpanmember').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/jsontambahmember',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        MEMBER_ID : $('#kodemember').val(),
+                        NAMA: $('#namadepan').val()+"::"+$('#namabelkang').val(),
+                        ALAMAT: $('#alamatmember').val(),
+                        KECAMATAN: $('#kecamatan').val(),
+                        KOTA: $('#kotamember').val(),
+                        PROVINSI: $('#provinsi').val(),
+                        NEGARA: $('#negaramember').val(),
+                        KODEPOS: $('#kodepos').val(),
+                        JK:  $('#jeniskelamin').val(),
+                        EMAIL:  $('#emailmember').val(),
+                        TELEPON:  $('#notelpmember').val(),
+                        FAX: "",
+                        AKHIRAKTIF: masaaktif == 1 ? "9999-12-31" :  $('#akhiraktifmember').val().split("-").reverse().join("-"),
+                        STATUSAKTIF : statusmember,
+                        POINT: "0",
+                        NOREK: "",
+                        PEMILIKREK: "",
+                        BANK: "",
+                        NPWP: "",
+                        KETERANGAN: $('#keteranganmember').val(),
+                        LIMITJUMLAHPIUTANG: limitmember.getNumber(),
+                        JENIS: $('#jenismember').val(),
+                        GRUP: $('#membergroup').val(),
+                        MINIMALPOIN: minbelanjaperpoint.getNumber(),
+                        BATASTAMBAHKREDIT:jatuhtempomember.getNumber(),
+                        KEJARTARGET : "0",
+                        NAMAFILE : "",
+                        USERNAME: $('#usernameid').val(),
+                        PASSWORD: $('#passwordakses').val(),
+                        CATATAN: "",
+                        LIMITBARANGONLINE: "",
+                        LOGO: "",
+                        LIMIT_BRG: limitbarangmember.getNumber(),
+                        NISBACKUP: "",
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                        OUTLET: session_outlet,
+                        NOMOR: statusmember == 1 ? "1" : "0",
+                        TOTALDEPOSIT: "0",
+                        ISRESELLER: "0",
+                        ANGKAKESUKAAN: Math.floor((Math.random() * 10) + 1),
+                        ISINSERT : $('#isinsert').is(":checked"),
+                        PINTRX : $('#pintrx').val(),
+                        APIKEY : $('#apikey').val(),
+                        MARKUP : $('#markuphargaagen').val(),
+                    },
+                    complete:function(){
+                        $('#simpanmember').prop("disabled",false);
+                        $('#simpanmember').html('Simpan Informasi Member');
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            Swal.fire({
+                                title: "Berhasil Horeee!!!",
+                                text: response.msg,
+                                icon: 'success',
+                            });
+                            if (!$('#isinsert').is(":checked")) return setTimeout(function(){ location.href = baseurljavascript+"masterdata/daftarmember"; }, 1000);
+                            $('#kodemember').val("")
+                            $('#namadepan').val("")
+                            $('#namabelkang').val("")
+                            $('#alamatmember').val("")
+                            $('#kecamatan').val("")
+                            $('#kotamember').val("")
+                            $('#provinsi').val("")
+                            $('#negaramember').val("")
+                            $('#kodepos').val("")
+                            $('#jeniskelamin').val("")
+                            $('#emailmember').val("")
+                            $('#notelpmember').val("")
+                            $('#keteranganmember').val("")
+                            $('#limitmember').val("")
+                            $('#minbelanjaperpoint').val("")
+                            $('#usernameid').val("")
+                            $('#passwordakses').val("")
+                            $('#pintrx').val("")
+                            $('#apikey').val("")
+                            $('#markuphargaagen').val("")
+                            $('#limitbarangmember').val("")
+                            $('#jatuhtempomember').val("")
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Uhhh",
+                                text: response.msg,
+                                icon: 'warning',
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     });
@@ -213,5 +245,7 @@ $("#prosesmember").on("click", function(){
     } else {
         statusmember = 0;
     }
-    $('#tabelmember').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabelmember').DataTable().ajax.reload();
+    });
 });

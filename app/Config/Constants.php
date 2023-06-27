@@ -93,15 +93,6 @@ define('EVENT_PRIORITY_NORMAL', 100);
  */
 define('EVENT_PRIORITY_HIGH', 10);
 
-/* DIMOHON UNTUK TIDAK DI DECODE BARIS DIBAWAH INI, MENDECODE BARIS DIAWAH INI ADALAH TINDAKAN ILLEGAL DAN AKAN KAMI BANNED DARI KOMUNITAS KAMI */
-
-define('API_KEY_PANDAWA', "C65937AAA024EBBD5D51");
-define('PRODUK_ID', "BB1365DA");
-define('LISENSI', "707B4 -31263 -41374 -F21A2");
-define('NAMA_PEMILIK', "ACIRABA_RESTO_JOGLO_MANIS");
-define('DOMAIN_REGISTER', "https://seirasetyawan.com");
-define('KODE_UNIK_MEMBER', "1000001");
-define('TOKENAPI', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYyNDI2MTk1NywiZXhwIjoxNjM5ODEzOTU3fQ.MSLX2hbVGle88bofGlCAgMdkUjs54ntyinQljs6_RCI");
 $server_name = !empty($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost:8080';
 $base = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $server_name . '/';
 if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
@@ -113,8 +104,9 @@ $hostdynamic = $protocol;
 $hostdynamic .= "://" . $server_name;
 $hostdynamic .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 defined('DYBASESEURL') || define('DYBASESEURL',$hostdynamic);
-if ($server_name == "localhost" || $server_name == "127.0.0.1"){
-  define('BASEURLAPI',str_replace("/:",":",$hostdynamic.':1111/'));
+if ($server_name == "localhost" || $server_name == "localhost:8080" || $server_name == "127.0.0.1"){
+  $urlWithoutPort = preg_replace('#:(\d+)#', '', $hostdynamic);
+  define('BASEURLAPI',str_replace("/:",":",$urlWithoutPort.':1111/'));
 }else{
   define('BASEURLAPI','https://api.seirasetyawan.com/');
 }

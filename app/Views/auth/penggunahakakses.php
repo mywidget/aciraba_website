@@ -2,11 +2,17 @@
 <?= $this->section('kontenutama'); ?>
 <?= $this->include('backend/header') ?>
 <!-- BEGIN Page Content -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+<link href="<?= base_url() ;?>styles/cssseira/styleprofile.css" rel="stylesheet">
 <div class="content">
     <div class="container-fluid">
         <div class="portlet">
             <div class="portlet-header portlet-header-bordered">
-                <h3 class="portlet-title">INFORMASI PEGAWAI </h3>
+                <h3 class="portlet-title">INFORMASI PEGAWAI 
+                    <a href="<?= base_url().'auth/hakakses';?>"><button id="hakakseskontrol" class="btn btn-danger float-right"> <i class="fas fa-dolly-flatbed"></i> Kelompok Hak Akses</button></a>
+                </h3>
             </div>
             <div class="portlet-body">
                 <div class="col-md-12">
@@ -16,17 +22,17 @@
                             <div class="mb-3">
                                 <!-- BEGIN Nav -->
                                 <div class="nav nav-lines" id="nav1-tab">
-                                    <a class="nav-item nav-link active" id="nav1-home-tab" data-toggle="tab" href="#nav1-home">Daftar Partner Kami</a>
-                                    <?= session('jenismerchant') == "OW" ? '<a class="nav-item nav-link" id="nav1-profile-tab" data-toggle="tab" href="#nav1-profile">Tambah Informasi</a>' : "" ;?>
+                                    <a class="nav-item nav-link active" id="nav1-home-tab" data-toggle="tab" href="#nav1-home">Daftar Pegawai / Rekanan Kami</a>
+                                    <a class="nav-item nav-link" id="nav1-profile-tab" data-toggle="tab" href="#nav1-profile">Tambah Informasi</a>
                                 </div>
                                 <!-- END Nav -->
                             </div>
                             <!-- BEGIN Tab -->
                             <div class="tab-content" id="nav1-tabContent">
-                                <div class="tab-pane fade show active" id="nav1-home">
-                                    <img class="img-fluid" src="<?= base_url(),'/images/comminsoon.png';?>" alt="Comming Soon Banner">
+                                <div class="tab-pane fade show active" id="nav1-home"> 
+                                    <input type="text" class="mb-2 form-control" placeholder="Filter ? Silahkan ketikan namapengguna, username atau idpengguna"> 
+                                    <div id="daftarpegawai"></div>  
                                 </div>
-                                <?php if (session('jenismerchant') == "OW"){ ?>
                                 <div class="tab-pane fade" id="nav1-profile">
                                 <!-- BEGIN Form -->
                                     <h5 class="mb-4">INFOR PEGAWAI</h5>
@@ -189,7 +195,6 @@
                                     </div>
                                 <!-- END Form -->
                                 </div>
-                                <?php } ;?>
                             </div>
                             <!-- END Tab -->
                         </div>
@@ -200,9 +205,67 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="ubahpassword">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ubah Informasi Password Pengguna<br>NAMA : <span id="spannamapengguna"></span><br>ID PENGGUNA : [<span id="idpengguna"></span>]</h5>
+                <button type="button" class="btn btn-label-danger btn-icon" data-dismiss="modal">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div style="font-size:1.5em;font-family: 'Irish Grover', cursive;"> Untuk saat ini mengubah katasandi kamu atau pegawai lain tidak membuat pengguna tersebut KELUAR / LOGOUT secara otomatis, katasandi akan berefek jika dia sudah KELUAR / LOGOUT dari sistem.</div>
+                <div class="form-group mt-3">
+                    <div class="input-group mb-3">
+                        <input id="sandikamu" type="password" placeholder="" class="form-control form-control-lg">
+                        <div class="input-group-append">
+                            <span style="cursor:pointer" class="input-group-text" id="sandikamu"><i class="fas fa-eye toggle-passworda"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <input id="sandipegawai" type="password" placeholder="" class="form-control form-control-lg">
+                        <div class="input-group-append">
+                            <span style="cursor:pointer" class="input-group-text" id="sandipegawai"><i class="fas fa-eye toggle-passwordb"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modal-footer-bordered">
+				<button onclick="ubahpasswordproses()" id="prosessimpaninformasi" class="btn btn-outline-primary">Simpan Informasi</button>
+			</div>
+        </div>
+    </div>
+</div>
 <!-- END Page Content -->
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="<?= base_url();?>/scripts/masterdata/pengguna.js"></script>
-<!-- hapus jika sudah -->
-<script type="text/javascript" src="<?= base_url();?>/scripts/jquery.countdown.js"></script>
+<script src="<?= base_url();?>scripts/masterdata/pengguna.js"></script>
+<script src="<?= base_url();?>scripts/profilejs.js"></script>
+<script>
+let colorCSS;
+$(document).ready(function () {
+    getCsrfTokenCallback(function() {
+        loaddaftarpewagawai()
+    }); 
+    getCsrfTokenCallback(function() {
+        loadidmember();
+    }); 
+    $("#hakakses").on('click', '.form-check-input', function() {
+        let currentRow = $(this).closest("tr");
+        if (ha.includes(currentRow.find(".cellhakseswhere").html()) === false) ha.push(currentRow.find(".cellhakseswhere").html());
+    });
+});
+$(document).on('click', '.toggle-passworda', function() {
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $("#sandikamu");
+    input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
+});
+$(document).on('click', '.toggle-passwordb', function() {
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $("#sandipegawai");
+    input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
+});
+</script>
 <?= $this->endSection(); ?>

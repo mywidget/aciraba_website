@@ -58,7 +58,7 @@ class Acipay extends BaseController
 			$json_data = $client->request("POST", BASEURLAPI."acipay/daftarproduknonppon", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -132,7 +132,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/daftarproduknonppon", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -198,7 +198,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/tambahprodukacipay", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -224,7 +224,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipaytambahoperator", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -256,7 +256,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipaytambahkategori", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -277,7 +277,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipaydaftarkategorinonppob", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -318,7 +318,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipaydaftaroperatornonppob", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -361,7 +361,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipayhapusoperator", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -381,7 +381,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipayhapuskategori", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -402,7 +402,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipaydaftarkategorinonppob", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -424,7 +424,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/acipaydaftaroperatornonppob", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -452,7 +452,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."apiluar/digiflazzupdate", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -484,7 +484,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/dafartranskasi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -562,7 +562,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."acipay/hapustransaksi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -652,7 +652,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI.$routernodejs, [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -675,7 +675,7 @@ class Acipay extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/cektransaksi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);

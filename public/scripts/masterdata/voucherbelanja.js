@@ -1,7 +1,9 @@
-$(function () {
+$(document).ready(function () { 
+    $(".input-daterange").datepicker({ todayHighlight: true,format: 'dd-mm-yyyy',orientation: "bottom left", });
     loadvouchertabel();
 });
 function loadvouchertabel() {
+getCsrfTokenCallback(function() {
     $(".tabelvoucherbelanja").DataTable({
         language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
         columnDefs: [{ className: "text-right",targets: [3, 4, 5, 6, 7, 8]},],
@@ -36,17 +38,24 @@ function loadvouchertabel() {
             "url": baseurljavascript + 'masterdata/jsontampilvoucherbelanja',
             "method": 'POST',
             "data": function (d) {
+                d.csrf_aciraba = csrfTokenGlobal;
                 d.KODEVOUCHER = $('#kodevoucherbelanja').val() == null ? "" : $('#kodevoucherbelanja').val();
                 d.OUTLET = session_outlet;
                 d.KODEUNIKMEMBER = session_kodeunikmember;
                 d.DATAKE = 0;
                 d.LIMIT = 500;
             },
+        },
+        fnInitComplete: function(oSettings, json) {
+            getCsrfTokenCallback(function() {});
         }
     });
+});
 }
 $('#kodevoucherbelanja').on('input', debounce(function (e) {
-    $('.tabelvoucherbelanja').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('.tabelvoucherbelanja').DataTable().ajax.reload();
+    });
 }, 500));
 /* proses simpan diskon barang bertingkat */
 $("#simpanvoucherbelanja").click(function() {
@@ -71,49 +80,62 @@ $("#simpanvoucherbelanja").click(function() {
     }).then((result) => {
         let nominaldiskon, nominalrupiah,jenisvoucher;
         if (result.isConfirmed) {
+            $('#simpanvoucherbelanja').prop("disabled",true);
+            $('#simpanvoucherbelanja').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
             if ($('input[name="jenisvoucherdiskon"]:checked').val() == 1) {
                 nominaldiskon = 0;
-                nominalrupiah = $("#nominalpotongan").autoNumeric('get').replaceAll('.', '').replaceAll(',', '.');
+                nominalrupiah = nominalpotongan.getNumber();
                 jenisvoucher = 'NOMINAL';
             } else {
-                nominaldiskon = $("#nominalpotongan").autoNumeric('get').replaceAll('.', '').replaceAll(',', '.');
+                nominaldiskon = nominalpotongan.getNumber();
                 nominalrupiah = 0;
                 jenisvoucher = 'PERSEN';
             }
-            $.ajax({
-                url: baseurljavascript + 'masterdata/jsontambahkuponbelanja',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    VOUCHER_ID : '',
-                    NAMAVOUCHER : $("#masukkankodekupon").val(),
-                    AWALAKTIF: $("#awalaktifvoucher").val().split("-").reverse().join("-"),
-                    AKHIRAKTIF: $("#akhiraktifvoucher").val().split("-").reverse().join("-"),
-                    TIPEVOUCHER : jenisvoucher,
-                    NOMINALRUPIAH: nominalrupiah,
-                    NOMINALDISKON: nominaldiskon,
-                    BATASTRANSAKSI: $("#bataspakaikupon").autoNumeric('get').replaceAll('.', '').replaceAll(',', '.'),
-                    MINIMALPEMBELIAN: $("#minimalpembelianvoucher").autoNumeric('get').replaceAll('.', '').replaceAll(',', '.'),
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                    OUTLET: session_outlet,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        $('.tabelvoucherbelanja').DataTable().ajax.reload();
-                        Swal.fire(
-                            'Berhasil.. Horee!',
-                            obj.msg,
-                            'success'
-                        )
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            obj.msg,
-                            'warning'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/jsontambahkuponbelanja',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        VOUCHER_ID : '',
+                        NAMAVOUCHER : $("#masukkankodekupon").val(),
+                        AWALAKTIF: $("#awalaktifvoucher").val().split("-").reverse().join("-"),
+                        AKHIRAKTIF: $("#akhiraktifvoucher").val().split("-").reverse().join("-"),
+                        TIPEVOUCHER : jenisvoucher,
+                        NOMINALRUPIAH: nominalrupiah,
+                        NOMINALDISKON: nominaldiskon,
+                        BATASTRANSAKSI: bataspakaikupon.getNumber(),
+                        MINIMALPEMBELIAN: minimalpembelianvoucher.getNumber(),
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                        OUTLET: session_outlet,
+                    },
+                    complete:function(){
+                        $('#simpanvoucherbelanja').prop("disabled",false);
+                        $('#simpanvoucherbelanja').html('Simpan Kupon Belanja');
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            getCsrfTokenCallback(function() {
+                                $('.tabelvoucherbelanja').DataTable().ajax.reload();
+                            });
+                            Swal.fire(
+                                'Berhasil.. Horee!',
+                                response.msg,
+                                'success'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Gagal.. Uhhhhh!',
+                                response.msg,
+                                'warning'
+                            )
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     });
@@ -129,32 +151,39 @@ function onclickhapus(namavoucher,kodeunikmember){
         confirmButtonText: 'Oke, Hapus Sekarang!'
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'masterdata/jsonhapuskuponbelanja',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NAMAVOUCHER : namavoucher,
-                    OUTLET: session_outlet,
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        $('.tabelvoucherbelanja').DataTable().ajax.reload();
-                        Swal.fire(
-                            'Berhasil.. Horee!',
-                            obj.msg,
-                            'success'
-                        )
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            obj.msg,
-                            'warning'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/jsonhapuskuponbelanja',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NAMAVOUCHER : namavoucher,
+                        OUTLET: session_outlet,
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            getCsrfTokenCallback(function() {
+                                $('.tabelvoucherbelanja').DataTable().ajax.reload();
+                            });
+                            Swal.fire(
+                                'Berhasil.. Horee!',
+                                response.msg,
+                                'success'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Gagal.. Uhhhhh!',
+                                response.msg,
+                                'warning'
+                            )
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     });

@@ -238,92 +238,99 @@
 <script>
 var baseurljavascript = "<?=DYBASESEURL;?>";
 $("#konfirmasiaktivasi").click(function(){
-  $.ajax({
-      url: baseurljavascript + 'auth/ceklisensi_key',
-      method: 'POST',
-      dataType: 'json',
-      data: {
-          PUBLICKEY : randomstringdigit(20),
-          PRIVATE: "ACIRABATHEWORLDINYOUTHAND",
-      },
-      success: function (response) {
-        if (response.code == "200_LC"){
-          return toastr["success"](response.message);
-        }else{
-          Swal.fire({
-              title: "Aktivasi Lisensi Aciraba",
-              text: "Pastikan anda terkoneksi dengan INTERNET sebelum melakukan aktivasi. Silahkan koneksikan perangkat anda dengan modem atau interface lainnya",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Oke, Aktivkan Sekarang!',
-              cancelButtonText: 'Waduh Gak Ada Internet!'
-          }).then((result) => {
-              if (result.isConfirmed) {
-                  $.ajax({
-                      url: baseurljavascript + 'auth/aktivasilisensi_key',
-                      method: 'POST',
-                      dataType: 'json',
-                      data: {
-                          PUBLICKEY : randomstringdigit(20),
-                          PRIVATE: "ACIRABATHEWORLDINYOUTHAND",
-                      },
-                      success: function (response) {
-                        if (response.status){
-                            let timerInterval
-                            Swal.fire({
-                              title: 'Pendaftaran Lisensi Berhasil!',
-                              html: response.message+' Anda akan diteruskan ke halaman LOGIN dalam <b></b> ms, kemudian LOGIN lah sesuai user yang telah kami berikan',
-                              timer: 5000,
-                              icon:"success",
-                              timerProgressBar: true,
-                              didOpen: () => {
-                                Swal.showLoading()
-                                const b = Swal.getHtmlContainer().querySelector('b')
-                                timerInterval = setInterval(() => {
-                                  b.textContent = Swal.getTimerLeft()
-                                }, 100)
-                              },
-                              willClose: () => {
-                                clearInterval(timerInterval)
-                              }
-                            }).then((result) => {
-                              if (result.dismiss === Swal.DismissReason.timer) {
-                                window.location = baseurljavascript+"auth";
-                              }
-                            })
-                          }else{
-                            Swal.fire({
-                              title: 'Oops... Terdapat kesalahan!',
-                              html: 'Anda akan diteruskan ke halaman LOGIN dalam <b></b> ms untuk verif ulang, '+response.message,
-                              timer: 5000,
-                              icon:"error",
-                              timerProgressBar: true,
-                              didOpen: () => {
-                                Swal.showLoading()
-                                const b = Swal.getHtmlContainer().querySelector('b')
-                                timerInterval = setInterval(() => {
-                                  b.textContent = Swal.getTimerLeft()
-                                }, 100)
-                              },
-                              willClose: () => {
-                                clearInterval(timerInterval)
-                              }
-                            }).then((result) => {
-                              if (result.dismiss === Swal.DismissReason.timer) {
-                                window.location = baseurljavascript+"auth";
-                              }
-                            })
-                          }
-                      }
-                  });
-              }
-          });  
+  getCsrfTokenCallback(function() {
+    $.ajax({
+        url: baseurljavascript + 'auth/ceklisensi_key',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            [csrfName]: csrfTokenGlobal,
+            PUBLICKEY : randomstringdigit(20),
+            PRIVATE: "ACIRABATHEWORLDINYOUTHAND",
+        },
+        success: function (response) {
+          if (response.code == "200_LC"){
+            return toastr["success"](response.message);
+          }else{
+            Swal.fire({
+                title: "Aktivasi Lisensi Aciraba",
+                text: "Pastikan anda terkoneksi dengan INTERNET sebelum melakukan aktivasi. Silahkan koneksikan perangkat anda dengan modem atau interface lainnya",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Oke, Aktivkan Sekarang!',
+                cancelButtonText: 'Waduh Gak Ada Internet!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                  getCsrfTokenCallback(function() {aktivasi_lisensi()});  
+                }
+            });  
+          }
         }
-      }
+    });
   });
 });
+function aktivasi_lisensi(){
+  $.ajax({
+    url: baseurljavascript + 'auth/aktivasilisensi_key',
+    method: 'POST',
+    dataType: 'json',
+    data: {
+        [csrfName]: csrfTokenGlobal,
+        PUBLICKEY : randomstringdigit(20),
+        PRIVATE: "ACIRABATHEWORLDINYOUTHAND",
+    },
+    success: function (response) {
+      if (response.status){
+          let timerInterval
+          Swal.fire({
+            title: 'Pendaftaran Lisensi Berhasil!',
+            html: response.message+' Anda akan diteruskan ke halaman LOGIN dalam <b></b> ms, kemudian LOGIN lah sesuai user yang telah kami berikan',
+            timer: 5000,
+            icon:"success",
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              window.location = baseurljavascript+"auth";
+            }
+          })
+        }else{
+          Swal.fire({
+            title: 'Oops... Terdapat kesalahan!',
+            html: 'Anda akan diteruskan ke halaman LOGIN dalam <b></b> ms untuk verif ulang, '+response.message,
+            timer: 5000,
+            icon:"error",
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+                b.textContent = Swal.getTimerLeft()
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            if (result.dismiss === Swal.DismissReason.timer) {
+              window.location = baseurljavascript+"auth";
+            }
+          })
+        }
+    }
+});
+}
 </script>
 </body>
 

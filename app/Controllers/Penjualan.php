@@ -39,17 +39,12 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/notamenupenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->hasiljson[0]->success == "true"){
-			$jsonobj = '{"status":"true","nomornota":"'.$datajson->hasiljson[0]->nomornota.'","msg":"'.$datajson->hasiljson[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","nomornota":"'.$datajson->hasiljson[0]->nomornota.'","msg":"'.$datajson->hasiljson[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hasiljson[0]);
 	}
 	/* area algoritma pesanan penjualan */
 	public function daftarpesanan(){
@@ -85,7 +80,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarpesanan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -159,7 +154,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarpesananmodedapur", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -197,7 +192,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarpesanandetail", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -252,7 +247,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/hapusreturpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -276,7 +271,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarreturpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -327,7 +322,7 @@ class Penjualan extends BaseController{
 			$json_data = $client->request("POST", BASEURLAPI."penjualan/formreturpenjualan", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -374,7 +369,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/ambiltrxjual", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -393,7 +388,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/ambiltrxjual", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -518,7 +513,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/cekpotongpiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -574,7 +569,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/tambahreturpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -624,7 +619,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarpenjualanadmin", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -670,7 +665,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/hapuspenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -691,7 +686,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/detailkasirpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -709,7 +704,7 @@ class Penjualan extends BaseController{
 			$json_data = $client->request("POST", BASEURLAPI."penjualan/detailkasirpenjualan", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -1002,7 +997,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/detailbarangkeranjang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1040,7 +1035,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarbarangkasir", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1103,7 +1098,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/filtermaubayarpiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1125,7 +1120,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarpiutangterpilih", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1213,7 +1208,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/tambahkeranjangbestbuy", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1264,7 +1259,7 @@ class Penjualan extends BaseController{
 			$json_data = $client->request("POST", BASEURLAPI."penjualan/tambahkeranjangbestbuy", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -1374,7 +1369,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/simpantransaksi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1399,7 +1394,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/daftarpenjualandikasir", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1482,7 +1477,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/hishargajual", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1534,7 +1529,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/ajaxdaftarpiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1584,7 +1579,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/ajaxdaftarpembayaranpiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1632,7 +1627,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/detailtransaksipiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1651,7 +1646,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/notamenupenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1680,7 +1675,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/transaksipiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1704,7 +1699,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/hapustransaksipiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1726,7 +1721,7 @@ class Penjualan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."penjualan/dashboard_penjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);

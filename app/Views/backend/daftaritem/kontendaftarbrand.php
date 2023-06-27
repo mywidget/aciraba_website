@@ -84,6 +84,7 @@
 <script src="<?= base_url();?>/scripts/masterdata/masteritem.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+    getCsrfTokenCallback(function() {
         $("#masteritem_daftarbrand").DataTable({
             language: {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
@@ -118,15 +119,19 @@ $(document).ready(function () {
                 "url": baseurljavascript + 'masterdata/jasondaftarbrand',
                 "method": 'POST',
                 "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
                     d.NAMABRAND = $('#txtnamabrand').val();
                     d.DATAKE = 0;
                     d.LIMIT = 500;
                 },
             }
         });
+    });
 });
 $('#txtnamabrand').on('input', debounce(function (e) {
-    $('#masteritem_daftarbrand').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#masteritem_daftarbrand').DataTable().ajax.reload();
+    });
 }, 500));
 function hapusbrand(brandid,namabrand){
     Swal.fire({
@@ -139,17 +144,26 @@ function hapusbrand(brandid,namabrand){
         confirmButtonText: 'Oke, Hapus Sekarang!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#hapusid'+brandid).prop("disabled",true);
+            $('#hapusid'+brandid).html('<i class="fa fa-spin fa-spinner"></i> Proses Hapus');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsonhapusbrand',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     BRAND_ID: brandid,
                 },
+                complete:function(){
+                    $('#hapusid'+brandid).prop("disabled",true);
+                    $('#hapusid'+brandid).html('<i class="fa fa-trash"></i> Hapus');
+                },
                 success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true") {
-                        $('#masteritem_daftarbrand').DataTable().ajax.reload();
+                    if (response.success == "true") {
+                        getCsrfTokenCallback(function() {
+                            $('#masteritem_daftarbrand').DataTable().ajax.reload();
+                        });
                         Swal.fire(
                             'Berhasil.. Horee!',
                             "Informasi BRAND: "+namabrand+" berhasil dihapus. Informasi mengenai brand ini tidak ditampilkan lagi pada sistem",
@@ -158,11 +172,12 @@ function hapusbrand(brandid,namabrand){
                     } else {
                         Swal.fire(
                             'Gagal.. Uhhhhh!',
-                            obj.msg,
+                            response.msg,
                             'warning'
                         )
                     }
                 }
+            });
             });
         }
     });
@@ -188,18 +203,27 @@ $("#simpanbrand").click(function() {
         confirmButtonText: 'Oke, Tambahkan!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#simpanbrand').prop("disabled",true);
+            $('#simpanbrand').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsontambahbrand',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     BRAND_ID: $("#tambahkodebrand").val(),
                     NAMA_BRAND: $("#tambahnamabrand").val(),
                 },
+                complete:function(){
+                    $('#simpanbrand').prop("disabled",false);
+                    $('#simpanbrand').html('Tambah Brand Baru');
+                },
                 success: function (response) {
-                    var obj = $.parseJSON(response);
-                    $('#masteritem_daftarbrand').DataTable().ajax.reload();
-                    if (obj.status == "true"){
+                    getCsrfTokenCallback(function() {
+                        $('#masteritem_daftarbrand').DataTable().ajax.reload();
+                    });
+                    if (response.success == "true"){
                         Swal.fire(
                             'Berhasil.. Horee!',
                             "Informasi dari BRAND: "+$("#tambahnamabrand").val()+" berhasil ditambahkan pada sistem. Silahkan gunakan brand ini agar ditambahkan pada informasi barang anda",
@@ -211,11 +235,12 @@ $("#simpanbrand").click(function() {
                     }else{
                         Swal.fire(
                             'Gagal.. Uhhhhh!',
-                            obj.msg,
+                            response.msg,
                             'warning'
                         )
                     }
                 }
+            });
             });
         }
     });

@@ -245,7 +245,6 @@ tableModal = $("#bulkinsert_tabel").DataTable({
 });
 $('#pilihprincipalbulk').select2({
     dropdownParent: $("#modalbulkinsert"),
-    
     allowClear: true,
     placeholder: 'Tentukan principal barang ini',
     ajax: {
@@ -255,12 +254,14 @@ $('#pilihprincipalbulk').select2({
         delay: 500,
         data: function (params) {
             return {
-                NAMAPRINCIPAL: (typeof params.term === "undefined" ? "" : params.term),,
+                csrf_aciraba: csrfTokenGlobal,
+                NAMAPRINCIPAL: (typeof params.term === "undefined" ? "" : params.term),
                 KODEUNIKMEMBER: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -269,6 +270,10 @@ $('#pilihprincipalbulk').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });
@@ -283,12 +288,14 @@ $('#pilihsuplierbulk').select2({
         delay: 500,
         data: function (params) {
             return {
+                csrf_aciraba: csrfTokenGlobal,
                 DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
                 DIMANA10: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -297,12 +304,15 @@ $('#pilihsuplierbulk').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });
 $('#pilihkategoribulk').select2({
     dropdownParent: $("#modalbulkinsert"),
-    
     allowClear: true,
     placeholder: 'Tentukan nama kategori',
     ajax: {
@@ -312,12 +322,14 @@ $('#pilihkategoribulk').select2({
         delay: 500,
         data: function (params) {
             return {
-                DIMANA1: (typeof params.term === "undefined" ? "" : params.term),,
+                csrf_aciraba: csrfTokenGlobal,
+                DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
                 DIMANA10: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -326,12 +338,15 @@ $('#pilihkategoribulk').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });
 $('#pilihsatuanbulk').select2({
     dropdownParent: $("#modalbulkinsert"),
-    
     allowClear: true,
     placeholder: 'Tentukan satuan item',
     ajax: {
@@ -341,12 +356,14 @@ $('#pilihsatuanbulk').select2({
         delay: 500,
         data: function (params) {
             return {
-                DIMANA1: (typeof params.term === "undefined" ? "" : params.term),,
+                csrf_aciraba: csrfTokenGlobal,
+                DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
                 DIMANA10: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -355,12 +372,15 @@ $('#pilihsatuanbulk').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });
 $('#pilihsatuansatuannyabulk').select2({
     dropdownParent: $("#modalbulkinsert"),
-    minimumInputLength: 2,
     allowClear: true,
     placeholder: 'Tentukan satuan item',
     ajax: {
@@ -370,12 +390,14 @@ $('#pilihsatuansatuannyabulk').select2({
         delay: 500,
         data: function (params) {
             return {
-                DIMANA1: (typeof params.term === "undefined" ? "" : params.term),,
+                csrf_aciraba: csrfTokenGlobal,
+                DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
                 DIMANA10: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -384,12 +406,15 @@ $('#pilihsatuansatuannyabulk').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });
 $('#pilihperusahaanbulk').select2({
     dropdownParent: $("#modalbulkinsert"),
-    
     allowClear: true,
     placeholder: 'Tentukan kepemilikan barang',
     ajax: {
@@ -399,12 +424,14 @@ $('#pilihperusahaanbulk').select2({
         delay: 500,
         data: function (params) {
             return {
-                NAMAPERUSAHAAN: (typeof params.term === "undefined" ? "" : params.term),,
+                csrf_aciraba: csrfTokenGlobal,
+                NAMAPERUSAHAAN: (typeof params.term === "undefined" ? "" : params.term),
                 KODEUNIKMEMBER: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -413,6 +440,10 @@ $('#pilihperusahaanbulk').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });
@@ -428,12 +459,14 @@ $('#pilihbrandbulk').select2({
         delay: 500,
         data: function (params) {
             return {
-                NAMABRAND: (typeof params.term === "undefined" ? "" : params.term),,
+                csrf_aciraba: csrfTokenGlobal,
+                NAMABRAND: (typeof params.term === "undefined" ? "" : params.term),
                 KODEUNIKMEMBER: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -442,6 +475,10 @@ $('#pilihbrandbulk').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });

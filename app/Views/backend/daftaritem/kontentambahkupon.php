@@ -115,11 +115,11 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="<?= base_url();?>/scripts/masterdata/voucherbelanja.js"></script>
+
+<script src="<?= base_url();?>scripts/masterdata/voucherbelanja.js"></script>
 <script type="text/javascript">
-$(document).ready(function () { 
-    $(".input-daterange").datepicker({ todayHighlight: true,format: 'dd-mm-yyyy',orientation: "bottom left", });
-    $('#nominalpotongan, #bataspakaikupon, #minimalpembelianvoucher').autoNumeric('init');
-});
+var nominalpotongan = new AutoNumeric("#nominalpotongan", {decimalCharacter : ',',digitGroupSeparator : '.',})
+var bataspakaikupon = new AutoNumeric("#bataspakaikupon", {decimalCharacter : ',',digitGroupSeparator : '.',})
+var minimalpembelianvoucher = new AutoNumeric("#minimalpembelianvoucher", {decimalCharacter : ',',digitGroupSeparator : '.',})
 </script>
 <?= $this->endSection(); ?>

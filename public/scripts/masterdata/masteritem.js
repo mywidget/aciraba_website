@@ -2,80 +2,44 @@ $(function () {
     loaddaftaritem();
 });
 function loaddaftaritem() {
-$("#masteritem_daftaritem").DataTable({
-    language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-    columnDefs: [{
-            className: "text-right",
-            targets: [8, 9, 10, 11]
+getCsrfTokenCallback(function() {
+    $("#masteritem_daftaritem").DataTable({
+        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+        columnDefs: [{
+                className: "text-right",
+                targets: [8, 9, 10, 11]
+            },
+            {
+                className: "text-center",
+                targets: [0, 1, 2, 3, 4, 5]
+            },
+        ],
+        ajax: {
+            "url": baseurljavascript + 'masterdata/jsontabeldaftaritem',
+            "type": "POST",
+            "data": function (d) {
+                d.csrf_aciraba = csrfTokenGlobal;
+                d.DIMANA2 = $("#daftaritem_katakunci").val();
+                d.DIMANA3 = $("#daftaritem_parameterpencarian").val();
+                d.DIMANA6 = session_outlet;
+                d.DIMANA8 = statusbarang;
+                d.DIMANA10 = session_kodeunikmember;
+                d.DATAKE = 0;
+                d.LIMIT = 500;
+            }
         },
-        {
-            className: "text-center",
-            targets: [0, 1, 2, 3, 4, 5]
-        },
-    ],
-    ajax: {
-        "url": baseurljavascript + 'masterdata/jsontabeldaftaritem',
-        "type": "POST",
-        "data": function (d) {
-            d.DIMANA2 = $("#daftaritem_katakunci").val();
-            d.DIMANA3 = $("#daftaritem_parameterpencarian").val();
-            d.DIMANA6 = session_outlet;
-            d.DIMANA8 = statusbarang;
-            d.DIMANA10 = session_kodeunikmember;
-            d.DATAKE = 0;
-            d.LIMIT = 500;
-        }
-    },
-    scrollCollapse: true,
-    scrollY: "50vh",
-    scrollX: true,
-    bFilter: false
-});
-}
-/* algoritma dashboard master item */
-function onclickrebuildstok(kodeitem,namaitem, kondisirebuild){
-    Swal.fire({
-        title: "Re-build stok",
-        text: "Cek stok "+kodeitem+" ["+ namaitem +"] pada aplikasi",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Oke, Cek Sekarang!'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'masterdata/rebuildstok',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KONDISI : kondisirebuild,
-                    KODEITEM: kodeitem,
-                    OUTLET: session_outlet,
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                    NAMAITEM: namaitem,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        $('#masteritem_daftaritem').DataTable().ajax.reload();
-                        Swal.fire(
-                            'Berhasil.. Horee!',
-                            'Informasi re-build stok '+kodeitem+' ['+namaitem+'] berhasil diperbarui.',
-                            'success'
-                        )
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            'Informasi gagal di re-build.',
-                            'success'
-                        )
-                    }
-                }
-            });
+        scrollCollapse: true,
+        scrollY: "50vh",
+        scrollX: true,
+        bFilter: false,
+        fnInitComplete: function(oSettings, json) {
+            getCsrfTokenCallback(function() {});
         }
     });
+});
+
 }
+/* algoritma dashboard master item */
 function onclickdisableitem(kodeitem,namaitem,kondisiitem){
     Swal.fire({
         title: kondisiitem == "0" ? "Aktifkan Item" : "Tidak Aktif Item",
@@ -87,11 +51,13 @@ function onclickdisableitem(kodeitem,namaitem,kondisiitem){
         confirmButtonText: kondisiitem == "0" ? "Aktifkan item sekarang" : "Oke, Jadikan tidak aktif"
     }).then((result) => {
         if (result.isConfirmed) {
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/rebuildstok',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     KONDISI : kondisiitem,
                     KODEITEM: kodeitem,
                     OUTLET: session_outlet,
@@ -101,7 +67,9 @@ function onclickdisableitem(kodeitem,namaitem,kondisiitem){
                 success: function (response) {
                     var obj = $.parseJSON(response);
                     if (obj.status == "true"){
-                        $('#masteritem_daftaritem').DataTable().ajax.reload();
+                        getCsrfTokenCallback(function() {
+                            $('#masteritem_daftaritem').DataTable().ajax.reload();
+                        });
                         Swal.fire(
                             'Berhasil.. Horee!',
                             'Informasi re-build stok '+kodeitem+' ['+namaitem+'] berhasil diperbarui.',
@@ -114,7 +82,11 @@ function onclickdisableitem(kodeitem,namaitem,kondisiitem){
                             'success'
                         )
                     }
+                },
+                error: function(xhr, status, error) {
+                    toastr["error"](xhr.responseJSON.message);
                 }
+            });
             });
         }
     });
@@ -143,48 +115,50 @@ $("#simpanpecahsatuan").on("click", function () {
         confirmButtonText: 'Oke, Konversi Sekarang!'
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'masterdata/tambahpecahstokjax',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    AI : '',
-                    IDBARANGASAL: $('#kodebarang').val(),
-                    IDBARANGBARU: $('#kodebarangpecahsatuan').val(),
-                    ASALPECAH: $('#potongstokpecahsatuan').val(),
-                    MENJADI: $('#konversistokpecahsatuan').val(),
-                    HARGAJUAL: $('#hargajualbaru').val(),
-                    HARGABELI: $('#hppprodukbaru').val(),
-                    OUTLET: session_outlet,
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                    KASIR: session_namapengguna,
-                    NAMABARANGSEBELUM: $('#namabarang').val(),
-                    NAMABARANGSESUDAH: $('#namabarangpecahsatuan').val(),
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        Swal.fire({
-                            title: "Berhasil Horeee!!!",
-                            target: '#modalPecahsatuan',
-                            text: obj.msg,
-                            icon: 'success',
-                        });
-                        $('#kodebarangpecahsatuan').val("");
-                        $('#namabarangpecahsatuan').val("");
-                        $('#potongstokpecahsatuan').val("");
-                        $('#konversistokpecahsatuan').val("");
-                        $('#hargajualbaru').val("");
-                        $('#hppprodukbaru').val("");
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Uhhh",
-                            target: '#modalPecahsatuan',
-                            text: obj.msg,
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/tambahpecahstokjax',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]: csrfTokenGlobal,
+                        AI : '',
+                        IDBARANGASAL: $('#kodebarang').val(),
+                        IDBARANGBARU: $('#kodebarangpecahsatuan').val(),
+                        ASALPECAH: $('#potongstokpecahsatuan').val(),
+                        MENJADI: $('#konversistokpecahsatuan').val(),
+                        HARGAJUAL: $('#hargajualbaru').val(),
+                        HARGABELI: $('#hppprodukbaru').val(),
+                        OUTLET: session_outlet,
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                        KASIR: session_namapengguna,
+                        NAMABARANGSEBELUM: $('#namabarang').val(),
+                        NAMABARANGSESUDAH: $('#namabarangpecahsatuan').val(),
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            Swal.fire({
+                                title: "Berhasil Horeee!!!",
+                                target: '#modalPecahsatuan',
+                                text: response.msg,
+                                icon: 'success',
+                            });
+                            $('#kodebarangpecahsatuan').val("");
+                            $('#namabarangpecahsatuan').val("");
+                            $('#potongstokpecahsatuan').val("");
+                            $('#konversistokpecahsatuan').val("");
+                            $('#hargajualbaru').val("");
+                            $('#hppprodukbaru').val("");
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Uhhh",
+                                target: '#modalPecahsatuan',
+                                text: response.msg,
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     });        
@@ -195,13 +169,19 @@ $("#statusbarang").click(function () {
     } else {
         statusbarang = 1;
     }
-    $('#masteritem_daftaritem').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#masteritem_daftaritem').DataTable().ajax.reload();
+    });
 });
 $('#daftaritem_katakunci').on('input', debounce(function (e) {
-    $('#masteritem_daftaritem').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#masteritem_daftaritem').DataTable().ajax.reload();
+    });
 }, 500));
 $("#daftaritem_parameterpencarian").change(function () {
-    $('#masteritem_daftaritem').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#masteritem_daftaritem').DataTable().ajax.reload();
+    });
 });
 /* algoritma tambah item atau barang */ 
 $("#btn_simpan_tambahitem").click(function () {
@@ -246,66 +226,72 @@ $("#btn_simpan_tambahitem").click(function () {
                 temp = isidatatable.toString().split(",");
                 arrayquerybarangtambahan.push(databarangtambahan.cell(index,0).nodes().to$().find('input').val()+","+databarangtambahan.cell(index,1).nodes().to$().find('input').val());
             });
-            $.ajax({
-                url: baseurljavascript + 'masterdata/tambahitemajax',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    ISINSERT : $('#isinsert').is(":checked"),
-                    BARANG_ID : $("#kodebarang").val(),
-                    QRCODE_ID : $("#kodebarangqrcode").val(),
-                    NAMABARANG : $("#namabarang").val(),
-                    BERAT_BARANG : $("#beratbarang").val(),
-                    PARETO_ID : $("#pilihprincipal").val(),
-                    SUPPLER_ID : $("#pilihsuplier").val(),
-                    KATEGORI_ID : $("#pilihkategori").val(),
-                    BRAND_ID : $("#pilihbrand").val(),
-                    KETERANGANBARANG : quillHtml.root.innerHTML,
-                    HARGABELI : $("#hargapokokpembelian").val(),
-                    HARGAJUAL : $("#hargajualumum").val(),
-                    SATUAN : $("#pilihsatuan").val(),
-                    AKTIF: statusbarang,
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                    APAKAHGROSIR : $('#aktifbaranggrosir').is(":checked"),
-                    STOKDAPATMINUS : $('#stokdapatminus').is(":checked"),
-                    JENISBARANG : $('#barangbukanstok').is(":checked") == true ? 1 : 0 ,
-                    PEMILIK : $("#pilihperusahaan").val(),
-                    /*untuk bestbuy harga gorsir*/
-                    ISHARGAGROSIRAKTIF: $('#aktifbaranggrosir').is(":checked"),
-                    JSONHARGAGROSIR: arrayqueryhargagrosir,
-                    /*untuk bestbuy harga gorsir*/
-                    ISBARANGTAMBAHAN: $('#aktifkanbarangtambahan').is(":checked"),
-                    JSONBARANGTAMBAHAN: arrayquerybarangtambahan,
-                },
-                success: function (response) {
-                    $("#btn_simpan_tambahitem").html("<i class=\"fas fa-save\"></i> Simpan");
-                    $("#btn_simpan_tambahitem").prop('disabled', false);
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        swal.fire({
-                            title: "Berhasil.. Horee!",
-                            text: "Informasi berhasil disimpan di database. Apakah anda ingin mengubah data lagi",
-                            icon:"success",
-                            showCancelButton:true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: "Oke, Lanjut!",
-                            cancelButtonText: "Kembali Ke Daftar!",
-                        }).then(function(result){
-                            if(result.isConfirmed){}else{
-                                location.href = baseurljavascript+"/masterdata/daftaritem";
-                            }
-                        })
-                    }else{
-                        Swal.fire(
-                            'Gagal Pembaruan Informasi!',
-                            obj.msg,
-                            'error'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/tambahitemajax',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]: csrfTokenGlobal,
+                        ISINSERT : $('#isinsert').is(":checked"),
+                        BARANG_ID : $("#kodebarang").val(),
+                        QRCODE_ID : $("#kodebarangqrcode").val(),
+                        NAMABARANG : $("#namabarang").val(),
+                        BERAT_BARANG : beratbarang.getNumber(),
+                        PARETO_ID : $("#pilihprincipal").val(),
+                        SUPPLER_ID : $("#pilihsuplier").val(),
+                        KATEGORI_ID : $("#pilihkategori").val(),
+                        BRAND_ID : $("#pilihbrand").val(),
+                        KETERANGANBARANG : quillHtml.root.innerHTML,
+                        HARGABELI : hargapokokpembelian.getNumber(),
+                        HARGAJUAL : hargajualumum.getNumber(),
+                        SATUAN : $("#pilihsatuan").val(),
+                        AKTIF: statusbarang,
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                        APAKAHGROSIR : $('#aktifbaranggrosir').is(":checked"),
+                        STOKDAPATMINUS : $('#stokdapatminus').is(":checked"),
+                        JENISBARANG : $('#barangbukanstok').is(":checked") == true ? 1 : 0 ,
+                        PEMILIK : $("#pilihperusahaan").val(),
+                        /*untuk bestbuy harga gorsir*/
+                        ISHARGAGROSIRAKTIF: $('#aktifbaranggrosir').is(":checked"),
+                        JSONHARGAGROSIR: arrayqueryhargagrosir,
+                        /*untuk bestbuy harga gorsir*/
+                        ISBARANGTAMBAHAN: $('#aktifkanbarangtambahan').is(":checked"),
+                        JSONBARANGTAMBAHAN: arrayquerybarangtambahan,
+                    },
+                    complete:function(){
+                        $("#btn_simpan_tambahitem").prop('disabled', false);
+                        $("#btn_simpan_tambahitem").html("<i class=\"fas fa-save\"></i> Simpan");
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            swal.fire({
+                                title: "Berhasil.. Horee!",
+                                text: "Informasi berhasil disimpan di database. Apakah anda ingin mengubah data lagi",
+                                icon:"success",
+                                showCancelButton:true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: "Oke, Lanjut!",
+                                cancelButtonText: "Kembali Ke Daftar!",
+                            }).then(function(result){
+                                if(result.isConfirmed){}else{
+                                    location.href = baseurljavascript+"/masterdata/daftaritem";
+                                }
+                            })
+                        }else{
+                            Swal.fire(
+                                'Gagal Pembaruan Informasi!',
+                                response.msg,
+                                'error'
+                            )
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
-
         }
     })
 });
@@ -361,31 +347,37 @@ $("#simpanbulk").click(function () {
                 );
                 arraymasteritembulk.push(temp)
             });
-            $.ajax({
-                url: baseurljavascript + 'masterdata/tambahitemajaxbulk',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    INFORMASIBARANG: arraymasteritembulk,
-                    JUMLAHDATA:numRows,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        $('#bulkinsert_tabel').dataTable().fnClearTable();
-                        Swal.fire(
-                            'Berhasil.. Horee!',
-                            'Seluruh informasi item pada keranjang sudah ditambahkan pada database. Silahkan cek pada daftar item.',
-                            'success'
-                        )
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            'Informasi berhasil disimpan di database.',
-                            'success'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/tambahitemajaxbulk',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]: csrfTokenGlobal,
+                        INFORMASIBARANG: arraymasteritembulk,
+                        JUMLAHDATA:numRows,
+                    },
+                    success: function (response) {
+                        var obj = $.parseJSON(response);
+                        if (obj.status == "true"){
+                            $('#bulkinsert_tabel').dataTable().fnClearTable();
+                            Swal.fire(
+                                'Berhasil.. Horee!',
+                                'Seluruh informasi item pada keranjang sudah ditambahkan pada database. Silahkan cek pada daftar item.',
+                                'success'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Gagal.. Uhhhhh!',
+                                'Informasi berhasil disimpan di database.',
+                                'success'
+                            )
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     })

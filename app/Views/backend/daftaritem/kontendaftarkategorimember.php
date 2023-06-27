@@ -15,8 +15,7 @@
                     <div class="form-row">
                             <div class="col-md-5">
                                 <label for="katakuncipencarian">Nama / Kode Kategori</label>
-                                <input type="text" class="form-control" id="katakuncipencarian"
-                                    placeholder="Masukan untuk melakukan penyaringan data tersedia">
+                                <input type="text" class="form-control" id="katakuncipencarian" placeholder="Masukan untuk melakukan penyaringan data tersedia">
                             </div>
                             <div class="col-md-7">
                             <p align="justify">Status Membership adalah status member pengguna Acipay yang diperoleh melalui transaksi. Semakin sering pengguna bertransaksi atau semakin tinggi transaksi pengguna maka semakin tinggi Status Membership yang diperoleh. Berikut adalah informasi daftarnya.</p><hr>
@@ -105,6 +104,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+    getCsrfTokenCallback(function() {
     $("#tabelkategorimember").DataTable({
         language: {
             "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
@@ -139,16 +139,19 @@ $(document).ready(function () {
             "url": baseurljavascript + 'masterdata/jsondaftarkategorianggota',
             "method": 'POST',
             "data": function (d) {
-                d.KATAKUNCIPENCARIAN = $('#katakuncipencarian').val() == null ? "" : $('#katakuncipencarian')
-                    .val();
+                d.csrf_aciraba = csrfTokenGlobal;
+                d.KATAKUNCIPENCARIAN = $('#katakuncipencarian').val();
                 d.DATAKE = 0;
                 d.LIMIT = 500;
             },
         }
     });
+    });
 });
 $('#katakuncipencarian').on('input', debounce(function (e) {
-    $('#tabelkategorimember').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabelkategorimember').DataTable().ajax.reload();
+    });
 }, 500))
 function onclickdeletekategori(kodekategori, namakategori) {
     Swal.fire({
@@ -161,18 +164,28 @@ function onclickdeletekategori(kodekategori, namakategori) {
         confirmButtonText: 'Oke, Hapus Sekarang!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#hapuskategorimember'+kodekategori).prop("disabled",true);
+            $('#hapuskategorimember'+kodekategori).html('<i class="fa fa-spin fa-spinner"></i> Proses Hapus');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsonhapuskategorianggota',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     KODEKATEGORI: kodekategori,
                     KODEUNIKMEMBER: session_kodeunikmember,
+                },
+                complete:function(){
+                    $('#hapuskategorimember'+kodekategori).prop("disabled",false);
+                    $('#hapuskategorimember'+kodekategori).html('<i class="fa fa-trash"></i> Hapus');
                 },
                 success: function (response) {
                     var obj = $.parseJSON(response);
                     if (obj.status == "true") {
-                        $('#tabelkategorimember').DataTable().ajax.reload();
+                        getCsrfTokenCallback(function() {
+                            $('#tabelkategorimember').DataTable().ajax.reload();
+                        });
                         Swal.fire(
                             'Berhasil.. Horee!',
                             obj.msg,
@@ -186,6 +199,7 @@ function onclickdeletekategori(kodekategori, namakategori) {
                         )
                     }
                 }
+            });
             });
         }
     });
@@ -211,19 +225,29 @@ $("#simpankategorimember").click(function() {
         confirmButtonText: 'Oke, Tambahkan!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#simpankategorimember').prop("disabled",true);
+            $('#simpankategorimember').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsontambahkategorianggota',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     KODEGRUP : $("#kodememberkategori").val(),
                     JENIS : $("#jeniskategorimember").val().toUpperCase(),
                     GRUP : $("#namakategorimember").val(),
                     KODEUNIKMEMBER : session_kodeunikmember
                 },
+                complete:function(){
+                    $('#simpankategorimember').prop("disabled",false);
+                    $('#simpankategorimember').html('Tambah Kategori Member');
+                },
                 success: function (response) {
                     var obj = $.parseJSON(response);
-                    $('#tabelkategorimember').DataTable().ajax.reload();
+                    getCsrfTokenCallback(function() {
+                        $('#tabelkategorimember').DataTable().ajax.reload();
+                    });
                     if (obj.status == "true"){
                         Swal.fire(
                             'Berhasil.. Horee!',
@@ -243,12 +267,12 @@ $("#simpankategorimember").click(function() {
                     }
                 }
             });
+            });
         }
     });
 });
 $("#generateiditem").on("click", function () {
-    $('#kodememberkategori').val("KM" + session_kodeunikmember +
-        Math.floor(Date.now() / 1000));
+    $('#kodememberkategori').val("KM" + session_kodeunikmember +Math.floor(Date.now() / 1000));
 });
 </script>
 <?= $this->endSection(); ?>

@@ -164,7 +164,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanmaster", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -297,7 +297,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanmastersup", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -378,7 +378,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanmastermember", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -459,7 +459,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanmastermember", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -506,7 +506,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -531,7 +531,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -809,7 +809,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanreturpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -832,7 +832,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanreturpenjualan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -902,7 +902,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporandetaimembertabel", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -966,7 +966,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -989,7 +989,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1125,7 +1125,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanreturpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1148,7 +1148,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanreturpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1210,7 +1210,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanhutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1232,7 +1232,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanhutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1324,7 +1324,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanpiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1347,7 +1347,7 @@ class Laporan extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."laporan/formatlaporanpiutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);

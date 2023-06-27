@@ -48,23 +48,23 @@ function leakLisensi($kondisi){
         $urlpost = "https://lisensi.seirasetyawan.com/api/activate_license";
         $datapost = [
             "verify_type" => "non_envato",
-            "product_id" => PRODUK_ID,
-            "license_code" => LISENSI,
-            "client_name" => NAMA_PEMILIK,
+            "product_id" => $_ENV['PRODUK_ID'],
+            "license_code" => $_ENV['LISENSI'],
+            "client_name" => $_ENV['NAMA_PEMILIK'],
         ];
     }else if($kondisi == "cek_lisensi"){
         $urlpost = "https://lisensi.seirasetyawan.com/api/verify_license";
         $datapost = [
-            "product_id" => PRODUK_ID,
-            "license_code" => LISENSI,
-            "client_name" => NAMA_PEMILIK,
+            "product_id" => $_ENV['PRODUK_ID'],
+            "license_code" => $_ENV['LISENSI'],
+            "client_name" => $_ENV['NAMA_PEMILIK'],
         ];
     }
     $rawData = json_encode($datapost);
     $response = $leakLisensi->request('POST',$urlpost, [
         'headers' => [
-            'LB-API-KEY' => API_KEY_PANDAWA,
-            'LB-URL' => DOMAIN_REGISTER,
+            'LB-API-KEY' => $_ENV['API_KEY_PANDAWA'],
+            'LB-URL' => $_ENV['DOMAIN_REGISTER'],
             'LB-IP' => $_SERVER['REMOTE_ADDR'],
             'LB-LANG' => "INDONESIA",
             'Content-Type' => 'application/x-www-form-urlencoded'
@@ -74,4 +74,6 @@ function leakLisensi($kondisi){
     $result = json_decode($response->getBody());
     return $result;
 }
-;?>
+function escapeHtml($string){
+    return htmlspecialchars($string, ENT_QUOTES, 'UTF-8');
+}

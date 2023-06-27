@@ -216,7 +216,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+
 <script type="text/javascript">
 var jumlahbeli = [],jumlahretur = [],potongan = [],hargabeli = [],ppn = [],totalkredithutang = [],sisakredithutang = [],potonghutang = [],subtotalhutang = [],nominalbayarhutang = [];
 let notepembayaranhutangtxt = new AutoNumeric('#nominalpotonghutang', {decimalCharacter : ',',digitGroupSeparator : '.',});

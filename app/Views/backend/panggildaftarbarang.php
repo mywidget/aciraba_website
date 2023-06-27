@@ -89,6 +89,7 @@
                     }else{
                         kondisipilihbarang = "s";
                     }
+                    d.csrf_aciraba = csrfTokenGlobal;
                     d.DIMANA2 = $("#daftaritem_katakunci_panggil").val();
                     d.DIMANA3 = "Nama Item";
                     d.DIMANA4 = kondisipilihbarang;
@@ -100,10 +101,13 @@
                     d.KONDISIDARI = '<?= $SEGMENT;?>';
                 }
             },
+            fnInitComplete: function(oSettings, json) {
+                getCsrfTokenCallback(function() {});
+            }
         });
     });
     $("#daftaritem_katakunci_panggil").on('input focus keypress keydown', debounce(function(e) {
-        $('#pangil_daftarabarang').DataTable().ajax.reload();
+        $('#pangil_daftarabarang').DataTable().ajax.reload();   
     }, 500))
     function onclickplihbarang(kodeitem, namaitem, harga, kondisi) {
         let addrows = true;

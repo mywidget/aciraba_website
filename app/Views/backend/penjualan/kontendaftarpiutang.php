@@ -178,7 +178,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#tanggalawalhis').val(moment().startOf('month').format('DD-MM-YYYY'));

@@ -285,7 +285,7 @@ class App extends BaseConfig
      *
      * @deprecated use Config\Cookie::$secure property instead.
      */
-    public bool $cookieSecure = false;
+    public bool $cookieSecure = true;
 
     /**
      * --------------------------------------------------------------------------
@@ -354,7 +354,7 @@ class App extends BaseConfig
      *
      * @deprecated Use `Config\Security` $tokenName property instead of using this property.
      */
-    public string $CSRFTokenName = 'csrf_test_name';
+    public string $CSRFTokenName = 'csrf_aciraba';
 
     /**
      * --------------------------------------------------------------------------
@@ -376,7 +376,7 @@ class App extends BaseConfig
      *
      * @deprecated Use `Config\Security` $cookieName property instead of using this property.
      */
-    public string $CSRFCookieName = 'csrf_cookie_name';
+    public string $CSRFCookieName = 'csrf_cookie_aciraba';
 
     /**
      * --------------------------------------------------------------------------

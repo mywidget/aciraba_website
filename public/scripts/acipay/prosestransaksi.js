@@ -93,8 +93,6 @@ function panggilkategori(){
                 PREFIX : $('#cariproduktransaksi').val(),
             },
             success: function (response) {
-                csrfName = response[1].csrfName;
-                csrfHash = response[2].csrfHash;
                 if (response[0].success == "true"){
                     let kategori = "",produk = "";
                     for(let barisawal=0;barisawal<response[0].totaldata;barisawal++){
@@ -254,8 +252,6 @@ function cektagihanproduk(idserver,idproduk,namaproduk,imgurl){
             REFID:$('#notabaruacipay').html(),
         },
         success: function (response) {
-            csrfName = response[1].csrfName;
-            csrfHash = response[2].csrfHash;
             if (response[0].data.status.toLowerCase() == "gagal"){
                 $.unblockUI();
                 return Swal.fire(
@@ -396,8 +392,6 @@ $("#transaksiacipaybro").click(function () {
         },
         success: function (response) {
             let pesan = "";
-            csrfName = response[1].csrfName;
-            csrfHash = response[2].csrfHash;
             if (response[0].success == "false"){
                 pesan ='<h5>Haduh.. Transaksi gagal dilakukan.'+"Transaksi dengan TUJUAN : "+$('#notujuan').val()+"<br>STATUS : "+response[0].msg
             }else{
@@ -455,8 +449,6 @@ $("#ceknomortujuan").click(function () {
             IDSERVER: $('#idservertujuan').html(),
         },
         success: function (response) {
-            csrfName = response[1].csrfName;
-            csrfHash = response[2].csrfHash;
             if (response[0].data.meter_no == ""){
                 Swal.fire(
                     "Informasi Tidak Ditemukan",

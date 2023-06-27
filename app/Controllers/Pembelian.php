@@ -70,7 +70,7 @@ class Pembelian extends BaseController
 			$json_data = $client->request("POST", BASEURLAPI."penjualan/formreturpenjualan", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -123,7 +123,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/jsondaftarreturpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -170,7 +170,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/jsontrxbeli", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -320,7 +320,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/cekpotonghutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -376,7 +376,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/tambahreturpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -398,7 +398,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/hapusreturpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -440,7 +440,7 @@ class Pembelian extends BaseController
 			$json_data = $client->request("POST", BASEURLAPI."pembelian/detailpembelian", [
 				"headers" => [
 					"Accept" => "application/json",
-					"Authorization" => "Bearer ".TOKENAPI,
+					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 				],
 				"form_params" => $datapost
 			]);
@@ -507,7 +507,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/modaldaftarsuplier", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -549,7 +549,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/pilihbarangpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -676,7 +676,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/daftarpembeliantabel", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -722,7 +722,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/ubahhargajualsetelahbeli", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -765,7 +765,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/hapuspembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -817,7 +817,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/simpanpembelian", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -836,7 +836,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/ubahhargajualafb", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -876,7 +876,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/hishargabeli", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -952,7 +952,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/filtermaubayarhutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -971,7 +971,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/daftarhutangterpilih", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1022,7 +1022,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/transaksihutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1050,7 +1050,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/ajaxdaftarhutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1101,7 +1101,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/ajaxdaftarpembayaranhutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1145,7 +1145,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/hapustransaksibhutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1168,7 +1168,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/detailpembayaranhutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -1187,7 +1187,7 @@ class Pembelian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."pembelian/hapustransaksihutang", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);

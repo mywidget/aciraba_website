@@ -77,7 +77,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="kodebarang" class="col-sm-3 col-form-label">Harga Jual Umum</label>
+                                                    <label for="hargapokokpembelian" class="col-sm-3 col-form-label">Harga Pokok</label>
                                                     <div class="col-sm-9">
                                                         <div class="input-group">
                                                             <input value="<?= $HARGABELI ;?>" type="text" id="hargapokokpembelian"
@@ -399,501 +399,540 @@
     </div>
 </div>
 <!-- END Modal -->
-    </div>
-    <!--/*JS AREA KONTEN TAMBAH ITEM */-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
-    </script>
-    <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-    <script src="<?= base_url();?>/scripts/dropzone-5.7.0/min/dropzone.min.js"></script>
-    <script src="<?= base_url();?>/scripts/masterdata/masteritem.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            let tabelbonusabc = $('#bonusbarangitem').DataTable({pageLength: 5,lengthMenu: [5, 10, 15],});
-            let tabelgrosir = $('#tabelhargagrosir').DataTable({pageLength: 5,bLengthChange: false,bFilter: false,});
-            let tabelbarangtambahan = $('#tabelbarangtambahan').DataTable({pageLength: 5,bLengthChange: false,bFilter: false,});
-            <?php if ($BARANG_ID != ""){ ?> 
-                $(".btn-status-item").removeClass("active");
-                $("#btn-status-item-<?=$AKTIF;?>").addClass("active");
-                $('input:radio[name="rb_statusbarangtambahitem"]').filter('[value="<?=$AKTIF;?>"]').attr('checked', true);
-                $("#isinsert").removeAttr("checked");
-                $("#aktifkanbestbuy").prop('checked',  <?= $APAKAHGROSIR == "AKTIF" ? 'true' : 'false'  ;?>);
-                $("#barangbukanstok").prop('checked', <?= $JENISBARANG == "JASA" ? 'true' : 'false' ;?>);
-                $("#stokdapatminus").prop('checked', <?= $STOKDAPATMINUS == "DAPAT MINUS" ? 'true' : 'false'  ;?>);
-                $("#aktifbaranggrosir").prop('checked', <?= $APAKAHGROSIR == "AKTIF" ? 'true' : 'false'  ;?>);
-                $("#tambahbarangbonus").prop('disabled', <?= $APAKAHGROSIR == "AKTIF" ? 'false' : 'true'  ;?>);
-                $("#aktifkanbarangtambahan").prop('checked', <?= $APAKAHBONUS == "AKTIF" ? 'true' : 'false'  ;?>);
-                $("#barangtambahan").prop('disabled', <?= $APAKAHGROSIR == "AKTIF" ? 'false' : 'true'  ;?>);
-                quillHtml.pasteHTML('<?= $KETERANGANBARANG ;?>');
-                <?php for ($i=0; $i < $JUMLAHDATAHARGAGROSIR; $i++) { ?>
-                    tabelgrosir.row.add( [
-                        '<?= $NAMABARANG ;?>',
-                        "<input name=\"bonusitem[]\" class=\"grosirqty form-control\" type=\"text\" value=\"<?= $DATAHARGAGROSIR[$i]->JIKABELI ;?>\">",
-                        "<input name=\"bonusitem[]\" class=\"grosirqtyharga form-control\" type=\"text\" value=\"<?= $DATAHARGAGROSIR[$i]->HARGABELIGROSIR ;?>\">",
-                        '<div><button class=\"hapushargagrosir btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>',
-                    ] ).draw( false );        
-                <?php } ?>
-                <?php for ($i=0; $i < $JUMLAHDATABARANGTAMBAHAN; $i++) { ?>
-                    tabelbarangtambahan.row.add( [
-                        "<input name=\"namatambahan[]\" class=\"grosirqty form-control\" type=\"text\" value=\"<?= $DATAHARGATAMBAHAN[$i]->NAMATAMBAHAN ;?>\">",
-                        "<input name=\"bonusitem[]\" class=\"grosirqty form-control\" type=\"text\" value=\"<?= $DATAHARGATAMBAHAN[$i]->HARGA ;?>\">",
-                        '<div><button class=\"hapusbarangtambahan btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>',
-                    ] ).draw( false );        
-                <?php } ?>
-                <?php } ?>
-            $('#piliharusbarang').select2();
-            $('#pilihprincipal').select2({
-                allowClear: true,
-                placeholder: 'Tentukan principal barang ini',
-                ajax: {
-                    url: baseurljavascript + 'masterdata/jsonprincipal',
-                    method: 'POST',
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
+</div>
+<!--/*JS AREA KONTEN TAMBAH ITEM */-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js">
+</script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://rawgit.com/RobinHerbots/Inputmask/5.x/dist/jquery.inputmask.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
+
+<script src="<?= base_url();?>/scripts/dropzone-5.7.0/min/dropzone.min.js"></script>
+<script src="<?= base_url();?>/scripts/masterdata/masteritem.js"></script>
+<script type="text/javascript">
+var beratbarang = new AutoNumeric("#beratbarang", {decimalCharacter : ',',digitGroupSeparator : '.',})
+var hargapokokpembelian = new AutoNumeric("#hargapokokpembelian", {decimalCharacter : ',',digitGroupSeparator : '.',})
+var hargajualumum = new AutoNumeric("#hargajualumum", {decimalCharacter : ',',digitGroupSeparator : '.',})
+$(document).ready(function () {
+    let tabelbonusabc = $('#bonusbarangitem').DataTable({pageLength: 5,lengthMenu: [5, 10, 15],});
+    let tabelgrosir = $('#tabelhargagrosir').DataTable({pageLength: 5,bLengthChange: false,bFilter: false,});
+    let tabelbarangtambahan = $('#tabelbarangtambahan').DataTable({pageLength: 5,bLengthChange: false,bFilter: false,});
+    <?php if ($BARANG_ID != ""){ ?> 
+        $(".btn-status-item").removeClass("active");
+        $("#btn-status-item-<?=$AKTIF;?>").addClass("active");
+        $('input:radio[name="rb_statusbarangtambahitem"]').filter('[value="<?=$AKTIF;?>"]').attr('checked', true);
+        $("#isinsert").removeAttr("checked");
+        $("#aktifkanbestbuy").prop('checked',  <?= $APAKAHGROSIR == "AKTIF" ? 'true' : 'false'  ;?>);
+        $("#barangbukanstok").prop('checked', <?= $JENISBARANG == "JASA" ? 'true' : 'false' ;?>);
+        $("#stokdapatminus").prop('checked', <?= $STOKDAPATMINUS == "DAPAT MINUS" ? 'true' : 'false'  ;?>);
+        $("#aktifbaranggrosir").prop('checked', <?= $APAKAHGROSIR == "AKTIF" ? 'true' : 'false'  ;?>);
+        $("#tambahbarangbonus").prop('disabled', <?= $APAKAHGROSIR == "AKTIF" ? 'false' : 'true'  ;?>);
+        $("#aktifkanbarangtambahan").prop('checked', <?= $APAKAHBONUS == "AKTIF" ? 'true' : 'false'  ;?>);
+        $("#barangtambahan").prop('disabled', <?= $APAKAHGROSIR == "AKTIF" ? 'false' : 'true'  ;?>);
+        quillHtml.pasteHTML('<?= $KETERANGANBARANG ;?>');
+        <?php for ($i=0; $i < $JUMLAHDATAHARGAGROSIR; $i++) { ?>
+            tabelgrosir.row.add( [
+                '<?= $NAMABARANG ;?>',
+                "<input name=\"bonusitem[]\" class=\"grosirqty form-control\" type=\"text\" value=\"<?= $DATAHARGAGROSIR[$i]->JIKABELI ;?>\">",
+                "<input name=\"bonusitem[]\" class=\"grosirqtyharga form-control\" type=\"text\" value=\"<?= $DATAHARGAGROSIR[$i]->HARGABELIGROSIR ;?>\">",
+                '<div><button class=\"hapushargagrosir btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>',
+            ] ).draw( false );        
+        <?php } ?>
+        <?php for ($i=0; $i < $JUMLAHDATABARANGTAMBAHAN; $i++) { ?>
+            tabelbarangtambahan.row.add( [
+                "<input name=\"namatambahan[]\" class=\"grosirqty form-control\" type=\"text\" value=\"<?= $DATAHARGATAMBAHAN[$i]->NAMATAMBAHAN ;?>\">",
+                "<input name=\"bonusitem[]\" class=\"grosirqty form-control\" type=\"text\" value=\"<?= $DATAHARGATAMBAHAN[$i]->HARGA ;?>\">",
+                '<div><button class=\"hapusbarangtambahan btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>',
+            ] ).draw( false );        
+        <?php } ?>
+    <?php } ?>
+    $("#generateiditem").on("click", function () {
+        $('#kodebarang, #kodeitemdiskonxnx, #kodeitemdiskonxnxvoucher').val("ACI" + session_kodeunikmember +
+            Math.floor(Date.now() / 1000));
+    });
+    $("#kodebarang").on('input', function (e) {
+        $('#kodeitemdiskonxnx, #kodeitemdiskonxnxvoucher').val($('#kodebarang').val());
+    });
+    
+    $('#pilihprincipal').select2({
+        allowClear: true,
+        placeholder: 'Tentukan principal barang ini',
+        ajax: {
+            url: baseurljavascript + 'masterdata/jsonprincipal',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function(params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    NAMAPRINCIPAL: (typeof params.term === "undefined" ? "" : params.term),
+                    KODEUNIKMEMBER: session_kodeunikmember,
+                };
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
                         return {
-                            NAMAPRINCIPAL: (typeof params.term === "undefined" ? "" : params.term),
-                            KODEUNIKMEMBER: session_kodeunikmember,
+                            text: "[" + item.kodeprincipal + "] " + item.namaperusahaan,
+                            id: item.kodeprincipal,
                         }
-                    },
-                    processResults: function (data) {
-                        parseJSON = JSON.parse(data);
-                        return {
-                            results: $.map(parseJSON, function (item) {
-                                return {
-                                    text: "[" + item.kodeprincipal + "] " + item.namaperusahaan,
-                                    id: item.kodeprincipal,
-                                }
-                            })
-                        }
-                    }
-                },
-            });
-            $('#pilihsuplier').select2({
-                allowClear: true,
-                placeholder: 'Tentukan nama suplier terakhir',
-                ajax: {
-                    url: baseurljavascript + 'masterdata/jsonsuplierselect',
-                    method: 'POST',
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
-                        return {
-                            DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
-                            DIMANA10: session_kodeunikmember,
-                        }
-                    },
-                    processResults: function (data) {
-                        parseJSON = JSON.parse(data);
-                        return {
-                            results: $.map(parseJSON, function (item) {
-                                return {
-                                    text: "[" + item.idsupplier + "] " + item.namasuplier,
-                                    id: item.idsupplier,
-                                }
-                            })
-                        }
-                    }
-                },
-            });
-            $("#hargajualumum").on('input', function (e) {
-            $("label[for='" + this.id + "']").text("Harga Jual Umum [" + (($("#hargajualumum").val() / ($(
-                "#hargapokokpembelian").val()) * 100 - 100)) + "%]");
-            });
-            $("#hargajualsales").on('input', function (e) {
-                $("label[for='" + this.id + "']").text("Harga Jual Umum [" + (($("#hargajualsales").val() / ($(
-                    "#hargapokokpembelian").val()) * 100 - 100)) + "%]");
-            });
-            $("#hargajualdistributor").on('input', function (e) {
-                $("label[for='" + this.id + "']").text("Harga Jual Umum [" + (($("#hargajualdistributor").val() / (
-                    $("#hargapokokpembelian").val()) * 100 - 100)) + "%]");
-            });
-            $("#generateiditem").on("click", function () {
-                $('#kodebarang, #kodeitemdiskonxnx, #kodeitemdiskonxnxvoucher').val("ACI" + session_kodeunikmember +
-                    Math.floor(Date.now() / 1000));
-            });
-            $("#kodebarang").on('input', function (e) {
-                $('#kodeitemdiskonxnx, #kodeitemdiskonxnxvoucher').val($('#kodebarang').val());
-            });
-            $("#hargapokokpembelian, #hargajualumum, #hargaratarata, #hargajualsales, #hargajualdistributor, #beratbarang, #minimalpembelianxnx, #dapatqytyxnx, #batastransaksivoucher, #konversistokpecahsatuan, #potongstokpecahsatuan, #hargajualbaru, #hppprodukbaru").inputmask({
-                alias: 'decimal',
-                rightAlign: true,
-                autoGroup: true
-            });
-            $('#pilihkategori').select2({
-                allowClear: true,
-                placeholder: 'Tentukan nama kategori',
-                ajax: {
-                    url: baseurljavascript + 'masterdata/jsonkategoriselect',
-                    method: 'POST',
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
-                        return {
-                            DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
-                            DIMANA10: session_kodeunikmember,
-                        }
-                    },
-                    processResults: function (data) {
-                        parseJSON = JSON.parse(data);
-                        return {
-                            results: $.map(parseJSON, function (item) {
-                                return {
-                                    text: "[" + item.idkategori + "] " + item.namakategori,
-                                    id: item.idkategori,
-                                }
-                            })
-                        }
-                    }
-                },
-            });
-            $('#pilihsatuan').select2({
-                allowClear: true,
-                placeholder: 'Tentukan satuan item',
-                ajax: {
-                    url: baseurljavascript + 'masterdata/jsonsatuanselect',
-                    method: 'POST',
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
-                        return {
-                            DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
-                            DIMANA10: session_kodeunikmember,
-                        }
-                    },
-                    processResults: function (data) {
-                        parseJSON = JSON.parse(data);
-                        return {
-                            results: $.map(parseJSON, function (item) {
-                                return {
-                                    text: "[" + item.idsatuan + "] " + item.namasatuan,
-                                    id: item.idsatuan,
-                                }
-                            })
-                        }
-                    }
-                },
-            });
-            $('#pilihsatuansatuannya').select2({
-                allowClear: true,
-                placeholder: 'Tentukan satuan item',
-                ajax: {
-                    url: baseurljavascript + 'masterdata/jsonsatuanselect',
-                    method: 'POST',
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
-                        return {
-                            DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
-                            DIMANA10: session_kodeunikmember,
-                        }
-                    },
-                    processResults: function (data) {
-                        parseJSON = JSON.parse(data);
-                        return {
-                            results: $.map(parseJSON, function (item) {
-                                return {
-                                    text: "[" + item.idsatuan + "] " + item.namasatuan,
-                                    id: item.idsatuan,
-                                }
-                            })
-                        }
-                    }
-                },
-            });
-            $('#pilihperusahaan').select2({
-                allowClear: true,
-                placeholder: 'Tentukan kepemilikan barang',
-                ajax: {
-                    url: baseurljavascript + 'masterdata/jsonpilihperusahaan',
-                    method: 'POST',
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
-                        return {
-                            NAMAPERUSAHAAN: (typeof params.term === "undefined" ? "" : params.term),
-                            KODEUNIKMEMBER: session_kodeunikmember,
-                        }
-                    },
-                    processResults: function (data) {
-                        parseJSON = JSON.parse(data);
-                        return {
-                            results: $.map(parseJSON, function (item) {
-                                return {
-                                    text: "[" + item.kodepursahaan + "] " + item.namaperusahaan,
-                                    id: item.kodepursahaan,
-                                }
-                            })
-                        }
-                    }
-                },
-            });
-            $('#pilihbrand').select2({
-                allowClear: true,
-                placeholder: 'Tentukan brand barang ini',
-                ajax: {
-                    url: baseurljavascript + 'masterdata/jsonpilihbrand',
-                    method: 'POST',
-                    dataType: 'json',
-                    delay: 500,
-                    data: function (params) {
-                        return {
-                            NAMABRAND: (typeof params.term === "undefined" ? "" : params.term),
-                            KODEUNIKMEMBER: session_kodeunikmember,
-                        }
-                    },
-                    processResults: function (data) {
-                        parseJSON = JSON.parse(data);
-                        return {
-                            results: $.map(parseJSON, function (item) {
-                                return {
-                                    text: "[" + item.kodebrang + "] " + item.namabrand,
-                                    id: item.kodebrang,
-                                }
-                            })
-                        }
-                    }
-                },
-            });
-        });
-        $('#bonusbarangitem').on('click', '.hapusbonusbarang', function () {
-            let table = $('#bonusbarangitem').DataTable();
-            let row = $(this).parents('tr');
-            if ($(row).hasClass('child')) {
-                table.row($(row).prev('tr')).remove().draw();
-            } else {
-                table.row($(this).parents('tr')).remove().draw();
-            }
-        });
-        /* algoritma master item bonus barang area */
-        $("#belixgratisx").change(function() {
-            if(this.checked) {
-                if ($("#kodebarang").val().length === 0){
-                    Swal.fire({
-                        position: 'bottom-end',
-                        icon: 'warning',
-                        title: 'Pastikan KODEITEM sudah diisi untuk mengaktifkan fitur ini',
-                        showConfirmButton: false,
-                        toast:true,
-                        timer: 1500
                     })
-                    $('#belixgratisx').prop('checked', false);
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
-        });
-        /* batas akhir algoritma master item bonus barang area */
-        $("#belixgratisabc").change(function() {
-            if(this.checked) {
-                if ($("#kodebarang").val().length === 0){
-                    Swal.fire({
-                        position: 'bottom-end',
-                        icon: 'warning',
-                        title: 'Pastikan KODEITEM sudah diisi untuk mengaktifkan fitur ini',
-                        showConfirmButton: false,
-                        toast:true,
-                        timer: 1500
+        },
+    });
+    $('#pilihsuplier').select2({
+        allowClear: true,
+        placeholder: 'Tentukan nama suplier terakhir',
+        ajax: {
+            url: baseurljavascript + 'masterdata/jsonsuplierselect',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function (params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
+                    DIMANA10: session_kodeunikmember,
+                }
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
+                        return {
+                            text: "[" + item.idsupplier + "] " + item.namasuplier,
+                            id: item.idsupplier,
+                        }
                     })
-                    $('#belixgratisabc').prop('checked', false);
-                    $("#bonusbarang").prop('disabled', true);
-                }else{
-                    $("#bonusbarang").prop('disabled', false);
                 }
-            }else{
-                $("#bonusbarang").prop('disabled', true);
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
-        });
-        $('#tabelhargagrosir').on('click', '.hapushargagrosir', function () {
-            var table = $('#tabelhargagrosir').DataTable();
-            var row = $(this).parents('tr');
-            if ($(row).hasClass('child')) {
-                table.row($(row).prev('tr')).remove().draw();
-            } else {
-                table.row($(this).parents('tr')).remove().draw();
-            }
-        });
-        /* batas akhir algoritma master item harga grosir */
-        $("#tambahbarangbonus").on("click", function () {
-            $('#tabelhargagrosir').DataTable().row.add([
-                $("#namabarang").val(),
-                "<input name=\"bonusitem[]\" class=\"grosirqty form-control\" type=\"text\" value=\"1\">",
-                "<input name=\"bonusitem[]\" class=\"grosirqtyharga form-control\" type=\"text\" value=\"1\">",
-                "<div><button class=\"hapushargagrosir btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>",
-            ]).draw(false);
-        });
-        $("#aktifbaranggrosir").change(function() {
-            if(this.checked) {
-                if ($("#kodebarang").val().length === 0 || $("#namabarang").val().length === 0){
-                    Swal.fire({
-                        position: 'bottom-end',
-                        icon: 'warning',
-                        title: 'Pastikan KODEITEM dan NAMABARANG sudah diisi untuk mengaktifkan fitur ini',
-                        showConfirmButton: false,
-                        toast:true,
-                        timer: 1500
+        },
+    });
+    $('#pilihkategori').select2({
+        allowClear: true,
+        placeholder: 'Tentukan nama kategori',
+        ajax: {
+            url: baseurljavascript + 'masterdata/jsonkategoriselect',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function (params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
+                    DIMANA10: session_kodeunikmember,
+                }
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
+                        return {
+                            text: "[" + item.idkategori + "] " + item.namakategori,
+                            id: item.idkategori,
+                        }
                     })
-                    $('#aktifbaranggrosir').prop('checked', false);
-                    $("#tambahbarangbonus").prop('disabled', true);
-                }else{
-                    $("#tambahbarangbonus").prop('disabled', false);
                 }
-            }else{
-                $("#tambahbarangbonus").prop('disabled', true);
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
-        });
-        $("#aktifkanbarangtambahan").change(function() {
-            if(this.checked) {
-                if ($("#kodebarang").val().length === 0 || $("#namabarang").val().length === 0){
-                    Swal.fire({
-                        position: 'bottom-end',
-                        icon: 'warning',
-                        title: 'Pastikan KODEITEM dan NAMABARANG sudah diisi untuk mengaktifkan fitur ini',
-                        showConfirmButton: false,
-                        toast:true,
-                        timer: 1500
+        },
+    });
+    $('#pilihsatuan').select2({
+        allowClear: true,
+        placeholder: 'Tentukan satuan item',
+        ajax: {
+            url: baseurljavascript + 'masterdata/jsonsatuanselect',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function (params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
+                    DIMANA10: session_kodeunikmember,
+                }
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
+                        return {
+                            text: "[" + item.idsatuan + "] " + item.namasatuan,
+                            id: item.idsatuan,
+                        }
                     })
-                    $('#aktifkanbarangtambahan').prop('checked', false);
-                    $("#barangtambahan").prop('disabled', true);
-                }else{
-                    $("#barangtambahan").prop('disabled', false);
                 }
-            }else{
-                $("#barangtambahan").prop('disabled', true);
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
-        });
-        $('#tabelbarangtambahan').on('click', '.hapusbarangtambahan', function () {
-            var table = $('#tabelbarangtambahan').DataTable();
-            var row = $(this).parents('tr');
-            if ($(row).hasClass('child')) {
-                table.row($(row).prev('tr')).remove().draw();
-            } else {
-                table.row($(this).parents('tr')).remove().draw();
-            }
-        });
-        $("#barangtambahan").on("click", function () {
-            $('#tabelbarangtambahan').DataTable().row.add([
-                "<input name=\"namatambahan[]\" class=\"namatambahan form-control\" type=\"text\" value=\"\" placeholder=\"Silahkan Tentukan Nama\">",
-                "<input name=\"bonusitem[]\" class=\"tambahanqtyharga form-control\" type=\"text\" value=\"0\">",
-                "<div><button class=\"hapusbarangtambahan btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>",
-            ]).draw(false);
-        });
-        /* batas akhir algoritma master item voucher barang */
-        $("#tab_voucherbarang").on("click", function () {
-            $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-                let target = $(e.target).attr("href")
-                if (target == "#nav1-voucher"){
-                    $("#btn_simpan_tambahitem").prop('disabled', true);
-                }else{
-                    $("#btn_simpan_tambahitem").prop('disabled', false);
+        },
+    });
+    $('#pilihsatuansatuannya').select2({
+        allowClear: true,
+        placeholder: 'Tentukan satuan item',
+        ajax: {
+            url: baseurljavascript + 'masterdata/jsonsatuanselect',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function (params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
+                    DIMANA10: session_kodeunikmember,
                 }
-            });
-        });
-        $("#aktifvoucherbarnag").change(function() {
-            if(this.checked) {
-                if ($("#kodebarang").val().length === 0){
-                    Swal.fire({
-                        position: 'bottom-end',
-                        icon: 'warning',
-                        title: 'Pastikan KODEITEM sudah diisi untuk mengaktifkan fitur ini',
-                        showConfirmButton: false,
-                        toast:true,
-                        timer: 1500
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
+                        return {
+                            text: "[" + item.idsatuan + "] " + item.namasatuan,
+                            id: item.idsatuan,
+                        }
                     })
-                    $('#aktifvoucherbarnag').prop('checked', false);
-                    $("#tambahbarisvoucher").prop('disabled', true);
-                }else{
-                    $("#tambahbarisvoucher").prop('disabled', false);
                 }
-            }else{
-                $("#tambahbarisvoucher").prop('disabled', true);
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
-        });
-        $("#nav1grosirdanvoucher").on("click", function () {
-            $('#nav1-tabvouchergrosir a[href="#nav1-grosir"]').tab('show')
-            $("#tab_baranggrosir").addClass("active");
-            $("#tab_voucherbarang").removeClass("active");
-        });
-        /* upload dropzone */
-        Dropzone.autoDiscover = false;
-        let namafiledariserver = "";
-        var foto_upload= new Dropzone(".dropzone",
-        {
-            url: "<?= base_url('masterdata/uploadcitra') ?>",
-            maxFiles:8,
-            method:"post",
-            acceptedFiles:"image/*",
-            paramName:"userfile",
-            dictInvalidFileType:"Terjadi kesalahan dalam mengupload gambar",
-            addRemoveLinks:true,
-            init: function () {
-                this.on("sending", function(file, xhr, formData){
-                    formData.append("kodeunikmember", session_kodeunikmember);
-                    formData.append("kodeitem", $("#kodebarang").val());
-                    formData.append("tanggalclient", moment().format("YYYYMMDD"));
-                });
-                this.on("success", function (file, responseText) {
-                    let data = JSON.parse(responseText)
-                    namafiledariserver = data[2];
-                    if (data[0] == "GAGAL"){
-                        toastr["error"](data[1]);
-                    }
-                });
-                this.on("removedfile", function(namafile) {
-                    deleteimagedropzone(namafile.name,"dropzonejs");
-                });
+        },
+    });
+    $('#pilihperusahaan').select2({
+        allowClear: true,
+        placeholder: 'Tentukan kepemilikan barang',
+        ajax: {
+            url: baseurljavascript + 'masterdata/jsonpilihperusahaan',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function (params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    NAMAPERUSAHAAN: (typeof params.term === "undefined" ? "" : params.term),
+                    KODEUNIKMEMBER: session_kodeunikmember,
+                }
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
+                        return {
+                            text: "[" + item.kodepursahaan + "] " + item.namaperusahaan,
+                            id: item.kodepursahaan,
+                        }
+                    })
+                }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
-        }
-        );
-        //Event ketika Memulai mengupload
-        foto_upload.on("sending",function(a,b,c){
-            a.token=Math.random();
-            c.append("token_foto",a.token); //Menmpersiapkan token untuk masing masing foto
-        });
-        function deleteimagedropzone(namafile,kondisi){
-            const date = new Date();
-            let namafileyangakandihapus;
-            if (kondisi == "dropzonejs"){
-                namafileyangakandihapus = 'ACIPAY_'+$("#kodebarang").val()+'_'+session_kodeunikmember+"_"+moment().format("YYYYMMDD")+"_"+namafile.split(' ').join('');
-            }else{
-                namafileyangakandihapus = namafile;
+        },
+    });
+    $('#pilihbrand').select2({
+        allowClear: true,
+        placeholder: 'Tentukan brand barang ini',
+        ajax: {
+            url: baseurljavascript + 'masterdata/jsonpilihbrand',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function (params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    NAMABRAND: (typeof params.term === "undefined" ? "" : params.term),
+                    KODEUNIKMEMBER: session_kodeunikmember,
+                }
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
+                        return {
+                            text: "[" + item.kodebrang + "] " + item.namabrand,
+                            id: item.kodebrang,
+                        }
+                    })
+                }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
+        },
+    }); 
+});
+
+$('#bonusbarangitem').on('click', '.hapusbonusbarang', function () {
+    let table = $('#bonusbarangitem').DataTable();
+    let row = $(this).parents('tr');
+    if ($(row).hasClass('child')) {
+        table.row($(row).prev('tr')).remove().draw();
+    } else {
+        table.row($(this).parents('tr')).remove().draw();
+    }
+});
+/* algoritma master item bonus barang area */
+$("#belixgratisx").change(function() {
+    if(this.checked) {
+        if ($("#kodebarang").val().length === 0){
             Swal.fire({
-                title: kondisi == "dropzonejs" ? 'File Terhapus' : 'Apakah anda yakin?',
-                text: kondisi == "dropzonejs" ? 'File dengan nama '+namafileyangakandihapus+' telah terhapus.' :'Apakah anda ingin menghapus nama file '+namafileyangakandihapus,
-                icon: kondisi == "dropzonejs" ? 'success' : 'question',
-                showCancelButton: kondisi == "dropzonejs" ? false : true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: kondisi == "dropzonejs" ? 'Mantap Bre!!' : 'Oke, Saya hapus!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: baseurljavascript+'masterdata/deletefilephp',
-                        method: 'POST',
-                        data: {
-                            filehapus:namafileyangakandihapus,
-                            kodeitem:$("#kodebarang").val(),
-                            kodeunikmember:session_kodeunikmember,
-                        },
-                        dataType:'json', 
-                        success: function (response) {
-                        }
-                    });
-                }
-             });
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Pastikan KODEITEM sudah diisi untuk mengaktifkan fitur ini',
+                showConfirmButton: false,
+                toast:true,
+                timer: 1500
+            })
+            $('#belixgratisx').prop('checked', false);
         }
-        var quillHtml = new Quill('#quill', {
-            modules: { toolbar: [
-                    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-                    ['bold', 'italic', 'underline', 'strike'],
-                    [{ 'color': [] }, { 'background': [] }], 
-                    [{ 'align': [] }],
-                    ['link', 'image'],
-                ] },
-            theme: 'snow',
+    }
+});
+/* batas akhir algoritma master item bonus barang area */
+$("#belixgratisabc").change(function() {
+    if(this.checked) {
+        if ($("#kodebarang").val().length === 0){
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Pastikan KODEITEM sudah diisi untuk mengaktifkan fitur ini',
+                showConfirmButton: false,
+                toast:true,
+                timer: 1500
+            })
+            $('#belixgratisabc').prop('checked', false);
+            $("#bonusbarang").prop('disabled', true);
+        }else{
+            $("#bonusbarang").prop('disabled', false);
+        }
+    }else{
+        $("#bonusbarang").prop('disabled', true);
+    }
+});
+$('#tabelhargagrosir').on('click', '.hapushargagrosir', function () {
+    var table = $('#tabelhargagrosir').DataTable();
+    var row = $(this).parents('tr');
+    if ($(row).hasClass('child')) {
+        table.row($(row).prev('tr')).remove().draw();
+    } else {
+        table.row($(this).parents('tr')).remove().draw();
+    }
+});
+/* batas akhir algoritma master item harga grosir */
+$("#tambahbarangbonus").on("click", function () {
+    $('#tabelhargagrosir').DataTable().row.add([
+        $("#namabarang").val(),
+        "<input name=\"bonusitem[]\" class=\"grosirqty form-control\" type=\"text\" value=\"1\">",
+        "<input name=\"bonusitem[]\" class=\"grosirqtyharga form-control\" type=\"text\" value=\"1\">",
+        "<div><button class=\"hapushargagrosir btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>",
+    ]).draw(false);
+});
+$("#aktifbaranggrosir").change(function() {
+    if(this.checked) {
+        if ($("#kodebarang").val().length === 0 || $("#namabarang").val().length === 0){
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Pastikan KODEITEM dan NAMABARANG sudah diisi untuk mengaktifkan fitur ini',
+                showConfirmButton: false,
+                toast:true,
+                timer: 1500
+            })
+            $('#aktifbaranggrosir').prop('checked', false);
+            $("#tambahbarangbonus").prop('disabled', true);
+        }else{
+            $("#tambahbarangbonus").prop('disabled', false);
+        }
+    }else{
+        $("#tambahbarangbonus").prop('disabled', true);
+    }
+});
+$("#aktifkanbarangtambahan").change(function() {
+    if(this.checked) {
+        if ($("#kodebarang").val().length === 0 || $("#namabarang").val().length === 0){
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Pastikan KODEITEM dan NAMABARANG sudah diisi untuk mengaktifkan fitur ini',
+                showConfirmButton: false,
+                toast:true,
+                timer: 1500
+            })
+            $('#aktifkanbarangtambahan').prop('checked', false);
+            $("#barangtambahan").prop('disabled', true);
+        }else{
+            $("#barangtambahan").prop('disabled', false);
+        }
+    }else{
+        $("#barangtambahan").prop('disabled', true);
+    }
+});
+$('#tabelbarangtambahan').on('click', '.hapusbarangtambahan', function () {
+    var table = $('#tabelbarangtambahan').DataTable();
+    var row = $(this).parents('tr');
+    if ($(row).hasClass('child')) {
+        table.row($(row).prev('tr')).remove().draw();
+    } else {
+        table.row($(this).parents('tr')).remove().draw();
+    }
+});
+$("#barangtambahan").on("click", function () {
+    $('#tabelbarangtambahan').DataTable().row.add([
+        "<input name=\"namatambahan[]\" class=\"namatambahan form-control\" type=\"text\" value=\"\" placeholder=\"Silahkan Tentukan Nama\">",
+        "<input name=\"bonusitem[]\" class=\"tambahanqtyharga form-control\" type=\"text\" value=\"0\">",
+        "<div><button class=\"hapusbarangtambahan btn btn-danger\"><i class=\"fas fa-trash\"></i> Hapus</button></div>",
+    ]).draw(false);
+});
+/* batas akhir algoritma master item voucher barang */
+$("#tab_voucherbarang").on("click", function () {
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        let target = $(e.target).attr("href")
+        if (target == "#nav1-voucher"){
+            $("#btn_simpan_tambahitem").prop('disabled', true);
+        }else{
+            $("#btn_simpan_tambahitem").prop('disabled', false);
+        }
+    });
+});
+$("#aktifvoucherbarnag").change(function() {
+    if(this.checked) {
+        if ($("#kodebarang").val().length === 0){
+            Swal.fire({
+                position: 'bottom-end',
+                icon: 'warning',
+                title: 'Pastikan KODEITEM sudah diisi untuk mengaktifkan fitur ini',
+                showConfirmButton: false,
+                toast:true,
+                timer: 1500
+            })
+            $('#aktifvoucherbarnag').prop('checked', false);
+            $("#tambahbarisvoucher").prop('disabled', true);
+        }else{
+            $("#tambahbarisvoucher").prop('disabled', false);
+        }
+    }else{
+        $("#tambahbarisvoucher").prop('disabled', true);
+    }
+});
+$("#nav1grosirdanvoucher").on("click", function () {
+    $('#nav1-tabvouchergrosir a[href="#nav1-grosir"]').tab('show')
+    $("#tab_baranggrosir").addClass("active");
+    $("#tab_voucherbarang").removeClass("active");
+});
+/* upload dropzone */
+Dropzone.autoDiscover = false;
+let namafiledariserver = "";
+var foto_upload = new Dropzone(".dropzone",
+{
+    url: "<?= base_url('masterdata/uploadcitra') ?>",
+    maxFiles:8,
+    method:"post",
+    acceptedFiles:"image/*",
+    paramName:"userfile",
+    dictInvalidFileType:"Terjadi kesalahan dalam mengupload gambar",
+    addRemoveLinks:true,
+    headers: {
+        'X-CSRF-TOKEN': getCsrfTokenCallback(function() {})
+    },
+    init: function () {
+        this.on("sending", function(file, xhr, formData){
+            formData.append("csrf_aciraba", csrfTokenGlobal);
+            formData.append("kodeunikmember", session_kodeunikmember);
+            formData.append("kodeitem", $("#kodebarang").val());
+            formData.append("tanggalclient", moment().format("YYYYMMDD"));
+            getCsrfTokenCallback(function() {})
         });
-    </script>
-    <?= $this->include('backend/panggildaftarbarang') ?>
-    <?= $this->endSection(); ?>
+        this.on("success", function (file, responseText) {
+            let data = JSON.parse(responseText)
+            namafiledariserver = data[2];
+            if (data[0] == "GAGAL"){
+                toastr["error"](data[1]);
+            }
+            getCsrfTokenCallback(function() {})
+        });
+        this.on("removedfile", function(namafile) {
+            deleteimagedropzone(namafile.name,"dropzonejs");
+        });
+    }
+});
+//Event ketika Memulai mengupload
+foto_upload.on("sending",function(a,b,c){
+    a.token=Math.random();
+    c.append("token_foto",a.token); //Menmpersiapkan token untuk masing masing foto
+});
+function deleteimagedropzone(namafile,kondisi){
+    const date = new Date();
+    let namafileyangakandihapus;
+    if (kondisi == "dropzonejs"){
+        namafileyangakandihapus = 'ACIPAY_'+$("#kodebarang").val()+'_'+session_kodeunikmember+"_"+moment().format("YYYYMMDD")+"_"+namafile.split(' ').join('');
+    }else{
+        namafileyangakandihapus = namafile;
+    }
+    Swal.fire({
+        title: kondisi == "dropzonejs" ? 'File Terhapus' : 'Apakah anda yakin?',
+        text: kondisi == "dropzonejs" ? 'File dengan nama '+namafileyangakandihapus+' telah terhapus.' :'Apakah anda ingin menghapus nama file '+namafileyangakandihapus,
+        icon: kondisi == "dropzonejs" ? 'success' : 'question',
+        showCancelButton: kondisi == "dropzonejs" ? false : true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: kondisi == "dropzonejs" ? 'Mantap Bre!!' : 'Oke, Saya hapus!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript+'masterdata/deletefilephp',
+                    method: 'POST',
+                    data: {
+                        [csrfName]: csrfTokenGlobal,
+                        filehapus:namafileyangakandihapus,
+                        kodeitem:$("#kodebarang").val(),
+                        kodeunikmember:session_kodeunikmember,
+                    },
+                    dataType:'json', 
+                    success: function (response) {
+                        toastr["info"]("Silahkan merefresh HALAMAN ini jika ingin melihat hasil dari PENGHAPUSAN CITRA ITEM yang terpilih tadi.");
+                    }
+                });
+            });
+        }
+        });
+}
+var quillHtml = new Quill('#quill', {
+    modules: { toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'color': [] }, { 'background': [] }], 
+            [{ 'align': [] }],
+            ['link', 'image'],
+        ] },
+    theme: 'snow',
+});
+</script>
+<?= $this->include('backend/panggildaftarbarang') ?>
+<?= $this->endSection(); ?>

@@ -120,6 +120,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+    getCsrfTokenCallback(function() {
     $("#tabelkategori").DataTable({
         language: {
             "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
@@ -154,12 +155,13 @@ $(document).ready(function () {
             "url": baseurljavascript + 'masterdata/jsondaftarkategori',
             "method": 'POST',
             "data": function (d) {
-                d.KATAKUNCIPENCARIAN = $('#katakuncipencarian').val() == null ? "" : $('#katakuncipencarian')
-                    .val();
+                d.csrf_aciraba = csrfTokenGlobal;
+                d.KATAKUNCIPENCARIAN = $('#katakuncipencarian').val() == null ? "" : $('#katakuncipencarian').val();
                 d.DATAKE = 0;
                 d.LIMIT = 500;
             },
         }
+    });
     });
 });
 function ubahbebanmanufaktur(){
@@ -173,11 +175,13 @@ function ubahbebanmanufaktur(){
         confirmButtonText: 'Oke, Ubah Informasi Beban!'
     }).then((result) => {
         if (result.isConfirmed) {
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/ubahbebanmanufaktur',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     KODEKATEGORI: $('#idkategori').html(),
                     BEBANGAJI: $('#bebangaji').val(),
                     BEBANPACKING:  $('#bebanpacking').val(),
@@ -202,8 +206,11 @@ function ubahbebanmanufaktur(){
                         )
                     }
                     $('#bebanmanufaktur').modal('toggle');
-                    $('#tabelkategori').DataTable().ajax.reload();
+                    getCsrfTokenCallback(function() {
+                        $('#tabelkategori').DataTable().ajax.reload();
+                    });
                 }
+            });
             });
         }
     });
@@ -228,21 +235,28 @@ function onclickdeletekategori(kodekategori, namakategori) {
         confirmButtonText: 'Oke, Hapus Sekarang!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#hapuskategori'+kodekategori).prop("disabled",true);
+            $('#hapuskategori'+kodekategori).html('<i class="fa fa-spin fa-spinner"></i> Proses Hapus');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsonhapuskategori',
                 method: 'POST',
                 dataType: 'json',
                 data: {
-                    [csrfName]: csrfHash,
+                    [csrfName]: csrfTokenGlobal,
                     KODEKATEGORI: kodekategori,
                     KODEUNIKMEMBER: session_kodeunikmember,
                 },
+                complete:function(){
+                    $('#hapuskategori'+kodekategori).prop("disabled",false);
+                    $('#hapuskategori'+kodekategori).html('<i class="fa fa-trash"></i> Hapus');
+                },
                 success: function (response) {
-                    csrfName = response[1].csrfName;
-                    csrfHash = response[2].csrfHash;
                     var obj = $.parseJSON(response);
                     if (obj.status == "true") {
-                        $('#tabelkategori').DataTable().ajax.reload();
+                        getCsrfTokenCallback(function() {
+                            $('#tabelkategori').DataTable().ajax.reload();
+                        });
                         Swal.fire(
                             'Berhasil.. Horee!',
                             obj.msg,
@@ -257,11 +271,14 @@ function onclickdeletekategori(kodekategori, namakategori) {
                     }
                 }
             });
+            });
         }
     });
 }
 $('#katakuncipencarian').on('input', debounce(function (e) {
-    $('#tabelkategori').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabelkategori').DataTable().ajax.reload();
+    });
 }, 500))
 $("#simpankategori").click(function() {
     if ($("#tambahkodekategori").val() == "" || $("#tambahnamakategori").val() == ""){
@@ -284,15 +301,23 @@ $("#simpankategori").click(function() {
         confirmButtonText: 'Oke, Tambahkan!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#simpankategori').prop("disabled",true);
+            $('#simpankategori').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsontambahkategori',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     KATEGORIPARENT_ID : $("#tambahkodekategori").val(),
                     NAMAKATEGORI : $("#tambahnamakategori").val(),
-                    KATEGORICHILD : "-",
+                    LOGOKATEGORI : "-",
                     KODEUNIKMEMBER : session_kodeunikmember
+                },
+                complete:function(){
+                    $('#simpankategori').prop("disabled",false);
+                    $('#simpankategori').html('Tambah Kategori Baru');
                 },
                 success: function (response) {
                     var obj = $.parseJSON(response);
@@ -303,6 +328,9 @@ $("#simpankategori").click(function() {
                             obj.msg,
                             'success'
                         )
+                        getCsrfTokenCallback(function() {
+                            $('#tabelkategori').DataTable().ajax.reload();
+                        });
                         $('#tambahkategori').modal('hide');
                     }else{
                         Swal.fire(
@@ -312,6 +340,7 @@ $("#simpankategori").click(function() {
                         )
                     }
                 }
+            });
             });
         }
     });

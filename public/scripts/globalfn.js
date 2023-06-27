@@ -1,4 +1,4 @@
-
+var csrfTokenGlobal;
 function formatuang(nominaluang,kodeuang,kodeinternasional){
     let formatter = new Intl.NumberFormat(kodeuang, {style: 'currency',currency: kodeinternasional,});
     return formatter.format(nominaluang);
@@ -83,4 +83,57 @@ function addCommas(nStr)
         x1 = x1.replace(rgx, '$1' + '.' + '$2');
     }
     return x1 + x2;
+}
+function getCsrfTokenCallback(callback) {
+    $.ajax({
+        url: baseurljavascript + 'auth/getCsrfToken',
+        method: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            csrfTokenGlobal = response.csrf_token;
+            callback();
+        },
+        error: function(xhr, status, error) {
+            toastr["error"]("Gagal mendapatkan token CSRF.");
+        }
+    });
+}
+function getCsrfToken() {
+    return new Promise(function(resolve, reject) {
+        $.ajax({
+            url: baseurljavascript + 'auth/getCsrfToken',
+            method: 'GET',
+            dataType: 'json',
+            success: function(response) {
+                var csrfToken = response.csrf_token;
+                resolve(csrfToken);
+            },
+            error: function(xhr, status, error) {
+                toastr["error"]("Gagal mendapatkan token CSRF.");
+                reject(error);
+            }
+        });
+    });
+}
+
+function loadingAnimation() {
+    let stringHTMLloading =
+        "<div class=\"containerloading\">" +
+        "<div class=\"contact-card\">" +
+        "<div class=\"avatar\"></div>" +
+        "<div class=\"text\"></div>" +
+        "</div>" +
+        "<div class=\"contact-card\">" +
+        "<div class=\"avatar\"></div>" +
+        "<div class=\"text\"></div>" +
+        "</div>" +
+        "<div id=\"magnifying-glass\">" +
+        "<div id=\"glass\"></div>" +
+        "<div id=\"handle\">" +
+        "<div id=\"handle-inner\"></div>" +
+        "</div>" +
+        "</div>" +
+        "</div>";
+
+    return stringHTMLloading;
 }

@@ -16,13 +16,13 @@ class Home extends BaseController
     }
 	public function index()
 	{
-		if ($this->session->get("jenismerchant") != "OW" && $this->session->get("jenismerchant") != "ADM"){
+		if ($this->session->get("hakakses") != "OWNER" && $this->session->get("hakakses") != "ADMIN"){
 			header('Location: '.base_url().'auth/area403/');
 			exit(); 
 		}
-		$this->breadcrumb  = array( "Dashboard" => "home",);
+		$this->breadcrumb  = array("Dashboard" => "home",);
 		$data = [
-			"titleheader"=>"DASHBORD REPORT",
+			"titleheader"=> ($this->session->get("punyaoutlet") > 0 ? "DASHBORD REPORT" : "OUTLET TERDAFTAR" ),
 			"menuaktif" => "0",
 			"submenuaktif" => "0",
 			"breadcrumb"=>$this->breadcrumb,
@@ -31,6 +31,7 @@ class Home extends BaseController
 			"lic_response" => $this->session->get("lic_response"),
 			
 		];
-		return view('backend/dashboard/kontendashboard',$data);
+		if ($this->session->get("punyaoutlet") > 0) return view('backend/dashboard/kontendashboard',$data);
+		return view('backend/outlet/indexoutlet',$data);
 	}
 }

@@ -46,7 +46,7 @@
             <div class="col-md-6 text-right">
                 <input type="text" class="form-control" id="kodesatuan" placeholder="Masukan untuk melakukan penyaringan data tersedia">
                 <hr>
-                <p align="justify">Dengan saldo acipay anda dapat melakukan transaksi pembelian dengan partner kami sebagai bahan baku anda. Harga yang kami tawarkan adalah harga bersaing jadi anda tidak perlu khawatir dengan margin anda . Saldo pada aciraba POS akan tersinkron dengan <a herf="javascript:void(0)">ACIPAY</a> jadi anda dapat melakukan pencarian ke rekening pribadi anda sendiri. Tenang anda dapat melakukan gratis tarik sebesar 10x dalam 1 bulan jika anda menggunakan jasa REKBER ACIPAY</p>
+                <h1>FITUR SALDO SEDANG DIKEMBANGKAN</h1>
             </div>
         </div>
         <div class="row">

@@ -8,6 +8,8 @@ use CodeIgniter\HTTP\IncomingRequest;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
+use CodeIgniter\Filters\FilterInterface;
+
 
 /**
  * Class BaseController
@@ -36,7 +38,7 @@ class BaseController extends Controller
 	 *
 	 * @var array
 	 */
-	protected $helpers = ['GlobalFn'];
+	protected $helpers = ['GlobalFn', 'Security'];
 
 	/**
 	 * Constructor.
@@ -59,9 +61,5 @@ class BaseController extends Controller
 			}
 		}
 		$this->hakakses = json_decode($this->session->get("jsonmenu", true));
-		//--------------------------------------------------------------------
-		// Preload any models, libraries, etc, here.
-		//--------------------------------------------------------------------
-		// E.g.: $this->session = \Config\Services::session();
 	}
 }

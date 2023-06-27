@@ -1,0 +1,1624 @@
+INFO - 2023-06-20 04:18:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:18:05 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:18:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:18:05 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:05 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:18:18 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:18:18 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:18 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:18 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:19 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:19 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:19 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:18:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:18:20 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:20 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:20 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:20 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:18:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:18:22 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:18:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:18:23 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 04:18:23 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:18:23 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:23 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:23 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:18:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:18:28 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:28 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\Laporan::$breadcrumb is deprecated in APPPATH\Controllers\Laporan.php on line 13.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Laporan->masteritem()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Laporan))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:18:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:18:43 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 04:18:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:18:44 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:44 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:44 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:18:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:18:49 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:18:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:18:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:18:50 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:18:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:20:36 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:20:36 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:20:36 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:20:36 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:20:36 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:20:36 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:20:36 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:20:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:20:37 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:20:37 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:20:37 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:20:37 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:20:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:20:38 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:20:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:20:38 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 04:20:39 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:20:39 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:20:39 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:20:39 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:20:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:20:43 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 04:20:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:20:44 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:20:44 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:20:44 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:22:10 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:22:10 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:22:10 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:22:10 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:22:11 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:22:11 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:22:11 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:22:11 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:22:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:22:12 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:22:12 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:22:12 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:22:20 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:22:20 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:22:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:22:21 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:22:21 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:22:21 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:24:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:24:07 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:24:07 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:24:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:24:07 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:24:07 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:24:07 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:31:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:31:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:31:06 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:31:06 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:32:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:32:49 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:49 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:32:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:32:49 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:32:49 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:32:49 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:32:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:32:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:32:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:32:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:32:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:32:51 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:32:51 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 04:32:52 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:32:52 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:52 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:52 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:32:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:32:55 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:55 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:32:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:32:55 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:55 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:32:55 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:32:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:32:59 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:32:59 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:32:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:33:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:33:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:33:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:33:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:33:01 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:01 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:01 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:33:01 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:33:01 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:33:01 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:33:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:33:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 04:33:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:33:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:33:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:33:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:06 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:33:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:33:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:06 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:33:06 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:33:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:33:37 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:37 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:33:37 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:33:37 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:33:37 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:33:37 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:33:37 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:34:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:34:13 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:34:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:34:13 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:34:13 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:34:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:34:15 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:34:15 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:34:15 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:34:15 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:34:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:34:16 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:34:16 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:34:16 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:34:21 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:34:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:34:21 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:34:21 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:34:21 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:40:40 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:40:40 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:40:40 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:40:40 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:40:40 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:40:40 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:40:40 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 04:40:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:40:41 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:40:41 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:40:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:40:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:40:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:40:41 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 11:40:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:40:42 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 04:40:43 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 04:40:43 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:40:43 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:40:43 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:40:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:40:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:40:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 11:40:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 11:40:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 11:40:50 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 11:40:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:33:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:33:28 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:28 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:33:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:33:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:33:31 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:31 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:33:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:33:31 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:33:31 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:33:31 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 06:33:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:33:32 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:32 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:33:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:33:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:33:33 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 13:33:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:33:34 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 06:33:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:33:34 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:34 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:34 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:33:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:33:38 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:38 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:33:38 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:33:38 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:33:38 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:33:38 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:37:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:37:42 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:42 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:37:42 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:37:44 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:37:44 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:44 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:37:44 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:37:44 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:37:44 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:37:44 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 06:37:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:37:45 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:45 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:45 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:37:45 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:37:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:37:46 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 13:37:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:37:47 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 06:37:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:37:47 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:47 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:47 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:37:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:37:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:37:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:37:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:37:50 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:37:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:39:41 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:39:41 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:39:41 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:39:41 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:29 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:29 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:29 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:29 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:30 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:30 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:32 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:32 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:32 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:32 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:32 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:32 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:33 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:33 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:33 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:33 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:33 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:33 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:33 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:33 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:33 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:33 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:42:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:42:46 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:42:46 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:42:46 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:45:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:45:07 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:45:07 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:45:07 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:45:09 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:45:09 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:45:09 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:45:09 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+CRITICAL - 2023-06-20 13:45:10 --> Undefined variable $s_9fa32fa61a38
+in APPPATH\Controllers\Auth.php on line 9.
+ 1 APPPATH\Controllers\Auth.php(9): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $s_9fa32fa61a38', 'C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\app\\Controllers\\Auth.php', 9)
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:48:59 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:48:59 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:48:59 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:48:59 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:49:03 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:49:03 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:49:03 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:49:03 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:49:03 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:49:03 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:49:03 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 06:49:04 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:49:04 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:49:04 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:49:04 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:49:04 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:49:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:49:05 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 13:49:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:49:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 06:49:06 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:49:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:49:06 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:49:06 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:49:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:49:31 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:49:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:49:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:49:31 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:49:31 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:49:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:56:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:56:49 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:56:49 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:56:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:56:53 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:56:53 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:56:53 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 06:56:54 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:56:54 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:56:54 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:56:54 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:56:54 --> [DEPRECATED] Creation of dynamic property App\Controllers\Home::$breadcrumb is deprecated in APPPATH\Controllers\Home.php on line 23.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Home->index()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:56:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:56:55 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 13:56:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:56:56 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 06:56:56 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 06:56:56 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:56:56 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:56:56 --> [DEPRECATED] Creation of dynamic property App\Controllers\Penjualan::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:56:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:56:58 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:56:58 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:56:58 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:56:58 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:56:58 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:56:58 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:57:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:57:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:57:50 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:57:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:58:27 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:58:27 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:58:27 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:58:27 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:59:07 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:59:07 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:59:07 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:59:07 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:59:19 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:59:19 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:59:19 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:59:19 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 13:59:50 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 13:59:50 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 13:59:50 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:59:50 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:59:50 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:59:50 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 13:59:50 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 14:00:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 14:00:00 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 14:00:00 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 14:00:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 14:00:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 16.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 14:00:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 17.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 14:00:00 --> [DEPRECATED] Constant FILTER_SANITIZE_STRING is deprecated in APPPATH\Controllers\Auth.php on line 18.
+ 1 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->ajax_login()
+ 2 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 14:00:31 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 14:00:31 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 14:00:31 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 14:00:31 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 14:02:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 14:02:08 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 14:02:08 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 14:02:08 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 14:04:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 14:04:47 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 14:04:47 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 14:04:47 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 08:55:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 08:55:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+INFO - 2023-06-20 15:55:02 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 15:55:02 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 15:55:02 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 15:55:02 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 17:56:16 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 17:56:16 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 17:56:17 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 17:56:17 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:08:30 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:08:30 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:08:30 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:08:30 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:13:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:13:00 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:13:00 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:13:00 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:13:47 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:13:47 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:13:47 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:13:47 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:14:21 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:14:21 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:14:21 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:14:21 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:14:25 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:14:25 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:14:25 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:14:25 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:15:13 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:15:13 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:15:13 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:15:13 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:22:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:22:05 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:22:05 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:22:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:27:05 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:27:05 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:27:05 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:27:05 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 18:28:45 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 18:28:45 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 18:28:45 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 18:28:45 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 19:18:46 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 19:18:46 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 19:18:46 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 19:18:46 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 19:19:49 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 19:19:49 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 19:19:49 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 19:19:49 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 19:23:08 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 19:23:08 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 19:23:08 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 19:23:08 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 19:41:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 19:41:28 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 19:41:28 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 19:41:28 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 19:50:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 19:50:42 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 19:50:42 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 19:50:42 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 20:41:12 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 20:41:12 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 20:41:12 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 20:41:12 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+INFO - 2023-06-20 20:41:26 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+WARNING - 2023-06-20 20:41:26 --> Session: Sessions is enabled, and one exists. Please don't $session->start();
+WARNING - 2023-06-20 20:41:26 --> [DEPRECATED] json_decode(): Passing null to parameter #1 ($json) of type string is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 APPPATH\Controllers\BaseController.php(61): json_decode(null)
+ 2 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 3 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 6 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')
+WARNING - 2023-06-20 20:41:26 --> [DEPRECATED] Creation of dynamic property App\Controllers\Auth::$hakakses is deprecated in APPPATH\Controllers\BaseController.php on line 61.
+ 1 SYSTEMPATH\CodeIgniter.php(905): App\Controllers\BaseController->initController(Object(CodeIgniter\HTTP\IncomingRequest), Object(CodeIgniter\HTTP\Response), Object(CodeIgniter\Log\Logger))
+ 2 SYSTEMPATH\CodeIgniter.php(488): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(70): CodeIgniter\CodeIgniter->run()
+ 5 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('C:\\Users\\Legion\\Documents\\Source Code\\aciraba_website\\public\\index.php')

@@ -11,6 +11,9 @@
 	<link href="<?= base_url() ;?>styles/ltr-vendor.css" rel="stylesheet">
 	<link href="<?= base_url() ;?>styles/ltr-dashboard1.css" rel="stylesheet">
 	<link href="<?= base_url() ;?>images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
 </head>
 
 <body class="theme-light preload-active" id="fullscreen" style="background-image: url(<?= base_url() ;?>images/login/login_frame.png);background-size:100% 100%;">
@@ -72,13 +75,14 @@
                                                 <div class="form-group mb-0">
                                                     <div class="custom-control custom-control-lg custom-switch">
                                                         <input type="checkbox" class="custom-control-input" id="remember" name="remember">
-                                                        <label class="custom-control-label" for="remember">Remember me</label>
+                                                        <label class="custom-control-label" for="remember">Remember Me</label>
                                                     </div>
                                                 </div>
                                                 <!-- END Form Group -->
-                                                <a href="#">Forgot password?</a>
+                                                <a href="javascript:void(0)">Forgot password ?</a>
                                             </div>
                                             <button id="login_prosesmasuk" type="submit" class="btn btn-label-primary btn-lg btn-block btn-pill">Masuk</button>
+                                            <button id="pendaftaranowner" data-toggle="modal" data-target="#pendaftaranownernya" class="btn btn-label-success btn-lg btn-block btn-pill">Daftarkan Outlet Anda</button>
 										</div>
 									</div>
 								</div>
@@ -100,7 +104,7 @@
 		</button>
 	</div>
 	<!-- END Float Button -->
-    <div class="modal fade" id="pengaturanlocalnya">
+<div class="modal fade" id="pengaturanlocalnya">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header modal-header-bordered">
@@ -132,21 +136,80 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="pendaftaranownernya">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-bordered">
+                <h3 class="modal-title" style="font-family: 'Irish Grover', cursive;">DAFTARKAN OUTLET ANDA</h3>
+                <button type="button" class="btn btn-label-danger btn-icon" data-dismiss="modal">
+                    <i class="fa fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img class="mb-2" src="<?= base_url().'images/login/welcome_register.svg';?>" style="display: block;margin-left: auto;margin-right: auto;width: 100%;">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Tentukan Nama OUTLET / Usaha</label>
+                    <div class="col-sm-8">
+                        <input id="namaoutlet" type="text" class="form-control" placeholder="Ex : PT. Pandawa Cipta Karya">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Nama Pemilik</label>
+                    <div class="col-sm-8">
+                        <input id="namapemilik" type="text" class="form-control" placeholder="Ex : Mr. PCK Sebagai OWNER">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Nama Pengguna</label>
+                    <div class="col-sm-8">
+                        <input id="username_daftar" type="text" class="form-control" placeholder="Ex : seira_setyawan">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Katasandi</label>
+                    <div class="col-sm-8">
+                        <input id="password_daftar" type="text" class="form-control" placeholder="Ex : inipasswordsangatkuat@@#">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Request Tenant ID Outlet</label>
+                    <div class="col-sm-8">
+                        <!-- BEGIN Input Group -->
+                        <div class="form-group">
+                            <div class="input-group">
+                            <input id="kodetenant" type="text" class="form-control" placeholder="Buat TENANT ID anda atau ➡️➡️➡️➡️➡️➡️➡️➡️➡️">
+                                <div class="input-group-append">
+                                <span style="cursor: pointer;" id="generatekodetenant" class="input-group-text btn-warning btn">GENERATE TENANT</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END Input Group -->
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer modal-footer-bordered">
+                <button id="daftarkanoutlet" class="btn btn-primary mr-2">Oke, Aku Join Nih</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/mandatory.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/dashboard1.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/core.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/vendor.js"></script>
-<script type="text/javascript" src="<?= base_url() ;?>app/v1/pages/login.js"></script>
 <script src="scripts/login/script.js"></script>
 <script src="scripts/globalfn.js"></script>
-<script>var baseurljavascript = "<?=DYBASESEURL;?>";
+<script>
+var baseurljavascript = "<?=DYBASESEURL;?>";
+var csrfName = '<?= csrf_token() ?>';
+var csrfHash = '<?= csrf_hash() ?>';  
 $(document).on('click', '.toggle-password', function() {
     $(this).toggleClass("fa-eye fa-eye-slash");
     var input = $("#login_password");
     input.attr('type') === 'password' ? input.attr('type','text') : input.attr('type','password')
 });
-$("#generateiditem").on("click", function () {
-    $('#kodekasa').val(randomstringdigit(4).toUpperCase());
+$("#generatekodetenant").on("click", function () {
+    $('#kodetenant').val(randomstringdigit(10).toUpperCase());
 });
 </script>
 </body>

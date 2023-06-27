@@ -155,7 +155,7 @@ class Penyesuaian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."penyesuaian/simpantransaksiopname", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -180,7 +180,7 @@ class Penyesuaian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."penyesuaian/daftarpenyesuaianstok", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -228,7 +228,7 @@ class Penyesuaian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."penyesuaian/daftardetailopname", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -299,7 +299,7 @@ class Penyesuaian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."penyesuaian/ajaxdaftarmutasi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -444,7 +444,7 @@ class Penyesuaian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."penyesuaian/simpanmutasi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -463,7 +463,7 @@ class Penyesuaian extends BaseController
 		$json_data = $client->request("POST", BASEURLAPI."penyesuaian/daftardetailmutasi", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);

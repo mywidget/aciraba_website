@@ -86,6 +86,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+    getCsrfTokenCallback(function() {
         $("#tabelsatuan").DataTable({
             language: {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
@@ -120,17 +121,18 @@ $(document).ready(function () {
                 "url": baseurljavascript + 'masterdata/jsondaftarsatuan',
                 "method": 'POST',
                 "data": function (d) {
-                    d.KATAKUNCIPENCARIAN = $('#kodesatuan').val() == null ? "" : $('#kodesatuan')
-                        .val();
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCIPENCARIAN = $('#kodesatuan').val() == null ? "" : $('#kodesatuan').val();
                     d.DATAKE = 0;
                     d.LIMIT = 500;
                 },
             }
         });
+    });
 });
 function onclickdeletesatuan(kodesatuan, namasatuan) {
     Swal.fire({
-        title: "Hapus Kateogir Item",
+        title: "Hapus Kategori Item",
         text: "Anda akan menghapus SATUAN: " + namasatuan + " [" + kodesatuan + "] pada aplikasi",
         icon: 'question',
         showCancelButton: true,
@@ -139,37 +141,45 @@ function onclickdeletesatuan(kodesatuan, namasatuan) {
         confirmButtonText: 'Oke, Hapus Sekarang!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#onclickdeletesatuan'+kodesatuan.trim()).prop("disabled",true);
+            $('#onclickdeletesatuan'+kodesatuan.trim()).html('<i class="fa fa-spin fa-spinner"></i> Proses Hapus');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsonhapussatuan',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     KODESATUAN: kodesatuan,
                     KODEUNIKMEMBER: session_kodeunikmember,
                 },
                 success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true") {
-                        $('#tabelsatuan').DataTable().ajax.reload();
+                    if (response.success == "true"){
+                        getCsrfTokenCallback(function() {
+                            $('#tabelsatuan').DataTable().ajax.reload();
+                        });
                         Swal.fire(
                             'Berhasil.. Horee!',
-                            obj.msg,
+                            response.msg,
                             'success'
                         )
                     } else {
                         Swal.fire(
                             'Gagal.. Uhhhhh!',
-                            obj.msg,
+                            response.msg,
                             'warning'
                         )
                     }
                 }
             });
+            });
         }
     });
 }
 $('#kodesatuan').on('input', debounce(function (e) {
-    $('#tabelsatuan').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabelsatuan').DataTable().ajax.reload();
+    });
 }, 500));
 $("#simpansatuan").click(function() {
     if ($("#kodesatuanisi").val() == "" || $("#namasatuan").val() == ""){
@@ -192,33 +202,45 @@ $("#simpansatuan").click(function() {
         confirmButtonText: 'Oke, Tambahkan!'
     }).then((result) => {
         if (result.isConfirmed) {
+            $('#simpansatuan').prop("disabled",true);
+            $('#simpansatuan').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'masterdata/jsontambahsatuan',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]: csrfTokenGlobal,
                     KODESATUAN : $("#kodesatuanisi").val(),
                     NAMASATUAN : $("#namasatuan").val(),
                     KODEUNIKMEMBER : session_kodeunikmember,
                 },
+                complete:function(){
+                    $('#simpansatuan').prop("disabled",false);
+                    $('#simpansatuan').html('Tambah Satuan Baru');
+                },
                 success: function (response) {
-                    var obj = $.parseJSON(response);
-                    $('#tabelsatuan').DataTable().ajax.reload();
-                    if (obj.status == "true"){
+                    getCsrfTokenCallback(function() {
+                        $('#tabelsatuan').DataTable().ajax.reload();
+                    });
+                    if (response.success == "true"){
                         Swal.fire(
                             'Berhasil.. Horee!',
-                            obj.msg,
+                            response.msg,
                             'success'
                         )
+                        $("#kodesatuanisi").val(""),
+                        $("#namasatuan").val(""),
                         $('#tambahsatuan').modal('hide');
                     }else{
                         Swal.fire(
                             'Gagal.. Uhhhhh!',
-                            obj.msg,
+                            response.msg,
                             'warning'
                         )
                     }
                 }
+            });
             });
         }
     });

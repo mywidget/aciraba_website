@@ -29,7 +29,7 @@ class Kds extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/loadkds", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -46,7 +46,7 @@ class Kds extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/sundulpesanan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -65,7 +65,7 @@ class Kds extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/ubahstatuspesanan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -83,7 +83,7 @@ class Kds extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/tandaisemuaselesai", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
@@ -100,7 +100,7 @@ class Kds extends BaseController{
 		$json_data = $client->request("POST", BASEURLAPI."resto/filterbystatuspesanan", [
 			"headers" => [
 				"Accept" => "application/json",
-				"Authorization" => "Bearer ".TOKENAPI,
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
 			],
 			"form_params" => $datapost
 		]);
