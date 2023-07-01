@@ -94,28 +94,23 @@ function getCsrfTokenCallback(callback) {
             callback();
         },
         error: function(xhr, status, error) {
-            toastr["error"]("Gagal mendapatkan token CSRF.");
+            toastr["error"]("Ada kesalahan dalam CALLBACK TOKEN");
         }
     });
 }
-function getCsrfToken() {
-    return new Promise(function(resolve, reject) {
-        $.ajax({
-            url: baseurljavascript + 'auth/getCsrfToken',
-            method: 'GET',
-            dataType: 'json',
-            success: function(response) {
-                var csrfToken = response.csrf_token;
-                resolve(csrfToken);
-            },
-            error: function(xhr, status, error) {
-                toastr["error"]("Gagal mendapatkan token CSRF.");
-                reject(error);
-            }
-        });
+async function getCsrfTokens(count) {
+    try {
+        const response = await $.ajax({
+        url: baseurljavascript + 'auth/getCsrfTokens/' + count,
+        method: 'GET',
+        dataType: 'json'
     });
+        const csrfTokens = response.csrf_tokens;
+        return csrfTokens;
+    } catch (error) {
+        throw new Error("Gagal mendapatkan token CSRF.");
+    }
 }
-
 function loadingAnimation() {
     let stringHTMLloading =
         "<div class=\"containerloading\">" +

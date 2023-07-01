@@ -181,105 +181,118 @@ $(document).ready(function () {
     $("#tanggalawalhisbayar").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom" });
     $('#tanggalakhirhisbayar').val(moment().endOf('month').format('DD-MM-YYYY'));
     $("#tanggalakhirhisbayar").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom" });
-    $("#daftarhutangtoko").DataTable({
-        language: {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
-        },
-        dom: 'Bfrtip',
-        buttons: [{
-                extend: 'copyHtml5',
-                text: '<i class="far fa-copy"></i> Copy',
-                titleAttr: 'Copy'
+    getCsrfTokenCallback(function() {
+        $("#daftarhutangtoko").DataTable({
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
             },
-            {
-                extend: 'excelHtml5',
-                text: '<i class="far fa-file-excel"></i> Excel',
-                titleAttr: 'Excel'
-            },
-            {
-                extend: 'csvHtml5',
-                text: '<i class="fas fa-file-csv"></i> CSV',
-                titleAttr: 'CSV'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="far fa-file-pdf"></i> PDF',
-                titleAttr: 'PDF'
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copyHtml5',
+                    text: '<i class="far fa-copy"></i> Copy',
+                    titleAttr: 'Copy'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="far fa-file-excel"></i> Excel',
+                    titleAttr: 'Excel'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: '<i class="fas fa-file-csv"></i> CSV',
+                    titleAttr: 'CSV'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="far fa-file-pdf"></i> PDF',
+                    titleAttr: 'PDF'
+                }
+            ],
+            scrollCollapse: true,
+            scrollY: "50vh",
+            scrollX: true,
+            bFilter: false,
+            columnDefs: [
+                //{className: "text-right",targets: [7,8]},
+            ],
+            ajax: {
+                "url": baseurljavascript + 'pembelian/ajaxdaftarhutang',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCI = $('#katakuncipencarianhutangtoko').val();
+                    d.TANGGALAWAL = $('#tanggalawalhis').val().split("-").reverse().join("-");
+                    d.TANGGALAKHIR = $('#tanggalakhirhis').val().split("-").reverse().join("-");
+                },
             }
-        ],
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false,
-        columnDefs: [
-            //{className: "text-right",targets: [7,8]},
-        ],
-        ajax: {
-            "url": baseurljavascript + 'pembelian/ajaxdaftarhutang',
-            "method": 'POST',
-            "data": function (d) {
-                d.KATAKUNCI = $('#katakuncipencarianhutangtoko').val();
-                d.TANGGALAWAL = $('#tanggalawalhis').val().split("-").reverse().join("-");
-                d.TANGGALAKHIR = $('#tanggalakhirhis').val().split("-").reverse().join("-");
-            },
-        }
+        });
     });
-
-    $("#daftarpembayaranhutang").DataTable({
-        language: {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
-        },
-        dom: 'Bfrtip',
-        buttons: [{
-                extend: 'copyHtml5',
-                text: '<i class="far fa-copy"></i> Copy',
-                titleAttr: 'Copy'
+    getCsrfTokenCallback(function() {
+        $("#daftarpembayaranhutang").DataTable({
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
             },
-            {
-                extend: 'excelHtml5',
-                text: '<i class="far fa-file-excel"></i> Excel',
-                titleAttr: 'Excel'
-            },
-            {
-                extend: 'csvHtml5',
-                text: '<i class="fas fa-file-csv"></i> CSV',
-                titleAttr: 'CSV'
-            },
-            {
-                extend: 'pdfHtml5',
-                text: '<i class="far fa-file-pdf"></i> PDF',
-                titleAttr: 'PDF'
+            dom: 'Bfrtip',
+            buttons: [{
+                    extend: 'copyHtml5',
+                    text: '<i class="far fa-copy"></i> Copy',
+                    titleAttr: 'Copy'
+                },
+                {
+                    extend: 'excelHtml5',
+                    text: '<i class="far fa-file-excel"></i> Excel',
+                    titleAttr: 'Excel'
+                },
+                {
+                    extend: 'csvHtml5',
+                    text: '<i class="fas fa-file-csv"></i> CSV',
+                    titleAttr: 'CSV'
+                },
+                {
+                    extend: 'pdfHtml5',
+                    text: '<i class="far fa-file-pdf"></i> PDF',
+                    titleAttr: 'PDF'
+                }
+            ],
+            scrollCollapse: true,
+            scrollY: "50vh",
+            scrollX: true,
+            bFilter: false,
+            columnDefs: [
+                {className: "text-right",targets: [3]},
+            ],
+            ajax: {
+                "url": baseurljavascript + 'pembelian/ajaxdaftarpembayaranhutang',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCI = $('#katakuncipembayaranhutang').val();
+                    d.TANGGALAWAL = $('#tanggalawalhisbayar').val().split("-").reverse().join("-");
+                    d.TANGGALAKHIR = $('#tanggalakhirhisbayar').val().split("-").reverse().join("-");
+                },
             }
-        ],
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false,
-        columnDefs: [
-            {className: "text-right",targets: [3]},
-        ],
-        ajax: {
-            "url": baseurljavascript + 'pembelian/ajaxdaftarpembayaranhutang',
-            "method": 'POST',
-            "data": function (d) {
-                d.KATAKUNCI = $('#katakuncipembayaranhutang').val();
-                d.TANGGALAWAL = $('#tanggalawalhisbayar').val().split("-").reverse().join("-");
-                d.TANGGALAKHIR = $('#tanggalakhirhisbayar').val().split("-").reverse().join("-");
-            },
-        }
+        });
     });
 });
 $("#prosescari").click(function() {
-    $('#daftarhutangtoko').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftarhutangtoko').DataTable().ajax.reload();
+    });
 });
 $("#katakuncipencarianhutangtoko, #tanggalawalhis, #tanggalakhirhis").on('keyup input propertychange paste', debounce(function (e) {
-    $('#daftarhutangtoko').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftarhutangtoko').DataTable().ajax.reload();
+    });
 }, 500));
 $("#prosescaribayar").click(function() {
-    $('#daftarpembayaranhutang').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftarpembayaranhutang').DataTable().ajax.reload();
+    });
 });
 $("#katakuncipembayaranhutang, #tanggalawalhisbayar, #tanggalakhirhisbayar").on('keyup input propertychange paste', debounce(function (e) {
-    $('#daftarpembayaranhutang').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftarpembayaranhutang').DataTable().ajax.reload();
+    });
 }, 500));
 function hapuspembayaranhutang(nota,namasuplier){
     swal.fire({
@@ -294,66 +307,72 @@ function hapuspembayaranhutang(nota,namasuplier){
         allowOutsideClick: false
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'pembelian/hapustransaksibhutang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NOTAPEMBAYARANHUTANG : nota,
-                },
-                success: function (response) {
-                    let obj = JSON.parse(response);
-                    if (obj.status == "true"){
-                        Swal.fire({
-                            title: "Proses Hapus Berhasil",
-                            text: obj.msg,
-                            icon: 'success',
-                        });
-                        $('#daftarhutangtoko').DataTable().ajax.reload();
-                        $('#daftarpembayaranhutang').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire({
-                            title: "Terjadi Kesalahan",
-                            text: obj.msg,
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/hapustransaksibhutang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NOTAPEMBAYARANHUTANG : nota,
+                    },
+                    success: function (response) {
+                        let obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            Swal.fire({
+                                title: "Proses Hapus Berhasil",
+                                text: obj.msg,
+                                icon: 'success',
+                            });
+                            $('#daftarhutangtoko').DataTable().ajax.reload();
+                            $('#daftarpembayaranhutang').DataTable().ajax.reload();
+                        }else{
+                            Swal.fire({
+                                title: "Terjadi Kesalahan",
+                                text: obj.msg,
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })  
 }
 function detailpembayaranhutang(notransaksi){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/detailpembayaranhutang',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            NOTRANSAKSI : notransaksi,
-        },
-        success: function (response) {
-            if (response[0].success == "true"){
-                $('#nopembayaranhutang').html(notransaksi);
-                $("#kartuhutang").html('');
-                $stringkartu = "<div class=\"wallet-col-sm-2 wallet-col-md-3\">";
-                for (let i = 0; i < response[0].totaldata; i++) {
-                    $stringkartu += "<div class=\"portlet\"><div class=\"portlet-header\"><div class=\"portlet-icon\"><i class=\"fa fa-file\"></i></div><h4 class=\"portlet-title\">No Nota: ["+response[0].dataquery[i].TRANSAKSI_ID+"]</h4></div><div class=\"portlet-body py-4\"><h3 class=\"mb-0 ml-1\"><span class=\"text-level-2\" id=\"nominalbayar\"></span></h3><p class=\"mb-0 ml-1\">Total Piutang : "+formatuang(response[0].dataquery[i].TOTALKREDIT,'id-ID','IDR')+"</p><p class=\"mb-0 ml-1\">Nominal di Nota Lain : "+formatuang(response[0].dataquery[i].TOTALKREDIT - response[0].dataquery[i].BAYAR - response[0].dataquery[i].SISAKREDIT,'id-ID','IDR')+"</p><p class=\"mb-0 ml-1\">Tanggal Transaksi : "+moment(response[0].dataquery[i].TANGGALTRS).format('DD-MM-YYYY')+" "+response[0].dataquery[i].WAKTU+"</p><hr><p class=\"mb-0 ml-1\">Total Bayar:</p> <input style=\"font-size:24px\" type=\"text\" id=\"totalbayar"+i+"\" class=\"form-control\"></div><div class=\"portlet-footer\"><button onclick=\"hapuspernotabayarpiutang('"+response[0].dataquery[i].BARISBDETAILBAYAR+"','"+notransaksi+"','"+response[0].dataquery[i].NOTRANSAKSI+"','"+response[0].dataquery[i].BAYAR+"','edt','"+i+"')\" class=\"btn btn-success mr-2\"><i class=\"fa fa-edit mr-2\"></i>Ubah Trx</button><button onclick=\"hapuspernotabayarpiutang('"+response[0].dataquery[i].BARISBDETAILBAYAR+"','"+notransaksi+"','"+response[0].dataquery[i].NOTRANSAKSI+"','"+response[0].dataquery[i].BAYAR+"','hps','"+i+"')\" class=\"btn btn-danger mr-2\"><i class=\"fa fa-trash mr-2\"></i>Hapus Trx</button></div></div>";
-                } 
-                $stringkartu += "</div>";
-                $("#kartuhutang").append($stringkartu);
-                for (let i = 0; i < response[0].totaldata; i++) {
-                    let an = new AutoNumeric('#totalbayar'+i, {decimalCharacter : ',',digitGroupSeparator : '.',});
-                    an.set(response[0].dataquery[i].BAYAR);
-                } 
-                $('#detailpembayaranhutang').modal('show');
-            }else{
-                Swal.fire({
-                    title: "Terjadi Kesalahan",
-                    text: response.msg,
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/detailpembayaranhutang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                NOTRANSAKSI : notransaksi,
+            },
+            success: function (response) {
+                if (response[0].success == "true"){
+                    $('#nopembayaranhutang').html(notransaksi);
+                    $("#kartuhutang").html('');
+                    $stringkartu = "<div class=\"wallet-col-sm-2 wallet-col-md-3\">";
+                    for (let i = 0; i < response[0].totaldata; i++) {
+                        $stringkartu += "<div class=\"portlet\"><div class=\"portlet-header\"><div class=\"portlet-icon\"><i class=\"fa fa-file\"></i></div><h4 class=\"portlet-title\">No Nota: ["+response[0].dataquery[i].TRANSAKSI_ID+"]</h4></div><div class=\"portlet-body py-4\"><h3 class=\"mb-0 ml-1\"><span class=\"text-level-2\" id=\"nominalbayar\"></span></h3><p class=\"mb-0 ml-1\">Total Piutang : "+formatuang(response[0].dataquery[i].TOTALKREDIT,'id-ID','IDR')+"</p><p class=\"mb-0 ml-1\">Nominal di Nota Lain : "+formatuang(response[0].dataquery[i].TOTALKREDIT - response[0].dataquery[i].BAYAR - response[0].dataquery[i].SISAKREDIT,'id-ID','IDR')+"</p><p class=\"mb-0 ml-1\">Tanggal Transaksi : "+moment(response[0].dataquery[i].TANGGALTRS).format('DD-MM-YYYY')+" "+response[0].dataquery[i].WAKTU+"</p><hr><p class=\"mb-0 ml-1\">Total Bayar:</p> <input style=\"font-size:24px\" type=\"text\" id=\"totalbayar"+i+"\" class=\"form-control\"></div><div class=\"portlet-footer\"><button onclick=\"hapuspernotabayarpiutang('"+response[0].dataquery[i].BARISBDETAILBAYAR+"','"+notransaksi+"','"+response[0].dataquery[i].NOTRANSAKSI+"','"+response[0].dataquery[i].BAYAR+"','edt','"+i+"')\" class=\"btn btn-success mr-2\"><i class=\"fa fa-edit mr-2\"></i>Ubah Trx</button><button onclick=\"hapuspernotabayarpiutang('"+response[0].dataquery[i].BARISBDETAILBAYAR+"','"+notransaksi+"','"+response[0].dataquery[i].NOTRANSAKSI+"','"+response[0].dataquery[i].BAYAR+"','hps','"+i+"')\" class=\"btn btn-danger mr-2\"><i class=\"fa fa-trash mr-2\"></i>Hapus Trx</button></div></div>";
+                    } 
+                    $stringkartu += "</div>";
+                    $("#kartuhutang").append($stringkartu);
+                    for (let i = 0; i < response[0].totaldata; i++) {
+                        let an = new AutoNumeric('#totalbayar'+i, {decimalCharacter : ',',digitGroupSeparator : '.',});
+                        an.set(response[0].dataquery[i].BAYAR);
+                    } 
+                    $('#detailpembayaranhutang').modal('show');
+                }else{
+                    Swal.fire({
+                        title: "Terjadi Kesalahan",
+                        text: response.msg,
+                        icon: 'warning',
+                    });
+                }
             }
-        }
+        });
     });
 }
 function hapuspernotabayarpiutang(aibayar,notransaksi,notapenjualan,besaran,kondisihapus,idDOMElement){
@@ -375,34 +394,37 @@ function hapuspernotabayarpiutang(aibayar,notransaksi,notapenjualan,besaran,kond
     }).then(function(result){
         if(result.isConfirmed){
             totalbayarnominal = new AutoNumeric('#totalbayar'+idDOMElement, {decimalCharacter : ',',digitGroupSeparator : '.',});
-            $.ajax({
-                url: baseurljavascript + 'pembelian/hapustransaksihutang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NOTRANSAKSI : aibayar,
-                    SUBNOTA : kondisihapus == "hps" ? "true" : "edit",
-                    BAYAR : kondisihapus == "hps" ? besaran : totalbayarnominal.getNumber(),
-                },
-                success: function (response) {
-                    let obj = JSON.parse(response);
-                    if (obj.status == "true"){
-                        Swal.fire({
-                            title: kondisihapus == "hps" ? "Proses Hapus Berhasil" : "Proses Ubah Data Berhasil",
-                            text: obj.msg,
-                            icon: 'success',
-                        });
-                        $('#detailpembayaranhutang').modal('hide');
-                        $('#daftarhutangtoko').DataTable().ajax.reload();
-                        $('#daftarpembayaranhutang').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire({
-                            title: "Terjadi Kesalahan",
-                            text: obj.msg,
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/hapustransaksihutang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NOTRANSAKSI : aibayar,
+                        SUBNOTA : kondisihapus == "hps" ? "true" : "edit",
+                        BAYAR : kondisihapus == "hps" ? besaran : totalbayarnominal.getNumber(),
+                    },
+                    success: function (response) {
+                        let obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            Swal.fire({
+                                title: kondisihapus == "hps" ? "Proses Hapus Berhasil" : "Proses Ubah Data Berhasil",
+                                text: obj.msg,
+                                icon: 'success',
+                            });
+                            $('#detailpembayaranhutang').modal('hide');
+                            $('#daftarhutangtoko').DataTable().ajax.reload();
+                            $('#daftarpembayaranhutang').DataTable().ajax.reload();
+                        }else{
+                            Swal.fire({
+                                title: "Terjadi Kesalahan",
+                                text: obj.msg,
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })  

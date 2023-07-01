@@ -331,7 +331,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
-<script src="<?= base_url();?>/scripts/penjualan/pesanan.js"></script>
+<script src="<?= base_url();?>scripts/penjualan/pesanan.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         panggilpesanan("tabel");

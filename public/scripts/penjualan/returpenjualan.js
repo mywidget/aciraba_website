@@ -1,33 +1,12 @@
 let bariske = 0,totalputanya=0,jumlahdata = 0, totalisi = 0;
 var jssessionbayar;
-$(function () {
-    loadtabelutama();
-});
-function loadtabelutama() {
-$("#tabeltransaksi").DataTable({
-    columnDefs: [
-        {
-            className: "text-right",
-            targets: [4,5,6,7]
-        },
-    ],
-    language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-    scrollCollapse: true,
-    scrollX: true,
-    ajax: {
-        "url": baseurljavascript + 'penjualan/jsonambiltrxjual',
-        "method": 'POST',
-        "data": function (d) {
-            d.DIMANA1 = $('#notrxreturjual').val();
-        },
-    }
-});
-}
 $('#nominalpotongpiutang').on('input', debounce(function (e) {
     bayarsesuairetur();
 }, 500));
 $('#notrxreturjual').on('input', debounce(function (e) {
-    $('#tabeltransaksi').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabeltransaksi').DataTable().ajax.reload();
+    });
 }, 500));
 function bayarsesuairetur(){
     if (nominalpotongpiutangtxt.getNumber() > Number($('#totalpiutangtersedia').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim())){
@@ -107,46 +86,49 @@ function informasibarang(kodeitem){
             position: 'top-right'
         })
     }
-    $.ajax({
-        url: baseurljavascript + 'penjualan/returpenjualandetailbarang',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KODEBARANG : kodeitem,
-        },
-        success: function (obj) {
-            if (obj[0].success == "true"){
-                simpanreturlocal(
-                    $('#notranskasiretur').val(),
-                    "TANPA NOTA",
-                    obj[0].dataquery[0].BARANG_ID,
-                    obj[0].dataquery[0].NAMABARANG,
-                    "0",
-                    $('#qtyretur').val(),
-                    obj[0].dataquery[0].HARGABELI,
-                    obj[0].dataquery[0].HARGAJUAL,
-                    "0",
-                    $('#stokdiambildari').val(),
-                    $('#returkestok').val(),
-                    "",
-                    "TUNAI"
-                );
-                return Swal.fire({
-                    icon: 'info',
-                    html: 'Nama : '+obj[0].dataquery[0].NAMABARANG + '<br>dengan kode ['+obj[0].dataquery[0].BARANG_ID+']<br>tertambahkan ke keranjang retur',
-                    toast: true,
-                    showConfirmButton: false,
-                    timer: 1500,
-                    position: 'top-right'
-                })
-            }else{
-                Swal.fire(
-                    'Gagal.. Uhhhhh!',
-                    "Terjadi kesalahan dalam pengemabilan informasi barang ini. Mohon ulangi untuk berberapa saat lagi",
-                    'warning'
-                )
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/returpenjualandetailbarang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODEBARANG : kodeitem,
+            },
+            success: function (obj) {
+                if (obj[0].success == "true"){
+                    simpanreturlocal(
+                        $('#notranskasiretur').val(),
+                        "TANPA NOTA",
+                        obj[0].dataquery[0].BARANG_ID,
+                        obj[0].dataquery[0].NAMABARANG,
+                        "0",
+                        $('#qtyretur').val(),
+                        obj[0].dataquery[0].HARGABELI,
+                        obj[0].dataquery[0].HARGAJUAL,
+                        "0",
+                        $('#stokdiambildari').val(),
+                        $('#returkestok').val(),
+                        "",
+                        "TUNAI"
+                    );
+                    return Swal.fire({
+                        icon: 'info',
+                        html: 'Nama : '+obj[0].dataquery[0].NAMABARANG + '<br>dengan kode ['+obj[0].dataquery[0].BARANG_ID+']<br>tertambahkan ke keranjang retur',
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500,
+                        position: 'top-right'
+                    })
+                }else{
+                    Swal.fire(
+                        'Gagal.. Uhhhhh!',
+                        "Terjadi kesalahan dalam pengemabilan informasi barang ini. Mohon ulangi untuk berberapa saat lagi",
+                        'warning'
+                    )
+                }
             }
-        }
+        });
     });
 }
 function hapuskeranjangalert(){
@@ -164,25 +146,30 @@ function hapuskeranjangalert(){
     })
 }
 function hapuskeranjangretur(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/hapuskeranjangretur',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true"){
-                $('#dataretur').DataTable().ajax.reload();
-                $('#totalretur').html(formatuang(0,'id-ID','IDR'));
-                $('#totalhppretur').html(formatuang(0,'id-ID','IDR'));
-                $('#totalpiutangtersedia').html(formatuang(0,'id-ID','IDR'));
-            }else{
-                Swal.fire({
-                    title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/hapuskeranjangretur',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true"){
+                    $('#dataretur').DataTable().ajax.reload();
+                    $('#totalretur').html(formatuang(0,'id-ID','IDR'));
+                    $('#totalhppretur').html(formatuang(0,'id-ID','IDR'));
+                    $('#totalpiutangtersedia').html(formatuang(0,'id-ID','IDR'));
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    });
+                }
             }
-        }
+        });
     });
 }
 $("#simpanretur").on("click", function () {
@@ -269,51 +256,57 @@ $("#simpanretur").on("click", function () {
                     arrayreturpotongpiutang.push(temp)
                 }
             });
-            $.ajax({
-                url: baseurljavascript + 'penjualan/jsontambahreturdanpotongpiutang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    ARRAYRETURBELI : arrayreturpenjualan,
-                    ARRAYPOTONGPIUTANG : arrayreturpotongpiutang,
-                    POTONGPIUTANGAKTIF : $('#konfirmasipotongpiutang').is(':checked'),
-                    APAKAHEDIT : apakahedit,
-                    NOTRXRETUR  : $('#notranskasiretur').val(),
-                    IDPELANGGAN :  $('#kodepelanggan').html(),
-                    TANGGALRETUR  : $('#tanggaltranaksiretur').val().split("-").reverse().join("-"),
-                    NOMORNOTA  : $('#notranskasiretur').val().split('#')[1],
-                    TOTALBARANG  : totalbarang,
-                    TOTALRETUR  : Number($('#totalretur').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
-                    ISEDIT : isedit,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        hapuskeranjangretur();
-                        Swal.fire({
-                            title: 'Transaksi Retur Berhasil!',
-                            text: "Transaksi Retur dengan NO TRX : "+$("#notranskasiretur").val()+" sebesar "+$('#totalretur').html().replace('&nbsp;', '').trim()+" "+pesanpotonghutang+" berhasil.",
-                            icon: 'success',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Oke, Siap Transaksi Lagi',
-                            cancelButtonText: 'Tidak, Ke Daftar Retur'
-                        }).then((result) => {
-                            if(result.isConfirmed){           
-                                location.href = baseurljavascript+"penjualan/tambahreturpenjualan";
-                            }else{
-                                location.href = baseurljavascript+"penjualan/daftarreturpenjualan";
-                            }
-                        })
-                    }else{
-                        Swal.fire(
-                            'Aww Snap..!!',
-                            obj.msg,
-                            'error'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/jsontambahreturdanpotongpiutang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        ARRAYRETURBELI : arrayreturpenjualan,
+                        ARRAYPOTONGPIUTANG : arrayreturpotongpiutang,
+                        POTONGPIUTANGAKTIF : $('#konfirmasipotongpiutang').is(':checked'),
+                        APAKAHEDIT : apakahedit,
+                        NOTRXRETUR  : $('#notranskasiretur').val(),
+                        IDPELANGGAN :  $('#kodepelanggan').html(),
+                        TANGGALRETUR  : $('#tanggaltranaksiretur').val().split("-").reverse().join("-"),
+                        NOMORNOTA  : $('#notranskasiretur').val().split('#')[1],
+                        TOTALBARANG  : totalbarang,
+                        TOTALRETUR  : Number($('#totalretur').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
+                        ISEDIT : isedit,
+                    },
+                    success: function (response) {
+                        var obj = $.parseJSON(response);
+                        if (obj.status == "true"){
+                            hapuskeranjangretur();
+                            Swal.fire({
+                                title: 'Transaksi Retur Berhasil!',
+                                text: "Transaksi Retur dengan NO TRX : "+$("#notranskasiretur").val()+" sebesar "+$('#totalretur').html().replace('&nbsp;', '').trim()+" "+pesanpotonghutang+" berhasil.",
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke, Siap Transaksi Lagi',
+                                cancelButtonText: 'Tidak, Ke Daftar Retur'
+                            }).then((result) => {
+                                if(result.isConfirmed){           
+                                    location.href = baseurljavascript+"penjualan/tambahreturpenjualan";
+                                }else{
+                                    location.href = baseurljavascript+"penjualan/daftarreturpenjualan";
+                                }
+                            })
+                        }else{
+                            Swal.fire(
+                                'Aww Snap..!!',
+                                obj.msg,
+                                'error'
+                            )
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     })
@@ -328,29 +321,32 @@ function hapusreturpenjualan(notransaksi,nominal){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'penjualan/hapusreturpenjualan',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NOTARETURPENJUALAN: notransaksi,
-                },
-                success: function (response) {
-                    if (response[0].success == "true"){
-                        Swal.fire({
-                            title: "Hapus Transkasi Retur",
-                            text: "Hapus transaksi retur penjualan dengan NOTA : "+notransaksi+" dengan besaran nominal "+nominal+" berhasil di hapus. Stok akan dikurangi dan dicatat pada KARTU STOK",
-                            icon: "success",
-                        });
-                        $('#tabelreturpenjualan').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Cek Koneksi Local DB Kasir",
-                            text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/hapusreturpenjualan',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NOTARETURPENJUALAN: notransaksi,
+                    },
+                    success: function (response) {
+                        if (response[0].success == "true"){
+                            Swal.fire({
+                                title: "Hapus Transkasi Retur",
+                                text: "Hapus transaksi retur penjualan dengan NOTA : "+notransaksi+" dengan besaran nominal "+nominal+" berhasil di hapus. Stok akan dikurangi dan dicatat pada KARTU STOK",
+                                icon: "success",
+                            });
+                            $('#tabelreturpenjualan').DataTable().ajax.reload();
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Cek Koneksi Local DB Kasir",
+                                text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })

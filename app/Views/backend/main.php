@@ -625,9 +625,44 @@ $(document).ready(function() {
 	console.log(window.screen.availWidth)
 	document.body.style.zoom = "10%";*/ 
 });
-$('#cmblokasioutlet').select2({
+getCsrfTokenCallback(function() {
+	$('#cmblokasioutlet').select2({
+		allowClear: true,
+		placeholder: 'Mau Pindah Outlet ?',
+		ajax: {
+			url: baseurljavascript + 'auth/outlet',
+			method: 'POST',
+			dataType: 'json',
+			delay: 500,
+			data: function (params) {
+				return {
+					csrf_aciraba: csrfTokenGlobal,
+					KATAKUNCIPENCARIAN: "",
+					KODEUNIKMEMBER: session_kodeunikmember,
+				}
+			},
+			processResults: function (data) {
+				parseJSON = JSON.parse(data);
+				getCsrfTokenCallback(function() {});
+				return {
+					results: $.map(parseJSON, function (item) {
+						return {
+							text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
+							id: item.group,
+						}
+					})
+				}
+			},
+			error: function(xhr, status, error) {
+				getCsrfTokenCallback(function() {});
+				toastr["error"](xhr.responseJSON.message);
+			}
+		},
+	});
+});
+$('.cmblokasioutlet').select2({
 	allowClear: true,
-	placeholder: 'Mau Pindah Outlet ?',
+	placeholder: 'Pilih Asal Outlet!!',
 	ajax: {
 		url: baseurljavascript + 'auth/outlet',
 		method: 'POST',

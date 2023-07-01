@@ -116,7 +116,7 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url();?>/scripts/masterdata/sales.js"></script>
+<script src="<?= base_url();?>scripts/masterdata/sales.js"></script>
 <script>
     $(document).ready(function () {
         <?php if ($KODESALES != ""){ ?> 

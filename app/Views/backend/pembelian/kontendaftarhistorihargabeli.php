@@ -90,11 +90,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#tanggalawalhis').val(moment().startOf('month').format('DD-MM-YYYY'));
-        $("#tanggalawalhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-        $('#tanggalakhirhis').val(moment().format('DD-MM-YYYY'));
-        $("#tanggalakhirhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+$(document).ready(function () {
+    $('#tanggalawalhis').val(moment().startOf('month').format('DD-MM-YYYY'));
+    $("#tanggalawalhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    $('#tanggalakhirhis').val(moment().format('DD-MM-YYYY'));
+    $("#tanggalakhirhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    getCsrfTokenCallback(function() {
         $("#tabelhistoryhb").DataTable({
             language: {
                 "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
@@ -129,6 +130,7 @@
                 "url": baseurljavascript + 'pembelian/hishargabeli',
                 "method": 'POST',
                 "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
                     d.BERDASARKAN = $('#parameterpencarian').val();
                     d.KATAKUNCI = $('#katakunci').val();
                     d.TANGGALAWAL = $('#tanggalawalhis').val().split("-").reverse().join("-");;
@@ -136,12 +138,17 @@
                 },
             }
         });
+    });
 });
 $("#prosescari").click(function() {
-    $('#tabelhistoryhb').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabelhistoryhb').DataTable().ajax.reload();
+    });
 });
-$("#parameterpencarian, #katakunci, #tanggalawalhis, #tanggalakhirhis").on('keyup input propertychange paste', debounce(function (e) {
-    $('#tabelhistoryhb').DataTable().ajax.reload();
-}, 500));
+$("#katakunci, #tanggalawalhis, #tanggalakhirhis").on('keyup input propertychange paste',  debounce(function(e) {
+    getCsrfTokenCallback(function() {
+        $('#tabelhistoryhb').DataTable().ajax.reload();
+    });
+}, 500))
 </script>
 <?= $this->endSection(); ?>

@@ -232,5 +232,5 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.1/vanilla-tilt.min.js"></script>
-<script type="text/javascript" src="<?= base_url();?>/scripts/acipay/prosestransaksi.js"></script>
+<script type="text/javascript" src="<?= base_url();?>scripts/acipay/prosestransaksi.js"></script>
 <?= $this->endSection(); ?>

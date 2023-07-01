@@ -40,26 +40,31 @@
 <script>
     var kondisi = '<?= $SEGMENT ;?>'
     $(document).ready(function () {
-        $("#admin_daftarsuplier").DataTable({
-            retrieve: true,
-            ordering: true,
-            order: [[0, 'desc']],
-            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-            ajax: {
-                "url": baseurljavascript + 'pembelian/modaldaftarsuplier',
-                "type": "POST",
-                "data": function (d) {
-                    d.KATAKUNCIPENCARIAN = $("#txtpencariansuplier").val();
-                }
-            },
-            scrollCollapse: true,
-            scrollY: "50vh",
-            scrollX: true,
-            bFilter: false,
+        getCsrfTokenCallback(function() {
+            $("#admin_daftarsuplier").DataTable({
+                retrieve: true,
+                ordering: true,
+                order: [[0, 'desc']],
+                language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                ajax: {
+                    "url": baseurljavascript + 'pembelian/modaldaftarsuplier',
+                    "type": "POST",
+                    "data": function (d) {
+                        d.csrf_aciraba = csrfTokenGlobal;
+                        d.KATAKUNCIPENCARIAN = $("#txtpencariansuplier").val();
+                    }
+                },
+                scrollCollapse: true,
+                scrollY: "50vh",
+                scrollX: true,
+                bFilter: false,
+            }); 
         }); 
     });
     $("#txtpencariansuplier").on('input focus keypress keydown', debounce(function(e) {
-        $('#admin_daftarsuplier').DataTable().ajax.reload();
+        getCsrfTokenCallback(function() {
+            $('#admin_daftarsuplier').DataTable().ajax.reload();
+        });
     }, 500))
     function pilihsuplier(namasup, alamatsup, notelpsub, kodesup) {
         if (kondisi == "formhutang"){

@@ -92,7 +92,7 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url();?>/scripts/masterdata/suplier.js"></script>
+<script src="<?= base_url();?>scripts/masterdata/suplier.js"></script>
 <script>
     $(document).ready(function () {
         <?php if ($KODESUPPLIER != ""){ ?> 

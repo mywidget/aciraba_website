@@ -89,41 +89,44 @@ function hitungkeranjangbeli(index,kondisi){
     subtotalhpp[index].set(hasiladiskon2)
     hpp[index].set(hasiladiskon2 / anjumlahbeli[index].getNumber())
     hppbeban[index].set((hasiladiskon2 / anjumlahbeli[index].getNumber()) + bebangaji[index].getNumber() + bebanpromo[index].getNumber() + bebanpacking[index].getNumber() + bebantransport[index].getNumber())
-    $.ajax({
-        url: baseurljavascript + 'pembelian/updatekeranjangpembelian',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KODEBARANG : daftarkeranjang.cell(index,1).nodes().to$().find('input').val(),
-            JUMLAHBELI : anjumlahbeli[index].getNumber(),
-            DISPLAY : anstokdisplay[index].getNumber(),
-            GUDANG : anstokgudang[index].getNumber(),
-            HARGASUPLIER : hargasuplier[index].getNumber(),
-            EXP : daftarkeranjang.cell(index,7).nodes().to$().find('input').val().split("-").reverse().join("-"),
-            SUBTOTAL : subtotal[index].getNumber(),
-            DISKON1 : diskon1[index].getNumber(),
-            DISKON2 : diskon2[index].getNumber(),
-            PPN : ppn[index].getNumber(),
-            ADISKON1 : adiskon1[index].getNumber(),
-            ADISKON2 : adiskon2[index].getNumber(),
-            SUBTOTALHPP : subtotalhpp[index].getNumber(),
-            HPP : hpp[index].getNumber(),
-            BEBANGAJI : bebangaji[index].getNumber(),
-            BEBANPROMO : bebanpromo[index].getNumber(),
-            BEBANPACKING : bebanpacking[index].getNumber(),
-            BEBANTRANSPORT : bebantransport[index].getNumber(),
-            HPPBEBAN : hppbeban[index].getNumber(),
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembaruan Keranjang Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/updatekeranjangpembelian',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODEBARANG : daftarkeranjang.cell(index,1).nodes().to$().find('input').val(),
+                JUMLAHBELI : anjumlahbeli[index].getNumber(),
+                DISPLAY : anstokdisplay[index].getNumber(),
+                GUDANG : anstokgudang[index].getNumber(),
+                HARGASUPLIER : hargasuplier[index].getNumber(),
+                EXP : daftarkeranjang.cell(index,7).nodes().to$().find('input').val().split("-").reverse().join("-"),
+                SUBTOTAL : subtotal[index].getNumber(),
+                DISKON1 : diskon1[index].getNumber(),
+                DISKON2 : diskon2[index].getNumber(),
+                PPN : ppn[index].getNumber(),
+                ADISKON1 : adiskon1[index].getNumber(),
+                ADISKON2 : adiskon2[index].getNumber(),
+                SUBTOTALHPP : subtotalhpp[index].getNumber(),
+                HPP : hpp[index].getNumber(),
+                BEBANGAJI : bebangaji[index].getNumber(),
+                BEBANPROMO : bebanpromo[index].getNumber(),
+                BEBANPACKING : bebanpacking[index].getNumber(),
+                BEBANTRANSPORT : bebantransport[index].getNumber(),
+                HPPBEBAN : hppbeban[index].getNumber(),
+            },
+            success: function (response) {
+                let obj = JSON.parse(response);
+                if (obj.status == "false"){
+                    Swal.fire(
+                        'Pembaruan Keranjang Error!',
+                        obj.msg,
+                        'warning'
+                    ) 
+                }
             }
-        }
+        });
     });
     /* hitung sum pembelian */
     data.each(function (value, index) {
@@ -161,47 +164,45 @@ function pasangdiskon(daridiskon){
 }
 
 function loadnotapembelian(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/notamenupenjualan',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            AWALANOTA : "PB",
-            OUTLET: session_outlet,
-            KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
-            TANGGALSEKARANG: moment().format('YYYYMMDD'),
-            KODEUNIKMEMBER: session_kodeunikmember,
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/notamenupenjualan',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                AWALANOTA : "PB",
+                OUTLET: session_outlet,
+                KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
+                TANGGALSEKARANG: moment().format('YYYYMMDD'),
+                KODEUNIKMEMBER: session_kodeunikmember,
+            },
+            success: function (response) {
+                $('#nofaktur').val(response.nomornota);
             }
-            $('#nofaktur').val(obj.nomornota);
-        }
+        });
     });
 }
 function panggilsuplier(){
-    $("#admin_daftarsuplier").DataTable({
-        retrieve: true,
-        ordering: true,
-        order: [[0, 'desc']],
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        ajax: {
-            "url": baseurljavascript + 'pembelian/modaldaftarsuplier',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCIPENCARIAN = $("#txtpencariansuplier").val();
-            }
-        },
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false,
+    getCsrfTokenCallback(function() {
+        $("#admin_daftarsuplier").DataTable({
+            retrieve: true,
+            ordering: true,
+            order: [[0, 'desc']],
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            ajax: {
+                "url": baseurljavascript + 'pembelian/modaldaftarsuplier',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCIPENCARIAN = $("#txtpencariansuplier").val();
+                }
+            },
+            scrollCollapse: true,
+            scrollY: "50vh",
+            scrollX: true,
+            bFilter: false,
+        });
     }); 
 }
 function pilihsuplier(namasuplier,alamatsuplier,notelponsuplier,kodesuplier){
@@ -227,87 +228,97 @@ $('#diskon1general, #diskon2general, #adiskon1general, #adiskon2general').keypre
 
 $('#qtypemasukan').keypress(function (e) {let key = e.which; if(key == 13){$('#katakuncibarang').focus();return false;}});
 function panggilinformasibarang(){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/pilihbarangpembelian',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KATAKUNCI : $('#katakuncibarang').val(),
-        },
-        success: function (response) {
-            if(response[0].success == "true"){
-                if (response[0].totaldata > 1){
-                    setTimeout(function () { 
-                        $("#daftaritem_katakunci_panggil").focus();
-                        $("#daftaritem_katakunci_panggil").val($('#katakuncibarang').val());
-                        $('#pangil_daftarabarang').DataTable().ajax.reload();
-                    }, 1000);
-                    $("#modal6").modal('show');
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/pilihbarangpembelian',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KATAKUNCI : $('#katakuncibarang').val(),
+            },
+            success: function (response) {
+                if(response[0].success == "true"){
+                    if (response[0].totaldata > 1){
+                        setTimeout(function () { 
+                            $("#daftaritem_katakunci_panggil").focus();
+                            $("#daftaritem_katakunci_panggil").val($('#katakuncibarang').val());
+                            getCsrfTokenCallback(function() {
+                                $('#pangil_daftarabarang').DataTable().ajax.reload();
+                            });
+                        }, 200);
+                        $("#modal6").modal('show');
+                    }else{
+                        tambahkeranjangpembelian(
+                            response[0].dataquery[0].BARANG_ID,
+                            response[0].dataquery[0].NAMABARANG,
+                            response[0].dataquery[0].DISPLAY,
+                            response[0].dataquery[0].HARGABELI,
+                            response[0].dataquery[0].BEBANGAJI,
+                            response[0].dataquery[0].BEBANPACKING,
+                            response[0].dataquery[0].BEBANPROMO,
+                            response[0].dataquery[0].BEBANTRANSPORT,
+                            Number($('#qtypemasukan').val()),
+                        );
+                    }
                 }else{
-                    tambahkeranjangpembelian(
-                        response[0].dataquery[0].BARANG_ID,
-                        response[0].dataquery[0].NAMABARANG,
-                        response[0].dataquery[0].DISPLAY,
-                        response[0].dataquery[0].HARGABELI,
-                        response[0].dataquery[0].BEBANGAJI,
-                        response[0].dataquery[0].BEBANPACKING,
-                        response[0].dataquery[0].BEBANPROMO,
-                        response[0].dataquery[0].BEBANTRANSPORT,
-                        Number($('#qtypemasukan').val()),
-                    );
+                    Swal.fire({
+                        title: "Informasi Tidak Ditemukan",
+                        text: "Waduh... Loo Loo Loo informasi yang anda masukan sama sekali tidak ditemukakn di database kami. Silahkan cek kembali",
+                        icon: 'warning',
+                    }); 
                 }
-            }else{
-                Swal.fire({
-                    title: "Informasi Tidak Ditemukan",
-                    text: "Waduh... Loo Loo Loo informasi yang anda masukan sama sekali tidak ditemukakn di database kami. Silahkan cek kembali",
-                    icon: 'warning',
-                }); 
             }
-        }
+        });
     });
 }
 function tambahkeranjangpembelian(kodebarang,namabarang,stoksebelum,hargasuplierlama,bebangaji,bebanpromo,bebanpacking,bebantransport,jumlahbelimasukan){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/tambahkekeranjang',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KODEBARANG : kodebarang,
-            NAMABARANG : namabarang,
-            STOKSEBELUM : stoksebelum,
-            JUMLAHBELI : jumlahbelimasukan,
-            DISPLAY : ($('#aktifkanbestbuy').is(":checked") == true ? 0 : jumlahbelimasukan),
-            GUDANG : ($('#aktifkanbestbuy').is(":checked") == true ? jumlahbelimasukan : 0),
-            HARGASUPLIER : hargasuplierlama,
-            EXP : moment(new Date()).format('DD-MM-YYYY'),
-            SUBTOTAL : jumlahbelimasukan * hargasuplierlama,
-            DISKON1 : "0",
-            DISKON2 : "0",
-            PPN : "0",
-            ADISKON1 : "0",
-            ADISKON2 : "0",
-            SUBTOTALHPP : jumlahbelimasukan * hargasuplierlama,
-            HPP : hargasuplierlama,
-            BEBANGAJI : bebangaji,
-            BEBANPROMO : bebanpromo,
-            BEBANPACKING : bebanpacking,
-            BEBANTRANSPORT : bebantransport,
-            HPPBEBAN : "0",
-        },
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true" || obj.status == "adadata"){
-                $('#katakuncibarang').val('');
-                $('#qtypemasukan').val('1');
-                $('#keranjangpembelian').DataTable().ajax.reload();
-            }else{
-                Swal.fire({
-                    title: "Gagal... Cek Koneksi Local DB Kasir",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                }); 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/tambahkekeranjang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODEBARANG : kodebarang,
+                NAMABARANG : namabarang,
+                STOKSEBELUM : stoksebelum,
+                JUMLAHBELI : jumlahbelimasukan,
+                DISPLAY : ($('#aktifkanbestbuy').is(":checked") == true ? 0 : jumlahbelimasukan),
+                GUDANG : ($('#aktifkanbestbuy').is(":checked") == true ? jumlahbelimasukan : 0),
+                HARGASUPLIER : hargasuplierlama,
+                EXP : moment(new Date()).format('DD-MM-YYYY'),
+                SUBTOTAL : jumlahbelimasukan * hargasuplierlama,
+                DISKON1 : "0",
+                DISKON2 : "0",
+                PPN : "0",
+                ADISKON1 : "0",
+                ADISKON2 : "0",
+                SUBTOTALHPP : jumlahbelimasukan * hargasuplierlama,
+                HPP : hargasuplierlama,
+                BEBANGAJI : bebangaji,
+                BEBANPROMO : bebanpromo,
+                BEBANPACKING : bebanpacking,
+                BEBANTRANSPORT : bebantransport,
+                HPPBEBAN : "0",
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true" || obj.status == "adadata"){
+                    $('#katakuncibarang').val('');
+                    $('#qtypemasukan').val('1');
+                    getCsrfTokenCallback(function() {
+                        $('#keranjangpembelian').DataTable().ajax.reload();
+                    });
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Cek Koneksi Local DB Kasir",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    }); 
+                }
             }
-        }
+        });
     });
 }
 function hapusperbarang(kodebarang,namabarang){
@@ -320,25 +331,30 @@ function hapusperbarang(kodebarang,namabarang){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'pembelian/hapusperbarang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    BARANG_ID: kodebarang,
-                },
-                success: function (response) {
-                    var obj = JSON.parse(response);
-                    if (obj.status == "true"){
-                        $('#keranjangpembelian').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Cek Koneksi Local DB Kasir",
-                            text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/hapusperbarang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        BARANG_ID: kodebarang,
+                    },
+                    success: function (response) {
+                        var obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            getCsrfTokenCallback(function() {
+                                $('#keranjangpembelian').DataTable().ajax.reload();
+                            });
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Cek Koneksi Local DB Kasir",
+                                text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })
@@ -413,54 +429,57 @@ function simpantransaksipembelian(){
                 );
                 arraydetailpembelian.push(temp)
             });
-            $.ajax({
-                url: baseurljavascript + 'pembelian/simpanpembelian',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    DETAILPEMBELIAN: arraydetailpembelian,
-                    NOTA: $('#nofaktur').val(),
-                    FK_SUPPLIER: $('#kodesuplier').val(),
-                    TANGGALTRS: $('#tgltrx').val().split("-").reverse().join("-"),
-                    KETERANGAN: $('#keterangan').val(),
-                    TOP: $('#jenispembayaran').val(),
-                    NAMATOP: datanya[0].text,
-                    JATUHTEMPO: moment($('#tgltrx').val(),"DD-MM-YYYY").add(Number($('#jatuhtempo').val()), 'days').format('YYYY-MM-DD'),
-                    TOTALPEMBELIAN: $('#totalpembelian').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
-                    TOTALPEMBELIANBEBAN:$('#totalpembeliannett').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
-                    TOTALHUTANG: $('#totalpembelian').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
-                    BIAYALAINLAIN: anbebanlainlain.getNumber(),
-                    DARISUBPERUSAHAAN: $('#pilihperusahaan').val(),
-                    NOMOR: ($('#nofaktur').val().split('#')[1] === undefined ? "0" : $('#nofaktur').val().split('#')[1]),
-                    TOTALPPNMASUKAN: $('#totalppnmasukan').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
-                    ISEDIT: iseditjs,
-                },
-                success: function (response) {
-                    if (response[0].success == "true"){
-                        swal.fire({
-                            title: iseditjs == "true" ? "Ubah Data Berhasil":"Transaksi Pembelian Berhasil",
-                            text: "Transaksi dengan NOTA "+$('#nofaktur').val()+" sebesar "+$('#totalpembelian').html().replace('&nbsp;', ' ')+" berhasil di tranaksi pada TANGGAL "+$('#tgltrx').val(),
-                            icon: 'success',
-                            showCancelButton:true,
-                            confirmButtonText: "Oke, Ubah Harga Beli!",
-                            cancelButtonText: "Tidak, Lanjut Transaksi!",
-                        }).then(function(result){
-                            kosongkankeranjanglokal();
-                            if(result.isConfirmed){           
-                                panggilhargajual(notrankasipembelian);
-                                $('#modalubahhargajual').modal('show');
-                            }else{
-                                location.href = baseurljavascript+"pembelian/formpembelian";
-                            }
-                        })
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
-                            text: response.msg,
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/simpanpembelian',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        DETAILPEMBELIAN: arraydetailpembelian,
+                        NOTA: $('#nofaktur').val(),
+                        FK_SUPPLIER: $('#kodesuplier').val(),
+                        TANGGALTRS: $('#tgltrx').val().split("-").reverse().join("-"),
+                        KETERANGAN: $('#keterangan').val(),
+                        TOP: $('#jenispembayaran').val(),
+                        NAMATOP: datanya[0].text,
+                        JATUHTEMPO: moment($('#tgltrx').val(),"DD-MM-YYYY").add(Number($('#jatuhtempo').val()), 'days').format('YYYY-MM-DD'),
+                        TOTALPEMBELIAN: $('#totalpembelian').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
+                        TOTALPEMBELIANBEBAN:$('#totalpembeliannett').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
+                        TOTALHUTANG: $('#totalpembelian').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
+                        BIAYALAINLAIN: anbebanlainlain.getNumber(),
+                        DARISUBPERUSAHAAN: $('#pilihperusahaan').val(),
+                        NOMOR: ($('#nofaktur').val().split('#')[1] === undefined ? "0" : $('#nofaktur').val().split('#')[1]),
+                        TOTALPPNMASUKAN: $('#totalppnmasukan').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
+                        ISEDIT: iseditjs,
+                    },
+                    success: function (response) {
+                        if (response[0].success == "true"){
+                            swal.fire({
+                                title: iseditjs == "true" ? "Ubah Data Berhasil":"Transaksi Pembelian Berhasil",
+                                text: "Transaksi dengan NOTA "+$('#nofaktur').val()+" sebesar "+$('#totalpembelian').html().replace('&nbsp;', ' ')+" berhasil di tranaksi pada TANGGAL "+$('#tgltrx').val(),
+                                icon: 'success',
+                                showCancelButton:true,
+                                confirmButtonText: "Oke, Ubah Harga Beli!",
+                                cancelButtonText: "Tidak, Lanjut Transaksi!",
+                            }).then(function(result){
+                                kosongkankeranjanglokal();
+                                if(result.isConfirmed){           
+                                    panggilhargajual(notrankasipembelian);
+                                    $('#modalubahhargajual').modal('show');
+                                }else{
+                                    location.href = baseurljavascript+"pembelian/formpembelian";
+                                }
+                            })
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
+                                text: response.msg,
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })
@@ -469,25 +488,32 @@ $("#simpantransaksipembelian").on("click", function () {
     simpantransaksipembelian();
 });
 function kosongkankeranjanglokal(){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/hapuskeranjang',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true"){
-                $('#katakuncibarang').val('');
-                $('#qtypemasukan').val('1');
-                $('#keranjangpembelian').DataTable().ajax.reload();
-                $('#totalpembelian').html("0.00");
-                $('#totalpembeliannett').html("0.00");     
-            }else{
-                Swal.fire({
-                    title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/hapuskeranjang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true"){
+                    $('#katakuncibarang').val('');
+                    $('#qtypemasukan').val('1');
+                    $('#totalpembelian').html("0.00");
+                    $('#totalpembeliannett').html("0.00");     
+                    getCsrfTokenCallback(function() {
+                        $('#keranjangpembelian').DataTable().ajax.reload();
+                    });
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    });
+                }
             }
-        }
+        });
     });
 }

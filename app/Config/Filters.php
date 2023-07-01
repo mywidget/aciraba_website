@@ -34,7 +34,10 @@ class Filters extends BaseConfig
                     'masterdata/informasirow1dashboard',
                     'masterdata/informasirow2dashboard',
                     'penjualan/dashboard_penjualan',
-                    'masterdata/panggilbarangglobal'
+                    'masterdata/panggilbarangglobal',
+                    'masterdata/ajaxdaftarmember',
+                    'auth/outlet',
+                    'penjualan/ajaxdaftarbarang',
                 ]
             ],
             // 'invalidchars',

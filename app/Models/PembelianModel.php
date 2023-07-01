@@ -66,7 +66,7 @@ class PembelianModel extends Model
 		$datakeranjang = $dataquery->getResultArray();
 		$jumlahdata = count((array)$datakeranjang);
 		if ($jumlahdata > 0 ){
-			if ($this->db->query("UPDATE `01_trs_returpembelian_detail` SET `JUMLAHRETUR` = `JUMLAHRETUR` + '".$data[6]."' WHERE `KODEBARANG` = '".$data[3]."' AND `NOTRXPENJUALAN` = '".$data[2]."' AND OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'")){
+			if ($this->db->query("UPDATE `01_trs_returpembelian_detail` SET `JUMLAHRETUR` = `JUMLAHRETUR` + '".$data[6]."' WHERE `KODEBARANG` = '".$data[3]."' AND `NOTRXPEMBELIAN` = '".$data[2]."' AND OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'")){
 				$jsonobj = '{"status":"adadata"}'; 
 			}else{
 				$jsonobj = '{"status":"false"}'; 

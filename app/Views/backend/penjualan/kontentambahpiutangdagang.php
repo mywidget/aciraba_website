@@ -126,7 +126,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-
 <script type="text/javascript" src="https://cdn.datatables.net/plug-ins/1.13.4/api/sum().js"></script>
 <script type="text/javascript">
     let masukannominal = new AutoNumeric('#masukkannominal', {decimalCharacter : ',',digitGroupSeparator : '.',});
@@ -134,125 +133,127 @@
         $('#tanggaltransaksipembayaranpiutang').val(moment().format('DD-MM-YYYY'));
         $("#tanggaltransaksipembayaranpiutang").datepicker({todayHighlight: true,format:'dd-mm-yyyy'});
         loadnotapiutang();
-        $("#datatransaksipiutang").DataTable({
-            language: {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
-            },
-            bPaginate: false,
-            bLengthChange: false,
-            bInfo: false,
-            scrollCollapse: true,
-            scrollY: "50vh",
-            scrollX: true,
-            bFilter: false,
-            columnDefs: [
-                {className: "text-right",targets: [2,3]},
-            ],
-            ajax: {
-                "url": baseurljavascript + 'penjualan/daftarpiutangterpilih',
-                "method": 'POST',
-                "data": function (d) {
-                    d.KATAKUNCI = $('#kodememberterpilih').html();
+        getCsrfTokenCallback(function() {
+            $("#datatransaksipiutang").DataTable({
+                language: {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
                 },
-            },
+                bPaginate: false,
+                bLengthChange: false,
+                bInfo: false,
+                scrollCollapse: true,
+                scrollY: "50vh",
+                scrollX: true,
+                bFilter: false,
+                columnDefs: [
+                    {className: "text-right",targets: [2,3]},
+                ],
+                ajax: {
+                    "url": baseurljavascript + 'penjualan/daftarpiutangterpilih',
+                    "method": 'POST',
+                    "data": function (d) {
+                        d.csrf_aciraba = csrfTokenGlobal;
+                        d.KATAKUNCI = $('#kodememberterpilih').html();
+                    },
+                },
+            });
         });
     });
 function loadnotapiutang(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/notamenupenjualan',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            AWALANOTA : "BP",
-            OUTLET: session_outlet,
-            KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
-            TANGGALSEKARANG: moment().format('YYYYMMDD'),
-            KODEUNIKMEMBER: session_kodeunikmember,
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/notamenupenjualan',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                AWALANOTA : "BP",
+                OUTLET: session_outlet,
+                KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
+                TANGGALSEKARANG: moment().format('YYYYMMDD'),
+                KODEUNIKMEMBER: session_kodeunikmember,
+            },
+            success: function (response) {
+                $('#nomornotapiutang').html(response.nomornota);
             }
-            $('#nomornotapiutang').html(obj.nomornota);
-        }
+        });
     });
 }   
-    $('#masukkannominal').on('keyup input propertychange paste', debounce(function (e) {
+$('#masukkannominal').on('keyup input propertychange paste', debounce(function (e) {
+    getCsrfTokenCallback(function() {
         proseshitungtabelpiutang();
-    }, 500));
-    function proseshitungtabelpiutang(){
-        let table = $('#datatransaksipiutang').DataTable();let numRows = table.rows().count();let sisakredit = 0;
-        const nominalinput = Number(masukannominal.getNumber());
-        let sisa=0;
-        for(a=0;a<numRows;a++){
-            let an = new AutoNumeric('#pembayaran'+a, {decimalCharacter : ',',digitGroupSeparator : '.',});
-            sisakredit = $("#sisakredit"+a).html().replace('Rp', '').replaceAll('.', '').replace(',', '.').trim();
-            if (a == 0){ sisa = nominalinput - sisakredit; }
-            if (sisa > 0 && a==0){
-                an.set(sisakredit);
-            }else if (sisa < 0 && a==0){
-                an.set(nominalinput);
-            }else if (sisa < 0 && a>0){
-                an.set(0);
-            }else if (sisa < sisakredit){
-                an.set(sisa);
-            }else if (sisa > sisakredit && a > 0){
-                an.set(sisakredit);
-            }else{
-                an.set(0);
-            }
-        }
-        if (Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()) > masukannominal){
-            $("#kembalian").html(formatuang(0,'id-ID','IDR'))
-        }else{
-            $("#kembalian").html(formatuang(nominalinput - Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),'id-ID','IDR'))
-            
-        }
-    }
-    function changeIt(bariske,hapus) {
-        var key = event.which || event.keyCode;
-        if (key == '13') {
-            hitungpernota(bariske,hapus)
-        }
-    }
-    function hitungpernota(bariske,hapus){
-        let table = $('#datatransaksipiutang').DataTable();let numRows = table.rows().count();let nominalbayar = 0;
-        let an = new AutoNumeric('#pembayaran'+bariske, {decimalCharacter : ',',digitGroupSeparator : '.',});
-        if (hapus == "1"){
-            an.set(0)
-        }else if (hapus == '0'){
-            sisakredit = $("#sisakredit"+bariske).html().replace('Rp', '').replaceAll('.', '').replace(',', '.').trim();
+    });
+}, 500));
+function proseshitungtabelpiutang(){
+    let table = $('#datatransaksipiutang').DataTable();let numRows = table.rows().count();let sisakredit = 0;
+    const nominalinput = Number(masukannominal.getNumber());
+    let sisa=0;
+    for(a=0;a<numRows;a++){
+        let an = new AutoNumeric('#pembayaran'+a, {decimalCharacter : ',',digitGroupSeparator : '.',});
+        sisakredit = $("#sisakredit"+a).html().replace('Rp', '').replaceAll('.', '').replace(',', '.').trim();
+        if (a == 0){ sisa = nominalinput - sisakredit; }
+        if (sisa > 0 && a==0){
             an.set(sisakredit);
-        }
-        let nodes = table.column(4).nodes();
-        let total = table.column(4).nodes().reduce(function(sum,node) {
-            return sum + parseFloat($(node).find('input').val().replaceAll('.', '').replace(',', '.').trim());
-        }, 0 );
-        masukannominal.set(total);
-        if (Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()) > masukannominal){
-            $("#kembalian").html(formatuang(0,'id-ID','IDR'))
+        }else if (sisa < 0 && a==0){
+            an.set(nominalinput);
+        }else if (sisa < 0 && a>0){
+            an.set(0);
+        }else if (sisa < sisakredit){
+            an.set(sisa);
+        }else if (sisa > sisakredit && a > 0){
+            an.set(sisakredit);
         }else{
-            $("#kembalian").html(formatuang(masukannominal.getNumber() - Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),'id-ID','IDR'))
+            an.set(0);
         }
     }
-    $('#datatransaksipiutang tbody').on('keydown', 'tr', function (e) {
-        let table = $('#datatransaksipiutang').DataTable();
-        if (e.which === 13) {
-            var idx = table.row(this).index();
-            $('#pembayaran'+(idx+1)).focus();
-        }    
-    });  
-    function filtermaubayarpiutang(){
+    if (Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()) > masukannominal){
+        $("#kembalian").html(formatuang(0,'id-ID','IDR'))
+    }else{
+        $("#kembalian").html(formatuang(nominalinput - Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),'id-ID','IDR'))
+        
+    }
+}
+function changeIt(bariske,hapus) {
+    var key = event.which || event.keyCode;
+    if (key == '13') {
+        hitungpernota(bariske,hapus)
+    }
+}
+function hitungpernota(bariske,hapus){
+    let table = $('#datatransaksipiutang').DataTable();let numRows = table.rows().count();let nominalbayar = 0;
+    let an = new AutoNumeric('#pembayaran'+bariske, {decimalCharacter : ',',digitGroupSeparator : '.',});
+    if (hapus == "1"){
+        an.set(0)
+    }else if (hapus == '0'){
+        sisakredit = $("#sisakredit"+bariske).html().replace('Rp', '').replaceAll('.', '').replace(',', '.').trim();
+        an.set(sisakredit);
+    }
+    let nodes = table.column(4).nodes();
+    let total = table.column(4).nodes().reduce(function(sum,node) {
+        return sum + parseFloat($(node).find('input').val().replaceAll('.', '').replace(',', '.').trim());
+    }, 0 );
+    masukannominal.set(total);
+    if (Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()) > masukannominal){
+        $("#kembalian").html(formatuang(0,'id-ID','IDR'))
+    }else{
+        $("#kembalian").html(formatuang(masukannominal.getNumber() - Number($("#sisapiutangbawah").html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),'id-ID','IDR'))
+    }
+}
+$('#datatransaksipiutang tbody').on('keydown', 'tr', function (e) {
+    let table = $('#datatransaksipiutang').DataTable();
+    if (e.which === 13) {
+        var idx = table.row(this).index();
+        $('#pembayaran'+(idx+1)).focus();
+    }    
+});  
+function filtermaubayarpiutang(){
+    getCsrfTokenCallback(function() {
         $.ajax({
             url: baseurljavascript + 'penjualan/filtermaubayarpiutang',
             method: 'POST',
             dataType: 'json',
             data: {
+                [csrfName]:csrfTokenGlobal,
                 MEMBERID : $('#kodememberterpilih').html(),
             },
             success: function (response) {
@@ -275,9 +276,13 @@ function loadnotapiutang(){
                     });
                 }
         
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
         });
-    }
+    });
+}
 function konfirmasibayarpiutang(){
     if (masukannominal.getNumber() <= 0){
         return Swal.fire({
@@ -306,44 +311,50 @@ function konfirmasibayarpiutang(){
     }).then(function(result){
         if(result.isConfirmed){
             let d = new Date(); let timenow = d.toLocaleTimeString();
-            $.ajax({
-            url: baseurljavascript + 'penjualan/transaksipiutang',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                INFORMASIPIUTANG : arraydetailpembyaranpiutang,
-                TANGGALBAYAR : $('#tanggaltransaksipembayaranpiutang').val().split("-").reverse().join("-"),
-                KETERANGAN : $('#keteranganpiutang').val(),
-                NOTAPIUTANG : $('#nomornotapiutang').html(),
-                NOMOR : $('#nomornotapiutang').html().split('#')[1],
-                WAKTU : timenow.replaceAll('.', ':'),
-            },
-            success: function (response) {
-                let obj = JSON.parse(response);
-                if (obj.status == "true"){
-                    swal.fire({
-                        title: "Hore.. Transaksi Berhasil!!",
-                        icon: 'success',
-                        text: obj.msg,
-                        //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
-                        //imageHeight: 150,
-                        showCancelButton:false,
-                        confirmButtonText: "Oke.. Selamat Ya",
-                        allowOutsideClick: false
-                    }).then(function(result){
-                        if(result.isConfirmed){
-                            window.location.reload();
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/transaksipiutang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        INFORMASIPIUTANG : arraydetailpembyaranpiutang,
+                        TANGGALBAYAR : $('#tanggaltransaksipembayaranpiutang').val().split("-").reverse().join("-"),
+                        KETERANGAN : $('#keteranganpiutang').val(),
+                        NOTAPIUTANG : $('#nomornotapiutang').html(),
+                        NOMOR : $('#nomornotapiutang').html().split('#')[1],
+                        WAKTU : timenow.replaceAll('.', ':'),
+                    },
+                    success: function (response) {
+                        let obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            swal.fire({
+                                title: "Hore.. Transaksi Berhasil!!",
+                                icon: 'success',
+                                text: obj.msg,
+                                //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
+                                //imageHeight: 150,
+                                showCancelButton:false,
+                                confirmButtonText: "Oke.. Selamat Ya",
+                                allowOutsideClick: false
+                            }).then(function(result){
+                                if(result.isConfirmed){
+                                    window.location.reload();
+                                }
+                            })  
+                        }else{
+                            Swal.fire({
+                                title: "Terjadi Kesalahan",
+                                text: obj.msg,
+                                icon: 'warning',
+                            });
                         }
-                    })  
-                }else{
-                    Swal.fire({
-                        title: "Terjadi Kesalahan",
-                        text: obj.msg,
-                        icon: 'warning',
-                    });
-                }
-            }
-        });
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
+                    }
+                });
+            });
         }
     })
 }

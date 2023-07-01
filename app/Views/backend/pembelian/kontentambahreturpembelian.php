@@ -223,150 +223,123 @@ let notepembayaranhutangtxt = new AutoNumeric('#nominalpotonghutang', {decimalCh
 var totalbarang = 0, totalnominal = 0, totalpotongan = 0;
 var isedit = <?=$isedit;?>;
 $(document).ready(function () {
-$("#stokhanyaretur").prop('checked', true);
-$("#notrxreturpembelian").focus();
-$("#notrxreturpembelian").prop("readonly", false); 
-$("#paneltransaksi").show();
-$("#jenistransaksi").prop('disabled', 'disabled');
-$("#tanggaltranaksiretur").val(moment().format('DD-MM-YYYY'));
-$("#tanggaltranaksiretur").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
-if(isedit == "0"){
-    panggilnotareturpenjualan()
-}
-loadnotapotonghutang()
-$("#tabeltransaksi").DataTable({
-    columnDefs: [
-        {
-            className: "text-right",
-            targets: [4,5,6]
-        },
-    ],
-    language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-    scrollCollapse: true,
-    scrollX: true,
-    ajax: {
-        "url": baseurljavascript + 'pembelian/jsontrxbeli',
-        "method": 'POST',
-        "data": function (d) {
-            d.DIMANA1 = $('#notrxreturpembelian').val();
-        },
-    }
-});
-tabelretur = $("#dataretur").DataTable({
-    language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-    scrollY: "100vh",
-    keys: true,
-    scrollX: true,
-    scrollCollapse: true,
-    paging: false,
-    ordering: false,
-    columnDefs : [
-        //{ 'visible': false, 'targets': [1,2] }
-    ],
-    ajax: {
-        "url": baseurljavascript + 'pembelian/returjuallocal',
-        "method": 'POST',
-        "data": function (d) {
-            d.KONDISI = null;
-        },
-    },
-    drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-        var data = tabelretur.rows().data();
-        data.each(function (value, index) {
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,5).nodes().to$().find('input').prop('id'))) { jumlahbeli[index] = new AutoNumeric("#"+tabelretur.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,6).nodes().to$().find('input').prop('id'))) { jumlahretur[index] = new AutoNumeric("#"+tabelretur.cell(index,6).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,7).nodes().to$().find('input').prop('id'))) { hargabeli[index] = new AutoNumeric("#"+tabelretur.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,8).nodes().to$().find('input').prop('id'))) { potongan[index] = new AutoNumeric("#"+tabelretur.cell(index,8).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,9).nodes().to$().find('input').prop('id'))) { ppn[index] = new AutoNumeric("#"+tabelretur.cell(index,9).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+    $("#stokhanyaretur").prop('checked', true);
+    $("#notrxreturpembelian").focus();
+    $("#notrxreturpembelian").prop("readonly", false); 
+    $("#paneltransaksi").show();
+    $("#jenistransaksi").prop('disabled', 'disabled');
+    $("#tanggaltranaksiretur").val(moment().format('DD-MM-YYYY'));
+    $("#tanggaltranaksiretur").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
+    if(isedit == "0"){ panggilnotareturpenjualan() }
+    loadnotapotonghutang()
+    getCsrfTokenCallback(function() {
+        $("#tabeltransaksi").DataTable({
+            columnDefs: [{className: "text-right",targets: [4,5,6]},],
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollCollapse: true,
+            scrollX: true,
+            ajax: {
+                "url": baseurljavascript + 'pembelian/jsontrxbeli',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.DIMANA1 = $('#notrxreturpembelian').val();
+                },
+            }
         });
-    },
-    initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-        var data = tabelretur.rows().data();
-        let nominalretur = 0, hppretur = 0,totalbaranga = 0, totalnominala = 0, totalpotongana = 0;
-        data.each(function (value, index) {
-            nominalretur = nominalretur + ((jumlahretur[index].getNumber() * hargabeli[index].getNumber()) - potongan[index].getNumber()  + ppn[index].getNumber())
-            hppretur = hppretur + ((jumlahretur[index].getNumber() * hargabeli[index].getNumber()) - potongan[index].getNumber()  + ppn[index].getNumber())
-            $('#totalretur').html(formatuang(nominalretur,'id-ID','IDR'));
-            $('#totalpiutangtersedia').html(formatuang(nominalretur,'id-ID','IDR'));
-            totalbaranga = totalbaranga + jumlahretur[index].getNumber();
-            totalnominala = nominalretur;
-            totalpotongana = totalpotongana + potongan[index].getNumber();
-        }); 
-        totalbarang = totalbaranga;
-        totalnominal = totalnominala;
-        totalpotongan = totalpotongana;
-    }
-}).on('key-focus', function ( e, datatable, cell, originalEvent ) {
-    $('input', cell.node()).focus();
-}).on("focus", "td input", function(){
-    $(this).select();
-});
-tabelretur.on('key', function (e, dt, code) {
-    if (code === 13) {
-        tabelretur.keys.move('down');
-    }
-})
-tabelreturpotonghutang = $("#tabelreturpotonghutang").DataTable({
-    language: {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
-    },
-    scrollCollapse: true,
-    scrollY: "50vh",
-    scrollX: true,
-    bFilter: false,
-    ajax: {
-        "url": baseurljavascript + 'pembelian/jsonambiltrxhutang',
-        "method": 'POST',
-        "data": function (d) {
-            d.KODESUPLIER = $('#kodesuplier').html();
-            d.NOPOTONGHUTANG = $('#notranskasiretur').val();
-        },
-    },
-    drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-        var data = tabelreturpotonghutang.rows().data();
-        data.each(function (value, index) {
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,2).nodes().to$().find('input').prop('id'))) { totalkredithutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,2).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,3).nodes().to$().find('input').prop('id'))) { sisakredithutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,3).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,4).nodes().to$().find('input').prop('id'))) { potonghutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,5).nodes().to$().find('input').prop('id'))) { subtotalhutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,7).nodes().to$().find('input').prop('id'))) { nominalbayarhutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+    });
+    getCsrfTokenCallback(function() {
+        tabelretur = $("#dataretur").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            keys: true,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            ordering: false,
+            ajax: {
+                "url": baseurljavascript + 'pembelian/returjuallocal',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KONDISI = null;
+                },
+            },
+            drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = tabelretur.rows().data();
+                data.each(function (value, index) {
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,5).nodes().to$().find('input').prop('id'))) { jumlahbeli[index] = new AutoNumeric("#"+tabelretur.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,6).nodes().to$().find('input').prop('id'))) { jumlahretur[index] = new AutoNumeric("#"+tabelretur.cell(index,6).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,7).nodes().to$().find('input').prop('id'))) { hargabeli[index] = new AutoNumeric("#"+tabelretur.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,8).nodes().to$().find('input').prop('id'))) { potongan[index] = new AutoNumeric("#"+tabelretur.cell(index,8).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelretur.cell(index,9).nodes().to$().find('input').prop('id'))) { ppn[index] = new AutoNumeric("#"+tabelretur.cell(index,9).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                });
+            },
+            initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = tabelretur.rows().data();
+                let nominalretur = 0, hppretur = 0,totalbaranga = 0, totalnominala = 0, totalpotongana = 0;
+                data.each(function (value, index) {
+                    nominalretur = nominalretur + ((jumlahretur[index].getNumber() * hargabeli[index].getNumber()) - potongan[index].getNumber()  + ppn[index].getNumber())
+                    hppretur = hppretur + ((jumlahretur[index].getNumber() * hargabeli[index].getNumber()) - potongan[index].getNumber()  + ppn[index].getNumber())
+                    $('#totalretur').html(formatuang(nominalretur,'id-ID','IDR'));
+                    $('#totalpiutangtersedia').html(formatuang(nominalretur,'id-ID','IDR'));
+                    totalbaranga = totalbaranga + jumlahretur[index].getNumber();
+                    totalnominala = nominalretur;
+                    totalpotongana = totalpotongana + potongan[index].getNumber();
+                }); 
+                totalbarang = totalbaranga;
+                totalnominal = totalnominala;
+                totalpotongan = totalpotongana;
+                getCsrfTokenCallback(function() {});
+            }
+        }).on('key-focus', function ( e, datatable, cell, originalEvent ) {
+            $('input', cell.node()).focus();
+        }).on("focus", "td input", function(){
+            $(this).select();
         });
-    },
-    initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+        tabelretur.on('key', function (e, dt, code) {
+            if (code === 13) {
+                tabelretur.keys.move('down');
+            }
+        })
+    });
+    getCsrfTokenCallback(function() {
+        tabelreturpotonghutang = $("#tabelreturpotonghutang").DataTable({
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
+            },
+            scrollCollapse: true,
+            scrollY: "50vh",
+            scrollX: true,
+            bFilter: false,
+            ajax: {
+                "url": baseurljavascript + 'pembelian/jsonambiltrxhutang',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KODESUPLIER = $('#kodesuplier').html();
+                    d.NOPOTONGHUTANG = $('#notranskasiretur').val();
+                },
+            },
+            drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = tabelreturpotonghutang.rows().data();
+                data.each(function (value, index) {
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,2).nodes().to$().find('input').prop('id'))) { totalkredithutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,2).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,3).nodes().to$().find('input').prop('id'))) { sisakredithutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,3).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,4).nodes().to$().find('input').prop('id'))) { potonghutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,5).nodes().to$().find('input').prop('id'))) { subtotalhutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+tabelreturpotonghutang.cell(index,7).nodes().to$().find('input').prop('id'))) { nominalbayarhutang[index] = new AutoNumeric("#"+tabelreturpotonghutang.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                });
+            },
+            initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
 
-    }
-}).on('key-focus', function ( e, datatable, cell, originalEvent ) {
-    $('input', cell.node()).focus();
-}).on("focus", "td input", function(){
-    $(this).select();
-});
-$('.cmblokasioutlet').select2({
-    allowClear: true,
-    placeholder: 'Pilih Asal Outlet!!',
-    ajax: {
-        url: baseurljavascript + 'auth/outlet',
-        method: 'POST',
-        dataType: 'json',
-        delay: 500,
-        data: function (params) {
-            return {
-                KATAKUNCIPENCARIAN: "",
-                KODEUNIKMEMBER: session_kodeunikmember,
             }
-        },
-        processResults: function (data) {
-            parseJSON = JSON.parse(data);
-            return {
-                results: $.map(parseJSON, function (item) {
-                    return {
-                        text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
-                        id: item.group,
-                    }
-                })
-            }
-        }
-    },
-});
+        }).on('key-focus', function ( e, datatable, cell, originalEvent ) {
+            $('input', cell.node()).focus();
+        }).on("focus", "td input", function(){
+            $(this).select();
+        });
+    });
 });
 $("#filterberdasarkantanggal").click(function() {
     if($('#filterberdasarkantanggal').is(':checked')) { 
@@ -382,53 +355,49 @@ $("#filterberdasarkantanggal").click(function() {
     }
 });
 function loadnotapotonghutang(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/notamenupenjualan',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            AWALANOTA : "BH",
-            OUTLET: session_outlet,
-            KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
-            TANGGALSEKARANG: moment().format('YYYYMMDD'),
-            KODEUNIKMEMBER: session_kodeunikmember,
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/notamenupenjualan',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]: csrfTokenGlobal,
+                AWALANOTA : "BH",
+                OUTLET: session_outlet,
+                KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
+                TANGGALSEKARANG: moment().format('YYYYMMDD'),
+                KODEUNIKMEMBER: session_kodeunikmember,
+            },
+            success: function (response) {
+                $('#notepembayaranhutang').val(response.nomornota);
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-            $('#notepembayaranhutang').val(obj.nomornota);
-        }
+        });
     });
 }   
 function panggilnotareturpenjualan(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/notamenupenjualan',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            AWALANOTA : "RB",
-            OUTLET: session_outlet,
-            KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
-            TANGGALSEKARANG: moment().format('YYYYMMDD'),
-            KODEUNIKMEMBER: session_kodeunikmember,
-        },
-        success: function (response) {
-            let obj = $.parseJSON(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/notamenupenjualan',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]: csrfTokenGlobal,
+                AWALANOTA : "RB",
+                OUTLET: session_outlet,
+                KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
+                TANGGALSEKARANG: moment().format('YYYYMMDD'),
+                KODEUNIKMEMBER: session_kodeunikmember,
+            },
+            success: function (response) {
+                $('#notranskasiretur').val(response.nomornota);
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-            $('#notranskasiretur').val(obj.nomornota);
-        }
+        });
     });
 }
 function bukadaftarbarang(kondisi){
@@ -439,24 +408,22 @@ function bukadaftarbarang(kondisi){
     $("#modal6").modal('show'); 
 }
 function pilihnotapembelian(){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/pilihnotapembelian',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            NOTAPEMBELIAN : $('#notrxreturpembelian').val(),
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/pilihnotapembelian',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]: csrfTokenGlobal,
+                NOTAPEMBELIAN : $('#notrxreturpembelian').val(),
+            },
+            success: function (response) {
+                $('#notepembayaranhutang').val(response.nomornota);
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-            $('#notepembayaranhutang').val(obj.nomornota);
-        }
+        });
     });
 }
 function informasibarang(kodeitem){
@@ -470,46 +437,49 @@ function informasibarang(kodeitem){
             position: 'top-right'
         })
     }
-    $.ajax({
-        url: baseurljavascript + 'penjualan/returpenjualandetailbarang',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KODEBARANG : kodeitem,
-        },
-        success: function (obj) {
-            if (obj[0].success == "true"){
-                simpanreturlocal(
-                    $('#notranskasiretur').val(),
-                    "TANPA NOTA",
-                    obj[0].dataquery[0].BARANG_ID,
-                    obj[0].dataquery[0].NAMABARANG,
-                    "0",
-                    $('#qtyretur').val(),
-                    obj[0].dataquery[0].HARGABELI,
-                    "0",
-                    "0",
-                    $('#stokdiambildari').val(),
-                    $('#returkestok').val(),
-                    "",
-                    "TUNAI"
-                );
-                return Swal.fire({
-                    icon: 'info',
-                    html: 'Nama : '+obj[0].dataquery[0].NAMABARANG + '<br>dengan kode ['+obj[0].dataquery[0].BARANG_ID+']<br>tertambahkan ke keranjang retur',
-                    toast: true,
-                    showConfirmButton: false,
-                    timer: 1500,
-                    position: 'top-right'
-                })
-            }else{
-                Swal.fire(
-                    'Gagal.. Uhhhhh!',
-                    "Terjadi kesalahan dalam pengemabilan informasi barang ini. Mohon ulangi untuk berberapa saat lagi",
-                    'warning'
-                )
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/returpenjualandetailbarang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODEBARANG : kodeitem,
+            },
+            success: function (obj) {
+                if (obj[0].success == "true"){
+                    simpanreturlocal(
+                        $('#notranskasiretur').val(),
+                        "TANPA NOTA",
+                        obj[0].dataquery[0].BARANG_ID,
+                        obj[0].dataquery[0].NAMABARANG,
+                        "0",
+                        $('#qtyretur').val(),
+                        obj[0].dataquery[0].HARGABELI,
+                        "0",
+                        "0",
+                        $('#stokdiambildari').val(),
+                        $('#returkestok').val(),
+                        "",
+                        "TUNAI"
+                    );
+                    return Swal.fire({
+                        icon: 'info',
+                        html: 'Nama : '+obj[0].dataquery[0].NAMABARANG + '<br>dengan kode ['+obj[0].dataquery[0].BARANG_ID+']<br>tertambahkan ke keranjang retur',
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500,
+                        position: 'top-right'
+                    })
+                }else{
+                    Swal.fire(
+                        'Gagal.. Uhhhhh!',
+                        "Terjadi kesalahan dalam pengemabilan informasi barang ini. Mohon ulangi untuk berberapa saat lagi",
+                        'warning'
+                    )
+                }
             }
-        }
+        });
     });
 }
 function simpanreturlocal(NOTRXRETUR,NOTRXPEMBELIAN,KODEBARANG,NAMABARANG,JUMLAHBELI,JUMLAHRETUR,HARGABELI,POTONGAN,PPN,ASALOUTLET,ASALLOKASI,KETERANGAN,JENISTRX){
@@ -523,36 +493,41 @@ function simpanreturlocal(NOTRXRETUR,NOTRXPEMBELIAN,KODEBARANG,NAMABARANG,JUMLAH
             position: 'top-right'
         })
     }
-    $.ajax({
-        url: baseurljavascript + 'pembelian/simpanreturlocal',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            NOTRXRETURBELI : $('#notranskasiretur').val(),
-            NOTRXPEMBELIAN : NOTRXPEMBELIAN,
-            KODEBARANG : KODEBARANG,
-            NAMABARANG : NAMABARANG,
-            JUMLAHBELI : JUMLAHBELI,
-            JUMLAHRETUR : JUMLAHRETUR,
-            HARGABELI : HARGABELI,
-            POTONGAN : POTONGAN,
-            PPN : PPN,
-            ASALOUTLET : $('#stokdiambildari').val(),
-            ASALLOKASI : $('#returkestok').val(),
-            KETERANGAN : KETERANGAN,
-            JENISTRX : JENISTRX,
-        },
-        success: function (response) {
-            let obj = $.parseJSON(response);
-            $('#dataretur').DataTable().ajax.reload();
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/simpanreturlocal',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                NOTRXRETURBELI : $('#notranskasiretur').val(),
+                NOTRXPEMBELIAN : NOTRXPEMBELIAN,
+                KODEBARANG : KODEBARANG,
+                NAMABARANG : NAMABARANG,
+                JUMLAHBELI : JUMLAHBELI,
+                JUMLAHRETUR : JUMLAHRETUR,
+                HARGABELI : HARGABELI,
+                POTONGAN : POTONGAN,
+                PPN : PPN,
+                ASALOUTLET : $('#stokdiambildari').val(),
+                ASALLOKASI : $('#returkestok').val(),
+                KETERANGAN : KETERANGAN,
+                JENISTRX : JENISTRX,
+            },
+            success: function (response) {
+                let obj = $.parseJSON(response);
+                getCsrfTokenCallback(function() {
+                    $('#dataretur').DataTable().ajax.reload();
+                });
+                if (obj.status == "false"){
+                    Swal.fire(
+                        'Pembuatan Nota Error!',
+                        obj.msg,
+                        'warning'
+                    ) 
+                }
             }
-        }
+        });
     });
 }
 function hapusperbarangretur(kodebarang,namabarang,ai){
@@ -565,25 +540,30 @@ function hapusperbarangretur(kodebarang,namabarang,ai){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'pembelian/hapusperbarangretur',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    AI: ai,
-                },
-                success: function (response) {
-                    var obj = JSON.parse(response);
-                    if (obj.status == "true"){
-                        $('#dataretur').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Cek Koneksi Local DB Kasir",
-                            text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/hapusperbarangretur',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        AI: ai,
+                    },
+                    success: function (response) {
+                        var obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            getCsrfTokenCallback(function() {
+                                $('#dataretur').DataTable().ajax.reload();
+                            });
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Cek Koneksi Local DB Kasir",
+                                text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })
@@ -615,29 +595,32 @@ function updatekeranjangretur(index){
         nppn =  ppn[index].getNumber();
     }
     ppn[index].set(nppn)
-    $.ajax({
-        url: baseurljavascript + 'pembelian/updatekeranjangretur',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            JUMLAHBELI :jumlahretur[index].getNumber(),
-            HARGABELI : hargabeli[index].getNumber(),
-            POTONGAN : potongan[index].getNumber(),
-            KETERANGAN : tabelretur.cell(index,12).nodes().to$().find('input').val(),
-            PPN : ppn[index].getNumber(),
-            KODEBARANG : tabelretur.cell(index,3).nodes().to$().find('input').val(),
-            OUTLET : tabelretur.cell(index,10).nodes().to$().find('input').val(),
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembaruan Keranjang Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/updatekeranjangretur',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                JUMLAHBELI :jumlahretur[index].getNumber(),
+                HARGABELI : hargabeli[index].getNumber(),
+                POTONGAN : potongan[index].getNumber(),
+                KETERANGAN : tabelretur.cell(index,12).nodes().to$().find('input').val(),
+                PPN : ppn[index].getNumber(),
+                KODEBARANG : tabelretur.cell(index,3).nodes().to$().find('input').val(),
+                OUTLET : tabelretur.cell(index,10).nodes().to$().find('input').val(),
+            },
+            success: function (response) {
+                let obj = JSON.parse(response);
+                if (obj.status == "false"){
+                    Swal.fire(
+                        'Pembaruan Keranjang Error!',
+                        obj.msg,
+                        'warning'
+                    ) 
+                }
             }
-        }
+        });
     });
     hitunginformasi()
 }
@@ -656,24 +639,29 @@ function hapuskeranjangalert(){
     })
 }
 function hapuskeranjangretur(){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/hapuskeranjangretur',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true"){
-                $('#dataretur').DataTable().ajax.reload();
-                $('#totalretur').html(formatuang(0,'id-ID','IDR'));
-                $('#totalpiutangtersedia').html(formatuang(0,'id-ID','IDR'));
-            }else{
-                Swal.fire({
-                    title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/hapuskeranjangretur',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true"){
+                    $('#dataretur').DataTable().ajax.reload();
+                    $('#totalretur').html(formatuang(0,'id-ID','IDR'));
+                    $('#totalpiutangtersedia').html(formatuang(0,'id-ID','IDR'));
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    });
+                }
             }
-        }
+        });
     });
 }
 $("#bayarsesuaireturbtn").on("click", function () {
@@ -840,57 +828,62 @@ $("#simpanretur").on("click", function () {
                     arrayreturpotonghutang.push(temp)
                 }
             });
-            $.ajax({
-                url: baseurljavascript + 'pembelian/jsontambahreturdanpotonghutang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    ARRAYRETURBELI : arrayreturpembelian,
-                    ARRAYPOTONGHUTANG : arrayreturpotonghutang,
-                    POTONGHUTANGAKTIF : $('#konfirmasipotonghutang').is(':checked'),
-                    NOTRXRETURBELI  : $('#notranskasiretur').val(),
-                    SUPPLIERID  : $('#kodesuplier').html(),
-                    TANGGALTRS  :  $('#tanggaltranaksiretur').val().split("-").reverse().join("-"),
-                    NOMORNOTA  : $('#notranskasiretur').val().split('#')[1],
-                    TOTALBARANG  : totalbarang,
-                    TOTALNOMINAL  : totalnominal,
-                    TOTALPOTONGAN  : totalpotongan,
-                    ISEDIT : isedit,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        hapuskeranjangretur();
-                        Swal.fire({
-                            title: 'Transaksi Retur Berhasil?',
-                            text: "Transaksi Retur dengan NO TRX : "+$("#notranskasiretur").val()+" sebesar "+$('#totalretur').html().replace('&nbsp;', '').trim()+" "+pesanpotonghutang+" berhasil.",
-                            icon: 'success',
-                            showCancelButton: true,
-                            confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
-                            confirmButtonText: 'Oke, Siap Transaksi Lagi',
-                            cancelButtonText: 'Tidak, Ke Daftar Retur'
-                        }).then((result) => {
-                            if(result.isConfirmed){           
-                                location.href = baseurljavascript+"pembelian/formreturpembelian";
-                            }else{
-                                location.href = baseurljavascript+"pembelian/daftarreturpembelian";
-                            }
-                        })
-                    }else{
-                        Swal.fire(
-                            'Aww Snap..!!',
-                            obj.msg,
-                            'error'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/jsontambahreturdanpotonghutang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        ARRAYRETURBELI : arrayreturpembelian,
+                        ARRAYPOTONGHUTANG : arrayreturpotonghutang,
+                        POTONGHUTANGAKTIF : $('#konfirmasipotonghutang').is(':checked'),
+                        NOTRXRETURBELI  : $('#notranskasiretur').val(),
+                        SUPPLIERID  : $('#kodesuplier').html(),
+                        TANGGALTRS  :  $('#tanggaltranaksiretur').val().split("-").reverse().join("-"),
+                        NOMORNOTA  : $('#notranskasiretur').val().split('#')[1],
+                        TOTALBARANG  : totalbarang,
+                        TOTALNOMINAL  : totalnominal,
+                        TOTALPOTONGAN  : totalpotongan,
+                        ISEDIT : isedit,
+                    },
+                    success: function (response) {
+                        var obj = $.parseJSON(response);
+                        if (obj.status == "true"){
+                            hapuskeranjangretur();
+                            Swal.fire({
+                                title: 'Transaksi Retur Berhasil?',
+                                text: "Transaksi Retur dengan NO TRX : "+$("#notranskasiretur").val()+" sebesar "+$('#totalretur').html().replace('&nbsp;', '').trim()+" "+pesanpotonghutang+" berhasil.",
+                                icon: 'success',
+                                showCancelButton: true,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33',
+                                confirmButtonText: 'Oke, Siap Transaksi Lagi',
+                                cancelButtonText: 'Tidak, Ke Daftar Retur'
+                            }).then((result) => {
+                                if(result.isConfirmed){           
+                                    location.href = baseurljavascript+"pembelian/formreturpembelian";
+                                }else{
+                                    location.href = baseurljavascript+"pembelian/daftarreturpembelian";
+                                }
+                            })
+                        }else{
+                            Swal.fire(
+                                'Aww Snap..!!',
+                                obj.msg,
+                                'error'
+                            )
+                        }
                     }
-                }
+                });
             });
         }
     })
 });
 $("#notrxreturpembelian").on('input change click', debounce(function (e) {
-    $('#tabeltransaksi').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabeltransaksi').DataTable().ajax.reload();
+    });
 }, 500));
 $('#qtyretur').keypress(function (e) {let key = e.which; if(key == 13){$('#kodeitemretur').focus();return false;}});
 $('#kodeitemretur').keypress(function (e) {let key = e.which; if(key == 13 && $('#kodeitemretur').val() == ""){$('#qtyretur').focus();return false;}});

@@ -91,41 +91,48 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="<?= base_url();?>/scripts/penjualan/returpenjualan.js"></script>
+<script src="<?= base_url();?>scripts/penjualan/returpenjualan.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-$("#daritanggal").val(moment().format('DD-MM-YYYY'));
-$("#daritanggal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
-$("#sampaitanggal").val(moment().format('DD-MM-YYYY'));
-$("#sampaitanggal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
-$("#tabelreturpenjualan").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        keys: true,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        columnDefs : [
-            //{ 'visible': false, 'targets': [1,2] }
-        ],
-        ajax: {
-            "url": baseurljavascript + 'penjualan/jsondaftarreturpenjualan',
-            "method": 'POST',
-            "data": function (d) {
-                d.parameterpencarian = $('#parameterpencarian').val()
-                d.katakunci = $('#katakunci').val()
-                d.tanggalawal = $('#daritanggal').val().split("-").reverse().join("-");
-                d.tanggalakhir = $('#sampaitanggal').val().split("-").reverse().join("-");
+    $("#daritanggal").val(moment().format('DD-MM-YYYY'));
+    $("#daritanggal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
+    $("#sampaitanggal").val(moment().format('DD-MM-YYYY'));
+    $("#sampaitanggal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
+    getCsrfTokenCallback(function() {
+        $("#tabelreturpenjualan").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            keys: true,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            ordering: false,
+            columnDefs : [
+                //{ 'visible': false, 'targets': [1,2] }
+            ],
+            ajax: {
+                "url": baseurljavascript + 'penjualan/jsondaftarreturpenjualan',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.parameterpencarian = $('#parameterpencarian').val()
+                    d.katakunci = $('#katakunci').val()
+                    d.tanggalawal = $('#daritanggal').val().split("-").reverse().join("-");
+                    d.tanggalakhir = $('#sampaitanggal').val().split("-").reverse().join("-");
+                },
             },
-        },
-    })
+        })
+    });
 });
 $("#prosesreload").on("click", function () {
-    $('#tabelreturpenjualan').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabelreturpenjualan').DataTable().ajax.reload();
+    });
 });
-$("#parameterpencarian, #katakunci, #daritanggal, #sampaitanggal").on('keyup input propertychange paste click', function() { 
-    $('#daftarmutasiitem').DataTable().ajax.reload();
-});
+$("#parameterpencarian, #katakunci, #daritanggal, #sampaitanggal").on('keyup input propertychange paste click', debounce(function(e) {
+    getCsrfTokenCallback(function() {
+        $('#tabelreturpenjualan').DataTable().ajax.reload();
+    });
+}, 500))
 </script>
 <?= $this->endSection(); ?>

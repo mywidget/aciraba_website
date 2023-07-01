@@ -101,7 +101,9 @@
             $("#namapelanggan").html(namamember);
             $("#namapelanggan1").html(namamember);
             $("#alamatpelanggan").html(alamat);
-            $('#datareturpotongpiutang').DataTable().ajax.reload();
+            getCsrfTokenCallback(function() {
+                $('#datareturpotongpiutang').DataTable().ajax.reload();
+            });
             $('#panggildaftarmember').modal('hide');
         }else  if (kondisi == "detailreturpenjualan") {
             Swal.fire({

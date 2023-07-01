@@ -134,84 +134,85 @@ $(document).ready(function () {
     $('#tanggaltransaksipembayaranhutang').val(moment().format('DD-MM-YYYY'));
     $("#tanggaltransaksipembayaranhutang").datepicker({todayHighlight: true,format:'dd-mm-yyyy'});
     loadnotahutang();
-    $("#datatransaksihutang").DataTable({
-        language: {
-            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
-        },
-        bPaginate: false,
-        bLengthChange: false,
-        bInfo: false,
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false,
-        columnDefs: [
-            {className: "text-right",targets: [2,3]},
-        ],
-        ajax: {
-            "url": baseurljavascript + 'pembelian/daftarhutangterpilih',
-            "method": 'POST',
-            "data": function (d) {
-                d.KATAKUNCI = $('#pencariannamasuplier').val();
+    getCsrfTokenCallback(function() {
+        $("#datatransaksihutang").DataTable({
+            language: {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
             },
-        },
+            bPaginate: false,
+            bLengthChange: false,
+            bInfo: false,
+            scrollCollapse: true,
+            scrollY: "50vh",
+            scrollX: true,
+            bFilter: false,
+            columnDefs: [
+                {className: "text-right",targets: [2,3]},
+            ],
+            ajax: {
+                "url": baseurljavascript + 'pembelian/daftarhutangterpilih',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCI = $('#pencariannamasuplier').val();
+                },
+            },
+        });
     });
 });
 function filtermaubayarhutang(){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/filtermaubayarhutang',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KODESUPLIER : $('#pencariannamasuplier').val(),
-        },
-        success: function (response) {
-            if (response[0].dataquery[0].SISAHUTANG > 0){
-                $('#kodememberterpilih').html($('#pencariannamasuplier').val())
-                $('#datatransaksihutang').DataTable().ajax.reload();
-                $('#cekpembayaran').show();
-                $('#namapelanggan').html(response[0].dataquery[0].NAMASUPPLIER);
-                $('#nohandphone').html(response[0].dataquery[0].NOTELP);
-                $('#alamatpelanggan').html(response[0].dataquery[0].ALAMAT);
-                $('#totalhutang').html(formatuang(response[0].dataquery[0].TOTALHUANG,'id-ID','IDR'));
-                $('#sisahutang').html(formatuang(response[0].dataquery[0].SISAHUTANG,'id-ID','IDR'));
-                $('#sisahutangbawah').html(formatuang(response[0].dataquery[0].SISAHUTANG,'id-ID','IDR'));
-                $('#masukkannominal').focus()
-            }else{
-                $('#cekpembayaran').hide();
-                Swal.fire({
-                    title: "Informasi hutang",
-                    text: "Wow... amazing. Informasi atas hutang member dengan kode "+$('#pencariannamasuplier').val()+" tidak ditemukan",
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/filtermaubayarhutang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODESUPLIER : $('#pencariannamasuplier').val(),
+            },
+            success: function (response) {
+                if (response[0].dataquery[0].SISAHUTANG > 0){
+                    $('#kodememberterpilih').html($('#pencariannamasuplier').val())
+                    $('#datatransaksihutang').DataTable().ajax.reload();
+                    $('#cekpembayaran').show();
+                    $('#namapelanggan').html(response[0].dataquery[0].NAMASUPPLIER);
+                    $('#nohandphone').html(response[0].dataquery[0].NOTELP);
+                    $('#alamatpelanggan').html(response[0].dataquery[0].ALAMAT);
+                    $('#totalhutang').html(formatuang(response[0].dataquery[0].TOTALHUANG,'id-ID','IDR'));
+                    $('#sisahutang').html(formatuang(response[0].dataquery[0].SISAHUTANG,'id-ID','IDR'));
+                    $('#sisahutangbawah').html(formatuang(response[0].dataquery[0].SISAHUTANG,'id-ID','IDR'));
+                    $('#masukkannominal').focus()
+                }else{
+                    $('#cekpembayaran').hide();
+                    Swal.fire({
+                        title: "Informasi hutang",
+                        text: "Wow... amazing. Informasi atas hutang member dengan kode "+$('#pencariannamasuplier').val()+" tidak ditemukan",
+                        icon: 'warning',
+                    });
+                }
+        
             }
-    
-        }
+        });
     });
 }
 function loadnotahutang(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/notamenupenjualan',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            AWALANOTA : "BH",
-            OUTLET: session_outlet,
-            KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
-            TANGGALSEKARANG: moment().format('YYYYMMDD'),
-            KODEUNIKMEMBER: session_kodeunikmember,
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/notamenupenjualan',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                AWALANOTA : "BH",
+                OUTLET: session_outlet,
+                KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
+                TANGGALSEKARANG: moment().format('YYYYMMDD'),
+                KODEUNIKMEMBER: session_kodeunikmember,
+            },
+            success: function (response) {
+                $('#nomornotahutang').html(response.nomornota);
             }
-            $('#nomornotahutang').html(obj.nomornota);
-        }
+        });
     });
 }   
     $('#masukkannominal').on('keyup input propertychange paste', debounce(function (e) {
@@ -310,45 +311,48 @@ function konfirmasibayarhutang(){
     }).then(function(result){
         if(result.isConfirmed){
             let d = new Date(); let timenow = d.toLocaleTimeString();
-            $.ajax({
-            url: baseurljavascript + 'pembelian/transaksihutang',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                INFORMASIPIUTANG : arraydetailpembyaranhutang,
-                NOTRANSAKSI :  $('#nomornotahutang').html(),
-                SUPPLIER_ID : $('#pencariannamasuplier').val(),
-                TANGGALTRS : $('#tanggaltransaksipembayaranhutang').val().split("-").reverse().join("-"),
-                WAKTU :  timenow.replaceAll('.', ':'),
-                KETERANGAN : $('#keteranganhutang').val(),
-                NOMOR :$('#nomornotahutang').html().split('#')[1],
-            },
-            success: function (response) {
-                let obj = JSON.parse(response);
-                if (obj.status == "true"){
-                    swal.fire({
-                        title: "Hore.. Transaksi Berhasil!!",
-                        icon: 'success',
-                        text: obj.msg,
-                        //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
-                        //imageHeight: 150,
-                        showCancelButton:false,
-                        confirmButtonText: "Oke.. Selamat Ya",
-                        allowOutsideClick: false
-                    }).then(function(result){
-                        if(result.isConfirmed){
-                            window.location.reload();
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/transaksihutang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        INFORMASIPIUTANG : arraydetailpembyaranhutang,
+                        NOTRANSAKSI :  $('#nomornotahutang').html(),
+                        SUPPLIER_ID : $('#pencariannamasuplier').val(),
+                        TANGGALTRS : $('#tanggaltransaksipembayaranhutang').val().split("-").reverse().join("-"),
+                        WAKTU :  timenow.replaceAll('.', ':'),
+                        KETERANGAN : $('#keteranganhutang').val(),
+                        NOMOR :$('#nomornotahutang').html().split('#')[1],
+                    },
+                    success: function (response) {
+                        let obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            swal.fire({
+                                title: "Hore.. Transaksi Berhasil!!",
+                                icon: 'success',
+                                text: obj.msg,
+                                //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
+                                //imageHeight: 150,
+                                showCancelButton:false,
+                                confirmButtonText: "Oke.. Selamat Ya",
+                                allowOutsideClick: false
+                            }).then(function(result){
+                                if(result.isConfirmed){
+                                    window.location.reload();
+                                }
+                            })  
+                        }else{
+                            Swal.fire({
+                                title: "Terjadi Kesalahan",
+                                text: obj.msg,
+                                icon: 'warning',
+                            });
                         }
-                    })  
-                }else{
-                    Swal.fire({
-                        title: "Terjadi Kesalahan",
-                        text: obj.msg,
-                        icon: 'warning',
-                    });
-                }
-            }
-        });
+                    }
+                });
+            });
         }
     })
 }

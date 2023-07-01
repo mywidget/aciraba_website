@@ -101,7 +101,7 @@
 <?= $this->include('backend/panggildaftarmember') ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="<?= base_url();?>/scripts/penjualan/trxpenjualan.js"></script>
+<script src="<?= base_url();?>scripts/penjualan/trxpenjualan.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         let firstDay = moment().startOf('month').format('DD-MM-YYYY');

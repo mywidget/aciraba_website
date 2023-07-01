@@ -49,7 +49,7 @@ class KasirModel extends Model
 		}
 	}
 	function copytabelkepending($data,$datasessionparameter){ 
-		if ($this->db->query("INSERT INTO 01_tms_keranjang_pending SELECT '',BARANG_ID,NAMA_BARANG,QTY,HARGA_JUAL,HARGA_BELI,POTONGANGLOBAL,DARIPERUSAHAAN,KETERANGAN,APAKAHVARIAN,STOKDAPATMINUS,JSONTAMBAHAN,CATATANPERBARANG,BRAND_ID,PRINCIPAL_ID,HARGAASLI,HARGAASLISEMENTARA,OUTLET,KODEUNIKMEMBER,KODEKOMPUTER FROM 01_tms_keranjang WHERE OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'")){
+		if ($this->db->query("INSERT INTO 01_tms_keranjang_pending SELECT '',BARANG_ID,NAMA_BARANG,QTY,HARGA_JUAL,HARGA_BELI,POTONGANGLOBAL,DARIPERUSAHAAN,KETERANGAN,APAKAHVARIAN,STOKDAPATMINUS,JSONTAMBAHAN,CATATANPERBARANG,BRAND_ID,PRINCIPAL_ID,HARGAASLI,HARGAASLISEMENTARA,OUTLET,KODEUNIKMEMBER,KODEKOMPUTER,STATUSBARANGPROSES FROM 01_tms_keranjang WHERE OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'")){
 			$this->db->query("UPDATE `01_tms_keranjang_pending` SET `KETERANGAN` = '".$data[0]."' WHERE `KETERANGAN` = 'TIDAK ADA KETERANGAN' AND OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'");
 			$this->db->query("DELETE FROM 01_tms_keranjang WHERE OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'");
 			$jsonobj = '{"status":"true"}'; 
@@ -59,7 +59,7 @@ class KasirModel extends Model
 		return json_encode($jsonobj);
 	}
 	function copytabelkekeranjang($data,$datasessionparameter){ 
-		if ($this->db->query("INSERT INTO 01_tms_keranjang SELECT '',BARANG_ID,NAMA_BARANG,QTY,HARGA_JUAL,HARGA_BELI,POTONGANGLOBAL,DARIPERUSAHAAN,'TIDAK ADA KETERANGAN',APAKAHVARIAN,STOKDAPATMINUS,JSONTAMBAHAN,CATATANPERBARANG,BRAND_ID,PRINCIPAL_ID,HARGAASLI,HARGAASLISEMENTARA,OUTLET,KODEUNIKMEMBER,KODEKOMPUTER FROM 01_tms_keranjang_pending WHERE KETERANGAN = '".$data[0]."' AND OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'")){
+		if ($this->db->query("INSERT INTO 01_tms_keranjang SELECT '',BARANG_ID,NAMA_BARANG,QTY,HARGA_JUAL,HARGA_BELI,POTONGANGLOBAL,DARIPERUSAHAAN,'TIDAK ADA KETERANGAN',APAKAHVARIAN,STOKDAPATMINUS,JSONTAMBAHAN,CATATANPERBARANG,BRAND_ID,PRINCIPAL_ID,HARGAASLI,HARGAASLISEMENTARA,OUTLET,KODEUNIKMEMBER,KODEKOMPUTER,STATUSBARANGPROSES FROM 01_tms_keranjang_pending WHERE KETERANGAN = '".$data[0]."' AND OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'")){
 			$this->db->query("DELETE FROM 01_tms_keranjang_pending WHERE KETERANGAN = '".$data[0]."' AND OUTLET = '".$datasessionparameter[0]."' AND KODEUNIKMEMBER = '".$datasessionparameter[1]."' AND KODEKOMPUTER = '".$datasessionparameter[2]."'");
 			$jsonobj = '{"status":"true"}'; 
 		}else{

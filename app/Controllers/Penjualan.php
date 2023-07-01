@@ -492,7 +492,7 @@ class Penjualan extends BaseController{
 			service('request')->getPost('OUTLET'),
 			$this->session->get("kodeunikmember"),
 		);
-		return $simpan = $this->penjualanModel->updatekeranjangretur($data);
+		return $simpan = $this->penjualanModel->updatekeranjangretur($data,$this->datasessionparameter);
 	}
 	public function jsonambiltrxpiutang(){
 		if ($this->session->get("kodeunikmember") == ""){
@@ -670,12 +670,7 @@ class Penjualan extends BaseController{
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->hasiljson[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->hasiljson[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->hasiljson[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hasiljson[0]);
 	}
 	public function cetakulangtransaksikasir(){
 		$client = \Config\Services::curlrequest();
@@ -1028,7 +1023,7 @@ class Penjualan extends BaseController{
 			'DIMANA17' => '',
 			'DIMANA18' => '',
 			'DIMANA19' => service('request')->getPost('DIMANA19'),
-			'DIMANA20' => '1000001',
+			'DIMANA20' => $this->session->get("kodeunikmember"),
 			'DATAKE' => 0,
 			'LIMIT' => 100,
 		];
@@ -1377,10 +1372,6 @@ class Penjualan extends BaseController{
 		return json_encode($datajson);
 	}
 	public function ajaxdaftarpenjualankasir(){
-		if ($this->session->get("kodeunikmember") == ""){
-			$jsonobj = '{"apakahlogin":"false"}';
-			return json_encode($jsonobj);
-		}
 		$client = \Config\Services::curlrequest();
 		$datapost = [
 			'KONDISI' => '2',
@@ -1441,7 +1432,7 @@ class Penjualan extends BaseController{
 				}
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->URUTANAIKELUAR;
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->PK_NOTAPENJUALAN."<br><pre style=\"color:".$colortextcss."\">STATUS : ".$statustransaksi."</pre>";
-				$row[] = formatuang('IDR',$datajson->hasiljson[0]->dataquery[$no]->TOTALBELANJA,'Rp ');
+				$row[] = formatuang('IDR',($datajson->hasiljson[0]->dataquery[$no]->TOTALBELANJA + $datajson->hasiljson[0]->dataquery[$no]->PAJAKTOKO + $datajson->hasiljson[0]->dataquery[$no]->PAJAKNEGARA),'Rp ');
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->WAKTUTRANSAKSI;
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->WAKTUPEMBAYARAN;
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->KETERANGAN;
@@ -1651,12 +1642,7 @@ class Penjualan extends BaseController{
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->hasiljson[0]->success == "true"){
-			$jsonobj = '{"status":"true","nomornota":"'.$datajson->hasiljson[0]->nomornota.'","msg":"'.$datajson->hasiljson[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","nomornota":"'.$datajson->hasiljson[0]->nomornota.'","msg":"'.$datajson->hasiljson[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hasiljson[0]);
 	}
 	public function transaksipiutang(){
 		$client = \Config\Services::curlrequest();

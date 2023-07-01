@@ -196,90 +196,101 @@ $('#tanggalawal').val(moment().startOf('month').format('DD-MM-YYYY'));
 $("#tanggalawal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
 $('#tanggalakhir').val(moment().format('DD-MM-YYYY'));
 $("#tanggalakhir").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
-$("#daftarmutasiitem").DataTable({
-    language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-    scrollY: "100vh",
-    scrollX: true,
-    scrollCollapse: true,
-    columnDefs: [{
-            className: "text-right",
-            targets: [3]
-        },
-    ],
-    ajax: {
-        "url": baseurljavascript + 'penyesuaian/ajaxdaftarmutasi',
-        "type": "POST",
-        "data": function (d) {
-            d.DIMANA3 = $("#parameterpencarian").val();
-            d.DIMANA4 = $("#katakuncipencarian").val();
-            d.DIMANA5 = $("#tanggalawal").val().split("-").reverse().join("-");
-            d.DIMANA6 = $("#tanggalakhir").val().split("-").reverse().join("-");
-            d.DIMANA7 = document.getElementById('aktifkanbestbuy').checked == true ? "true" : "false";
-            d.DIMANA8 = $("#cmblokasioutletasal").val();
-            d.DIMANA9 = $("#lokasiitemasal").val();
-            d.DIMANA10 = $("#cmblokasioutlettujuan").val();
-            d.DIMANA11 = $("#lokasiitemtujuan").val();
+getCsrfTokenCallback(function() {
+    $("#daftarmutasiitem").DataTable({
+        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+        scrollY: "100vh",
+        scrollX: true,
+        scrollCollapse: true,
+        columnDefs: [{
+                className: "text-right",
+                targets: [3]
+            },
+        ],
+        ajax: {
+            "url": baseurljavascript + 'penyesuaian/ajaxdaftarmutasi',
+            "type": "POST",
+            "data": function (d) {
+                d.csrf_aciraba = csrfTokenGlobal;
+                d.DIMANA3 = $("#parameterpencarian").val();
+                d.DIMANA4 = $("#katakuncipencarian").val();
+                d.DIMANA5 = $("#tanggalawal").val().split("-").reverse().join("-");
+                d.DIMANA6 = $("#tanggalakhir").val().split("-").reverse().join("-");
+                d.DIMANA7 = document.getElementById('aktifkanbestbuy').checked == true ? "true" : "false";
+                d.DIMANA8 = $("#cmblokasioutletasal").val();
+                d.DIMANA9 = $("#lokasiitemasal").val();
+                d.DIMANA10 = $("#cmblokasioutlettujuan").val();
+                d.DIMANA11 = $("#lokasiitemtujuan").val();
 
+            }
         }
-    }
-})
-$("#parameterpencarian, #katakuncipencarian, #tanggalawal, #tanggalakhir, #aktifkanbestbuy").on('keyup input propertychange paste click', function() { 
-    $('#daftarmutasiitem').DataTable().ajax.reload();
+    });
 });
+$("#parameterpencarian, #katakuncipencarian, #tanggalawal, #tanggalakhir, #aktifkanbestbuy").on('keyup input propertychange paste click', debounce(function(e) {
+    getCsrfTokenCallback(function() {
+        $('#daftarmutasiitem').DataTable().ajax.reload();
+    });
+}, 500))
 $('#cmblokasioutletasal').select2({
-allowClear: true,
-placeholder: 'Tentukan Asal Outlet ?',
-ajax: {
-    url: baseurljavascript + 'auth/outlet',
-    method: 'POST',
-    dataType: 'json',
-    delay: 500,
-    data: function (params) {
-        return {
-            KATAKUNCIPENCARIAN: "",
-            KODEUNIKMEMBER: session_kodeunikmember,
+    allowClear: true,
+    placeholder: 'Tentukan Asal Outlet ?',
+    ajax: {
+        url: baseurljavascript + 'auth/outlet',
+        method: 'POST',
+        dataType: 'json',
+        delay: 500,
+        data: function (params) {
+            return {
+                KATAKUNCIPENCARIAN: "",
+                KODEUNIKMEMBER: session_kodeunikmember,
+            }
+        },
+        processResults: function (data) {
+            parseJSON = JSON.parse(data);
+            return {
+                results: $.map(parseJSON, function (item) {
+                    return {
+                        text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
+                        id: item.group,
+                    }
+                })
+            }
         }
     },
-    processResults: function (data) {
-        parseJSON = JSON.parse(data);
-        return {
-            results: $.map(parseJSON, function (item) {
-                return {
-                    text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
-                    id: item.group,
-                }
-            })
-        }
-    }
-},
 });
 $('#cmblokasioutlettujuan').select2({
-allowClear: true,
-placeholder: 'Tentukan Tujuan Outlet ?',
-ajax: {
-    url: baseurljavascript + 'auth/outlet',
-    method: 'POST',
-    dataType: 'json',
-    delay: 500,
-    data: function (params) {
-        return {
-            KATAKUNCIPENCARIAN: "",
-            KODEUNIKMEMBER: session_kodeunikmember,
+    allowClear: true,
+    placeholder: 'Tentukan Tujuan Outlet ?',
+    ajax: {
+        url: baseurljavascript + 'auth/outlet',
+        method: 'POST',
+        dataType: 'json',
+        delay: 500,
+        data: function (params) {
+            return {
+                csrf_aciraba: csrfTokenGlobal,
+                KATAKUNCIPENCARIAN: "",
+                KODEUNIKMEMBER: session_kodeunikmember,
+            }
+        },
+        processResults: function (data) {
+            parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
+            return {
+                results: $.map(parseJSON, function (item) {
+                    return {
+                        text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
+                        id: item.group,
+                    }
+                })
+            }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
-    processResults: function (data) {
-        parseJSON = JSON.parse(data);
-        return {
-            results: $.map(parseJSON, function (item) {
-                return {
-                    text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
-                    id: item.group,
-                }
-            })
-        }
-    }
-},
-});  
+    });  
 });
 function tampilkanformarus(){
     if (document.getElementById('aktifkanbestbuy').checked) {
@@ -289,25 +300,30 @@ function tampilkanformarus(){
     }
 }
 $("#pencariandata").on("click", function () {
-    $('#daftarmutasiitem').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftarmutasiitem').DataTable().ajax.reload();
+    }); 
 });
 function panggildetailmutasi(nofakturmutasi){
     $('#nofakturmutasi').html(nofakturmutasi);
-    $("#tabeldetailmutasi").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        scrollX: true,
-        scrollCollapse: true,
-        searching: true,
-        stateSave: true,
-        bDestroy: true,
-        ajax: {
-            "url": baseurljavascript + 'penyesuaian/daftardetailmutasi',
-            "type": "POST",
-            "data": function (d) {
-                d.DIMANA1 = nofakturmutasi;
-            }
-        },
+    getCsrfTokenCallback(function() {
+        $("#tabeldetailmutasi").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            scrollX: true,
+            scrollCollapse: true,
+            searching: true,
+            stateSave: true,
+            bDestroy: true,
+            ajax: {
+                "url": baseurljavascript + 'penyesuaian/daftardetailmutasi',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.DIMANA1 = nofakturmutasi;
+                }
+            },
+        });
     }); 
     $('#detailmutasi').modal('show');
 }

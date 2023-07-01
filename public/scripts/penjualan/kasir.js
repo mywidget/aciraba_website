@@ -72,7 +72,271 @@ document.addEventListener("keydown", function(e) {
         $("#daftarpenjualan").modal('show');
     }
 });
-
+async function initializeDataTables() {
+    try {
+        let tokenarr = await getCsrfTokens(8);
+        initializeFirstDataTable(tokenarr[0]);
+        initializeSecondDataTable(tokenarr[1]);
+        initialize3rdDataTable(tokenarr[2]);
+        initialize4thDataTable(tokenarr[3]);
+        initialize5thDataTable(tokenarr[4]);
+        panggillantai();
+    }catch(error) {
+        toastr["error"]("Gagal mendapatkan token CSRF.");
+    }
+}
+function initializeFirstDataTable(token1) {
+    $("#tabel_pesanananmeja_kasir").DataTable({
+        language: {
+            "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
+        },
+        scrollCollapse: true,
+        scrollY: "100vh",
+        scrollX: true,
+        bFilter: true,
+        destroy: true,
+        ajax: {
+            "url": baseurljavascript + 'resto/ajaxdetailpesanan',
+            "method": 'POST',
+            "data": function (d) {
+                d.csrf_aciraba = token1;
+                d.KODEMEJA = "";
+                d.PROSESDARI = 'kasir';
+                d.TANGGALAWAL = $('#filtertanggalreservasiawal').val().split("-").reverse().join("-");
+                d.TANGGALAKHIR = $('#filtertanggalreservasiakhir').val().split("-").reverse().join("-");
+            },
+        }
+    });
+}
+function initializeSecondDataTable(token2) {
+    $("#kasir_daftarnotapending").DataTable({
+        retrieve: true,
+        ordering: true,
+        order: [[0, 'desc']],
+        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+        ajax: {
+            "url": baseurljavascript + 'penjualan/daftarnotapending',
+            "type": "POST",
+            "data": function (d) {
+                d.csrf_aciraba = token2;
+                d.KATAKUNCIPENCARIAN = $("#txtpencariannotapending").val();
+            }
+        },
+        scrollCollapse: true,
+        scrollY: "50vh",
+        scrollX: true,
+        bFilter: false,
+        columnDefs: [
+            {className: "text-right",targets: [1,2]},
+        ],
+    }); 
+} 
+function initialize3rdDataTable(token3) {
+    $("#kasir_daftarmember").DataTable({
+        retrieve: true,
+        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+        ajax: {
+            "url": baseurljavascript + 'masterdata/ajaxdaftarmemberkasir',
+            "type": "POST",
+            "data": function (d) {
+                d.csrf_aciraba = token3;
+                d.KATAKUNCI = $("#textpencarianmemberkasir").val();
+                d.KODEUNIKMEMBER = session_kodeunikmember;
+                d.DATAKE = 0;
+                d.LIMIT = 50;
+            }
+        },
+        scrollCollapse: true,
+        scrollY: "50vh",
+        scrollX: true,
+        bFilter: false
+    });
+} 
+function initialize4thDataTable(token4) {
+    $("#kasir_daftarsalesman").DataTable({
+        retrieve: true,
+        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+        ajax: {
+            "url": baseurljavascript + 'masterdata/ajaxdaftarsalesman',
+            "type": "POST",
+            "data": function (d) {
+                d.csrf_aciraba = token4;
+                d.KATAKUNCI = $("#textpencariansuplierkasir").val();
+                d.KODEUNIKMEMBER = session_kodeunikmember;
+                d.DATAKE = 0;
+                d.LIMIT = 50;
+            }
+        },
+        scrollCollapse: true,
+        scrollY: "50vh",
+        scrollX: true,
+        bFilter: false
+    });
+}
+function initialize5thDataTable(token5) {
+    $("#kasir_daftarpenjualan").DataTable({
+        retrieve: true,
+        ordering: true,
+        order: [[0, 'desc']],
+        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+        ajax: {
+            "url": baseurljavascript + 'penjualan/ajaxdaftarpenjualankasir',
+            "type": "POST",
+            "data": function (d) {
+                d.csrf_aciraba = token5;
+                d.KATAKUNCIPENCARIAN = $("#txtpencariannota").val();
+                d.TANGGALAWAL = $("#tanggalawalnota").val().split("-").reverse().join("-");
+                d.TANGGALAKHIR = $("#tanggalakhirnota").val().split("-").reverse().join("-");
+                d.DATAKE = 0;
+                d.LIMIT = 50;
+            }
+        },
+        scrollCollapse: true,
+        scrollY: "50vh",
+        scrollX: true,
+        bFilter: false,
+        columnDefs: [
+            {className: "text-right",targets: [2]},
+            {targets: [0],visible: false
+            },
+        ],
+    }); 
+}
+function daftartempatdisewakan(){
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'resto/ajaxpanggillantai',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success: function (response) {
+                if (response.success == "true"){
+                    let htmlnya = "";
+                    htmlnya = "<div class=\"nav nav-lines portlet-nav\" id=\"portlet1-tab\">";
+                    for (let i = 0; i < response.totaldata; i++) {
+                        if (i == 0){
+                            panggilmeja(response.dataquery[i].LANTAI, $("#kontendaftarmejad").attr('id'),'list')
+                        }
+                        htmlnya += "<a class=\"nav-item nav-link\" onclick=\"panggilmeja('"+response.dataquery[i].LANTAI+"',"+$("#kontendaftarmejad").attr('id')+",'list')\" id=\"portlet1-home-tab\" data-toggle=\"tab\" href=\"javascript:void(0)\">"+response.dataquery[i].LANTAI+"</a>";
+                    }    
+                    htmlnya += "</div>";
+                    $('#daftarlantaitersediad').html("");
+                    $('#daftarlantaitersediad').html(htmlnya);
+                }else{
+                    Swal.fire({
+                        title: "Informasi Reservasi",
+                        text: response.msg,
+                        icon: 'error',
+                    });
+                }
+            }
+        });
+        $("#daftartempatdisewakan").modal('show');
+    });
+}
+function panggilmeja(lantai,idElement,dari){ 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'resto/ajaxpanggilmeja',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                LANTAI : lantai,
+            },
+            success: function (response) {
+                console.log(response)
+                if (response.success == "true"){
+                    let htmlnya = "";
+                    htmlnya = "<div class=\"row\">";
+                    for (let i = 0; i < response.totaldata; i++) {
+                        let nameArr = response.dataquery[i].INFORMASIPESANAN.split('::'), pesan = "KOSONG", posisi = 0;
+                        if (nameArr[0] > 0) {
+                            posisi = "color:red";
+                            pesan = "TERPESAN";
+                        }
+                        htmlnya += ""
+    +"<div class=\"col-md-3 card>"
+            +"<div class=\"card-body\">"
+            +"<img style=\"object-fit: cover; height:250px\"  src=\""+(response.dataquery[i].GAMBAR == "" ? "https://i.ibb.co/d6FsfBx/arti-reservasi-jenis-jenis-manfaat-leng-867483.jpg"  : response.dataquery[i].GAMBAR)+"\" class=\"mb-2 card-img-top mt-2 rounded img-responsive\" alt=\""+response.dataquery[i].KODEMEJA+"\">"
+                +"<h5 class=\"card-title\">MEJA : "+response.dataquery[i].NAMAMEJA+" ["+response.dataquery[i].KODEMEJA+"]</h5>"
+                +"<p class=\"card-text\">"
+                +"Status Meja : <span style=\""+posisi+"\">"+pesan+"</span><br>"
+                +"Status Jam Kosong : <span style=\""+posisi+"\">"+time_convert(response.dataquery[i].TOTALJAM - nameArr[1])+"</span><br>"
+                +"Total Jam Pesanan : <span style=\""+posisi+"\">"+time_convert(nameArr[1])+"</span><br>"
+                +"Dipesan Untuk : <span style=\""+posisi+"\">"+nameArr[0]+" Orang</span><br>"
+                +"<p class=\"card-text\">Informasi Meja : <span style=\"color:red\">"+response.dataquery[i].KETERANGAN+"</span></p>"
+                +"</p>"
+                +"<div class=\"btn-group btn-block\">"
+                    +"<button onclick=\"detailpesanan('"+response.dataquery[i].KODEMEJA+"','kasir')\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i> Lihat Detail </button>"
+                    +"<button "+(dari == "list" ? "hidden" : "" )+" onclick=\"pilihmejainikasir('"+response.dataquery[i].KODEMEJA+"')\" class=\"btn btn-success\"><i class=\"fas fa-add\"></i> Pilih Meja Ini </button>"
+                +"</div>"
+            +"</div>"
+                    }    
+                    htmlnya += "</div>";
+                    $(idElement).html("");
+                    $(idElement).append(htmlnya);
+                }else{
+                    Swal.fire({
+                        title: "222Gagal... Membaca Database",
+                        text: "Silahkan cek log database anda. Kali aja ada yang typo dalam penulisan QUERY",
+                        icon: 'error',
+                    });
+                }
+            }
+        });
+    });
+}
+function pilihmejainikasir(kodemeja){
+    $("#kodemejaterpilih_rev").val(kodemeja)
+}
+function batalkanpesanantempat(prosesdari,kodepesanantempat,pemesan,tanggal){
+    swal.fire({
+        title: "Wah.. Pembatalan Kode Pesan : "+kodepesanantempat+" ?",
+        text: "Yahh.. yakin nih mau dibatalkan pemesanan tempatnya TANGGAL "+tanggal+". Apa Kasir tidak diarahkan telebih dahulu gitu customernya dengan NAMA : "+pemesan+" ?",
+        icon:"question",
+        showCancelButton:true,
+        confirmButtonText: "Ok.. Saya Yakin",
+        cancelButtonText: "Ooops.. Gak Jadi!!",
+    }).then(function(result){
+        if(result.isConfirmed){
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'resto/updatestatuspemesanan',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        PROSESDARI : prosesdari,
+                        KODEMEJA : kodepesanantempat,
+                    },
+                    success: function (response) {
+                        getCsrfTokenCallback(function() {
+                            $('#tabel_pesanananmeja_kasir').DataTable().ajax.reload();
+                        });
+                        Swal.fire({
+                            title: "Pembatalan Berhasil",
+                            text: "Pemesan dengan NAMA : "+pemesan+" telah dibatalkan oleh SISTEM. Batas waktu kursi pada TANGGAL "+tanggal+" telah berkurang dan dapat digunakan disi oleh pemesan lain",
+                            icon: 'success',
+                        });
+                    }
+                });
+            });
+        }
+    })
+}
+function transaksibaru(){
+    kosongkankeranjanglokal();
+    setTimeout(function (){
+        location.href = baseurljavascript+"penjualan/kasir/";
+    }, 50);
+}
+function toastinformasidpkonfirmasi(){
+    toastr.options = {newestOnTop: true,};
+    toastr["info"]("Informasi yang disajikan adalah informasi pembantu guna KASIR dapat mengingatkan DP yang dibayarkan pelanggan saat reservasi");
+}
 $("#nominaltunai, #nominalkredit, #nomorkartudebit, #nomorkartukredit, #nominalemoney").on('keyup input propertychange paste', function() { proseskonfirmasipembelian(); });
 $("#nominaltunai, #nominalkredit, #nomorkartudebit, #nomorkartukredit, #nominalemoney").on("click", function () { selectAllText($(this)) });
 let kembalian = 0, ktotalbelanja = 0
@@ -102,38 +366,44 @@ function restorenotapending(keterangan){
         cancelButtonText: "Skip. Tidak jadi!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'penjualan/pendingkekeranjang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KETERANGAN :keterangan,
-                },
-                success: function (response) {
-                    let obj = JSON.parse(response);
-                    if (obj.status == "true"){
-                        swal.fire({
-                            title: "Transaksi Ke Keranjang",
-                            icon: 'success',
-                            text: "Oke, barang pada notapending sudah dialihkan ke keranjang utama, silahkan lanjutkan transaksi yang sempat tertunda",
-                            //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
-                            //imageHeight: 150,
-                            showCancelButton:false,
-                            confirmButtonText: "Ye... Lanjutkankan Transaksi",
-                        }).then(function(result){
-                            if(result.isConfirmed){
-                                loadkeranjangsementara();
-                                $('#daftarnotapending').modal('toggle');
-                            }
-                        })   
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Cek Koneksi Database Lokal",
-                            text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/pendingkekeranjang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        KETERANGAN :keterangan,
+                    },
+                    success: function (response) {
+                        let obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            swal.fire({
+                                title: "Transaksi Ke Keranjang",
+                                icon: 'success',
+                                text: "Oke, barang pada notapending sudah dialihkan ke keranjang utama, silahkan lanjutkan transaksi yang sempat tertunda",
+                                //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
+                                //imageHeight: 150,
+                                showCancelButton:false,
+                                confirmButtonText: "Ye... Lanjutkankan Transaksi",
+                            }).then(function(result){
+                                if(result.isConfirmed){
+                                    loadkeranjangsementara();
+                                    $('#daftarnotapending').modal('toggle');
+                                }
+                            })   
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Cek Koneksi Database Lokal",
+                                text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                                icon: 'warning',
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     })   
@@ -156,37 +426,43 @@ function simpantransaksipending(){
         });
         return false
     }
-    $.ajax({
-        url: baseurljavascript + 'penjualan/tambahkeranjangpending',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KETERANGANTRX : $('#keterangantransaksi').val(),
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "true"){
-                swal.fire({
-                    title: "Transaksi Nota Pending",
-                    icon: 'success',
-                    text: "Transaksi nota pending berhasil disimpan di komputer ini. Yuk silahkan untuk melanjutkan transaksi berikutnya",
-                    //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
-                    //imageHeight: 150,
-                    showCancelButton:false,
-                    confirmButtonText: "Ye... Lanjutkan Transaksi Lain",
-                }).then(function(result){
-                    if(result.isConfirmed){
-                        refreshpage();
-                    }
-                })   
-            }else{
-                Swal.fire({
-                    title: "Gagal... Cek Koneksi Database Lokal",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/tambahkeranjangpending',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KETERANGANTRX : $('#keterangantransaksi').val(),
+            },
+            success: function (response) {
+                let obj = JSON.parse(response);
+                if (obj.status == "true"){
+                    swal.fire({
+                        title: "Transaksi Nota Pending",
+                        icon: 'success',
+                        text: "Transaksi nota pending berhasil disimpan di komputer ini. Yuk silahkan untuk melanjutkan transaksi berikutnya",
+                        //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
+                        //imageHeight: 150,
+                        showCancelButton:false,
+                        confirmButtonText: "Ye... Lanjutkan Transaksi Lain",
+                    }).then(function(result){
+                        if(result.isConfirmed){
+                            refreshpage();
+                        }
+                    })   
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Cek Koneksi Database Lokal",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    });
+                }
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-        }
+        });
     });
 }
 function cetakulangnota(nomortransaksi, kodeai){
@@ -200,65 +476,68 @@ function cetakulangnota(nomortransaksi, kodeai){
         cancelButtonText: "Skip. Tidak cetak nota!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'penjualan/cetakulangtransaksikasir',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KODEAI : kodeai,
-                },
-                success: function (response) {
-                    if (response.success == "true"){
-                        for (let i = 0; i < response.totaldata; i++) {
-                            Object.keys(response.dataquery[i]).forEach(function(k){
-                                if (k == "NAMABARANG" || k == "HARGAJUAL") inforkartubarang.push(response.dataquery[i][k])
-                                if (k == "PRINCIPAL_ID") inforkartubarang.push((response.dataquery[i]["HARGAJUAL"] * response.dataquery[i]["STOKBARANGKELUAR"]))
-                                if (k == "DARIPERUSAHAAN" || k == "FK_BARANG" || k == "STOKBARANGKELUAR") inforkartubarang.push(response.dataquery[i][k])
-                            });
-                            keranjangarray.push(inforkartubarang)
-                            inforkartubarang = []
-                        }
-                        $.ajax({
-                            url: baseurljavascript + 'penjualan/cetaknota',
-                            method: 'POST',
-                            dataType: 'json',
-                            data: {
-                                INFORMASIBARANG : JSON.stringify(keranjangarray),
-                                NOTAPENJUALAN : response.dataquery[0].PK_NOTAPENJUALAN,
-                                NAMAMEMBER : response.dataquery[0].NAMAMEMBER,
-                                NAMASALESMAN : response.dataquery[0].NAMASALESMAN,
-                                TGLKELUAR : moment(response.dataquery[0].TGLKELUAR).format('DD-MM-YYYY'),
-                                WAKTU : response.dataquery[0].WAKTU,
-                                KETERANGAN : response.dataquery[0].KETERANGAN,
-                                NOMINALTUNAI : response.dataquery[0].NOMINALTUNAI,
-                                NOMINALKREDIT : response.dataquery[0].NOMINALKREDIT,
-                                NOMINALKARTUDEBIT : response.dataquery[0].NOMINALKARTUDEBIT,
-                                NOMORKARTUDEBIT :  response.dataquery[0].NOMORKARTUDEBIT,
-                                BANKDEBIT :  response.dataquery[0].BANKDEBIT,
-                                NOMINALKARTUKREDIT :  response.dataquery[0].NOMINALKARTUKREDIT,
-                                NOMORKARTUKREDIT :  response.dataquery[0].NOMORKARTUKREDIT,
-                                BANKKREDIT :  response.dataquery[0].BANKKREDIT,
-                                NOMINALEMONEY :  response.dataquery[0].NOMINALEMONEY,
-                                NAMAEMONEY :  response.dataquery[0].NAMAEMONEY,
-                                NOMINALPOTONGAN :  response.dataquery[0].NOMINALPOTONGAN,
-                                NOMINALPAJAKKELUAR :  response.dataquery[0].NOMINALPAJAKKELUAR,
-                                KEMBALIAN:  response.dataquery[0].KEMBALIAN,
-                                TOTALBELANJA:  response.dataquery[0].TOTALBELANJA,
-                                PAJAKTOKO :  response.dataquery[0].PAJAKTOKO,
-                                PAJAKNEGARA :  response.dataquery[0].PAJAKNEGARA,
-                                POTONGANGLOBAL :  response.dataquery[0].POTONGANGLOBAL,
-                                NOMINALBAYAR:  response.dataquery[0].TOTALBELANJA + response.dataquery[0].KEMBALIAN,
-                                NAMAPENGGUNA :  response.dataquery[0].USERNAMELOGIN,
-                            },
-                            success: function (response) {
-                                let obj = JSON.parse(response);
-                                if (obj.status == "true"){
-                                    refreshpage();
-                                }
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/cetakulangtransaksikasir',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        KODEAI : kodeai,
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            for (let i = 0; i < response.totaldata; i++) {
+                                Object.keys(response.dataquery[i]).forEach(function(k){
+                                    if (k == "NAMABARANG" || k == "HARGAJUAL") inforkartubarang.push(response.dataquery[i][k])
+                                    if (k == "PRINCIPAL_ID") inforkartubarang.push((response.dataquery[i]["HARGAJUAL"] * response.dataquery[i]["STOKBARANGKELUAR"]))
+                                    if (k == "DARIPERUSAHAAN" || k == "FK_BARANG" || k == "STOKBARANGKELUAR") inforkartubarang.push(response.dataquery[i][k])
+                                });
+                                keranjangarray.push(inforkartubarang)
+                                inforkartubarang = []
                             }
-                        });
+                            $.ajax({
+                                url: baseurljavascript + 'penjualan/cetaknota',
+                                method: 'POST',
+                                dataType: 'json',
+                                data: {
+                                    INFORMASIBARANG : JSON.stringify(keranjangarray),
+                                    NOTAPENJUALAN : response.dataquery[0].PK_NOTAPENJUALAN,
+                                    NAMAMEMBER : response.dataquery[0].NAMAMEMBER,
+                                    NAMASALESMAN : response.dataquery[0].NAMASALESMAN,
+                                    TGLKELUAR : moment(response.dataquery[0].TGLKELUAR).format('DD-MM-YYYY'),
+                                    WAKTU : response.dataquery[0].WAKTU,
+                                    KETERANGAN : response.dataquery[0].KETERANGAN,
+                                    NOMINALTUNAI : response.dataquery[0].NOMINALTUNAI,
+                                    NOMINALKREDIT : response.dataquery[0].NOMINALKREDIT,
+                                    NOMINALKARTUDEBIT : response.dataquery[0].NOMINALKARTUDEBIT,
+                                    NOMORKARTUDEBIT :  response.dataquery[0].NOMORKARTUDEBIT,
+                                    BANKDEBIT :  response.dataquery[0].BANKDEBIT,
+                                    NOMINALKARTUKREDIT :  response.dataquery[0].NOMINALKARTUKREDIT,
+                                    NOMORKARTUKREDIT :  response.dataquery[0].NOMORKARTUKREDIT,
+                                    BANKKREDIT :  response.dataquery[0].BANKKREDIT,
+                                    NOMINALEMONEY :  response.dataquery[0].NOMINALEMONEY,
+                                    NAMAEMONEY :  response.dataquery[0].NAMAEMONEY,
+                                    NOMINALPOTONGAN :  response.dataquery[0].NOMINALPOTONGAN,
+                                    NOMINALPAJAKKELUAR :  response.dataquery[0].NOMINALPAJAKKELUAR,
+                                    KEMBALIAN:  response.dataquery[0].KEMBALIAN,
+                                    TOTALBELANJA:  response.dataquery[0].TOTALBELANJA,
+                                    PAJAKTOKO :  response.dataquery[0].PAJAKTOKO,
+                                    PAJAKNEGARA :  response.dataquery[0].PAJAKNEGARA,
+                                    POTONGANGLOBAL :  response.dataquery[0].POTONGANGLOBAL,
+                                    NOMINALBAYAR:  response.dataquery[0].TOTALBELANJA + response.dataquery[0].KEMBALIAN,
+                                    NAMAPENGGUNA :  response.dataquery[0].USERNAMELOGIN,
+                                },
+                                success: function (response) {
+                                    let obj = JSON.parse(response);
+                                    if (obj.status == "true"){
+                                        refreshpage();
+                                    }
+                                }
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })   
@@ -355,131 +634,136 @@ function simpantransaksi(){
             }       
         }
     });
-    $.ajax({
-        url: baseurljavascript + 'penjualan/simpantransaksi',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            INFORMASIBARANG : JSON.stringify(keranjangarray),
-            ADADATA: indexsubarray,
-            PK_NOTAPENJUALAN : $('#notakasirpenjualan').html(),
-            FK_MEMBER : $('#idmember').html(),
-            FK_SALESMAN : $('#idsalesman').html(),
-            ENUM_JENISTRANSAKSI : jenistransaksienum,
-            JATUHTEMPO : $('#lamajatuhtempo').html(),
-            LOKASI : session_outlet,
-            TGLKELUAR : $('#tanggaltrxfield').val().split("-").reverse().join("-"),
-            WAKTU : timenow,
-            KASIR : session_pengguna_id,
-            NOMORNOTA : $('#notakasirpenjualan').html().split('#')[1],
-            KETERANGAN : $('#keterangantransaksi').val(),
-            KODEUNIKMEMBER : session_kodeunikmember,
-            NOMINALTUNAI : nominaltunai.getNumber(),
-            NOMINALKREDIT : nominalkredit.getNumber(),
-            NOMINALKARTUDEBIT : nomorkartudebit.getNumber(),
-            NOMORKARTUDEBIT : $('#nomorkartudebitdantrx').val(),
-            BANKDEBIT : $('#idkartudebit').html(),
-            NOMINALKARTUKREDIT : nomorkartukredit.getNumber(),
-            NOMORKARTUKREDIT : $('#nomorkartukreditdantrx').val(),
-            BANKKREDIT : $('#idkartukredit').html(),
-            NOMINALEMONEY : nominalemoney.getNumber(),
-            NAMAEMONEY : $('#idemoney').html(),
-            NOMINALPOTONGAN : nominalpotongan.getNumber(),
-            NOMINALPAJAKKELUAR : 0,
-            KEMBALIAN: nominalkembalian.getNumber(),
-            TOTALBELANJA: Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
-            ISEDITKASIR : iseditkasir,
-            PAJAKTOKO : nominalpajaktoko.getNumber(),
-            PAJAKNEGARA : nominalpajaknegara.getNumber(),
-            POTONGANGLOBAL : nominalpotongan.getNumber(),
-            TIPETRANSAKSI : tipeordernya,
-            /*jika pesanan tipe oerder 1 */
-            KODEPESAN : $('#kodepesan_rev').val(),
-            KODEMENUPESANAN : $('#kodemenupesan_rev').val(),
-            KODEMEJA : $('#kodemejaterpilih_rev').val(),
-            PEMESAN : $('#namapemesan_rev').val(),
-            NOTELEPON : $('#notelp_rev').val(),
-            UNTUKBERAPAORANG : $('#berapaorang_rev').val(),
-            TOTALBELANJA : Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
-            DP : dp_rev.getNumber(),
-            TANGGAL : $('#tanggalawal_rev').val().split("-").reverse().join("-"),
-            WAKTUAWAL : $('#waktuawal_rev').val(),
-            TANGGALAKHIR : $('#tanggalakhir_rev').val().split("-").reverse().join("-"),
-            WAKTUAKHIR : $('#waktuselesai_rev').val(),
-            NOMOR : $('#notakasirpenjualan').html().split('#')[1],
-            WARNAMEMO : $('#warnamemo_rev').val(),
-            STATUSPESAN : 1 ,
-        },
-        success: function (response) {
-            $('#modalkonfirmasipembayaran').modal('toggle');
-            if (response.hasiljson[0].success == "true"){
-                swal.fire({
-                    title: "Hore.. Transaksi Berhasil!!",
-                    icon: 'success',
-                    text: response.hasiljson[0].msg,
-                    //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
-                    //imageHeight: 150,
-                    showCancelButton:true,
-                    confirmButtonText: "Cetak Nota ini",
-                    cancelButtonText: "Skip. Tidak cetak nota!",
-                }).then(function(result){
-                    refreshpage();
-                    $("#btnsimpantransaksi").html("<i class=\"fa fa-print ms-2\"></i> [End] Simpan + Cetak");
-                    $("#btnsimpantransaksi").prop('disabled', false);
-                    if(result.isConfirmed){
-                        $.ajax({
-                            url: baseurljavascript + 'penjualan/cetaknota',
-                            method: 'POST',
-                            dataType: 'json',
-                            data: {
-                                INFORMASIBARANG : JSON.stringify(keranjangarray),
-                                NOTAPENJUALAN : $('#notakasirpenjualan').html(),
-                                NAMAMEMBER : $('#namamember').html(),
-                                NAMASALESMAN : $('#namasalesman').html(),
-                                TGLKELUAR : $('#tanggaltrxfield').val(),
-                                WAKTU : timenow.replaceAll('.', ':'),
-                                KETERANGAN : $('#keterangantransaksi').val(),
-                                NOMINALTUNAI : nominaltunai.getNumber(),
-                                NOMINALKREDIT : nominalkredit.getNumber(),
-                                NOMINALKARTUDEBIT : nomorkartudebit.getNumber(),
-                                NOMORKARTUDEBIT : $('#nomorkartudebitdantrx').val(),
-                                BANKDEBIT : $('#idkartudebit').html(),
-                                NOMINALKARTUKREDIT : nomorkartukredit.getNumber(),
-                                NOMORKARTUKREDIT : $('#nomorkartukreditdantrx').val(),
-                                BANKKREDIT : $('#idkartukredit').html(),
-                                NOMINALEMONEY : nominalemoney.getNumber(),
-                                NAMAEMONEY : $('#idemoney').html(),
-                                NOMINALPOTONGAN : nominalpotongan.getNumber(),
-                                NOMINALPAJAKKELUAR : 0,
-                                KEMBALIAN: nominalkembalian.getNumber(),
-                                TOTALBELANJA: Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
-                                PAJAKTOKO : nominalpajaktoko.getNumber(),
-                                PAJAKNEGARA : nominalpajaknegara.getNumber(),
-                                POTONGANGLOBAL : nominalpotongan.getNumber(),
-                                NOMINALBAYAR: (Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()) + nominalkembalian.getNumber()),
-                                NAMAPENGGUNA: session_namapengguna,
-                            },
-                            success: function (response) {
-                                
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/simpantransaksi',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                INFORMASIBARANG : JSON.stringify(keranjangarray),
+                ADADATA: indexsubarray,
+                PK_NOTAPENJUALAN : $('#notakasirpenjualan').html(),
+                FK_MEMBER : $('#idmember').html(),
+                FK_SALESMAN : $('#idsalesman').html(),
+                ENUM_JENISTRANSAKSI : jenistransaksienum,
+                JATUHTEMPO : $('#lamajatuhtempo').html(),
+                LOKASI : session_outlet,
+                TGLKELUAR : $('#tanggaltrxfield').val().split("-").reverse().join("-"),
+                WAKTU : timenow,
+                KASIR : session_pengguna_id,
+                NOMORNOTA : $('#notakasirpenjualan').html().split('#')[1],
+                KETERANGAN : $('#keterangantransaksi').val(),
+                KODEUNIKMEMBER : session_kodeunikmember,
+                NOMINALTUNAI : nominaltunai.getNumber(),
+                NOMINALKREDIT : nominalkredit.getNumber(),
+                NOMINALKARTUDEBIT : nomorkartudebit.getNumber(),
+                NOMORKARTUDEBIT : $('#nomorkartudebitdantrx').val(),
+                BANKDEBIT : $('#idkartudebit').html(),
+                NOMINALKARTUKREDIT : nomorkartukredit.getNumber(),
+                NOMORKARTUKREDIT : $('#nomorkartukreditdantrx').val(),
+                BANKKREDIT : $('#idkartukredit').html(),
+                NOMINALEMONEY : nominalemoney.getNumber(),
+                NAMAEMONEY : $('#idemoney').html(),
+                NOMINALPOTONGAN : nominalpotongan.getNumber(),
+                NOMINALPAJAKKELUAR : 0,
+                KEMBALIAN: nominalkembalian.getNumber(),
+                TOTALBELANJA: Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
+                ISEDITKASIR : iseditkasir,
+                PAJAKTOKO : nominalpajaktoko.getNumber(),
+                PAJAKNEGARA : nominalpajaknegara.getNumber(),
+                POTONGANGLOBAL : nominalpotongan.getNumber(),
+                TIPETRANSAKSI : tipeordernya,
+                /*jika pesanan tipe oerder 1 */
+                KODEPESAN : $('#kodepesan_rev').val(),
+                KODEMENUPESANAN : $('#kodemenupesan_rev').val(),
+                KODEMEJA : $('#kodemejaterpilih_rev').val(),
+                PEMESAN : $('#namapemesan_rev').val(),
+                NOTELEPON : $('#notelp_rev').val(),
+                UNTUKBERAPAORANG : $('#berapaorang_rev').val(),
+                TOTALBELANJA : Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
+                DP : dp_rev.getNumber(),
+                TANGGAL : $('#tanggalawal_rev').val().split("-").reverse().join("-"),
+                WAKTUAWAL : $('#waktuawal_rev').val(),
+                TANGGALAKHIR : $('#tanggalakhir_rev').val().split("-").reverse().join("-"),
+                WAKTUAKHIR : $('#waktuselesai_rev').val(),
+                NOMOR : $('#notakasirpenjualan').html().split('#')[1],
+                WARNAMEMO : $('#warnamemo_rev').val(),
+                STATUSPESAN : 1 ,
+            },
+            success: function (response) {
+                $('#modalkonfirmasipembayaran').modal('toggle');
+                if (response.hasiljson[0].success == "true"){
+                    let refreshPromise = new Promise(function(resolve, reject) {refreshpage();resolve();});
+                    swal.fire({
+                        title: "Hore.. Transaksi Berhasil!!",
+                        icon: 'success',
+                        text: response.hasiljson[0].msg,
+                        //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
+                        //imageHeight: 150,
+                        showCancelButton:true,
+                        confirmButtonText: "Cetak Nota ini",
+                        cancelButtonText: "Skip. Tidak cetak nota!",
+                    }).then(function(result){
+                        $("#btnsimpantransaksi").html("<i class=\"fa fa-print ms-2\"></i> [End] Simpan + Cetak");
+                        $("#btnsimpantransaksi").prop('disabled', false);
+                        if(result.isConfirmed){
+                            getCsrfTokenCallback(function() {
+                                $.ajax({
+                                    url: baseurljavascript + 'penjualan/cetaknota',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        [csrfName]:csrfTokenGlobal,
+                                        INFORMASIBARANG : JSON.stringify(keranjangarray),
+                                        NOTAPENJUALAN : $('#notakasirpenjualan').html(),
+                                        NAMAMEMBER : $('#namamember').html(),
+                                        NAMASALESMAN : $('#namasalesman').html(),
+                                        TGLKELUAR : $('#tanggaltrxfield').val(),
+                                        WAKTU : timenow.replaceAll('.', ':'),
+                                        KETERANGAN : $('#keterangantransaksi').val(),
+                                        NOMINALTUNAI : nominaltunai.getNumber(),
+                                        NOMINALKREDIT : nominalkredit.getNumber(),
+                                        NOMINALKARTUDEBIT : nomorkartudebit.getNumber(),
+                                        NOMORKARTUDEBIT : $('#nomorkartudebitdantrx').val(),
+                                        BANKDEBIT : $('#idkartudebit').html(),
+                                        NOMINALKARTUKREDIT : nomorkartukredit.getNumber(),
+                                        NOMORKARTUKREDIT : $('#nomorkartukreditdantrx').val(),
+                                        BANKKREDIT : $('#idkartukredit').html(),
+                                        NOMINALEMONEY : nominalemoney.getNumber(),
+                                        NAMAEMONEY : $('#idemoney').html(),
+                                        NOMINALPOTONGAN : nominalpotongan.getNumber(),
+                                        NOMINALPAJAKKELUAR : 0,
+                                        KEMBALIAN: nominalkembalian.getNumber(),
+                                        TOTALBELANJA: Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),
+                                        PAJAKTOKO : nominalpajaktoko.getNumber(),
+                                        PAJAKNEGARA : nominalpajaknegara.getNumber(),
+                                        POTONGANGLOBAL : nominalpotongan.getNumber(),
+                                        NOMINALBAYAR: (Number($('#totalbelanjakonfirmasi').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()) + nominalkembalian.getNumber()),
+                                        NAMAPENGGUNA: session_namapengguna,
+                                    },
+                                    success: function (response) {
+                                    }
+                                });
+                            });
+                            if (iseditkasir == "true"){
+                                refreshPromise.then(function() {location.href = baseurljavascript+"penjualan/kasir/";});
+                            }   
+                        }else{
+                            if (iseditkasir == "true"){
+                                refreshPromise.then(function() {location.href = baseurljavascript+"penjualan/kasir/";});
                             }
-                        });
-                        if (iseditkasir == "true"){
-                            location.href = baseurljavascript+"/penjualan/kasir/";
                         }
-                    }else{
-                        if (iseditkasir == "true"){
-                            location.href = baseurljavascript+"/penjualan/kasir/";
-                        }
-                    }
-                })   
-            }else{
-                Swal.fire({
-                    title: "Terjadi Kesalahan",
-                    text: response.hasiljson[0].msg,
-                    icon: 'warning',
-                });
+                    })   
+                }else{
+                    Swal.fire({
+                        title: "Terjadi Kesalahan",
+                        text: response.hasiljson[0].msg,
+                        icon: 'warning',
+                    });
+                }
             }
-        }
+        });
     });
 }
 function refreshpage(){
@@ -520,38 +804,34 @@ function keybindenterkonfirmasipembayaran(idtextfield){
 }
 function loadnotakasir(){
     if (iseditkasir == "false"){
-        $.ajax({
-            url: baseurljavascript + 'penjualan/notamenupenjualan',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                AWALANOTA : "PJ",
-                OUTLET: session_outlet,
-                KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
-                TANGGALSEKARANG: moment().format('YYYYMMDD'),
-                KODEUNIKMEMBER: session_kodeunikmember,
-            },
-            success: function (response) {
-                let obj = JSON.parse(response);
-                if (obj.status == "false"){
-                    Swal.fire(
-                        'Pembuatan Nota Error!',
-                        obj.msg,
-                        'warning'
-                    ) 
+        getCsrfTokenCallback(function() {
+            $.ajax({
+                url: baseurljavascript + 'penjualan/notamenupenjualan',
+                method: 'POST',
+                dataType: 'json',
+                data: {
+                    [csrfName]:csrfTokenGlobal,
+                    AWALANOTA : "PJ",
+                    OUTLET: session_outlet,
+                    KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
+                    TANGGALSEKARANG: moment().format('YYYYMMDD'),
+                    KODEUNIKMEMBER: session_kodeunikmember,
+                },
+                success: function (response) {
+                    $('#notakasirpenjualan').html(response.nomornota);
                 }
-                $('#notakasirpenjualan').html(obj.nomornota);
-            }
+            });
         });
     }
 }
 function loadnotareservasi(){
-    function ajaxnota(){
+    getCsrfTokenCallback(function() {
         $.ajax({
             url: baseurljavascript + 'penjualan/notamenupenjualan',
             method: 'POST',
             dataType: 'json',
             data: {
+                [csrfName]:csrfTokenGlobal,
                 AWALANOTA : "MJ",
                 OUTLET: session_outlet,
                 KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
@@ -559,108 +839,100 @@ function loadnotareservasi(){
                 KODEUNIKMEMBER: session_kodeunikmember,
             },
             success: function (response) {
-                let obj = JSON.parse(response);
-                if (obj.status == "false"){
-                    Swal.fire(
-                        'Pembuatan Nota Error!',
-                        obj.msg,
-                        'warning'
-                    ) 
-                }
-                $('#kodepesan_rev').val(obj.nomornota);
+                $('#kodepesan_rev').val(response.nomornota);
             }
         });
-    }
-    if (iseditkasir == "false"){
-        ajaxnota();
-    }else if (iseditkasir == "true" && kodepesanmeja == ""){
-        ajaxnota();
-    }
+    });
 }
 function loadkeranjangsementara(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/bacakeranjangkasir',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.adadata === "ada"){
-                let namavariannya = "";
-                Object.entries(obj.datakeranjang).forEach(([key, value]) => {
-                    let kondisiicon = "",textfieldnya = "<h1>"+value.QTY+"</h1>";
-                    let objjsonStrjenisvarian = JSON.parse(atob(value.JSONTAMBAHAN));
-                    if (value.STATUSBARANGPROSES == "-3"){
-                        kondisiicon = "<div class=\"avatar-display\"><i style=\"color:green;font-size:20px\" class=\"fas fa-solid fa-circle-check fa-fade fa-xl\"></i></div>";
-                    }else if (value.STATUSBARANGPROSES == "-2"){
-                        kondisiicon = "<div class=\"avatar-display\"><i style=\"color:green;font-size:20px\" class=\"fas fa-solid fa-utensils fa-fade fa-xl\"></i></div>";
-                    }else if (value.STATUSBARANGPROSES == "-1"){
-                            kondisiicon = "<div class=\"avatar-display\"><i style=\"color:green;font-size:20px\" class=\"fas fa-solid fa-spell-check fa-fade fa-xl\"></i></div>";
-                    }else if (value.STATUSBARANGPROSES == "1"){
-                        kondisiicon = "<div class=\"avatar-display\"><i style=\"color:red;font-size:20px\" class=\"fas fa-solid fa-hourglass-half fa-fade fa-xl\"></i></div>";
-                    }else if (value.STATUSBARANGPROSES == "0"){
-                        kondisiicon = "<div class=\"avatar-display\"><i style=\";font-size:20px\" class=\"fas fa-solid fa-boxes-packing fa-xl\"></i></div>";
-                        textfieldnya = "<input id=\"barangkeluarqty"+value.BARANG_ID+"\" class=\"qtyformat form-control form-control-lg\" type=\"text\" value=\""+value.QTY+"\">";
-                    }
-                    Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
-                        value.forEach((variandetail) => {
-                            namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/bacakeranjangkasir',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.adadata === "ada"){
+                    let namavariannya = "";
+                    Object.entries(obj.datakeranjang).forEach(([key, value]) => {
+                        let kondisiicon = "",textfieldnya = "<h1>"+value.QTY+"</h1>";
+                        let objjsonStrjenisvarian = JSON.parse(atob(value.JSONTAMBAHAN));
+                        if (value.STATUSBARANGPROSES == "-3"){
+                            kondisiicon = "<div class=\"avatar-display\"><i style=\"color:green;font-size:20px\" class=\"fas fa-solid fa-circle-check fa-fade fa-xl\"></i></div>";
+                        }else if (value.STATUSBARANGPROSES == "-2"){
+                            kondisiicon = "<div class=\"avatar-display\"><i style=\"color:green;font-size:20px\" class=\"fas fa-solid fa-utensils fa-fade fa-xl\"></i></div>";
+                        }else if (value.STATUSBARANGPROSES == "-1"){
+                                kondisiicon = "<div class=\"avatar-display\"><i style=\"color:green;font-size:20px\" class=\"fas fa-solid fa-spell-check fa-fade fa-xl\"></i></div>";
+                        }else if (value.STATUSBARANGPROSES == "1"){
+                            kondisiicon = "<div class=\"avatar-display\"><i style=\"color:red;font-size:20px\" class=\"fas fa-solid fa-hourglass-half fa-fade fa-xl\"></i></div>";
+                        }else if (value.STATUSBARANGPROSES == "0"){
+                            kondisiicon = "<div class=\"avatar-display\"><i style=\";font-size:20px\" class=\"fas fa-solid fa-boxes-packing fa-xl\"></i></div>";
+                            textfieldnya = "<input id=\"barangkeluarqty"+value.BARANG_ID+"\" class=\"qtyformat form-control form-control-lg\" type=\"text\" value=\""+value.QTY+"\">";
+                        }
+                        Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
+                            value.forEach((variandetail) => {
+                                namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+                            })
                         })
-                    })
-let prependHTML = ""
-+"<div id=\"barisbelanja"+value.BARANG_ID+"\" class=\"portlet mb-1\">"
-    +"<div class=\"rich-list-item flex-column align-items-stretch\"><div class=\"rich-list-item p-0\">"
-        +"<div class=\"rich-list-prepend\">"
-            +"<div class=\"avatar\">"+kondisiicon+"</div>"
+    let prependHTML = ""
+    +"<div id=\"barisbelanja"+value.BARANG_ID+"\" class=\"portlet mb-1\">"
+        +"<div class=\"rich-list-item flex-column align-items-stretch\"><div class=\"rich-list-item p-0\">"
+            +"<div class=\"rich-list-prepend\">"
+                +"<div class=\"avatar\">"+kondisiicon+"</div>"
+            +"</div>"
+        +"<div class=\"rich-list-content\">"
+            +"<h4 class=\"rich-list-title\"><span class=\"informasibarang\" id=\"namabarang"+value.BARANG_ID+"\">"+value.NAMA_BARANG+"</span></h4>"
+            +"<span class=\"rich-list-subtitle\">HJ @<span class=\"informasibarang\" id=\"hargajual"+value.BARANG_ID+"\">"+formatter.format(value.HARGA_JUAL)+"</span>"
+            +"<span tyle=\"display:none\" style=\"display:none\" id=\"hargajualasli"+value.BARANG_ID+"\">"+value.HARGAASLI+"</span>"
         +"</div>"
-    +"<div class=\"rich-list-content\">"
-        +"<h4 class=\"rich-list-title\"><span class=\"informasibarang\" id=\"namabarang"+value.BARANG_ID+"\">"+value.NAMA_BARANG+"</span></h4>"
-        +"<span class=\"rich-list-subtitle\">HJ @<span class=\"informasibarang\" id=\"hargajual"+value.BARANG_ID+"\">"+formatter.format(value.HARGA_JUAL)+"</span>"
-        +"<span tyle=\"display:none\" style=\"display:none\" id=\"hargajualasli"+value.BARANG_ID+"\">"+value.HARGAASLI+"</span>"
+        +"<div class=\"rich-list-append\">"
+            +"<button onclick=\"modalinfobarang('"+value.BARANG_ID+"','"+value.HARGAASLISEMENTARA+"','"+value.KETERANGAN+"','"+value.HARGAASLI+"','"+value.STATUSBARANGPROSES+"')\" style=\"margin-right:5px\" class=\"btn btn-label-success\"><i class=\"fa fa-bars\"></i>"+(value.APAKAHVARIAN == "AKTIF" ? "<div class=\"btn-marker\"><i class=\"marker marker-dot text-success\"></i></div>" : "")+"</button>"
+            +"<button onclick=\"hapusbarangkeranjang('"+value.BARANG_ID+"','"+value.NAMA_BARANG+"','"+value.STATUSBARANGPROSES+"')\" class=\"btn btn-label-danger\"><i class=\"fas fa-trash\"></i></button>"
+        +"</div>"
     +"</div>"
-    +"<div class=\"rich-list-append\">"
-        +"<button onclick=\"modalinfobarang('"+value.BARANG_ID+"','"+value.HARGAASLISEMENTARA+"','"+value.KETERANGAN+"','"+value.HARGAASLI+"','"+value.STATUSBARANGPROSES+"')\" style=\"margin-right:5px\" class=\"btn btn-label-success\"><i class=\"fa fa-bars\"></i>"+(value.APAKAHVARIAN == "AKTIF" ? "<div class=\"btn-marker\"><i class=\"marker marker-dot text-success\"></i></div>" : "")+"</button>"
-        +"<button onclick=\"hapusbarangkeranjang('"+value.BARANG_ID+"','"+value.NAMA_BARANG+"','"+value.STATUSBARANGPROSES+"')\" class=\"btn btn-label-danger\"><i class=\"fas fa-trash\"></i></button>"
+    +"<div class=\"form-group row pt-2\">"
+        +"<div class=\"col-md-5\">"+textfieldnya+"</div>"
+        +"<div class=\"col-md-7 mt-0\">"
+            +"<strong> SUB TOTAL : </strong><br>"
+            +"<span class=\"informasibarang\" id=\"subtotalbarang"+value.BARANG_ID+"\">0</span>"
+        +"</div>"
+        +"<div class=\"ml-3\">"
+            +"<h4 class=\"rich-list-title\">VARIAN : <span id=\"varian"+value.BARANG_ID+"\">"+namavariannya+"</span></h4>"
+        +"</div>"
     +"</div>"
-+"</div>"
-+"<div class=\"form-group row pt-2\">"
-    +"<div class=\"col-md-5\">"+textfieldnya+"</div>"
-    +"<div class=\"col-md-7 mt-0\">"
-        +"<strong> SUB TOTAL : </strong><br>"
-        +"<span class=\"informasibarang\" id=\"subtotalbarang"+value.BARANG_ID+"\">0</span>"
-    +"</div>"
-    +"<div class=\"ml-3\">"
-        +"<h4 class=\"rich-list-title\">VARIAN : <span id=\"varian"+value.BARANG_ID+"\">"+namavariannya+"</span></h4>"
-    +"</div>"
-+"</div>"
-+"<div id=\"informasibarangheader\" style=\"display:none\" >"
-+"<div id=\"dariperusahaan"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.DARIPERUSAHAAN+"</div>"
-+"<div id=\"kodebarang"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.BARANG_ID+"</div>"
-+"<div id=\"hargabeli"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.HARGA_BELI.replace('.', ',')+"</div>"
-+"<div id=\"qtylabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+($("#barangkeluarqty"+value.BARANG_ID).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+value.BARANG_ID).val()) + Number($("#qtykeluarkasir").val())))+"</div>"
-+"<div id=\"brandlabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.BRAND_ID+"</div>"
-+"<div id=\"principallabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.PRINCIPAL_ID+"</div>"
-+"<div id=\"stokdapatminuslabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.STOKDAPATMINUS+"</div>"
-+"<div id=\"jsonjenisvarian"+value.BARANG_ID+"\" class=\"informasibarang\">"+atob(value.JSONTAMBAHAN)+"</div>"
-+"<div id=\"keterangantiapbarang"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.KETERANGAN+"</div>"
-+"<div id=\"apakahvarian"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.APAKAHVARIAN+"</div>"
-+"<div id=\"hargajualubah"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.HARGAASLISEMENTARA.replace('.', ',')+"</div>"
-+"<div id=\"statusprosesitem"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.STATUSBARANGPROSES+"</div>"
-+"<div class=\"informasibarang\">====</div>"
-+"</div>";
-                    $("#keranjangbelanja").prepend(prependHTML);
-                    $("#barangkeluarqty"+value.BARANG_ID).TouchSpin({min: 1,max: 999999,decimals: 2,forcestepdivisibility: 'none',}).on('input change', debounce(function (e) {
-                        $("#qtylabel"+value.BARANG_ID).html($(this).val().replace('.', ',').trim());
-                        updatebarangkerankang(value.BARANG_ID,$(this).val(),value.HARGA_JUAL)
-                    }, 500));
-                    $("#subtotalbarang"+value.BARANG_ID).html(formatter.format(Number(value.HARGA_JUAL) * Number(value.QTY)));
-                    $("#qtylabel"+value.BARANG_ID).html(value.QTY.replace('.', ',').trim());
-                });
-            }else{
-                $('#keranjangkosong').html('<div style="position: absolute;top: 8%; bottom: 0; left: 0; right: 0;margin: auto;" class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Keranjang Belanja Anda Masih Kosong Lo... Silahkan Pilih Item Untuk di Transkasi</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-cart-arrow-down"></i></div></div><!-- END Avatar --><a href="javascript:void(0)" class="btn btn-primary btn-wider">Pilih Barang</a></div>');
-                $("#keranjangbelanja").html("");
+    +"<div id=\"informasibarangheader\" style=\"display:none\" >"
+    +"<div id=\"dariperusahaan"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.DARIPERUSAHAAN+"</div>"
+    +"<div id=\"kodebarang"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.BARANG_ID+"</div>"
+    +"<div id=\"hargabeli"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.HARGA_BELI.replace('.', ',')+"</div>"
+    +"<div id=\"qtylabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+($("#barangkeluarqty"+value.BARANG_ID).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+value.BARANG_ID).val()) + Number($("#qtykeluarkasir").val())))+"</div>"
+    +"<div id=\"brandlabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.BRAND_ID+"</div>"
+    +"<div id=\"principallabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.PRINCIPAL_ID+"</div>"
+    +"<div id=\"stokdapatminuslabel"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.STOKDAPATMINUS+"</div>"
+    +"<div id=\"jsonjenisvarian"+value.BARANG_ID+"\" class=\"informasibarang\">"+atob(value.JSONTAMBAHAN)+"</div>"
+    +"<div id=\"keterangantiapbarang"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.KETERANGAN+"</div>"
+    +"<div id=\"apakahvarian"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.APAKAHVARIAN+"</div>"
+    +"<div id=\"hargajualubah"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.HARGAASLISEMENTARA.replace('.', ',')+"</div>"
+    +"<div id=\"statusprosesitem"+value.BARANG_ID+"\" class=\"informasibarang\">"+value.STATUSBARANGPROSES+"</div>"
+    +"<div class=\"informasibarang\">====</div>"
+    +"</div>";
+                        $("#keranjangbelanja").prepend(prependHTML);
+                        $("#barangkeluarqty"+value.BARANG_ID).TouchSpin({min: 1,max: 999999,decimals: 2,forcestepdivisibility: 'none',}).on('input change', debounce(function (e) {
+                            $("#qtylabel"+value.BARANG_ID).html($(this).val().replace('.', ',').trim());
+                            updatebarangkerankang(value.BARANG_ID,$(this).val(),value.HARGA_JUAL)
+                        }, 500));
+                        $("#subtotalbarang"+value.BARANG_ID).html(formatter.format(Number(value.HARGA_JUAL) * Number(value.QTY)));
+                        $("#qtylabel"+value.BARANG_ID).html(value.QTY.replace('.', ',').trim());
+                    });
+                }else{
+                    $('#keranjangkosong').html('<div style="position: absolute;top: 8%; bottom: 0; left: 0; right: 0;margin: auto;" class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Keranjang Belanja Anda Masih Kosong Lo... Silahkan Pilih Item Untuk di Transkasi</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-cart-arrow-down"></i></div></div><!-- END Avatar --><a href="javascript:void(0)" class="btn btn-primary btn-wider">Pilih Barang</a></div>');
+                    $("#keranjangbelanja").html("");
+                }
+                grandtotalkasir();
             }
-            grandtotalkasir();
-        }
+        });
     });
 }
 function loaddaftarbarang(){
@@ -688,17 +960,46 @@ function loaddaftarbarang(){
                     timer: 1500
                 })
             }
-            for (datake = 0; datake < response[0].totaldata; datake++) {
-                urlgambar = response[0].dataquery[datake].FILENAME == null ? baseurljavascript+"/images/defaultimage.webp" : baseurljavascript+"upload/citraitem/"+response[0].dataquery[datake].FILENAME
-                stringhtmldaftarabrang += "<div onclick=\"pilihbarang('"+response[0].dataquery[datake].BARANG_ID+"','"+response[0].dataquery[datake].NAMABARANG+"','"+response[0].dataquery[datake].HARGAJUAL+"','"+response[0].dataquery[datake].HARGABELI+"','"+response[0].dataquery[datake].DISPLAY+"','"+response[0].dataquery[0].PEMILIK+"','"+response[0].dataquery[datake].APAKAHBONUS+"','"+response[0].dataquery[datake].STOKDAPATMINUS+"','"+response[0].dataquery[datake].BRAND_ID+"','"+response[0].dataquery[datake].PARETO_ID+"','TIDAK ADA KETERANGAN','"+response[0].dataquery[datake].HARGAJUAL+"','"+response[0].dataquery[datake].HARGAJUAL+"')\" style=\"cursor:pointer;\" class=\"item\"><div class=\"content\"><div class=\"card mb-3\"><div class=\"image-container\"><div class=\"first\"><div class=\"d-flex justify-content-between align-items-center\"> <span class=\"discount\">STOK: "+response[0].dataquery[datake].DISPLAY+"</span> <span class=\"wishlist\"><i class=\"img-fluid rounded thumbnail-image fas fa-info-circle\"></i></span> </div></div> <img src=\""+urlgambar+"\" class=\"lazyload img-fluid rounded thumbnail-image\"><div class=\"cardharga voutchers\"><div class=\"voutcher-left text-center\"> <span class=\"voutcher-name\">Harga Jual</span><h5 class=\"voutcher-code\">"+formatter.format(response[0].dataquery[datake].HARGAJUAL)+"</h5></div></div></div><div class=\"product-detail-container p-2\">["+response[0].dataquery[datake].BARANG_ID+"]<br><h5 class=\"dress-name\">"+response[0].dataquery[datake].NAMABARANG+"</h5></div></div></div></div>";
+            stringhtmldaftarabrang += "<div class=\"container\"><div class=\"row\">"
+            for (datake = 0; datake < response[0].totaldata; datake++) { urlgambar=response[0].dataquery[datake].FILENAME=='not_found' ? baseurljavascript+"/images/defaultimage.webp" : baseurljavascript+"upload/citraitem/"+response[0].dataquery[datake].FILENAME 
+            stringhtmldaftarabrang += ""
+            + "<div class=\"col-md-4\" onclick=\"pilihbarang('" + response[0].dataquery[datake].BARANG_ID + "','" + response[0].dataquery[datake].NAMABARANG + "','" + response[0].dataquery[datake].HARGAJUAL + "','" + response[0].dataquery[datake].HARGABELI + "','" + response[0].dataquery[datake].DISPLAY + "','" + response[0].dataquery[0].PEMILIK + "','" + response[0].dataquery[datake].APAKAHBONUS + "','" + response[0].dataquery[datake].STOKDAPATMINUS + "','" + response[0].dataquery[datake].BRAND_ID + "','" + response[0].dataquery[datake].PARETO_ID + "','TIDAK ADA KETERANGAN','" + response[0].dataquery[datake].HARGAJUAL + "','" + response[0].dataquery[datake].HARGAJUAL + "')\" style=\"cursor:pointer;padding: 0 !important;margin: 0 !important;\">"
+            +"<div style=\"padding:5px\">"
+                +"<div class=\"card\">"
+                    +"<div class=\"row no-gutters\">"
+                        +"<div class=\"col-md-5\">"
+                        +"<div class=\"image-container\">"
+                            +"<img src=\""+urlgambar+"\" alt=\"Gambar\">"
+                        +"</div>"
+                        +"</div>"
+                        +"<div class=\"col-md-7\">"
+                            +"<div class=\"card-body\">"
+                                +"<h4 class=\"card-text\">"+response[0].dataquery[datake].NAMABARANG+"</h4>"
+                                +"<h5 class=\"card-title\"><strong>Kode Item : "+response[0].dataquery[datake].BARANG_ID+"</strong></h5>"
+                                +"<h5 class=\"card-title\"><strong>Stok : "+response[0].dataquery[datake].DISPLAY+"</strong></h5>"
+                                +"<button style=\"position: absolute;bottom:0;left:20%;right:0\" class=\"btn btn-block btn-primary\"><i class=\"fa-solid fa-circle-info\"></i></i> INFORMASI</button>"
+                            +"</div>"
+                        +"</div>"
+                        +"</div>"
+                    +"</div>"
+                    +"<div class=\"card row no-gutters\">"
+                        +"<div class=\"col-md-12\">"
+                            +"<h4 style=\"font-size: 200%;font-family:'digital-clock-font'\" class=\"text-center\"><strong>Harga: "+formatter.format(response[0].dataquery[datake].HARGAJUAL)+"</strong></h4>"
+                        +"</div>"
+                    +"</div>"
+                +"</div>"
+            +"</div>";
             }
+            stringhtmldaftarabrang += "</div></div>"
             if (response[0].totaldata == 1){
                 pilihbarang(response[0].dataquery[0].BARANG_ID, response[0].dataquery[0].NAMABARANG, response[0].dataquery[0].HARGAJUAL, response[0].dataquery[0].HARGABELI, response[0].dataquery[0].DISPLAY, response[0].dataquery[0].PEMILIK, response[0].dataquery[0].APAKAHBONUS, response[0].dataquery[0].STOKDAPATMINUS,response[0].dataquery[0].BRAND_ID,response[0].dataquery[0].PARETO_ID,'TIDAK ADA KETERANGAN',response[0].dataquery[0].HARGAJUAL,response[0].dataquery[0].HARGAJUAL);
                 $("#katakuncipencariankasir").val("");
                 $("#katakuncipencariankasir").focus();
             }
-            $("#daftaritemkasir").html(stringhtmldaftarabrang).addClass("gridmansory");
-            $(window).width()<=768?$(".gridmansory").css("grid-template-columns","repeat(auto-fill, minmax(130px,1fr))"):1==menukanan&&1==menukiri?$(".gridmansory").css("grid-template-columns","auto auto auto auto"):0==menukanan&&0==menukiri?$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto auto auto"):$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto");var breakintervalsize=setInterval(function(){resizeAllGridItems(),5==stopinterval&&clearInterval(breakintervalsize),stopinterval+=1},1e3);
+            $("#daftaritemkasir").html(stringhtmldaftarabrang)
+        },
+        error: function(xhr, status, error) {
+            toastr["error"](xhr.responseJSON.message);
         }
     });
     $('#kontenbarang').unblock()
@@ -773,110 +1074,116 @@ function subpilihbarang(barangid, namabarang, hargajual, hargabeli, sisastokmaks
             icon: 'error',
         });
     }
-    let timestamp = Math.floor(Date.now() / 1000)
-    $.ajax({
-        url: baseurljavascript + 'penjualan/tambahkeranjang',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            BARANG_ID: barangid,
-            NAMA_BARANG: namabarang,
-            QTY: ($("#barangkeluarqty"+barangid).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val()))),
-            HARGA_JUAL: hargajual,
-            HARGA_BELI: hargabeli,
-            PPN: '0',
-            DARIPERUSAHAAN: pemilik,
-            ISEDIT: iseditkasir,
-            APAKAHVARIAN: apakahvarian,
-            STOKDAPATMINUS: stokdapatminus,
-            JSONTAMBAHAN: btoa(jsonStrjenisvarian),
-            BRAND_ID: brandid,
-            PRINCIPAL_ID: principalid,
-            KETERANGAN: keterangantiapbarang,
-            HARGAASLI:hargajualasli,
-        },
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true"){
-                let namavariannya = "";
-                let objjsonStrjenisvarian = JSON.parse(jsonStrjenisvarian);
-                Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
-                    value.forEach((variandetail) => {
-                        namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+    timestamp = Math.floor(Date.now() / 1000)
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/tambahkeranjang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                BARANG_ID: barangid,
+                NAMA_BARANG: namabarang,
+                QTY: ($("#barangkeluarqty"+barangid).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val()))),
+                HARGA_JUAL: hargajual,
+                HARGA_BELI: hargabeli,
+                PPN: '0',
+                DARIPERUSAHAAN: pemilik,
+                ISEDIT: iseditkasir,
+                APAKAHVARIAN: apakahvarian,
+                STOKDAPATMINUS: stokdapatminus,
+                JSONTAMBAHAN: btoa(jsonStrjenisvarian),
+                BRAND_ID: brandid,
+                PRINCIPAL_ID: principalid,
+                KETERANGAN: keterangantiapbarang,
+                HARGAASLI:hargajualasli,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true"){
+                    let namavariannya = "";
+                    let objjsonStrjenisvarian = JSON.parse(jsonStrjenisvarian);
+                    Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
+                        value.forEach((variandetail) => {
+                            namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+                        })
                     })
-                })
-let prependHTML = ""
-+"<div id=\"barisbelanja"+barangid+"\" class=\"portlet mb-1\">"
-    +"<div class=\"rich-list-item flex-column align-items-stretch\"><div class=\"rich-list-item p-0\">"
-        +"<div class=\"rich-list-prepend\">"
-            +"<div class=\"avatar\">"
-                +"<div class=\"avatar-display\"><i class=\"fas fa-box\"></i></div>"
+    let prependHTML = ""
+    +"<div id=\"barisbelanja"+barangid+"\" class=\"portlet mb-1\">"
+        +"<div class=\"rich-list-item flex-column align-items-stretch\"><div class=\"rich-list-item p-0\">"
+            +"<div class=\"rich-list-prepend\">"
+                +"<div class=\"avatar\">"
+                    +"<div class=\"avatar-display\"><i class=\"fas fa-box\"></i></div>"
+                +"</div>"
             +"</div>"
+        +"<div class=\"rich-list-content\">"
+            +"<h4 class=\"rich-list-title\"><span class=\"informasibarang\" id=\"namabarang"+barangid+"\">"+namabarang+"</span></h4>"
+            +"<span class=\"rich-list-subtitle\">HJ @<span class=\"informasibarang\" id=\"hargajual"+barangid+"\">"+formatter.format(hargajual)+"</span>"
+            +"<span style=\"display:none\" id=\"hargajualasli"+barangid+"\">"+hargajualasli+"</span>"
         +"</div>"
-    +"<div class=\"rich-list-content\">"
-        +"<h4 class=\"rich-list-title\"><span class=\"informasibarang\" id=\"namabarang"+barangid+"\">"+namabarang+"</span></h4>"
-        +"<span class=\"rich-list-subtitle\">HJ @<span class=\"informasibarang\" id=\"hargajual"+barangid+"\">"+formatter.format(hargajual)+"</span>"
-        +"<span style=\"display:none\" id=\"hargajualasli"+barangid+"\">"+hargajualasli+"</span>"
+        +"<div class=\"rich-list-append\">"
+            +"<button onclick=\"modalinfobarang('"+barangid+"','"+hargajualaslisementara+"','"+keterangantiapbarang+"','"+hargajualasli+"','0')\" style=\"margin-right:5px\" class=\"btn btn-label-success\"><i class=\"fa fa-bars\"></i>"+(apakahvarian == "AKTIF" ? "<div class=\"btn-marker\"><i class=\"marker marker-dot text-success\"></i></div>" : "")+"</button>"
+            +"<button onclick=\"hapusbarangkeranjang('"+barangid+"','"+namabarang+"','0')\" class=\"btn btn-label-danger\"><i class=\"fas fa-trash\"></i></button>"
+        +"</div>"
     +"</div>"
-    +"<div class=\"rich-list-append\">"
-        +"<button onclick=\"modalinfobarang('"+barangid+"','"+hargajualaslisementara+"','"+keterangantiapbarang+"','"+hargajualasli+"','0')\" style=\"margin-right:5px\" class=\"btn btn-label-success\"><i class=\"fa fa-bars\"></i>"+(apakahvarian == "AKTIF" ? "<div class=\"btn-marker\"><i class=\"marker marker-dot text-success\"></i></div>" : "")+"</button>"
-        +"<button onclick=\"hapusbarangkeranjang('"+barangid+"','"+namabarang+"','0')\" class=\"btn btn-label-danger\"><i class=\"fas fa-trash\"></i></button>"
+    +"<div class=\"form-group row pt-2\">"
+        +"<div class=\"col-md-5\">"
+            +"<input id=\"barangkeluarqty"+barangid+"\" class=\"informasibarang qtyformat form-control form-control-lg\" type=\"text\" value=\""+($("#barangkeluarqty"+barangid).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val())))+"\">"
+        +"</div>"
+        +"<div class=\"col-md-7 mt-0\">"
+            +"<strong> SUB TOTAL : </strong><br>"
+            +"<span class=\"informasibarang\" id=\"subtotalbarang"+barangid+"\">0</span>"
+        +"</div>"
+        +"<div class=\"ml-3\">"
+            +"<h4 class=\"rich-list-title\">VARIAN : <span id=\"varian"+barangid+"\">"+namavariannya+"</span></h4>"
+        +"</div>"
     +"</div>"
-+"</div>"
-+"<div class=\"form-group row pt-2\">"
-    +"<div class=\"col-md-5\">"
-        +"<input id=\"barangkeluarqty"+barangid+"\" class=\"informasibarang qtyformat form-control form-control-lg\" type=\"text\" value=\""+($("#barangkeluarqty"+barangid).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val())))+"\">"
-    +"</div>"
-    +"<div class=\"col-md-7 mt-0\">"
-        +"<strong> SUB TOTAL : </strong><br>"
-        +"<span class=\"informasibarang\" id=\"subtotalbarang"+barangid+"\">0</span>"
-    +"</div>"
-    +"<div class=\"ml-3\">"
-        +"<h4 class=\"rich-list-title\">VARIAN : <span id=\"varian"+barangid+"\">"+namavariannya+"</span></h4>"
-    +"</div>"
-+"</div>"
-+"<div id=\"informasibarangheader\" style=\"display:none\" >"
-+"<div id=\"dariperusahaan"+barangid+"\" class=\"informasibarang\">"+pemilik+"</div>"
-+"<div id=\"kodebarang"+barangid+"\" class=\"informasibarang\">"+barangid+"</div>"
-+"<div id=\"hargabeli"+barangid+"\" class=\"informasibarang\">"+hargabeli.toString().replace('.', ',')+"</div>"
-+"<div id=\"qtylabel"+barangid+"\" class=\"informasibarang\">"+($("#barangkeluarqty"+barangid).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val())))+"</div>"
-+"<div id=\"brandlabel"+barangid+"\" class=\"informasibarang\">"+brandid+"</div>"
-+"<div id=\"principallabel"+barangid+"\" class=\"informasibarang\">"+principalid+"</div>"
-+"<div id=\"stokdapatminuslabel"+barangid+"\" class=\"informasibarang\">"+stokdapatminus+"</div>"
-+"<div id=\"jsonjenisvarian"+barangid+"\" class=\"informasibarang\">"+jsonStrjenisvarian+"</div>"
-+"<div id=\"keterangantiapbarang"+barangid+"\" class=\"informasibarang\">"+keterangantiapbarang+"</div>"
-+"<div id=\"apakahvarian"+barangid+"\" class=\"informasibarang\">"+apakahvarian+"</div>"
-+"<div id=\"hargajualubah"+barangid+"\" class=\"informasibarang\">"+hargajual.toString().replace('.', ',')+"</div>"
-+"<div id=\"statusprosesitem"+barangid+"\" class=\"informasibarang\">0</div>"
-+"<div class=\"informasibarang\">====</div>"
-+"</div>";
-                $("#keranjangbelanja").prepend(prependHTML);
-                $("#subtotalbarang"+barangid).html(formatter.format(Number(hargajual) * Number($("#qtykeluarkasir").val())));
-                $("#barangkeluarqty"+barangid).TouchSpin({min: 1,max: 999999,decimals: 2,forcestepdivisibility: 'none',}).on('input change', debounce(function (e) {
-                    $("#qtylabel"+barangid).html($(this).val().replace('.', ',').trim());
-                    updatebarangkerankang(barangid,$(this).val(),hargajual)
-                }, 500));
-            }else if (obj.status == "adadata"){
-                $("#barangkeluarqty"+barangid).val(Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val()));
-                $("#subtotalbarang"+barangid).html(formatter.format(Number(obj.hargajual) * Number($("#barangkeluarqty"+barangid).val())));
-                $("#hargajual"+barangid).html(formatter.format(obj.hargajual));
-                $("#qtylabel"+barangid).html($("#barangkeluarqty"+barangid).val().replace('.', ',').trim());
-                var tempclone = $("#barisbelanja"+barangid).clone();
-                var tempcloneinformasibarangheader = $("#informasibarangheader"+barangid).clone();
-                $("#barisbelanja"+barangid).remove()
-                $("#informasibarangheader"+barangid).remove()
-                tempclone.prependTo('#keranjangbelanja')
-                tempcloneinformasibarangheader.append('#barisbelanja'+barangid)
-            }else{
-                Swal.fire({
-                    title: "Gagal... Cek Koneksi Database Lokal",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                });
+    +"<div id=\"informasibarangheader\" style=\"display:none\" >"
+    +"<div id=\"dariperusahaan"+barangid+"\" class=\"informasibarang\">"+pemilik+"</div>"
+    +"<div id=\"kodebarang"+barangid+"\" class=\"informasibarang\">"+barangid+"</div>"
+    +"<div id=\"hargabeli"+barangid+"\" class=\"informasibarang\">"+hargabeli.toString().replace('.', ',')+"</div>"
+    +"<div id=\"qtylabel"+barangid+"\" class=\"informasibarang\">"+($("#barangkeluarqty"+barangid).val() === undefined ? $("#qtykeluarkasir").val() : (Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val())))+"</div>"
+    +"<div id=\"brandlabel"+barangid+"\" class=\"informasibarang\">"+brandid+"</div>"
+    +"<div id=\"principallabel"+barangid+"\" class=\"informasibarang\">"+principalid+"</div>"
+    +"<div id=\"stokdapatminuslabel"+barangid+"\" class=\"informasibarang\">"+stokdapatminus+"</div>"
+    +"<div id=\"jsonjenisvarian"+barangid+"\" class=\"informasibarang\">"+jsonStrjenisvarian+"</div>"
+    +"<div id=\"keterangantiapbarang"+barangid+"\" class=\"informasibarang\">"+keterangantiapbarang+"</div>"
+    +"<div id=\"apakahvarian"+barangid+"\" class=\"informasibarang\">"+apakahvarian+"</div>"
+    +"<div id=\"hargajualubah"+barangid+"\" class=\"informasibarang\">"+hargajual.toString().replace('.', ',')+"</div>"
+    +"<div id=\"statusprosesitem"+barangid+"\" class=\"informasibarang\">0</div>"
+    +"<div class=\"informasibarang\">====</div>"
+    +"</div>";
+                    $("#keranjangbelanja").prepend(prependHTML);
+                    $("#subtotalbarang"+barangid).html(formatter.format(Number(hargajual) * Number($("#qtykeluarkasir").val())));
+                    $("#barangkeluarqty"+barangid).TouchSpin({min: 1,max: 999999,decimals: 2,forcestepdivisibility: 'none',}).on('input change', debounce(function (e) {
+                        $("#qtylabel"+barangid).html($(this).val().replace('.', ',').trim());
+                        updatebarangkerankang(barangid,$(this).val(),hargajual)
+                    }, 500));
+                }else if (obj.status == "adadata"){
+                    $("#barangkeluarqty"+barangid).val(Number($("#barangkeluarqty"+barangid).val()) + Number($("#qtykeluarkasir").val()));
+                    $("#subtotalbarang"+barangid).html(formatter.format(Number(obj.hargajual) * Number($("#barangkeluarqty"+barangid).val())));
+                    $("#hargajual"+barangid).html(formatter.format(obj.hargajual));
+                    $("#qtylabel"+barangid).html($("#barangkeluarqty"+barangid).val().replace('.', ',').trim());
+                    var tempclone = $("#barisbelanja"+barangid).clone();
+                    var tempcloneinformasibarangheader = $("#informasibarangheader"+barangid).clone();
+                    $("#barisbelanja"+barangid).remove()
+                    $("#informasibarangheader"+barangid).remove()
+                    tempclone.prependTo('#keranjangbelanja')
+                    tempcloneinformasibarangheader.append('#barisbelanja'+barangid)
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Cek Koneksi Database Lokal",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    });
+                }
+                grandtotalkasir();
+                $("#qtykeluarkasir").val('1');
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-            grandtotalkasir();
-            $("#qtykeluarkasir").val('1');
-        }
+        });
     });
 }
 
@@ -902,10 +1209,14 @@ function pilihbarang(barangid, namabarang, hargajual, hargabeli, sisastokmaksima
     }
 }
 function grandtotalkasir(){
+getCsrfTokenCallback(function() {
     $.ajax({
         url: baseurljavascript + 'penjualan/grandtotalkasir',
         method: 'POST',
         dataType: 'json',
+        data: {
+            [csrfName]:csrfTokenGlobal,
+        },
         success: function (response) {
             var obj = JSON.parse(response);
             if (obj.data[0].TOTALBELANJA > 0){
@@ -913,17 +1224,27 @@ function grandtotalkasir(){
             }else{
                 $('#keranjangkosong').html('<div style="position: absolute;top: 8%; bottom: 0; left: 0; right: 0;margin: auto;" class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Keranjang Belanja Anda Masih Kosong Lo... Silahkan Pilih Item Untuk di Transkasi</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-cart-arrow-down"></i></div></div><!-- END Avatar --><a href="javascript:void(0)" class="btn btn-primary btn-wider">Pilih Barang</a></div>');
             }
-            $('#grandtotal').html(formatter.format(obj.data[0].TOTALBELANJA));
             $('#totalbelanjaatas').html(formatter.format(obj.data[0].TOTALBELANJA));
+            if (iseditkasir == "true"){
+                nominalpotongan.set(vnominalpotongan)
+                nominalpajaktoko.set(vpajaktoko)
+                nominalpajaknegara.set(vpajaknegara)
+                $('#grandtotal').html(formatter.format((Number(obj.data[0].TOTALBELANJA) - Number(vnominalpotongan) + Number(vpajaktoko) + Number(vpajaknegara)).toFixed(2)));
+            }else{
+                $('#grandtotal').html(formatter.format(obj.data[0].TOTALBELANJA));
+            }
         }
     });
+});
 }
 function ajaxupdatebarangkeranjang(barangid,qty,hargajual){
+getCsrfTokenCallback(function() {
     $.ajax({
         url: baseurljavascript + 'penjualan/updatekasirsementara',
         method: 'POST',
         dataType: 'json',
         data: {
+            [csrfName]:csrfTokenGlobal,
             BARANG_ID : barangid,
             QTY : qty,
             HARGAJUAL: (iseditkasir == "true" ? Number($("#hargajual"+barangid).html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()) : hargajual),
@@ -951,6 +1272,7 @@ function ajaxupdatebarangkeranjang(barangid,qty,hargajual){
             }
         }
     });
+});
 }
 function updatebarangkerankang(barangid,qty,hargajual){
     if (iseditkasir == "true"){
@@ -976,30 +1298,33 @@ function hapusbarangkeranjang(barangid,namabarang, statusitem){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'penjualan/hapusperbarang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    BARANG_ID: barangid,
-                },
-                success: function (response) {
-                    var obj = JSON.parse(response);
-                    if (obj.status == "true"){
-                        $('#barisbelanja'+barangid).remove();
-                        $('#dariperusahaan'+barangid).remove();
-                        $('#kodebarang'+barangid).remove();
-                        $('#hargabeli'+barangid).remove();
-                        $('#qtylabel'+barangid).remove();
-                        grandtotalkasir();
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Cek Koneksi Local DB Kasir",
-                            text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/hapusperbarang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        BARANG_ID: barangid,
+                    },
+                    success: function (response) {
+                        var obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            $('#barisbelanja'+barangid).remove();
+                            $('#dariperusahaan'+barangid).remove();
+                            $('#kodebarang'+barangid).remove();
+                            $('#hargabeli'+barangid).remove();
+                            $('#qtylabel'+barangid).remove();
+                            grandtotalkasir();
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Cek Koneksi Local DB Kasir",
+                                text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })
@@ -1009,25 +1334,30 @@ $('#katakuncipencariankasir').on('input', debounce(function (e) {
     loaddaftarbarang();
 }, 500));
 function kosongkankeranjanglokal(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/hapuskeranjang',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true"){
-                $('#keranjangkosong').html('<div style="position: absolute;top: 8%; bottom: 0; left: 0; right: 0;margin: auto;" class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Keranjang Belanja Anda Masih Kosong Lo... Silahkan Pilih Item Untuk di Transkasi</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-cart-arrow-down"></i></div></div><!-- END Avatar --><a href="javascript:void(0)" class="btn btn-primary btn-wider">Pilih Barang</a></div>');
-                $("#keranjangbelanja").html("");
-                loaddaftarbarang();
-            }else{
-                Swal.fire({
-                    title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/hapuskeranjang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true"){
+                    $('#keranjangkosong').html('<div style="position: absolute;top: 8%; bottom: 0; left: 0; right: 0;margin: auto;" class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Keranjang Belanja Anda Masih Kosong Lo... Silahkan Pilih Item Untuk di Transkasi</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-cart-arrow-down"></i></div></div><!-- END Avatar --><a href="javascript:void(0)" class="btn btn-primary btn-wider">Pilih Barang</a></div>');
+                    $("#keranjangbelanja").html("");
+                    loaddaftarbarang();
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    });
+                }
+                grandtotalkasir();
             }
-            grandtotalkasir();
-        }
+        });
     });
 }
 $("#bersihkanform").on("click", function () {
@@ -1051,11 +1381,13 @@ $('#textpencariankategori').on('input', debounce(function (e) {
     panggilkategorikasir()
 }, 500));
 function panggilkategorikasir(){
+getCsrfTokenCallback(function() {
     $.ajax({
         url: baseurljavascript + 'masterdata/daftakategoriselectkasir',
         method: 'POST',
         dataType: 'json',
         data: {
+            [csrfName]:csrfTokenGlobal,
             NAMAKATEGORI: $("#textpencariankategori").val(),
             KODEUNIKMEMBER: session_kodeunikmember,
         },
@@ -1074,6 +1406,7 @@ function panggilkategorikasir(){
             }
         }
     });
+});
 }
 function pilihkategori(kategoriid){
     $('#katakuncikategori').val(kategoriid)
@@ -1097,11 +1430,13 @@ function pilihmemberkasir(kodemember,namamember, lamajatuhtempo){
     $('#memberdikasir').modal('toggle');
 }
 function detailinformasimember (){
+getCsrfTokenCallback(function() {
     $.ajax({
         url: baseurljavascript + 'masterdata/detailmemberterpilih',
         method: 'POST',
         dataType: 'json',
         data: {
+            [csrfName]:csrfTokenGlobal,
             KATAKUNCI: $("#idmember").html(),
             KODEUNIKMEMBER: session_kodeunikmember,
             DATAKE: 0,
@@ -1121,8 +1456,12 @@ function detailinformasimember (){
                 $('#informasimember').modal();
             }else{
             }
+        },
+        error: function(xhr, status, error) {
+            toastr["error"](xhr.responseJSON.message);
         }
     });
+});
 }
 function panggilsalesman(){
     $('#kasir_daftarsalesman').DataTable().ajax.reload();
@@ -1225,13 +1564,19 @@ function pilihbankterpilih(kondisi,bankterpilih){
 }
 
 $("#txtpencariannota, #tanggalawalnota, #tanggalakhirnota").on('input change', debounce(function (e) {
-    $('#kasir_daftarpenjualan').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#kasir_daftarpenjualan').DataTable().ajax.reload();
+    });
 }, 500));
 $("#filtertanggalreservasiawal, #filtertanggalreservasiakhir").on('input change', debounce(function (e) {
-    $('#tabel_pesanananmeja_kasir').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabel_pesanananmeja_kasir').DataTable().ajax.reload();
+    });
 }, 500));
 $("#txtpencariannotapending").on('input change', debounce(function (e) {
-    $('#kasir_daftarnotapending').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#kasir_daftarnotapending').DataTable().ajax.reload();
+    });
 }, 500));
 function modalinfobarang(kodebarang, hargajual, catatanperbarang, hargajualstak, statusitem){
     let htmlnya = "";
@@ -1243,38 +1588,41 @@ function modalinfobarang(kodebarang, hargajual, catatanperbarang, hargajualstak,
         });
     }
     $("#pilihanvariansebelumnya").html($("#varian"+kodebarang).html())
-    $.ajax({
-        url: baseurljavascript + 'penjualan/detailbarangkeranjang',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            BARANG_ID : kodebarang
-        },
-        success: function (response) {
-            jsonStrjenisvarian = '{"jenisvarian":[]}';
-            hasilhargabaru = 0;
-            htmlnya = "<div class=\"row\"><div class=\"col\">";
-            if (response[0].dataquery[0].NAMATAMBAHAN != null){
-                for (let i = 0; i < response[0].totaldata; i++) {
-                    htmlnya += "<button id=\""+response[0].dataquery[i].NAMATAMBAHAN.toLowerCase().replace(/\s/g, '')+"\" onclick=\"ubahhargajual('"+response[0].dataquery[i].HARGATAMBAHAN+"','"+response[0].dataquery[i].NAMATAMBAHAN+"',"+this.id+")\" style=\"font-size: 18px;\" class=\"btn btn-primary btn-block\">"+response[0].dataquery[i].NAMATAMBAHAN+" +"+formatuang(response[0].dataquery[i].HARGATAMBAHAN,'id-ID','IDR')+"</button>";
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/detailbarangkeranjang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                BARANG_ID : kodebarang
+            },
+            success: function (response) {
+                jsonStrjenisvarian = '{"jenisvarian":[]}';
+                hasilhargabaru = 0;
+                htmlnya = "<div class=\"row\"><div class=\"col\">";
+                if (response[0].dataquery[0].NAMATAMBAHAN != null){
+                    for (let i = 0; i < response[0].totaldata; i++) {
+                        htmlnya += "<button id=\""+response[0].dataquery[i].NAMATAMBAHAN.toLowerCase().replace(/\s/g, '')+"\" onclick=\"ubahhargajual('"+response[0].dataquery[i].HARGATAMBAHAN+"','"+response[0].dataquery[i].NAMATAMBAHAN+"',"+this.id+")\" style=\"font-size: 18px;\" class=\"btn btn-primary btn-block\">"+response[0].dataquery[i].NAMATAMBAHAN+" +"+formatuang(response[0].dataquery[i].HARGATAMBAHAN,'id-ID','IDR')+"</button>";
+                    }
+                }else{
+                    htmlnya += "<p style=\"font-size:15px\">Tidak Ada Varian Yang Tersedia Dalam "+response[0].dataquery[0].NAMABARANG+"</p>";
                 }
-            }else{
-                htmlnya += "<p style=\"font-size:15px\">Tidak Ada Varian Yang Tersedia Dalam "+response[0].dataquery[0].NAMABARANG+"</p>";
+                htmlnya += "</div></div>";
+                $("#detailvarianbarang").html("");
+                $("#detailvarianbarang").append(htmlnya);
+                $("#juduldetailbarang").html(response[0].dataquery[0].NAMABARANG);
+                $("#kodebarangv").val(kodebarang);
+                $("#namabarangv").val(response[0].dataquery[0].NAMABARANG);
+                hargajualv.set($("#hargajual"+kodebarang).html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim());
+                hargajualasliv.set((hargajual == 0 ? hargajualstak : hargajual ));
+                nominalhargajualvstak.set(hargajualstak)
+                qtyv.set($("#barangkeluarqty"+kodebarang).val());
+                $("#hargajualbarudetail").html(formatuang(hargajualv,'id-ID','IDR'));
+                $('#catatanperbarang').val((catatanperbarang == "" ? "" : catatanperbarang )),
+                $("#modaldetailbarang").modal('show');     
             }
-            htmlnya += "</div></div>";
-            $("#detailvarianbarang").html("");
-            $("#detailvarianbarang").append(htmlnya);
-            $("#juduldetailbarang").html(response[0].dataquery[0].NAMABARANG);
-            $("#kodebarangv").val(kodebarang);
-            $("#namabarangv").val(response[0].dataquery[0].NAMABARANG);
-            hargajualv.set($("#hargajual"+kodebarang).html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim());
-            hargajualasliv.set((hargajual == 0 ? hargajualstak : hargajual ));
-            nominalhargajualvstak.set(hargajualstak)
-            qtyv.set($("#barangkeluarqty"+kodebarang).val());
-            $("#hargajualbarudetail").html(formatuang(hargajualv,'id-ID','IDR'));
-            $('#catatanperbarang').val((catatanperbarang == "" ? "" : catatanperbarang )),
-            $("#modaldetailbarang").modal('show');     
-        }
+        });
     });
 }
 $('#hargajualv, #catatanperbarang').on('keypress', debounce(function (e) {
@@ -1477,37 +1825,3 @@ function konfirmasipesananmeja(){
         }
     })   
 }
-
-function daftartempatdisewakan(){
-    $.ajax({
-        url: baseurljavascript + 'resto/ajaxpanggillantai',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            if (response.success == "true"){
-                let htmlnya = "";
-                htmlnya = "<div class=\"nav nav-lines portlet-nav\" id=\"portlet1-tab\">";
-                for (let i = 0; i < response.totaldata; i++) {
-                    if (i == 0){
-                        panggilmeja(response.dataquery[i].LANTAI, $("#kontendaftarmejad").attr('id'),'list')
-                    }
-                    htmlnya += "<a class=\"nav-item nav-link\" onclick=\"panggilmeja('"+response.dataquery[i].LANTAI+"',"+$("#kontendaftarmejad").attr('id')+",'list')\" id=\"portlet1-home-tab\" data-toggle=\"tab\" href=\"javascript:void(0)\">"+response.dataquery[i].LANTAI+"</a>";
-                }    
-                htmlnya += "</div>";
-                $('#daftarlantaitersediad').html("");
-                $('#daftarlantaitersediad').html(htmlnya);
-            }else{
-                Swal.fire({
-                    title: "Informasi Reservasi",
-                    text: "Informasi mengenai reservasi gagal untuk dibaca sistem. Silhkan cek QUERY pada PANGGIL LOKASI LANTAI",
-                    icon: 'error',
-                });
-            }
-        }
-    });
-    setTimeout(function() {
-        $('#tabel_pesanananmeja_kasir').DataTable().ajax.reload();
-    },500)
-    $("#daftartempatdisewakan").modal('show');
-}
-function resizeGridItem(t){grid=document.getElementsByClassName("gridmansory")[0],rowHeight=parseInt(window.getComputedStyle(grid).getPropertyValue("grid-auto-rows")),rowGap=parseInt(window.getComputedStyle(grid).getPropertyValue("grid-row-gap")),rowSpan=Math.ceil((t.querySelector(".content").getBoundingClientRect().height+rowGap)/(rowHeight+rowGap)),t.style.gridRowEnd="span "+rowSpan}function resizeAllGridItems(){for(allItems=document.getElementsByClassName("item"),x=0;x<allItems.length;x++)resizeGridItem(allItems[x])}function resizeInstance(t){item=t.elements[0],resizeGridItem(item)}$("#buttonkanan").on("click",function(){if($(".chat").width()<=680){if(1==menukiri&&0==menukanan)return menukanan=0,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto");if(1==menukiri&&1==menukanan)return menukanan=0,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto")}if($(".chat").width()<=1100){if(1==menukiri&&0==menukanan)return menukanan=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto");if(0==menukiri&&0==menukanan)return menukanan=0,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto auto auto");if(0==menukiri&&1==menukanan)return menukanan=0,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto auto auto")}if($(".chat").width()<=1400){if(0==menukiri&&0==menukanan)return menukanan=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto");if(0==menukiri&&1==menukanan)return menukanan=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto")}}),$("#buttonkiri").on("click",function(){if($(".chat").width()<=680){if(1==menukiri&&0==menukanan)return menukiri=0,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto auto auto");if(0==menukiri&&1==menukanan)return menukiri=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto");if(1==menukiri&&1==menukanan)return menukiri=0,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto")}if($(".chat").width()<=1100){if(1==menukiri&&0==menukanan)return menukiri=0,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto auto auto");if(0==menukiri&&1==menukanan)return menukiri=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto");if(1==menukiri&&1==menukanan)return menukiri=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto")}if($(".chat").width()<=1400){if(1==menukiri&&0==menukanan)return menukiri=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto");if(0==menukiri&&0==menukanan)return menukiri=1,$(".gridmansory").css("grid-template-columns","auto auto auto auto auto auto")}});

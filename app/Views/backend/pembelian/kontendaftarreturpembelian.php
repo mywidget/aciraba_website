@@ -99,35 +99,42 @@ $("#daritanggal").val(moment().format('DD-MM-YYYY'));
 $("#daritanggal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
 $("#sampaitanggal").val(moment().format('DD-MM-YYYY'));
 $("#sampaitanggal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom",});
-$("#tabelreturpembelian").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        keys: true,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        columnDefs : [
-            //{ 'visible': false, 'targets': [1,2] }
-        ],
-        ajax: {
-            "url": baseurljavascript + 'pembelian/jsondaftarreturpembelian',
-            "method": 'POST',
-            "data": function (d) {
-                d.parameterpencarian = $('#parameterpencarian').val()
-                d.katakunci = $('#katakunci').val()
-                d.tanggalawal = $('#daritanggal').val().split("-").reverse().join("-");
-                d.tanggalakhir = $('#sampaitanggal').val().split("-").reverse().join("-");
+getCsrfTokenCallback(function() {
+    $("#tabelreturpembelian").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            keys: true,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            ordering: false,
+            columnDefs : [
+                //{ 'visible': false, 'targets': [1,2] }
+            ],
+            ajax: {
+                "url": baseurljavascript + 'pembelian/jsondaftarreturpembelian',
+                "method": 'POST',
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.parameterpencarian = $('#parameterpencarian').val()
+                    d.katakunci = $('#katakunci').val()
+                    d.tanggalawal = $('#daritanggal').val().split("-").reverse().join("-");
+                    d.tanggalakhir = $('#sampaitanggal').val().split("-").reverse().join("-");
+                },
             },
-        },
-    })
+        })
+    });
 });
 $("#prosesreload").on("click", function () {
-    $('#tabelreturpembelian').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#tabelreturpembelian').DataTable().ajax.reload();
+    });
 });
-$("#parameterpencarian, #katakunci, #daritanggal, #sampaitanggal").on('keyup input propertychange paste click', function() { 
-    $('#tabelreturpembelian').DataTable().ajax.reload();
-});
+$("#katakunci, #daritanggal, #sampaitanggal").on('keyup input propertychange paste click', debounce(function(e) {
+    getCsrfTokenCallback(function() {
+        $('#tabelreturpembelian').DataTable().ajax.reload();
+    });
+}, 500))
 function hapusreturpembelian(notransaksi,nominal){
     swal.fire({
         title: "Hapus Transaksi Retur Pembelian ?",
@@ -138,29 +145,32 @@ function hapusreturpembelian(notransaksi,nominal){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'pembelian/hapusreturpembelian',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NOTARETUR: notransaksi,
-                },
-                success: function (response) {
-                    if (response[0].success == "true"){
-                        Swal.fire({
-                            title: "Hapus Transkasi Retur Pembelian",
-                            text: "Hapus transaksi retur penjualan dengan NOTA : "+notransaksi+" dengan besaran nominal "+nominal+" berhasil di hapus. Stok akan dikurangi dan dicatat pada KARTU STOK",
-                            icon: "success",
-                        });
-                        $('#tabelreturpembelian').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Cek Log Kesalahan",
-                            text: response[0].msg,
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/hapusreturpembelian',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NOTARETUR: notransaksi,
+                    },
+                    success: function (response) {
+                        if (response[0].success == "true"){
+                            Swal.fire({
+                                title: "Hapus Transkasi Retur Pembelian",
+                                text: "Hapus transaksi retur penjualan dengan NOTA : "+notransaksi+" dengan besaran nominal "+nominal+" berhasil di hapus. Stok akan dikurangi dan dicatat pada KARTU STOK",
+                                icon: "success",
+                            });
+                            $('#tabelreturpembelian').DataTable().ajax.reload();
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Cek Log Kesalahan",
+                                text: response[0].msg,
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })

@@ -146,58 +146,61 @@ $(document).ready(function () {
     loadnotranskasi()
     $('#tanggaltransaksiopname').val(moment().format('DD-MM-YYYY'));
     $("#tanggaltransaksiopname").datepicker({todayHighlight: true,format:'dd-mm-yyyy'});
-    daftarkeranjang = $("#keranjangopname").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        keys: true,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        ajax: {
-            "url": baseurljavascript + 'penyesuaian/daftaropnamelocal',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCIPENCARIAN = null;
-            }
-        },
-        drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            var data = daftarkeranjang.rows().data();
-            let totalbelanja = 0, totalbelanjanett = 0;
-            data.each(function (value, index) {
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'))) { anstokkom[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'))) { anstokfiskik[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'))) { anharga[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            });
-        },
-        initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            var data = daftarkeranjang.rows().data();
-            let totalopname = 0, totalminus = 0, totalsurplus=0, selisih = 0, totalbarang =0;
-            data.each(function (value, index) {
-                selisih = (anstokkom[index].getNumber() - anstokfiskik[index].getNumber())
-                if (selisih > 0){
-                    totalminus = (totalminus + (anharga[index].getNumber() * selisih) * -1)
-                }else if (selisih < 0){
-                    totalsurplus = (totalsurplus + (anharga[index].getNumber() * selisih) * -1)
+    getCsrfTokenCallback(function() {
+        daftarkeranjang = $("#keranjangopname").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            keys: true,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            ordering: false,
+            ajax: {
+                "url": baseurljavascript + 'penyesuaian/daftaropnamelocal',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCIPENCARIAN = null;
                 }
-                $('#totalminus').html(formatuang((totalminus),'id-ID','IDR').replaceAll('-', '').trim());
-                $('#totalplus').html(formatuang((totalsurplus),'id-ID','IDR').replaceAll('-', '').trim());
-                totalbarang = totalbarang + anstokfiskik[index].getNumber();
-            }); 
-            totalbarangg = totalbarang;
-            totalopname = totalsurplus + totalminus;
-            $('#totalnominal').html(formatuang((totalopname),'id-ID','IDR'));
-        }
-    }).on( 'key-focus', function ( e, datatable, cell, originalEvent ) {
-        $('input', cell.node()).focus();
-    }).on("focus", "td input", function(){
-        $(this).select();
+            },
+            drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = daftarkeranjang.rows().data();
+                let totalbelanja = 0, totalbelanjanett = 0;
+                data.each(function (value, index) {
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'))) { anstokkom[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'))) { anstokfiskik[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'))) { anharga[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                });
+            },
+            initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = daftarkeranjang.rows().data();
+                let totalopname = 0, totalminus = 0, totalsurplus=0, selisih = 0, totalbarang =0;
+                data.each(function (value, index) {
+                    selisih = (anstokkom[index].getNumber() - anstokfiskik[index].getNumber())
+                    if (selisih > 0){
+                        totalminus = (totalminus + (anharga[index].getNumber() * selisih) * -1)
+                    }else if (selisih < 0){
+                        totalsurplus = (totalsurplus + (anharga[index].getNumber() * selisih) * -1)
+                    }
+                    $('#totalminus').html(formatuang((totalminus),'id-ID','IDR').replaceAll('-', '').trim());
+                    $('#totalplus').html(formatuang((totalsurplus),'id-ID','IDR').replaceAll('-', '').trim());
+                    totalbarang = totalbarang + anstokfiskik[index].getNumber();
+                }); 
+                totalbarangg = totalbarang;
+                totalopname = totalsurplus + totalminus;
+                $('#totalnominal').html(formatuang((totalopname),'id-ID','IDR'));
+            }
+        }).on( 'key-focus', function ( e, datatable, cell, originalEvent ) {
+            $('input', cell.node()).focus();
+        }).on("focus", "td input", function(){
+            $(this).select();
+        });
+        daftarkeranjang.on('key', function (e, dt, code) {
+            if (code === 13) {
+                daftarkeranjang.keys.move('down');
+            }
+        });
     });
-    daftarkeranjang.on('key', function (e, dt, code) {
-        if (code === 13) {
-            daftarkeranjang.keys.move('down');
-        }
-    })
 });
 $('#qtykeluarkasir').keypress(function (e) {let key = e.which; if(key == 13){$('#katakuncipencariankasir').focus();return false;}});
 $('#katakuncipencariankasir').keypress(function (e) {let key = e.which; if(key == 13 && $('#katakuncipencariankasir').val() == ""){$('#qtykeluarkasir').focus();return false;}});

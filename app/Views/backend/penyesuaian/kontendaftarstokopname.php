@@ -145,55 +145,65 @@ $(document).ready(function () {
     $("#tanggalawal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom" });
     $('#tanggalakhir').val(moment().format('DD-MM-YYYY'));
     $("#tanggalakhir").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom" });
-    $("#daftaropname").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        scrollX: true,
-        scrollCollapse: true,
-        searching: false,
-        //columnDefs: [
-        //    {className: "text-right",targets: [4,7]},
-        //],
-        ajax: {
-            "url": baseurljavascript + 'penyesuaian/daftarpenyesuaianstok',
-            "type": "POST",
-            "data": function (d) {
-                d.DIMANA1 = $("#parameterpencarian").val();
-                d.DIMANA2 = $("#katakuncipencarian").val();
-                d.DIMANA3 = $("#lokasibarang").val();
-                d.DIMANA4 = $("#tanggalawal").val().split("-").reverse().join("-");
-                d.DIMANA5 = $("#tanggalakhir").val().split("-").reverse().join("-");
-            }
-        },
+    getCsrfTokenCallback(function() {
+        $("#daftaropname").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            scrollX: true,
+            scrollCollapse: true,
+            searching: false,
+            //columnDefs: [
+            //    {className: "text-right",targets: [4,7]},
+            //],
+            ajax: {
+                "url": baseurljavascript + 'penyesuaian/daftarpenyesuaianstok',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.DIMANA1 = $("#parameterpencarian").val();
+                    d.DIMANA2 = $("#katakuncipencarian").val();
+                    d.DIMANA3 = $("#lokasibarang").val();
+                    d.DIMANA4 = $("#tanggalawal").val().split("-").reverse().join("-");
+                    d.DIMANA5 = $("#tanggalakhir").val().split("-").reverse().join("-");
+                }
+            },
+        }); 
     }); 
 });
 function refreshgrid(){
-    $('#daftaropname').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftaropname').DataTable().ajax.reload();
+    });
 }
 $("#katakuncipencarian, #prosespencarian").on('input change click', debounce(function (e) {
-    $('#daftaropname').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftaropname').DataTable().ajax.reload();
+    });
 }, 500));
 function daftardetailopname(notaopnema){
     $('#notaopnameterpilih').html(notaopnema);
-    $("#daftaropnamelist").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        scrollX: true,
-        scrollCollapse: true,
-        searching: true,
-        //columnDefs: [
-        //    {className: "text-right",targets: [4,7]},
-        //],
-        stateSave: true,
-        bDestroy: true,
-        ajax: {
-            "url": baseurljavascript + 'penyesuaian/daftardetailopname',
-            "type": "POST",
-            "data": function (d) {
-                d.DIMANA1 = notaopnema;
-                d.DIMANA2 = $("#daftaropnamelist_katakunci").val();
-            }
-        },
+    getCsrfTokenCallback(function() {
+        $("#daftaropnamelist").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            scrollX: true,
+            scrollCollapse: true,
+            searching: true,
+            //columnDefs: [
+            //    {className: "text-right",targets: [4,7]},
+            //],
+            stateSave: true,
+            bDestroy: true,
+            ajax: {
+                "url": baseurljavascript + 'penyesuaian/daftardetailopname',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.DIMANA1 = notaopnema;
+                    d.DIMANA2 = $("#daftaropnamelist_katakunci").val();
+                }
+            },
+        });
     }); 
     $('#modaldetailopname').modal('show');
 }

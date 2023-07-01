@@ -97,49 +97,52 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#tanggalawalhis').val(moment().format('DD-MM-YYYY'));
-        $("#tanggalawalhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+        $("#tanggalawalhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom" });
         $('#tanggalakhirhis').val(moment().format('DD-MM-YYYY'));
-        $("#tanggalakhirhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-        $("#tabelhistoryhj").DataTable({
-            language: {
-                "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
-            },
-            dom: 'Bfrtip',
-            buttons: [{
-                    extend: 'copyHtml5',
-                    text: '<i class="far fa-copy"></i> Copy',
-                    titleAttr: 'Copy'
+        $("#tanggalakhirhis").datepicker({todayHighlight: true,format:'dd-mm-yyyy',orientation: "bottom" });
+        getCsrfTokenCallback(function() {
+            $("#tabelhistoryhj").DataTable({
+                language: {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
                 },
-                {
-                    extend: 'excelHtml5',
-                    text: '<i class="far fa-file-excel"></i> Excel',
-                    titleAttr: 'Excel'
-                },
-                {
-                    extend: 'csvHtml5',
-                    text: '<i class="fas fa-file-csv"></i> CSV',
-                    titleAttr: 'CSV'
-                },
-                {
-                    extend: 'pdfHtml5',
-                    text: '<i class="far fa-file-pdf"></i> PDF',
-                    titleAttr: 'PDF'
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'copyHtml5',
+                        text: '<i class="far fa-copy"></i> Copy',
+                        titleAttr: 'Copy'
+                    },
+                    {
+                        extend: 'excelHtml5',
+                        text: '<i class="far fa-file-excel"></i> Excel',
+                        titleAttr: 'Excel'
+                    },
+                    {
+                        extend: 'csvHtml5',
+                        text: '<i class="fas fa-file-csv"></i> CSV',
+                        titleAttr: 'CSV'
+                    },
+                    {
+                        extend: 'pdfHtml5',
+                        text: '<i class="far fa-file-pdf"></i> PDF',
+                        titleAttr: 'PDF'
+                    }
+                ],
+                scrollCollapse: true,
+                scrollY: "50vh",
+                scrollX: true,
+                bFilter: false,
+                ajax: {
+                    "url": baseurljavascript + 'penjualan/hishargajual',
+                    "method": 'POST',
+                    "data": function (d) {
+                        d.csrf_aciraba = csrfTokenGlobal;
+                        d.BERDASARKAN = $('#parameterpencarian').val();
+                        d.KATAKUNCI = $('#katakunci').val();
+                        d.TANGGALAWAL = $('#tanggalawalhis').val().split("-").reverse().join("-");;
+                        d.TANGGALAKHIR = $('#tanggalakhirhis').val().split("-").reverse().join("-");;
+                    },
                 }
-            ],
-            scrollCollapse: true,
-            scrollY: "50vh",
-            scrollX: true,
-            bFilter: false,
-            ajax: {
-                "url": baseurljavascript + 'penjualan/hishargajual',
-                "method": 'POST',
-                "data": function (d) {
-                    d.BERDASARKAN = $('#parameterpencarian').val();
-                    d.KATAKUNCI = $('#katakunci').val();
-                    d.TANGGALAWAL = $('#tanggalawalhis').val().split("-").reverse().join("-");;
-                    d.TANGGALAKHIR = $('#tanggalakhirhis').val().split("-").reverse().join("-");;
-                },
-            }
+            });
         });
 });
 $("#prosescari").click(function() {

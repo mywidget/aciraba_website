@@ -12,7 +12,7 @@
                     <div class="portlet-body">
                     <div class="form-row">
                             <div class="col-md-12 mb-1 col-sm-12">
-                            <p align="justify">Berikut adalah informasi untuk mengelola produk acipay secara individu atau 1 produk. Jika ingin menambahkan produk secara cepat melalui jalur API yang tersedia, silahkan sinkronkan melalui kategori produk <a style="pointer:cursor" href="<?= base_url();?>/acipay/produknonppobkategori">disini</a>. Silahkan kelola produk ini secara hati hati dan jangan lupa selalu bersyukur</p>
+                            <p align="justify">Berikut adalah informasi untuk mengelola produk acipay secara individu atau 1 produk. Jika ingin menambahkan produk secara cepat melalui jalur API yang tersedia, silahkan sinkronkan melalui kategori produk <a style="pointer:cursor" href="<?= base_url();?>acipay/produknonppobkategori">disini</a>. Silahkan kelola produk ini secara hati hati dan jangan lupa selalu bersyukur</p>
                             </div>
                         </div>
                         <!-- BEGIN Form Row -->
@@ -116,7 +116,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script type="text/javascript" src="<?= base_url();?>/scripts/acipay/tambahprodukacipay.js"></script>
+<script type="text/javascript" src="<?= base_url();?>scripts/acipay/tambahprodukacipay.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         if ("<?= $SEGMENT3 ;?>" != ""){

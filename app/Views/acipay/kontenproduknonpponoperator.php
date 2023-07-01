@@ -74,7 +74,7 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?= base_url();?>/scripts/acipay/kategorinonppoboperator.js"></script>
+<script type="text/javascript" src="<?= base_url();?>scripts/acipay/kategorinonppoboperator.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#prefixoperator").select2({tokenSeparators: [',', ', ', ' '],dropdownAutoWidth:true,placeholder:"Pisahkan dengan SPACE atau KOMA, ENTER jika selesai",tags:true});

@@ -26,129 +26,135 @@ document.addEventListener("keydown", function(e) {
     }
 });
 function loadnotranskasi(){
-    $.ajax({
-        url: baseurljavascript + 'penjualan/notamenupenjualan',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            AWALANOTA : "OP",
-            OUTLET: session_outlet,
-            KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
-            TANGGALSEKARANG: moment().format('YYYYMMDD'),
-            KODEUNIKMEMBER: session_kodeunikmember,
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembuatan Nota Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penjualan/notamenupenjualan',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                AWALANOTA : "OP",
+                OUTLET: session_outlet,
+                KODEKUMPUTERLOKAL: localStorage.getItem("KODEKASA"),
+                TANGGALSEKARANG: moment().format('YYYYMMDD'),
+                KODEUNIKMEMBER: session_kodeunikmember,
+            },
+            success: function (response) {
+                $('#notransaksiopname').val(response.nomornota);
             }
-            $('#notransaksiopname').val(obj.nomornota);
-        }
+        });
     });
 }
 function panggilinformasibarang(){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/pilihbarangpembelian',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KATAKUNCI : $('#katakuncipencariankasir').val(),
-        },
-        success: function (response) {
-            if(response[0].success == "true"){
-                if (response[0].totaldata > 1){
-                    setTimeout(function () { 
-                        $("#daftaritem_katakunci_panggil").focus();
-                        $("#daftaritem_katakunci_panggil").val($('#katakuncibarang').val());
-                        $('#pangil_daftarabarang').DataTable().ajax.reload();
-                    }, 1000);
-                    $("#modal6").modal('show');
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/pilihbarangpembelian',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KATAKUNCI : $('#katakuncipencariankasir').val(),
+            },
+            success: function (response) {
+                if(response[0].success == "true"){
+                    if (response[0].totaldata > 1){
+                        setTimeout(function () { 
+                            $("#daftaritem_katakunci_panggil").focus();
+                            $("#daftaritem_katakunci_panggil").val($('#katakuncibarang').val());
+                            $('#pangil_daftarabarang').DataTable().ajax.reload();
+                        }, 500);
+                        $("#modal6").modal('show');
+                    }else{
+                        tambahkeranjang(
+                            response[0].dataquery[0].BARANG_ID,
+                            response[0].dataquery[0].NAMABARANG,
+                            $("#lokasioutlet").val(),
+                            $("#lokasioutlet").val() == "D" ? response[0].dataquery[0].DISPLAY : response[0].dataquery[0].GUDANG,
+                            $("#qtykeluarkasir").val(),
+                            $("#kondisipenyesuaian").val(),
+                            session_outlet,
+                            session_kodeunikmember,
+                            response[0].dataquery[0].HARGABELI,
+                            ""
+                        );
+                    }
                 }else{
-                    tambahkeranjang(
-                        response[0].dataquery[0].BARANG_ID,
-                        response[0].dataquery[0].NAMABARANG,
-                        $("#lokasioutlet").val(),
-                        $("#lokasioutlet").val() == "D" ? response[0].dataquery[0].DISPLAY : response[0].dataquery[0].GUDANG,
-                        $("#qtykeluarkasir").val(),
-                        $("#kondisipenyesuaian").val(),
-                        session_outlet,
-                        session_kodeunikmember,
-                        response[0].dataquery[0].HARGABELI,
-                        ""
-                    );
+                    Swal.fire({
+                        title: "Informasi Tidak Ditemukan",
+                        text: "Waduh... Loo Loo Loo informasi yang anda masukan sama sekali tidak ditemukakn di database kami. Silahkan cek kembali",
+                        icon: 'warning',
+                    }); 
                 }
-            }else{
-                Swal.fire({
-                    title: "Informasi Tidak Ditemukan",
-                    text: "Waduh... Loo Loo Loo informasi yang anda masukan sama sekali tidak ditemukakn di database kami. Silahkan cek kembali",
-                    icon: 'warning',
-                }); 
             }
-        }
+        });
     });
 }
 function tambahkeranjang(KODEBARANG,NAMABARANG,LOKASIOPNAME,STOKKOMPUTER,STOKOPNAME,KONDISIOPNAME,OUTLET,KODEUNIKMEMBER,HPP,INFORMASI){
-    $.ajax({
-        url: baseurljavascript + 'penyesuaian/tambahkekeranjangopname',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            NOTAOPNAME : $('#notransaksiopname').val(),
-            KODEBARANG : KODEBARANG,
-            NAMABARANG : NAMABARANG,
-            LOKASIOPNAME : LOKASIOPNAME,
-            STOKKOMPUTER : STOKKOMPUTER,
-            STOKOPNAME : STOKOPNAME,
-            KONDISIOPNAME : KONDISIOPNAME,
-            OUTLET : OUTLET,
-            KODEUNIKMEMBER : KODEUNIKMEMBER,
-            HPP : HPP,
-            INFORMASI : INFORMASI,
-        },
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true" || obj.status == "adadata"){
-                $('#katakuncipencariankasir').val('');
-                $('#qtykeluarkasir').val('1');
-                $('#keranjangopname').DataTable().ajax.reload();
-            }else{
-                Swal.fire({
-                    title: "Gagal... Cek Koneksi Local DB Kasir",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                }); 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penyesuaian/tambahkekeranjangopname',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                NOTAOPNAME : $('#notransaksiopname').val(),
+                KODEBARANG : KODEBARANG,
+                NAMABARANG : NAMABARANG,
+                LOKASIOPNAME : LOKASIOPNAME,
+                STOKKOMPUTER : STOKKOMPUTER,
+                STOKOPNAME : STOKOPNAME,
+                KONDISIOPNAME : KONDISIOPNAME,
+                OUTLET : OUTLET,
+                KODEUNIKMEMBER : KODEUNIKMEMBER,
+                HPP : HPP,
+                INFORMASI : INFORMASI,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true" || obj.status == "adadata"){
+                    $('#katakuncipencariankasir').val('');
+                    $('#qtykeluarkasir').val('1');
+                    getCsrfTokenCallback(function() {
+                        $('#keranjangopname').DataTable().ajax.reload();
+                    });
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Cek Koneksi Local DB Kasir",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    }); 
+                }
             }
-        }
+        });
     });
 }
 var catchEnter = debounce(function(index) {
     hitungkeranjangbeli(index)
 }, 500);
 function hitungkeranjangbeli(index){
-    $.ajax({
-        url: baseurljavascript + 'penyesuaian/updatekeranjangopname',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            NOTAOPNAME : $('#notransaksiopname').val(),
-            KODEBARANG : daftarkeranjang.cell(index,1).nodes().to$().find('input').val(),
-            STOKOPNAME : anstokfiskik[index].getNumber(),
-            INFORMASI : daftarkeranjang.cell(index,8).nodes().to$().find('input').val(),
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            if (obj.status == "false"){
-                Swal.fire(
-                    'Pembaruan Keranjang Error!',
-                    obj.msg,
-                    'warning'
-                ) 
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penyesuaian/updatekeranjangopname',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                NOTAOPNAME : $('#notransaksiopname').val(),
+                KODEBARANG : daftarkeranjang.cell(index,1).nodes().to$().find('input').val(),
+                STOKOPNAME : anstokfiskik[index].getNumber(),
+                INFORMASI : daftarkeranjang.cell(index,8).nodes().to$().find('input').val(),
+            },
+            success: function (response) {
+                let obj = JSON.parse(response);
+                if (obj.status == "false"){
+                    Swal.fire(
+                        'Pembaruan Keranjang Error!',
+                        obj.msg,
+                        'warning'
+                    ) 
+                }
             }
-        }
+        });
     });
     hitunginformasi()
 }
@@ -180,46 +186,56 @@ function hapusperbarang(kodebarang,namabarang){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'penyesuaian/hapusperbarang',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KODEBARANG: kodebarang,
-                },
-                success: function (response) {
-                    var obj = JSON.parse(response);
-                    if (obj.status == "true"){
-                        $('#keranjangopname').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Cek Koneksi Local DB Kasir",
-                            text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                            icon: 'warning',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penyesuaian/hapusperbarang',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        KODEBARANG: kodebarang,
+                    },
+                    success: function (response) {
+                        var obj = JSON.parse(response);
+                        if (obj.status == "true"){
+                            $('#keranjangopname').DataTable().ajax.reload();
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Cek Koneksi Local DB Kasir",
+                                text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                                icon: 'warning',
+                            });
+                        }
                     }
-                }
+                });
             });
         }
     })
 }
 function ajaxkosongkan(){
-    $.ajax({
-        url: baseurljavascript + 'penyesuaian/hapuskeranjang',
-        method: 'POST',
-        dataType: 'json',
-        success: function (response) {
-            var obj = JSON.parse(response);
-            if (obj.status == "true"){
-                $('#keranjangopname').DataTable().ajax.reload();
-            }else{
-                Swal.fire({
-                    title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
-                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                    icon: 'warning',
-                });
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'penyesuaian/hapuskeranjang',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success: function (response) {
+                var obj = JSON.parse(response);
+                if (obj.status == "true"){
+                    getCsrfTokenCallback(function() {
+                        $('#keranjangopname').DataTable().ajax.reload();
+                    });
+                }else{
+                    Swal.fire({
+                        title: "Gagal... Membersihkan Keranjang, Silahkan tekan F5",
+                        text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                        icon: 'warning',
+                    });
+                }
             }
-        }
+        });
     });
 }
 function hapuskeranjang(){
@@ -267,46 +283,49 @@ function simpantransaksiopname(){
                 );
                 arraydetailpenyesuaian.push(temp)
             });
-            $.ajax({
-                url: baseurljavascript + 'penyesuaian/simpantransaksiopname',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    DETAILOPNAME :arraydetailpenyesuaian,
-                    NOTAOPNAME : $('#notransaksiopname').val(),
-                    TOTALBARANG : totalbarangg,
-                    TOTALSURPLUS :  $('#totalplus').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
-                    TOTALMINUS :  $('#totalminus').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
-                    TOTALOPANAME :  $('#totalnominal').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
-                    NOMOR : $('#notransaksiopname').val().split('#')[1],
-                    KETERANGAN : $('#keteranganopname').val(),
-                    TANGGALTRS : $("#tanggaltransaksiopname").val().split("-").reverse().join("-"),
-                },
-                success: function (response) {
-                    ajaxkosongkan();
-                    if (response[0].success == "true"){
-                        swal.fire({
-                            title: "Apakah Yakin ?",
-                            text: response[0].msg,
-                            icon:"success",
-                            showCancelButton:true,
-                            confirmButtonText: "Lanjutkan Opanem Lagi!",
-                            cancelButtonText: "Kembali Ke Daftar!",
-                        }).then(function(result){
-                            if(result.isConfirmed){           
-                                location.href = baseurljavascript+"penyesuaian/formpenyesuianstok";
-                            }else{
-                                location.href = baseurljavascript+"penyesuaian/stokopname";
-                            }
-                        })
-                    }else{
-                        Swal.fire(
-                            'Gagal Dalam Transaksi Alias Error!',
-                            response[0].msg,
-                            'warning'
-                        ) 
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penyesuaian/simpantransaksiopname',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        DETAILOPNAME :arraydetailpenyesuaian,
+                        NOTAOPNAME : $('#notransaksiopname').val(),
+                        TOTALBARANG : totalbarangg,
+                        TOTALSURPLUS :  $('#totalplus').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
+                        TOTALMINUS :  $('#totalminus').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
+                        TOTALOPANAME :  $('#totalnominal').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim(),
+                        NOMOR : $('#notransaksiopname').val().split('#')[1],
+                        KETERANGAN : $('#keteranganopname').val(),
+                        TANGGALTRS : $("#tanggaltransaksiopname").val().split("-").reverse().join("-"),
+                    },
+                    success: function (response) {
+                        ajaxkosongkan();
+                        if (response[0].success == "true"){
+                            swal.fire({
+                                title: "Apakah Yakin ?",
+                                text: response[0].msg,
+                                icon:"success",
+                                showCancelButton:true,
+                                confirmButtonText: "Lanjutkan Opanem Lagi!",
+                                cancelButtonText: "Kembali Ke Daftar!",
+                            }).then(function(result){
+                                if(result.isConfirmed){           
+                                    location.href = baseurljavascript+"penyesuaian/formpenyesuianstok";
+                                }else{
+                                    location.href = baseurljavascript+"penyesuaian/stokopname";
+                                }
+                            })
+                        }else{
+                            Swal.fire(
+                                'Gagal Dalam Transaksi Alias Error!',
+                                response[0].msg,
+                                'warning'
+                            ) 
+                        }
                     }
-                }
+                });
             });
         }
     })

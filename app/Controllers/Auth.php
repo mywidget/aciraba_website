@@ -11,6 +11,14 @@ class Auth extends BaseController{
 		$csrfToken = csrf_hash();
 		return $this->response->setJSON(['csrf_token' => $csrfToken]);
 	}
+	public function getCsrfTokens($count)
+	{
+		$csrfTokens = array();
+		for ($i = 0; $i < $count; $i++) {
+			$csrfTokens[] = csrf_hash();
+		}
+		return $this->response->setJSON(['csrf_tokens' => $csrfTokens]);
+	}
 	public function pendaftaranmember(){
 		$client = \Config\Services::curlrequest();
 		$datapost = [

@@ -8,7 +8,7 @@
                 <div class="portlet">
                     <div class="portlet-header portlet-header-bordered">
                         <h3 class="portlet-title"> 
-                            <a href="<?= base_url();?>/masterdata/detailsuplier"><button id="" class="btn btn-primary"> <i class="fas fa-box-open"></i> Tambah Data Suplier</button></a>
+                            <a href="<?= base_url();?>masterdata/detailsuplier"><button id="" class="btn btn-primary"> <i class="fas fa-box-open"></i> Tambah Data Suplier</button></a>
                         </h3>
                     </div>
                     <div class="portlet-body">
@@ -63,5 +63,5 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-<script src="<?= base_url();?>/scripts/masterdata/suplier.js"></script>
+<script src="<?= base_url();?>scripts/masterdata/suplier.js"></script>
 <?= $this->endSection(); ?>

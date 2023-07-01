@@ -139,7 +139,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
-<script type="text/javascript" src="<?= base_url();?>/scripts/acipay/kategorinonppob.js"></script>
+<script type="text/javascript" src="<?= base_url();?>scripts/acipay/kategorinonppob.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#kuncioperator').select2({

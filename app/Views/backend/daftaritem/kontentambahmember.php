@@ -345,7 +345,7 @@
         </div>
     </div>
 </div>
-<script src="<?= base_url();?>/scripts/masterdata/member.js"></script>
+<script src="<?= base_url();?>scripts/masterdata/member.js"></script>
 <script>
 var limitmember = new AutoNumeric("#limitmember", {decimalCharacter : ',',digitGroupSeparator : '.',})
 var jatuhtempomember = new AutoNumeric("#jatuhtempomember", {decimalCharacter : ',',digitGroupSeparator : '.',})

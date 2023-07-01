@@ -2,27 +2,146 @@
 <html lang="en" dir="ltr">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&amp;family=Roboto+Mono&amp;display=swap"
-        rel="stylesheet">
-    <link href="<?= base_url() ;?>styles/ltr-core.css" rel="stylesheet">
-    <link href="<?= base_url() ;?>styles/ltr-vendor.css" rel="stylesheet">
-    <link href="<?= base_url() ;?>styles/ltr-chatting.css" rel="stylesheet">
-    <link href="<?= base_url() ;?>styles/core-default.css" rel="stylesheet">
-    <?php
-		if (isset($usedropzone)){
-	echo '<link rel="stylesheet" type="text/css" href="'.base_url().'scripts/dropzone-5.7.0/min/dropzone.min.css"/>
-	<link href="'.base_url().'styles/flexbin.css" type="text/css" rel="stylesheet" media="all" />
-	';
-	};?>
-    <link href="<?= base_url() ;?>styles/fontawesome-free-6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="<?= base_url() ;?>styles/fontawesome-free-5.15.3/css/all.css" rel="stylesheet">
-    <link href="<?= base_url() ;?>styles/cssseira/style.css" rel="stylesheet">
-    <link href="<?= base_url() ;?>images/favicon.ico" rel="shortcut icon" type="image/x-icon">
-    <style>
-    .btn-flat-success:focus {box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;outline: 2px dotted transparent;outline-offset: 2px;}.card,.cardharga{background-color:#fff}.card,.wishlist{box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)}.swal2-cancel:focus,.swal2-confirm:focus{box-shadow:0 0 0 2px #fff,0 0 3px 5px #3a97f9;outline:transparent dotted 2px;outline-offset:2px}.form-group{margin-bottom:0}.form-control:focus{border-color:red;box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(255,0,0,.6)}.gridmansory{display:grid;grid-gap:10px;grid-auto-rows:2px}.title{font-weight:900;color:var(--clr-primary);line-height:.8}.card{border:none;border-radius:10px;width:150px}.cardharga{border:none;border-top-left-radius:0 !important border-top-right-radius: 0 !important border-bottom-left-radius: 10px !important border-bottom-right-radius: 10px !important width: 1500px}.image-container{position:relative}.thumbnail-image{border-top-left-radius:10px !important border-top-right-radius: 10px!important}.discount{background-color:red;padding:1px 4px;font-size:10px;border-radius:6px;color:#fff}.dress-name,.new-price{font-size:13px;font-weight:700}.wishlist{height:25px;width:25px;background-color:#eee;display:flex;justify-content:center;align-items:center;border-radius:50%}.first{position:absolute;width:100%;padding:9px}.dress-name{width:100%}.new-price{color:red}.voutchers{background-color:#fff;border:none;border-radius:10px;width:100%;overflow:hidden}.voutcher-name{color:grey;font-size:9px;font-weight:500}.voutcher-code{color:red;font-size:11px;font-weight:700}@font-face{font-family:digital-clock-font;src:url('/fonts/digital-7.regular.ttf')}.radio{background:#454857;padding:4px;border-radius:3px;box-shadow:inset 0 0 0 3px rgba(35,33,45,.3),0 0 0 3px rgba(185,185,185,.3);position:relative}.radio input{width:auto;height:100%;-webkit-appearance:none;-moz-appearance:none;appearance:none;outline:0;cursor:pointer;border-radius:2px;padding:4px 8px;background:#454857;color:#bdbdbdbd;font-size:14px;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";transition:.1s linear}.radio input:checked{background-image:linear-gradient(180deg,#95d891,#74bbad);color:#fff;box-shadow:0 1px 1px #0000002e;text-shadow:0 1px 0 #79485f7a}.radio input:before{content:attr(label);display:inline-block;text-align:center;width:100%}.card-sl{border-radius:8px;box-shadow:0 4px 8px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.19)}.card-image img{max-height:100%;max-width:100%;border-radius:8px 8px 0 0;display:block;margin-left:auto;margin-right:auto}.card-heading{font-size:12px;font-weight:700;background:#fff;padding:10px 15px;text-align:center}.card-button{display:flex;justify-content:center;padding:10px 0;width:100%;background-color:#1f487e;color:#fff;border-radius:0 0 8px 8px}.card-button:hover{text-decoration:none;background-color:#1d3461;color:#fff}@-webkit-keyframes pulse{0%{-moz-transform:scale(.9);-ms-transform:scale(.9);-webkit-transform:scale(.9);transform:scale(.9)}70%{-moz-transform:scale(1);-ms-transform:scale(1);-webkit-transform:scale(1);transform:scale(1);box-shadow:0 0 0 50px rgba(90,153,212,0)}100%{-moz-transform:scale(.9);-ms-transform:scale(.9);-webkit-transform:scale(.9);transform:scale(.9);box-shadow:0 0 0 0 rgba(90,153,212,0)}}
-    .full_modal-dialog {width: 98% !important;min-width: 98% !important;max-width: 98% !important;max-height: 92% !important;padding: 0 !important;}.full_modal-content {height: 99% !important;max-height: 99% !important;}
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link href="https://fonts.cdnfonts.com/css/calculator" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&amp;family=Roboto+Mono&amp;display=swap" rel="stylesheet">
+<link href="<?= base_url() ;?>styles/ltr-core.css" rel="stylesheet">
+<link href="<?= base_url() ;?>styles/ltr-vendor.css" rel="stylesheet">
+<link href="<?= base_url() ;?>styles/ltr-chatting.css" rel="stylesheet">
+<link href="<?= base_url() ;?>styles/core-default.css" rel="stylesheet">
+<?php if (isset($usedropzone)){
+echo '<link rel="stylesheet" type="text/css" href="'.base_url().'scripts/dropzone-5.7.0/min/dropzone.min.css"/>
+<link href="'.base_url().'styles/flexbin.css" type="text/css" rel="stylesheet" media="all" />
+';};?>
+<link href="<?= base_url() ;?>styles/fontawesome-free-6.4.0/css/all.min.css" rel="stylesheet">
+<link href="<?= base_url() ;?>styles/fontawesome-free-5.15.3/css/all.css" rel="stylesheet">
+<link href="<?= base_url() ;?>styles/cssseira/style.css" rel="stylesheet">
+<link href="<?= base_url() ;?>images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<style>
+
+.image-container {
+    width: 100%; 
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    height: 100%;
+    object-fit: cover;
+}
+.btn-flat-success:focus {
+  box-shadow: 0 0 0 2px #ffffff, 0 0 3px 5px #3a97f9;
+  outline: 2px dotted transparent;
+  outline-offset: 2px;
+}
+
+@font-face {
+  font-family: digital-clock-font;
+  src: url('/fonts/digital-7.regular.ttf');
+}
+
+.radio {
+  background: #454857;
+  padding: 4px;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 3px rgba(35, 33, 45, .3), 0 0 0 3px rgba(185, 185, 185, .3);
+  position: relative;
+}
+
+.radio input {
+  width: auto;
+  height: 100%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 4px 8px;
+  background: #454857;
+  color: #bdbdbdbd;
+  font-size: 14px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  transition: .1s linear;
+}
+
+.radio input:checked {
+  background-image: linear-gradient(180deg, #95d891, #74bbad);
+  color: #fff;
+  box-shadow: 0 1px 1px #0000002e;
+  text-shadow: 0 1px 0 #79485f7a;
+}
+
+.radio input:before {
+  content: attr(label);
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+
+.card-sl {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19)
+}
+
+.card-image img {
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 8px 8px 0 0;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+
+.card-heading {
+    font-size: 12px;
+    font-weight: 700;
+    background: #fff;
+    padding: 10px 15px;
+    text-align: center
+}
+
+.card-button {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    width: 100%;
+    background-color: #1f487e;
+    color: #fff;
+    border-radius: 0 0 8px 8px
+}
+
+.card-button:hover {
+    text-decoration: none;
+    background-color: #1d3461;
+    color: #fff
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -moz-transform: scale(.9);
+        -ms-transform: scale(.9);
+        -webkit-transform: scale(.9);
+        transform: scale(.9)
+    }
+    70% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        box-shadow: 0 0 0 50px rgba(90, 153, 212, 0)
+    }
+    100% {
+        -moz-transform: scale(.9);
+        -ms-transform: scale(.9);
+        -webkit-transform: scale(.9);
+        transform: scale(.9);
+        box-shadow: 0 0 0 0 rgba(90, 153, 212, 0)
+    }
+}
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -456,7 +575,7 @@
                                     <div class="col-md-4 mt-2">Pajak Toko:</div>
                                     <div class="col-md-8 mb-2">
                                         <div class="input-group">
-                                            <input id="pajaktoko"  placeholder="Rp 0,00" style="text-align: right;"  type="text" class="form-control" value="">
+                                            <input id="pajaktoko" placeholder="Rp 0,00" style="text-align: right;"  type="text" class="form-control" value="">
                                             <div class="input-group-prepend"><span id="btnhitungpajaktoko" style="cursor:pointer" class="input-group-text btn-warning btn"><i class="fa-solid fa-calculator"></i>&nbsp;HITUNG</span></div>
                                         </div>       
                                     </div>
@@ -897,7 +1016,7 @@
                     </div>
                     <div class="col-md-6">
                     TOTAL HARGA JUAL<br>
-                    <span style="font-size: 24px;color:red" id="hargajualbarudetail">Rp. 0,00</span>
+                    <span style="font-size: 24px;color:red;" id="hargajualbarudetail">Rp. 0,00</span>
                     <button  data-dismiss="modal" style="font-size: 120%;" class="btn btn-block btn-success"> Oke.. Tutup Halaman</button>
                     </div>
                 </div>
@@ -1177,11 +1296,15 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
 <script src=" https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js "></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js" integrity="sha512-jNDtFf7qgU0eH/+Z42FG4fw3w7DM/9zbgNPe3wfJlCylVDTT3IgKW5r92Vy9IHa6U50vyMz5gRByIu4YIXFtaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+<script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script type="text/javascript">
 let menukiri = 1, menukanan = 0;
 var pajaktoko = "<?=$pajaktoko;?>";
+var vnominalpotongan = "<?=$nominalpotongan;?>";
 var pajaknegara = "<?=$pajaknegara;?>";
+var vpajaktoko = "<?=$vpajaktoko;?>";
+var vpajaknegara = "<?=$vpajaknegara;?>";
 var jenistransaksienum = "TUNAI";
 var iseditkasir = "<?=$isedit?>";
 var baseurljavascript = "<?=DYBASESEURL;?>";
@@ -1207,6 +1330,82 @@ var dp_rev = new AutoNumeric("#dp_rev", {decimalCharacter : ',',digitGroupSepara
 var berapaorang_rev = new AutoNumeric("#berapaorang_rev", {decimalCharacter : ',',digitGroupSeparator : '.',})
 var jsonStrjenisvarian = '{"jenisvarian":[]}';
 let informasikasir = '{"keranjangbelanjaarray":[]}';
+var csrfName = '<?= csrf_token() ?>';
+var csrfHash = '<?= csrf_hash() ?>';  
+$(document).ready(function() {
+    idleInterval;
+    initializeDataTables();
+    date_time();
+    loadnotakasir();
+    loadkeranjangsementara();
+    loaddaftarbarang();
+    GenerateQuote();
+    $('#katakuncipencariankasir').focus();
+    $('#keranjangkosong').html('<div style="position: absolute;top: 8%; bottom: 0; left: 0; right: 0;margin: auto;" class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Keranjang Belanja Anda Masih Kosong Lo... Silahkan Pilih Item Untuk di Transkasi</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-cart-arrow-down"></i></div></div><!-- END Avatar --><a href="javascript:void(0)" class="btn btn-primary btn-wider">Pilih Barang</a></div>');
+    $("#kolomkredit").hide();
+    $("#kolomkartudebit").hide();
+    $("#kolomkartukredit").hide();
+    $("#kolomemoney").hide();
+    $('#tanggaltrxfield').val((iseditkasir == "false" ? moment().format('DD-MM-YYYY') : moment("<?= $tanggaltransaksi;?>").format('DD-MM-YYYY') ));
+    $("#tanggaltrxfield").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    $('#tanggalawalnota').val(moment().format('DD-MM-YYYY'));
+    $("#tanggalawalnota").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    $('#tanggalakhirnota').val(moment().format('DD-MM-YYYY'));
+    $("#tanggalakhirnota").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    $('#filtertanggalreservasiawal').val(moment().format('DD-MM-YYYY'));
+    $("#filtertanggalreservasiawal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    $('#filtertanggalreservasiakhir').val(moment().endOf('month').format('DD-MM-YYYY'));
+    $("#filtertanggalreservasiakhir").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    /*untuk pesan tempat*/
+    $('#tanggalawal_rev').val((iseditkasir == "false" ? moment().format('DD-MM-YYYY') : ('<?=$tanggal_psn ;?>' == '' ? moment().format('DD-MM-YYYY') : moment("<?= $tanggal_psn;?>").format('DD-MM-YYYY'))));
+    $("#tanggalawal_rev").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    $('#tanggalakhir_rev').val((iseditkasir == "false" ? moment().format('DD-MM-YYYY') : ('<?=$tanggal_psn ;?>' == '' ? moment().format('DD-MM-YYYY') : moment("<?= $tanggala_psn;?>").format('DD-MM-YYYY') )));
+    $("#tanggalakhir_rev").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+    $('#waktuawal_rev').clockTimePicker();
+    $('#waktuselesai_rev').clockTimePicker();
+    $('#waktuawal_rev').clockTimePicker('value', (iseditkasir == "false" ? moment().format('HH:mm') : ("<?= $waktu_psn;?>" == "" ? moment().format('HH:mm') : moment("<?= $waktu_psn;?>", 'HH:mm:ss').format('HH:mm'))));
+    $('#waktuselesai_rev').clockTimePicker('value', (iseditkasir == "false" ? moment().add(3, 'hours').format('HH:mm') : ("<?= $waktua_psn;?>" == "" ? moment().add(2, 'hours').format('HH:mm') : moment("<?= $waktua_psn;?>", 'HH:mm:ss').format('HH:mm') )));
+    $("#tanggalawal_rev").on("change", function() {
+        $("#tanggalakhir_rev").val($("#tanggalawal_rev").val())
+    });
+    $("#waktuawal_rev").on("change", function() {
+        $("#waktuselesai_rev").val(moment($("#waktuawal_rev").val(),'HH:mm:ss').add(3, 'hours').format('HH:mm'))
+    });
+    getCsrfTokenCallback(function() {
+        $('#cmblokasioutlet').select2({
+            allowClear: true,
+            placeholder: 'Mau Pindah Outlet ?',
+            ajax: {
+                url: baseurljavascript + 'auth/outlet',
+                method: 'POST',
+                dataType: 'json',
+                delay: 500,
+                data: function (params) {
+                    return {
+                        [csrfName]:csrfTokenGlobal,
+                        KATAKUNCIPENCARIAN: "",
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                    }
+                },
+                processResults: function (data) {
+                    parseJSON = JSON.parse(data);
+                    return {
+                        results: $.map(parseJSON, function (item) {
+                            return {
+                                text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
+                                id: item.group,
+                            }
+                        })
+                    }
+                }
+            },
+        });
+    });
+    if (iseditkasir == "true"){
+        //$("#modalmodeeditaktif").modal('show');  
+        tipeorder('<?= $tipetransaksi;?>','onload')
+    }
+});
 function date_time() {
     now = moment().format('DD-MM-YYYY HH:mm:ss');
     document.getElementById('tanggaltrx').innerHTML = now;
@@ -1223,21 +1422,6 @@ const GenerateQuote = async () =>{
     if(!auth) author = "Anonymous";
     document.getElementById("QuoteText").innerHTML=quoteText;
     document.getElementById("author").innerHTML="~ "+auth;
-}
-function verifikasikeluar(){
-	Swal.fire({
-		title: 'Keluar Dari Sistem?',
-		html: "Apakah anda yakin ingin keluar dari sistem ACIRABA POS. Kami tunggu kedatangan anda kembali. <strong>SEMOGA HARIMU MENYENANGKAN</strong>",
-		icon: 'warning',
-		showCancelButton: true,
-		confirmButtonColor: '#3085d6',
-		cancelButtonColor: '#d33',
-		confirmButtonText: 'Oke, Byee!!'
-	}).then((result) => {
-		if (result.isConfirmed) {
-			window.location.replace('<?= base_url().'auth/logout';?>');
-		}
-	})
 }
 function pilihjenistranskasi(pilih){
     function clear(){
@@ -1332,6 +1516,38 @@ function pilihjenistranskasi(pilih){
     }
     proseskonfirmasipembelian();
 }
+function verifikasikeluar(){
+	Swal.fire({
+		title: 'Keluar Dari Sistem?',
+		html: "Apakah anda yakin ingin keluar dari sistem ACIRABA POS. Kami tunggu kedatangan anda kembali. <strong>SEMOGA HARIMU MENYENANGKAN</strong>",
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: '#3085d6',
+		cancelButtonColor: '#d33',
+		confirmButtonText: 'Oke, Byee!!'
+	}).then((result) => {
+		if (result.isConfirmed) {
+			window.location.replace('<?= base_url().'auth/logout';?>');
+		}
+	})
+}
+$("#cmblokasioutlet").change(function () {
+    Swal.fire({
+        title: "Apakah anda ingin beralih KE OUTLET : " + $("#cmblokasioutlet").val(),
+        text: "Informasi saat ini akan diubah dengan informasi yang berkaitan dengan KODE OUTLET "+$("#cmblokasioutlet").val()+". Anda dapat kembali ke outlet sebelumnya dengan cara yang sama",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oke, Teleport!!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            session_outlet = $("#cmblokasioutlet").val();
+            window.location = baseurljavascript+"auth/ubahoutlet/"+$("#cmblokasioutlet").val();
+        }
+    })
+});
+/* alert idle */
 var idleMax = 60;
 var idleTime = 0;
 var idleInterval = setInterval("timerIncrement()", 60000);  // 1 minute interval   
@@ -1347,104 +1563,7 @@ function timerIncrement() {
     if (idleTime > idleMax) { 
         window.location.replace('<?= base_url().'auth/logout';?>');
     }
-}       
-$(document).ready(function() {
-    idleInterval;
-    GenerateQuote();
-    date_time();
-    panggillantai();
-    loadnotakasir();
-    loadkeranjangsementara();
-    loaddaftarbarang();
-    window.addEventListener("resize", resizeAllGridItems);
-    $('#katakuncipencariankasir').focus();
-    $('#keranjangkosong').html('<div style="position: absolute;top: 8%; bottom: 0; left: 0; right: 0;margin: auto;" class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Keranjang Belanja Anda Masih Kosong Lo... Silahkan Pilih Item Untuk di Transkasi</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-cart-arrow-down"></i></div></div><!-- END Avatar --><a href="javascript:void(0)" class="btn btn-primary btn-wider">Pilih Barang</a></div>');
-    $("#kolomkredit").hide();
-    $("#kolomkartudebit").hide();
-    $("#kolomkartukredit").hide();
-    $("#kolomemoney").hide();
-    $('#tanggaltrxfield').val((iseditkasir == "false" ? moment().format('DD-MM-YYYY') : moment("<?= $tanggaltransaksi;?>").format('DD-MM-YYYY') ));
-    $("#tanggaltrxfield").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-    $('#tanggalawalnota').val(moment().format('DD-MM-YYYY'));
-    $("#tanggalawalnota").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-    $('#tanggalakhirnota').val(moment().format('DD-MM-YYYY'));
-    $("#tanggalakhirnota").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-    
-    $('#filtertanggalreservasiawal').val(moment().format('DD-MM-YYYY'));
-    $("#filtertanggalreservasiawal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-    $('#filtertanggalreservasiakhir').val(moment().endOf('month').format('DD-MM-YYYY'));
-    $("#filtertanggalreservasiakhir").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-
-    /*untuk pesan tempat*/
-    $('#tanggalawal_rev').val((iseditkasir == "false" ? moment().format('DD-MM-YYYY') : ('<?=$tanggal_psn ;?>' == '' ? moment().format('DD-MM-YYYY') : moment("<?= $tanggal_psn;?>").format('DD-MM-YYYY'))));
-    $("#tanggalawal_rev").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-    $('#tanggalakhir_rev').val((iseditkasir == "false" ? moment().format('DD-MM-YYYY') : ('<?=$tanggal_psn ;?>' == '' ? moment().format('DD-MM-YYYY') : moment("<?= $tanggala_psn;?>").format('DD-MM-YYYY') )));
-    $("#tanggalakhir_rev").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-    $('#waktuawal_rev').clockTimePicker();
-    $('#waktuselesai_rev').clockTimePicker();
-    $('#waktuawal_rev').clockTimePicker('value', (iseditkasir == "false" ? moment().format('HH:mm') : ("<?= $waktu_psn;?>" == "" ? moment().format('HH:mm') : moment("<?= $waktu_psn;?>", 'HH:mm:ss').format('HH:mm'))));
-    $('#waktuselesai_rev').clockTimePicker('value', (iseditkasir == "false" ? moment().add(3, 'hours').format('HH:mm') : ("<?= $waktua_psn;?>" == "" ? moment().add(2, 'hours').format('HH:mm') : moment("<?= $waktua_psn;?>", 'HH:mm:ss').format('HH:mm') )));
-    $("#tanggalawal_rev").on("change", function() {
-        $("#tanggalakhir_rev").val($("#tanggalawal_rev").val())
-    });
-    $("#waktuawal_rev").on("change", function() {
-        $("#waktuselesai_rev").val(moment($("#waktuawal_rev").val(),'HH:mm:ss').add(3, 'hours').format('HH:mm'))
-    });
-    if (iseditkasir == "true"){
-        //$("#modalmodeeditaktif").modal('show');  
-        tipeorder('<?= $tipetransaksi;?>','onload')
-        setTimeout(function() {
-            nominalpajaktoko.set(<?= $vpajaktoko;?>)
-            nominalpajaknegara.set(<?= $vpajaknegara;?>)
-            hitungpotongan();
-            if (<?= $vpajaktoko;?> > 0){hitungpajak("toko");}
-            if (<?= $vpajaknegara;?> > 0){hitungpajak("negara");}
-        }, 1000);
-    }
-    $('#cmblokasioutlet').select2({
-		allowClear: true,
-		placeholder: 'Mau Pindah Outlet ?',
-		ajax: {
-			url: baseurljavascript + 'auth/outlet',
-			method: 'POST',
-			dataType: 'json',
-			delay: 500,
-			data: function (params) {
-				return {
-					KATAKUNCIPENCARIAN: "",
-					KODEUNIKMEMBER: session_kodeunikmember,
-				}
-			},
-			processResults: function (data) {
-				parseJSON = JSON.parse(data);
-				return {
-					results: $.map(parseJSON, function (item) {
-						return {
-							text: "OUTLET : " + item.group+" ["+item.namaoutlet+"] ",
-							id: item.group,
-						}
-					})
-				}
-			}
-		},
-	});
-	$("#cmblokasioutlet").change(function () {
-		Swal.fire({
-			title: "Apakah anda ingin beralih KE OUTLET : " + $("#cmblokasioutlet").val(),
-			text: "Informasi saat ini akan diubah dengan informasi yang berkaitan dengan KODE OUTLET "+$("#cmblokasioutlet").val()+". Anda dapat kembali ke outlet sebelumnya dengan cara yang sama",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Oke, Teleport!!'
-		}).then((result) => {
-			if (result.isConfirmed) {
-                session_outlet = $("#cmblokasioutlet").val();
-				window.location = baseurljavascript+"auth/ubahoutlet/"+$("#cmblokasioutlet").val();
-			}
-		})
-	});
-});
+} 
 /* key bind kasir */
 $('#qtykeluarkasir').keypress(function (e) {let key = e.which; if(key == 13){$('#katakuncipencariankasir').focus();return false;}});
 $('#katakuncipencariankasir').keypress(function (e) {let key = e.which; if(key == 13 && $('#katakuncipencariankasir').val() == ""){$('#qtykeluarkasir').focus();return false;}});
@@ -1503,160 +1622,6 @@ function tipeorder(jenis,onload){
         }
     }
 }
-$("#tabel_pesanananmeja_kasir").DataTable({
-    language: {
-        "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"
-    },
-    scrollCollapse: true,
-    scrollY: "100vh",
-    scrollX: true,
-    bFilter: true,
-    destroy: true,
-    ajax: {
-        "url": baseurljavascript + 'resto/ajaxdetailpesanan',
-        "method": 'POST',
-        "data": function (d) {
-            d.KODEMEJA = "";
-            d.PROSESDARI = 'kasir';
-            d.TANGGALAWAL = $('#filtertanggalreservasiawal').val().split("-").reverse().join("-");
-            d.TANGGALAKHIR = $('#filtertanggalreservasiakhir').val().split("-").reverse().join("-");
-        },
-    }
-});
-$("#kasir_daftarnotapending").DataTable({
-        retrieve: true,
-        ordering: true,
-        order: [[0, 'desc']],
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        ajax: {
-            "url": baseurljavascript + 'penjualan/daftarnotapending',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCIPENCARIAN = $("#txtpencariannotapending").val();
-            }
-        },
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false,
-        columnDefs: [
-            {className: "text-right",targets: [1,2]},
-        ],
-    }); 
-$("#kasir_daftarmember").DataTable({
-        retrieve: true,
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        ajax: {
-            "url": baseurljavascript + 'masterdata/ajaxdaftarmemberkasir',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCI = $("#textpencarianmemberkasir").val();
-                d.KODEUNIKMEMBER = session_kodeunikmember;
-                d.DATAKE = 0;
-                d.LIMIT = 50;
-            }
-        },
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false
-    });
-$("#kasir_daftarsalesman").DataTable({
-        retrieve: true,
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        ajax: {
-            "url": baseurljavascript + 'masterdata/ajaxdaftarsalesman',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCI = $("#textpencariansuplierkasir").val();
-                d.KODEUNIKMEMBER = session_kodeunikmember;
-                d.DATAKE = 0;
-                d.LIMIT = 50;
-            }
-        },
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false
-    });
-$("#kasir_daftarpenjualan").DataTable({
-        retrieve: true,
-        ordering: true,
-        order: [[0, 'desc']],
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        ajax: {
-            "url": baseurljavascript + 'penjualan/ajaxdaftarpenjualankasir',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCIPENCARIAN = $("#txtpencariannota").val();
-                d.TANGGALAWAL = $("#tanggalawalnota").val().split("-").reverse().join("-");
-                d.TANGGALAKHIR = $("#tanggalakhirnota").val().split("-").reverse().join("-");
-                d.DATAKE = 0;
-                d.LIMIT = 50;
-            }
-        },
-        scrollCollapse: true,
-        scrollY: "50vh",
-        scrollX: true,
-        bFilter: false,
-        columnDefs: [
-            {className: "text-right",targets: [2]},
-            {targets: [0],visible: false
-            },
-        ],
-    });    
-function panggilmeja(lantai,idElement,dari){ 
-    $.ajax({
-        url: baseurljavascript + 'resto/ajaxpanggilmeja',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            LANTAI : lantai,
-        },
-        success: function (response) {
-            if (response.success == "true"){
-                let htmlnya = "";
-                htmlnya = "<div class=\"row\">";
-                for (let i = 0; i < response.totaldata; i++) {
-                    let nameArr = response.dataquery[i].INFORMASIPESANAN.split('::'), pesan = "KOSONG", posisi = 0;
-                    if (nameArr[0] > 0) {
-                        posisi = "color:red";
-                        pesan = "TERPESAN";
-                    }
-                    htmlnya += ""
-+"<div class=\"col-md-3 card>"
-        +"<div class=\"card-body\">"
-        +"<img style=\"object-fit: cover; height:250px\" src=\""+response.dataquery[i].GAMBAR+"\" class=\"mb-2 card-img-top mt-2 rounded img-responsive\" alt=\""+response.dataquery[i].KODEMEJA+"\">"
-            +"<h5 class=\"card-title\">MEJA : "+response.dataquery[i].NAMAMEJA+" ["+response.dataquery[i].KODEMEJA+"]</h5>"
-            +"<p class=\"card-text\">"
-            +"Status Meja : <span style=\""+posisi+"\">"+pesan+"</span><br>"
-            +"Status Jam Kosong : <span style=\""+posisi+"\">"+time_convert(response.dataquery[i].TOTALJAM - nameArr[1])+"</span><br>"
-            +"Total Jam Pesanan : <span style=\""+posisi+"\">"+time_convert(nameArr[1])+"</span><br>"
-            +"Dipesan Untuk : <span style=\""+posisi+"\">"+nameArr[0]+" Orang</span><br>"
-            +"<p class=\"card-text\">Informasi Meja : <span style=\"color:red\">"+response.dataquery[i].KETERANGAN+"</span></p>"
-            +"</p>"
-            +"<div class=\"btn-group btn-block\">"
-                +"<button onclick=\"detailpesanan('"+response.dataquery[i].KODEMEJA+"','kasir')\" class=\"btn btn-primary\"><i class=\"fas fa-search\"></i> Lihat Detail </button>"
-                +"<button "+(dari == "list" ? "hidden" : "" )+" onclick=\"pilihmejainikasir('"+response.dataquery[i].KODEMEJA+"')\" class=\"btn btn-success\"><i class=\"fas fa-add\"></i> Pilih Meja Ini </button>"
-            +"</div>"
-        +"</div>"
-                }    
-                htmlnya += "</div>";
-                $(idElement).html("");
-                $(idElement).append(htmlnya);
-            }else{
-                Swal.fire({
-                    title: "Gagal... Membaca Database",
-                    text: "Silahkan cek log database anda. Kali aja ada yang typo dalam penulisan QUERY",
-                    icon: 'error',
-                });
-            }
-        }
-    });
-}
-function pilihmejainikasir(kodemeja){
-    $("#kodemejaterpilih_rev").val(kodemeja)
-}
 $('#nominalpotongan').on('keypress', debounce(function (e) {
     hitungpotongan()
 }, 500));
@@ -1682,46 +1647,6 @@ $("#btnbatalpajak").click(function() {
     nominalpajaknegara.set(0)
     $("#grandtotal").html(formatuang(totalbelanjaatas - nominalpotongan.getNumber(),'id-ID','IDR'))
 });
-function batalkanpesanantempat(prosesdari,kodepesanantempat,pemesan,tanggal){
-    swal.fire({
-        title: "Wah.. Pembatalan Kode Pesan : "+kodepesanantempat+" ?",
-        text: "Yahh.. yakin nih mau dibatalkan pemesanan tempatnya TANGGAL "+tanggal+". Apa Kasir tidak diarahkan telebih dahulu gitu customernya dengan NAMA : "+pemesan+" ?",
-        icon:"question",
-        showCancelButton:true,
-        confirmButtonText: "Ok.. Saya Yakin",
-        cancelButtonText: "Ooops.. Gak Jadi!!",
-    }).then(function(result){
-        if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'resto/updatestatuspemesanan',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    PROSESDARI : prosesdari,
-                    KODEMEJA : kodepesanantempat,
-                },
-                success: function (response) {
-                    $('#tabel_pesanananmeja_kasir').DataTable().ajax.reload();
-                    Swal.fire({
-                        title: "Pembatalan Berhasil",
-                        text: "Pemesan dengan NAMA : "+pemesan+" telah dibatalkan oleh SISTEM. Batas waktu kursi pada TANGGAL "+tanggal+" telah berkurang dan dapat digunakan disi oleh pemesan lain",
-                        icon: 'success',
-                    });
-                }
-            });
-        }
-    })
-}
-function transaksibaru(){
-    kosongkankeranjanglokal();
-    setTimeout(function (){
-        location.href = baseurljavascript+"/penjualan/kasir/";
-    }, 50);
-}
-function toastinformasidpkonfirmasi(){
-    toastr.options = {newestOnTop: true,};
-    toastr["info"]("Informasi yang disajikan adalah informasi pembantu guna KASIR dapat mengingatkan DP yang dibayarkan pelanggan saat reservasi");
-}
 </script>
 </body>
 </html>

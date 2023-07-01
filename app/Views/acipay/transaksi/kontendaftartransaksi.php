@@ -109,7 +109,7 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
-<script type="text/javascript" src="<?= base_url();?>/scripts/acipay/daftarprodukacipay.js"></script>
+<script type="text/javascript" src="<?= base_url();?>scripts/acipay/daftarprodukacipay.js"></script>
 <script>
 if (statusdata == 1){
     const socket = io(baseurlsocket);

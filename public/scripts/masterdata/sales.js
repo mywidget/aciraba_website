@@ -2,6 +2,7 @@ $(function () {
     loadtabelutama();
 });
 function loadtabelutama() {
+getCsrfTokenCallback(function() {   
     $("#tabeldaftarsales").DataTable({
         language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
         dom: 'Bfrtip',
@@ -35,13 +36,18 @@ function loadtabelutama() {
             "url": baseurljavascript + 'masterdata/ajaxdaftarales',
             "method": 'POST',
             "data": function (d) {
+                d.csrf_aciraba = csrfTokenGlobal;
                 d.KATAKUNCIPENCARIAN = $('#kodesales').val() == null ? "" : $('#kodesales').val();
                 d.KODEUNIKMEMBER = session_kodeunikmember;
                 d.DATAKE = 0;
                 d.LIMIT = 500;
             },
+        },
+        fnInitComplete: function(oSettings, json) {
+            getCsrfTokenCallback(function() {});
         }
     });
+});
 }
 $("#simpansales").click(function() {
     if ($("#kodesales").val() == "" || $("#namasales").val() == "" || $("#provinsi").val() == "" || $("#kotasales").val() == "" || $("#alamatsales").val() == "" || $("#notelpsales").val() == ""){
@@ -64,50 +70,61 @@ $("#simpansales").click(function() {
         confirmButtonText: $('#isinsert').is(":checked") == false ? 'Oke, Ubah Data' : 'Oke, Tambahkan!'
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'masterdata/jsontambahsales',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KODESALES : $("#kodesales").val(),
-                    NAMA : $("#namasales").val(),
-                    ALAMAT: $("#alamatsales").val(),
-                    KOTA: $("#kotasales").val(),
-                    PROVINSI : $("#provinsi").val(),
-                    TELEPON: $("#notelpsales").val(),
-                    EMAIL: $("#emailsales").val(),
-                    BANK: $("#banksales").val(),
-                    NOREK: $("#norekening").val(),
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                    ISINSERT : $('#isinsert').is(":checked"),
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        Swal.fire(
-                            'Berhasil.. Horee!',
-                            obj.msg,
-                            'success'
-                        )
-                        if ($('#isinsert').is(":checked") == true){
-                            $("#kodesales").val("");
-                            $("#namasales").val("");
-                            $("#alamatsales").val("");
-                            $("#kotasales").val("");
-                            $("#provinsi").val("");
-                            $("#notelpsales").val("");
-                            $("#emailsales").val("");
-                            $("#banksales").val("");
-                            $("#norekening").val("");
+            $('#simpansales').prop("disabled",true);
+            $('#simpansales').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/jsontambahsales',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        KODESALES : $("#kodesales").val(),
+                        NAMA : $("#namasales").val(),
+                        ALAMAT: $("#alamatsales").val(),
+                        KOTA: $("#kotasales").val(),
+                        PROVINSI : $("#provinsi").val(),
+                        TELEPON: $("#notelpsales").val(),
+                        EMAIL: $("#emailsales").val(),
+                        BANK: $("#banksales").val(),
+                        NOREK: $("#norekening").val(),
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                        ISINSERT : $('#isinsert').is(":checked"),
+                    },
+                    complete:function(){
+                        $('#simpansales').prop("disabled",false);
+                        $('#simpansales').html('Simpan Informasi Sales Anda');
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            Swal.fire(
+                                'Berhasil.. Horee!',
+                                response.msg,
+                                'success'
+                            )
+                            if ($('#isinsert').is(":checked") == true){
+                                $("#kodesales").val("");
+                                $("#namasales").val("");
+                                $("#alamatsales").val("");
+                                $("#kotasales").val("");
+                                $("#provinsi").val("");
+                                $("#notelpsales").val("");
+                                $("#emailsales").val("");
+                                $("#banksales").val("");
+                                $("#norekening").val("");
+                            }
+                        }else{
+                            Swal.fire(
+                                'Gagal.. Uhhhhh!',
+                                response.msg,
+                                'warning'
+                            )
                         }
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            obj.msg,
-                            'warning'
-                        )
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     });
@@ -123,33 +140,45 @@ function onclickhapussales(kodesales,namasales,){
         confirmButtonText: 'Oke, Saya Yakin Kok!'
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'masterdata/jsonhapusdaftarssales',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KODESALES: kodesales,
-                    NAMASALES: namasales,
-                    KODEUNIKMEMBER: session_kodeunikmember,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        $('#tabeldaftarsales').DataTable().ajax.reload();
-                        Swal.fire(
-                            'Yess.. Nama Sales : '+namasales+' telah berhasil terhapus',
-                            obj.msg,
-                            'success'
-                        )
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            obj.msg,
-                            'warning'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/jsonhapusdaftarssales',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        KODESALES: kodesales,
+                        NAMASALES: namasales,
+                        KODEUNIKMEMBER: session_kodeunikmember,
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            getCsrfTokenCallback(function() {
+                                $('#tabeldaftarsales').DataTable().ajax.reload();
+                            });
+                            Swal.fire(
+                                'Yess.. Nama Sales : '+namasales+' telah berhasil terhapus',
+                                response.msg,
+                                'success'
+                            )
+                        }else{
+                            Swal.fire(
+                                'Gagal.. Uhhhhh!',
+                                response.msg,
+                                'warning'
+                            )
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     });
 }
+$('#kodesales').on('input', debounce(function (e) {
+    getCsrfTokenCallback(function() {
+        $('#tabeldaftarsales').DataTable().ajax.reload();
+    });
+}, 500));

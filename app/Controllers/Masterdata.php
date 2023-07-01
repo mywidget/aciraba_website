@@ -261,10 +261,10 @@ class Masterdata extends BaseController{
 		]);
 		$datajson = json_decode($json_data->getBody());
 		$jsontext = "[";
-		for ($x = 0; $x < $datajson->jenispembayarantransaksi[0]->totaldata; $x++) {
+		/*for ($x = 0; $x < $datajson->jenispembayarantransaksi[0]->totaldata; $x++) {
 			$jsontext .= '{"kodetrx": "'.$datajson->jenispembayarantransaksi[0]->jenispembayarantransaksi[$x]->id.'", "namatrx": "'.$datajson->jenispembayarantransaksi[0]->jenispembayarantransaksi[$x]->name.'"},';	
-		}
-		$jsontext .= '{"kodetrx": "KREDIT", "namatrx": "Kredit [Hutang]"},';
+		}*/
+		$jsontext .= '{"kodetrx": "KREDIT", "namatrx": "Kredit [Hutang]"},{"kodetrx": "TUNAI", "namatrx": "Cash [Tunai]"},';
 		$jsontext = substr_replace($jsontext, '', -1); /* menghilangkan koma terakhir */
 		$jsontext .= "]";
 		return json_encode($jsontext);
@@ -768,6 +768,24 @@ class Masterdata extends BaseController{
 			}
 		}
 		return json_encode($pesanaksi);
+	}
+	public function pilihcitrautama(){
+		$client = \Config\Services::curlrequest();
+		$datapost = [
+			'KONDISI' => "update",
+			'AI' => service('request')->getPost('IDCITRA'),
+			'KODEITEM' => service('request')->getPost('KODEITEM'),
+			'KODEUNIKMEMBER' => $this->session->get("kodeunikmember"),
+		];
+		$json_data = $client->request("POST", BASEURLAPI."masterdata/manajemencitraitem", [
+			"headers" => [
+				"Accept" => "application/json",
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
+			],
+			"form_params" => $datapost
+		]);
+		$datajson = json_decode($json_data->getBody());
+		return json_encode($datajson->manajemencitraitem[0]);
 	}
 	public function deletefilephp(){
 		if( file_exists(BASEROOTFILE.'citraitem/'.service('request')->getPost('filehapus')) ) {
@@ -1591,10 +1609,6 @@ class Masterdata extends BaseController{
 		return json_encode($outputDT);
 	}
 	public function detailmemberterpilih(){
-		if ($this->session->get("kodeunikmember") == ""){
-			$jsonobj = '{"apakahlogin":"false"}';
-			return json_encode($jsonobj);
-		}
 		$client = \Config\Services::curlrequest();
 		$datapost = [
 			'KATAKUNCI' => service('request')->getPost('KATAKUNCI'),
@@ -1783,14 +1797,10 @@ class Masterdata extends BaseController{
 		return view('backend/daftaritem/kontendaftarsales',$data);
 	}
 	public function ajaxdaftarales(){
-		if ($this->session->get("kodeunikmember") == ""){
-			$jsonobj = '{"apakahlogin":"false"}';
-			return json_encode($jsonobj);
-		}
 		$client = \Config\Services::curlrequest();
 		$datapost = [
 			'KONDISI' => '20',
-			'DIMANA1' => "ASCKODESALES",
+			'DIMANA1' => $this->session->get("kodeunikmember"),
 			'DIMANA2' => '1',
 			'DIMANA3' => service('request')->getPost('KATAKUNCIPENCARIAN'),
 			'DIMANA4' => '',
@@ -1870,12 +1880,7 @@ class Masterdata extends BaseController{
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->tambahmastersales[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->tambahmastersales[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->tambahmastersales[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->tambahmastersales[0]);
 	}
 	public function jsonhapusdaftarssales(){
 		$client = \Config\Services::curlrequest();
@@ -1892,12 +1897,7 @@ class Masterdata extends BaseController{
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->hapussales[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->hapussales[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->hapussales[0]->msg.'"}';
-		}
-		return json_encode($jsonobj);
+		return json_encode($datajson->hapussales[0]);
 	}
 	public function detailsales(){
 		helper('url');
@@ -1940,7 +1940,7 @@ class Masterdata extends BaseController{
 				'DATAKE' => 0,
 				'LIMIT' => 1,
 			];
-			$json_data = $client->request("POST", BASEURLAPI."masterdata/mastersuplier", [
+			$json_data = $client->request("POST", BASEURLAPI."masterdata/mastersales", [
 				"headers" => [
 					"Accept" => "application/json",
 					"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
@@ -1948,16 +1948,16 @@ class Masterdata extends BaseController{
 				"form_params" => $datapost
 			]);
 			$datajson = json_decode($json_data->getBody());	
-			$data['KODESALES'] = $datajson->mastersuplier[0]->dataquery[0]->KODESALES;
-			$data['NAMA'] = $datajson->mastersuplier[0]->dataquery[0]->NAMA;
-			$data['PROVINSI'] = $datajson->mastersuplier[0]->dataquery[0]->PROVINSI;
-			$data['KOTA'] = $datajson->mastersuplier[0]->dataquery[0]->KOTA;
-			$data['ALAMAT'] = $datajson->mastersuplier[0]->dataquery[0]->ALAMAT;
-			$data['TELEPON'] = $datajson->mastersuplier[0]->dataquery[0]->TELEPON;
-			$data['EMAIL'] = $datajson->mastersuplier[0]->dataquery[0]->EMAIL;
-			$data['BANK'] = $datajson->mastersuplier[0]->dataquery[0]->BANK;
-			$data['NOREK'] = $datajson->mastersuplier[0]->dataquery[0]->NOREK;
-			$data['PEMILIKREK'] = $datajson->mastersuplier[0]->dataquery[0]->PEMILIKREK;
+			$data['KODESALES'] = $datajson->mastersales[0]->dataquery[0]->KODESALES;
+			$data['NAMA'] = $datajson->mastersales[0]->dataquery[0]->NAMA;
+			$data['PROVINSI'] = $datajson->mastersales[0]->dataquery[0]->PROVINSI;
+			$data['KOTA'] = $datajson->mastersales[0]->dataquery[0]->KOTA;
+			$data['ALAMAT'] = $datajson->mastersales[0]->dataquery[0]->ALAMAT;
+			$data['TELEPON'] = $datajson->mastersales[0]->dataquery[0]->TELEPON;
+			$data['EMAIL'] = $datajson->mastersales[0]->dataquery[0]->EMAIL;
+			$data['BANK'] = $datajson->mastersales[0]->dataquery[0]->BANK;
+			$data['NOREK'] = $datajson->mastersales[0]->dataquery[0]->NOREK;
+			$data['PEMILIKREK'] = $datajson->mastersales[0]->dataquery[0]->PEMILIKREK;
 		}
 		return view('backend/daftaritem/kontentambahsales',$data);
 	}

@@ -140,7 +140,7 @@
                                 <button id="bersihkanform" class="btn btn-flat-info btn-icon mr-2 btn-lg">
                                     <i class="fa fa-redo-alt"></i>
                                 </button>
-                                <button data-toggle="modal" data-target="#modal6" class="btn btn-flat-info btn-icon mr-2 btn-lg">
+                                <button onclick="panggilinformasibarang()" class="btn btn-flat-info btn-icon mr-2 btn-lg">
                                     <i class="fa fa-boxes"></i>
                                 </button>
                             </div>
@@ -371,7 +371,6 @@ $(document).ready(function () {
     <?php } ?>
     $("#tgltrx").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
     $('#jenispembayaran').select2({
-        
         allowClear: true,
         placeholder: 'Pilih Sumber Dana',
         ajax: {
@@ -381,11 +380,13 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     NAMAPARAMETER: (typeof params.term === "undefined" ? "" : params.term),
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -394,87 +395,93 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
-    daftarkeranjang = $("#keranjangpembelian").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        keys: true,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        fixedColumns: {
-            leftColumns: 1,
-            rightColumns: 1,
-        },
-        ajax: {
-            "url": baseurljavascript + 'pembelian/daftarpembelianlocal',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCIPENCARIAN = null;
-            }
-        },
-        columnDefs : [
-            { 'visible': false, 'targets': [7,21] }
-        ],
-        drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            var data = daftarkeranjang.rows().data();
-            let totalbelanja = 0, totalbelanjanett = 0;
-            data.each(function (value, index) {
-                $('#'+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id')).val(moment().format('DD-MM-YYYY'));
-                $('#'+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id')).datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,3).nodes().to$().find('input').prop('id'))) { anjumlahbeli[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,3).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'))) { anstokdisplay[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'))) { anstokgudang[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,6).nodes().to$().find('input').prop('id'))) { hargasuplier[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,6).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                //if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'))) { kadaluarsa[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,8).nodes().to$().find('input').prop('id'))) { subtotal[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,8).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,9).nodes().to$().find('input').prop('id'))) { diskon1[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,9).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,10).nodes().to$().find('input').prop('id'))) { diskon2[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,10).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,11).nodes().to$().find('input').prop('id'))) { ppn[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,11).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,12).nodes().to$().find('input').prop('id'))) { adiskon1[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,12).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,13).nodes().to$().find('input').prop('id'))) { adiskon2[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,13).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,14).nodes().to$().find('input').prop('id'))) { subtotalhpp[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,14).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,15).nodes().to$().find('input').prop('id'))) { hpp[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,15).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,16).nodes().to$().find('input').prop('id'))) { bebangaji[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,16).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,17).nodes().to$().find('input').prop('id'))) { bebanpromo[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,17).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,18).nodes().to$().find('input').prop('id'))) { bebanpacking[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,18).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,19).nodes().to$().find('input').prop('id'))) { bebantransport[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,19).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,20).nodes().to$().find('input').prop('id'))) { hppbeban[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,20).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            });
-        },
-        initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            var data = daftarkeranjang.rows().data();
-            let totalbelanja = 0, totalbelanjanett = 0,totalppnmasukan=0;
-            data.each(function (value, index) {
-                if (ppn[index].getNumber() > 0){
-                    $("#aktifkanpajakmasukan").prop("checked", true);
+    getCsrfTokenCallback(function() {
+        daftarkeranjang = $("#keranjangpembelian").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            keys: true,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            ordering: false,
+            fixedColumns: {
+                leftColumns: 1,
+                rightColumns: 1,
+            },
+            ajax: {
+                "url": baseurljavascript + 'pembelian/daftarpembelianlocal',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCIPENCARIAN = null;
                 }
-                totalbelanja = totalbelanja + subtotalhpp[index].getNumber()
-                totalbelanjanett = totalbelanjanett + (hppbeban[index].getNumber() * anjumlahbeli[index].getNumber())
-                totalppnmasukan = totalppnmasukan + ppn[index].getNumber()
-                $('#totalpembelian').html(formatuang(totalbelanja.toFixed(2),'id-ID','IDR'));
-                $('#totalpembeliannett').html(formatuang(totalbelanjanett.toFixed(2),'id-ID','IDR'));
-                $('#totalppnmasukan').html(formatuang(totalppnmasukan.toFixed(2),'id-ID','IDR'));
-            }); 
-            <?php if ($isedit == "true") { ?>
-                hitungdenganinfototal();
-            <?php } ;?>
-        }
-    }).on( 'key-focus', function ( e, datatable, cell, originalEvent ) {
-        $('input', cell.node()).focus();
-    }).on("focus", "td input", function(){
-        $(this).select();
+            },
+            columnDefs : [
+                { 'visible': false, 'targets': [7,21] }
+            ],
+            drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = daftarkeranjang.rows().data();
+                let totalbelanja = 0, totalbelanjanett = 0;
+                data.each(function (value, index) {
+                    $('#'+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id')).val(moment().format('DD-MM-YYYY'));
+                    $('#'+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id')).datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,3).nodes().to$().find('input').prop('id'))) { anjumlahbeli[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,3).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'))) { anstokdisplay[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'))) { anstokgudang[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,5).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,6).nodes().to$().find('input').prop('id'))) { hargasuplier[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,6).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    //if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'))) { kadaluarsa[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,7).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,8).nodes().to$().find('input').prop('id'))) { subtotal[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,8).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,9).nodes().to$().find('input').prop('id'))) { diskon1[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,9).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,10).nodes().to$().find('input').prop('id'))) { diskon2[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,10).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,11).nodes().to$().find('input').prop('id'))) { ppn[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,11).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,12).nodes().to$().find('input').prop('id'))) { adiskon1[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,12).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,13).nodes().to$().find('input').prop('id'))) { adiskon2[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,13).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,14).nodes().to$().find('input').prop('id'))) { subtotalhpp[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,14).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,15).nodes().to$().find('input').prop('id'))) { hpp[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,15).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,16).nodes().to$().find('input').prop('id'))) { bebangaji[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,16).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,17).nodes().to$().find('input').prop('id'))) { bebanpromo[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,17).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,18).nodes().to$().find('input').prop('id'))) { bebanpacking[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,18).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,19).nodes().to$().find('input').prop('id'))) { bebantransport[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,19).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+daftarkeranjang.cell(index,20).nodes().to$().find('input').prop('id'))) { hppbeban[index] = new AutoNumeric("#"+daftarkeranjang.cell(index,20).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                });
+            },
+            initComplete: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = daftarkeranjang.rows().data();
+                let totalbelanja = 0, totalbelanjanett = 0,totalppnmasukan=0;
+                data.each(function (value, index) {
+                    if (ppn[index].getNumber() > 0){
+                        $("#aktifkanpajakmasukan").prop("checked", true);
+                    }
+                    totalbelanja = totalbelanja + subtotalhpp[index].getNumber()
+                    totalbelanjanett = totalbelanjanett + (hppbeban[index].getNumber() * anjumlahbeli[index].getNumber())
+                    totalppnmasukan = totalppnmasukan + ppn[index].getNumber()
+                    $('#totalpembelian').html(formatuang(totalbelanja.toFixed(2),'id-ID','IDR'));
+                    $('#totalpembeliannett').html(formatuang(totalbelanjanett.toFixed(2),'id-ID','IDR'));
+                    $('#totalppnmasukan').html(formatuang(totalppnmasukan.toFixed(2),'id-ID','IDR'));
+                }); 
+                <?php if ($isedit == "true") { ?>
+                    hitungdenganinfototal();
+                <?php } ;?>
+            }
+        }).on( 'key-focus', function ( e, datatable, cell, originalEvent ) {
+            $('input', cell.node()).focus();
+        }).on("focus", "td input", function(){
+            $(this).select();
+        });
+        daftarkeranjang.on('key', function (e, dt, code) {
+            if (code === 13) {
+                daftarkeranjang.keys.move('down');
+            }
+        })
     });
-    daftarkeranjang.on('key', function (e, dt, code) {
-        if (code === 13) {
-            daftarkeranjang.keys.move('down');
-        }
-    })
     $('#pilihperusahaan').select2({
-        
         allowClear: true,
         placeholder: 'Silahkan tentukan transaksi pembelian a.n perusahaan',
         ajax: {
@@ -484,12 +491,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     NAMAPERUSAHAAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -498,45 +507,52 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
     panggilhargajual(null);
 });
 function panggilhargajual(notranskasi){
-    formubahhargajual = $("#tabel_ubahhargajual").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        keys: true,
-        scrollX: true,
-        scrollCollapse: true,
-        paging: false,
-        ordering: false,
-        destroy: true,
-        ajax: {
-            "url": baseurljavascript + 'pembelian/ubahhargajualsetelahbeli',
-            "type": "POST",
-            "data": function (d) {
-                d.NOTA = notranskasi;
+    getCsrfTokenCallback(function() {
+        formubahhargajual = $("#tabel_ubahhargajual").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            keys: true,
+            scrollX: true,
+            scrollCollapse: true,
+            paging: false,
+            ordering: false,
+            destroy: true,
+            ajax: {
+                "url": baseurljavascript + 'pembelian/ubahhargajualsetelahbeli',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.NOTA = notranskasi;
+                }
+            },
+            drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+                var data = formubahhargajual.rows().data();
+                data.each(function (value, index) {
+                    if (!AutoNumeric.getAutoNumericElement("#"+formubahhargajual.cell(index,3).nodes().to$().find('input').prop('id'))) { afbelihb[index] = new AutoNumeric("#"+formubahhargajual.cell(index,3).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                    if (!AutoNumeric.getAutoNumericElement("#"+formubahhargajual.cell(index,4).nodes().to$().find('input').prop('id'))) { afbelihj[index] = new AutoNumeric("#"+formubahhargajual.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
+                });
+            },
+        }).on( 'key-focus', function ( e, datatable, cell, originalEvent ) {
+            $('input', cell.node()).focus();
+        }).on("focus", "td input", function(){
+            $(this).select();
+        });
+        formubahhargajual.on('key', function (e, dt, code) {
+            if (code === 13) {
+                formubahhargajual.keys.move('down');
             }
-        },
-        drawCallback: function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
-            var data = formubahhargajual.rows().data();
-            data.each(function (value, index) {
-                if (!AutoNumeric.getAutoNumericElement("#"+formubahhargajual.cell(index,3).nodes().to$().find('input').prop('id'))) { afbelihb[index] = new AutoNumeric("#"+formubahhargajual.cell(index,3).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-                if (!AutoNumeric.getAutoNumericElement("#"+formubahhargajual.cell(index,4).nodes().to$().find('input').prop('id'))) { afbelihj[index] = new AutoNumeric("#"+formubahhargajual.cell(index,4).nodes().to$().find('input').prop('id'), {decimalCharacter : ',',digitGroupSeparator : '.',});}
-            });
-        },
-    }).on( 'key-focus', function ( e, datatable, cell, originalEvent ) {
-        $('input', cell.node()).focus();
-    }).on("focus", "td input", function(){
-        $(this).select();
+        })
     });
-    formubahhargajual.on('key', function (e, dt, code) {
-        if (code === 13) {
-            formubahhargajual.keys.move('down');
-        }
-    })
 }
 function tampiljatuhtempo(){
     if ($('#jenispembayaran').val() == "KREDIT"){
@@ -549,33 +565,36 @@ var catchEnterAfB = debounce(function(index) {
     ubahhargajualafb(index)
 }, 500);
 function ubahhargajualafb(index){
-    $.ajax({
-        url: baseurljavascript + 'pembelian/ubahhargajualafb',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KODEITEM : $("#kodeitem"+index).val(),
-            HARGAJUAL : afbelihj[index].getNumber(),
-        },
-        success: function (response) {
-            if (response[0].success == "true"){
-                return Swal.fire({
-                    icon: 'success',
-                    html: 'Horee.. Informasi barang berhasil diubah<br>KODE ITEM: '+$("#kodeitem"+index).val()+'<br>NAMA ITEM: '+$("#namaitem"+index).val(),
-                    toast: true,
-                    showConfirmButton: false,
-                    timer: 1500,
-                    position: 'top-right'
-                })
-            }else{
-                Swal.fire(
-                    'Gagal.. Uhhhhh!',
-                    'Tidak ada yang di perbaharui. Silahkan cek pada error log data di server',
-                    'error'
-                )
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'pembelian/ubahhargajualafb',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODEITEM : $("#kodeitem"+index).val(),
+                HARGAJUAL : afbelihj[index].getNumber(),
+            },
+            success: function (response) {
+                if (response[0].success == "true"){
+                    return Swal.fire({
+                        icon: 'success',
+                        html: 'Horee.. Informasi barang berhasil diubah<br>KODE ITEM: '+$("#kodeitem"+index).val()+'<br>NAMA ITEM: '+$("#namaitem"+index).val(),
+                        toast: true,
+                        showConfirmButton: false,
+                        timer: 1500,
+                        position: 'top-right'
+                    })
+                }else{
+                    Swal.fire(
+                        'Gagal.. Uhhhhh!',
+                        'Tidak ada yang di perbaharui. Silahkan cek pada error log data di server',
+                        'error'
+                    )
+                }
+                
             }
-            
-        }
+        });
     });
 }
 function konfirmasiaksi(){

@@ -7,6 +7,7 @@ function getLocation(){
     })
 }
 function loadidmember(){
+getCsrfTokenCallback(function() {
     $.ajax({
         url: baseurljavascript + 'penjualan/notamenupenjualan',
         method: 'POST',
@@ -20,7 +21,6 @@ function loadidmember(){
             KODEUNIKMEMBER: session_kodeunikmember,
         },
         success: function (response) {
-            console.log(response)
             if (response.success == 'false') {
                 $('#idpegawai').val("MBM"+session_outlet+session_kodeunikmember+moment().format('YYYYMMDD')+"#1");
             }else{
@@ -32,6 +32,7 @@ function loadidmember(){
             toastr["error"](xhr.responseJSON.message);
         }
     });
+});
 }
 $("#bersihkan").on("click", function(){
     $("#kodeunikmember").val("")  ; $("#urlfoto").val("")  ; $("#namadepan").val("")  ; $("#namabelakang").val("")  ; $("#alamat").val("")  ; $("#notelp").val("")  ; $("#username").val("")  ; $("#password").val("")  ; $("#pintrx").val("")  ; $("#latlong").val("")  ; $("#keterangan").val("")  ; $("#emailaktif").val("");

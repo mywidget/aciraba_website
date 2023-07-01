@@ -92,32 +92,39 @@ $(document).ready(function () {
     $("#tanggalawal").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
     $('#tanggalakhir').val(moment().format('DD-MM-YYYY'));
     $("#tanggalakhir").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
-    $("#daftarpembelian").DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollY: "100vh",
-        scrollX: true,
-        scrollCollapse: true,
-        searching: false,
-        columnDefs: [
-            {className: "text-right",targets: [4,7]},
-        ],
-        ajax: {
-            "url": baseurljavascript + 'pembelian/daftarpembeliantabel',
-            "type": "POST",
-            "data": function (d) {
-                d.KATAKUNCIPENCARIAN = $("#katakuncipencarian").val();
-                d.TANGGALAWAL = $("#tanggalawal").val().split("-").reverse().join("-");
-                d.TANGGALAKHIR = $("#tanggalakhir").val().split("-").reverse().join("-");
-                d.KONDISIPENCARIAN = $("#parameterpencarian").val();
-            }
-        },
+    getCsrfTokenCallback(function() {
+        $("#daftarpembelian").DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollY: "100vh",
+            scrollX: true,
+            scrollCollapse: true,
+            searching: false,
+            columnDefs: [
+                {className: "text-right",targets: [4,7]},
+            ],
+            ajax: {
+                "url": baseurljavascript + 'pembelian/daftarpembeliantabel',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KATAKUNCIPENCARIAN = $("#katakuncipencarian").val();
+                    d.TANGGALAWAL = $("#tanggalawal").val().split("-").reverse().join("-");
+                    d.TANGGALAKHIR = $("#tanggalakhir").val().split("-").reverse().join("-");
+                    d.KONDISIPENCARIAN = $("#parameterpencarian").val();
+                }
+            },
+        }); 
     }); 
 });
 $("#katakuncipencarian, #parameterpencarian").on('input change', debounce(function (e) {
-    $('#daftarpembelian').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftarpembelian').DataTable().ajax.reload();
+    });
 }, 500));
 $("#prosescarifilter").on("click", function () {
-    $('#daftarpembelian').DataTable().ajax.reload();
+    getCsrfTokenCallback(function() {
+        $('#daftarpembelian').DataTable().ajax.reload();
+    });
 });
 function onclickhapustranskasipembelian(notapembelian,namasuplier,kodesuplier){
     Swal.fire({
@@ -130,31 +137,36 @@ function onclickhapustranskasipembelian(notapembelian,namasuplier,kodesuplier){
         confirmButtonText: 'Oke, Siap!!'
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'pembelian/hapuspembelian',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NOTA : notapembelian,
-                    KODESUPLIER : kodesuplier,
-                },
-                success: function (response) {
-                    var obj = $.parseJSON(response);
-                    if (obj.status == "true"){
-                        Swal.fire(
-                            'Berhasil.. Horee!',
-                            obj.msg,
-                            'success'
-                        );
-                        $('#daftarpembelian').DataTable().ajax.reload();
-                    }else{
-                        Swal.fire(
-                            'Gagal.. Uhhhhh!',
-                            obj.msg,
-                            'warning'
-                        )
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'pembelian/hapuspembelian',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NOTA : notapembelian,
+                        KODESUPLIER : kodesuplier,
+                    },
+                    success: function (response) {
+                        var obj = $.parseJSON(response);
+                        if (obj.status == "true"){
+                            Swal.fire(
+                                'Berhasil.. Horee!',
+                                obj.msg,
+                                'success'
+                            );
+                            getCsrfTokenCallback(function() {
+                                $('#daftarpembelian').DataTable().ajax.reload();
+                            });
+                        }else{
+                            Swal.fire(
+                                'Gagal.. Uhhhhh!',
+                                obj.msg,
+                                'warning'
+                            )
+                        }
                     }
-                }
+                });
             });
         }
     })

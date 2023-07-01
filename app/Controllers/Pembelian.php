@@ -198,7 +198,7 @@ class Pembelian extends BaseController
 					'','','',
 					'".$datajson->hasiljson[0]->dataquery[$no]->NAMATOP."',
 					)\" class=\"btn btn-outline-success\"><i class=\"fas fa-check\"></i> Pilih Ini</button>";
-				$row[] = $datajson->hasiljson[0]->dataquery[$no]->TANGGALTRS;
+				$row[] = date("d-m-Y H:i:s", strtotime($datajson->hasiljson[0]->dataquery[$no]->TANGGALTRS));
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->KODEBARANG;
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->NAMABARANG;
 				$row[] = $datajson->hasiljson[0]->dataquery[$no]->JUMLAHBELI;

@@ -2,6 +2,19 @@
 <?= $this->section('kontenutama'); ?>
 <?= $this->include('backend/header') ?>
 <link href="https://cdn.quilljs.com/1.0.0/quill.snow.css" rel="stylesheet" />
+<style>
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+}
+</style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -307,9 +320,11 @@
                                         <center><h3><?= $TOTALGAMBAR ;?> Citra Untuk Produk <?= $NAMABARANG ;?></h3></center>
                                         <div class="flexbin flexbin-margin">
                                             <?php for($i=0; $i<$TOTALGAMBAR; $i++){ ?>
-                                                <a onclick='deleteimagedropzone("<?=$DAFTARCITRAITEM[$i]->FILENAME;?>","")' href="javascript:void(0)">
+                                                <div class="image-container">
                                                     <img src=<?=base_url().'upload/citraitem/'.$DAFTARCITRAITEM[$i]->FILENAME;?>>
-                                                </a>
+                                                    <a class="edit-icon btn btn-danger" style="margin-right:35px" onclick='deleteimagedropzone("<?=$DAFTARCITRAITEM[$i]->FILENAME;?>","")' href="javascript:void(0)"><i class="fas fa-trash"></i></a>
+                                                    <a onclick='pilihcitrautama("<?=$DAFTARCITRAITEM[$i]->FILENAME;?>","<?=$DAFTARCITRAITEM[$i]->KODEITEM;?>")' class="edit-icon btn btn-success" href="javascript:void(0)"><i class="fas fa-check"></i></a>
+                                                </div>
                                             <?php } ?>
                                         </div>
                                     </div>
@@ -409,8 +424,8 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="https://cdn.quilljs.com/1.0.0/quill.js"></script>
 
-<script src="<?= base_url();?>/scripts/dropzone-5.7.0/min/dropzone.min.js"></script>
-<script src="<?= base_url();?>/scripts/masterdata/masteritem.js"></script>
+<script src="<?= base_url();?>scripts/dropzone-5.7.0/min/dropzone.min.js"></script>
+<script src="<?= base_url();?>scripts/masterdata/masteritem.js"></script>
 <script type="text/javascript">
 var beratbarang = new AutoNumeric("#beratbarang", {decimalCharacter : ',',digitGroupSeparator : '.',})
 var hargapokokpembelian = new AutoNumeric("#hargapokokpembelian", {decimalCharacter : ',',digitGroupSeparator : '.',})
@@ -886,6 +901,35 @@ foto_upload.on("sending",function(a,b,c){
     a.token=Math.random();
     c.append("token_foto",a.token); //Menmpersiapkan token untuk masing masing foto
 });
+function pilihcitrautama(idcitra,kodeitem){
+    Swal.fire({
+        title: 'Jadikan Citra Utama',
+        text: 'Apakah anda yakin ingin menjadikan citra ini mejadi citra utama',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oke, Saya Pilih Ini'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript+'masterdata/pilihcitrautama',
+                    method: 'POST',
+                    data: {
+                        [csrfName]: csrfTokenGlobal,
+                        IDCITRA:idcitra,
+                        KODEITEM:kodeitem,
+                    },
+                    dataType:'json', 
+                    success: function (response) {
+                        toastr["info"]("Citra ini berhasil menjadi citra utama pada PRODUK ITEM ini");
+                    }
+                });
+            });
+        }
+    });
+}
 function deleteimagedropzone(namafile,kondisi){
     const date = new Date();
     let namafileyangakandihapus;
@@ -921,7 +965,7 @@ function deleteimagedropzone(namafile,kondisi){
                 });
             });
         }
-        });
+    });
 }
 var quillHtml = new Quill('#quill', {
     modules: { toolbar: [

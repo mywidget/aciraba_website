@@ -38,6 +38,8 @@
         var session_namapengguna='<?= session('namapengguna');?>';
         var session_outlet='<?= session('outlet');?>';
         var statusbarang = 1;
+        var csrfName = '<?= csrf_token() ?>';
+        var csrfHash = '<?= csrf_hash() ?>';  
     </script>
     <title>Halaman KDS</title>
 </head>
@@ -199,171 +201,182 @@ $("#tanggalakhir_kds").datepicker({todayHighlight: true,format:'dd-mm-yyyy',});
 $(document).ready(function() {
 	$("#namaprintershare").val(localStorage.getItem("NAMASHAREPRINTERJDS"));
     loadkdsproduct("onload","",moment().format('YYYY-MM-DD'),moment().format('YYYY-MM-DD'),"");
-    resizeAllGridItems();
 });
 $('#textpencariankategorikds').on('input', debounce(function (e) {
     panggilkategorikasirkds()
 }, 500));
 function panggilkategorikasirkds(){
-    $.ajax({
-        url: baseurljavascript + 'masterdata/daftakategoriselectkasir',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            NAMAKATEGORI: $("#textpencariankategorikds").val(),
-            KODEUNIKMEMBER: session_kodeunikmember,
-        },
-        success: function (response) {
-            let obj = JSON.parse(response);
-            let htmljoin = "";
-            if (obj.success == "false"){
-                $('#tampilankategori').html('<div class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Kategori Yang Anda Cari Tidak Ditemukan, Silahkan Periksa Katakunci Yang Anda Masukkan</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-box-open"></i></div></div></div>');
-            }else{
-                htmljoin += '<div class="row">';
-                for (datake = 0; datake < obj.totaldata; datake++) {
-                    htmljoin += ""
-                    +"<div class=\"col-md-4 col-sm-4 mb-2\">"
-                        +"<button onclick=\"filterbycategorikds('"+obj.daftarkategori[datake].idkategori+"','"+obj.daftarkategori[datake].namakategori+"')\" class=\"btn btn-block btn-lg btn-warning\">"+obj.daftarkategori[datake].namakategori+"</button>"
-                    +"</div>"
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'masterdata/daftakategoriselectkasir',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                NAMAKATEGORI: $("#textpencariankategorikds").val(),
+                KODEUNIKMEMBER: session_kodeunikmember,
+            },
+            success: function (response) {
+                let obj = JSON.parse(response);
+                let htmljoin = "";
+                if (obj.success == "false"){
+                    $('#tampilankategori').html('<div class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Kategori Yang Anda Cari Tidak Ditemukan, Silahkan Periksa Katakunci Yang Anda Masukkan</h4><!-- BEGIN Avatar --><div class="avatar avatar-label-primary avatar-circle widget12 mb-4"><div class="avatar-display"><i class="fas fa-box-open"></i></div></div></div>');
+                }else{
+                    htmljoin += '<div class="row">';
+                    for (datake = 0; datake < obj.totaldata; datake++) {
+                        htmljoin += ""
+                        +"<div class=\"col-md-4 col-sm-4 mb-2\">"
+                            +"<button onclick=\"filterbycategorikds('"+obj.daftarkategori[datake].idkategori+"','"+obj.daftarkategori[datake].namakategori+"')\" class=\"btn btn-block btn-lg btn-warning\">"+obj.daftarkategori[datake].namakategori+"</button>"
+                        +"</div>"
+                    }
+                    htmljoin += '</div>';
+                    $("#tampilankategori").html(htmljoin);
                 }
-                htmljoin += '</div>';
-                $("#tampilankategori").html(htmljoin);
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-        }
+        });
     });
 }
 function loadkdsproduct(kondisi, kodepesanan,tanggalawal,tanggalakhir,kategoriid){
     let counttanggalwal,counttanggalkhir;
     let appendHTML = "",appendHTMLDetail = "";
-	$.ajax({
-		url: baseurljavascript + 'kds/loadkds',
-		method: 'POST',
-		dataType: 'json',
-		data: {
-			KODEPESANAN : kodepesanan,
-            TANGGALAWAL : tanggalawal,
-           	TANGGALAKHIR : tanggalakhir,
-            KONDISI : kondisi,
-            KATEGORIID : kategoriid,
-		},
-		success: function (response) {
-			if (response.success == "true"){
-                let  result = _(response.dataquery)
-                    .groupBy(item => item.PK_NOTAPENJUALAN)
-                    .sortBy(group => response.dataquery.indexOf(group["WAKTUPROSES"]))
-                    .value()
-                $("#totalpesanannya").html(result.length);
-                appendHTML = "<div id=\"\"><div class=\"row \">";
-				for (let i = 0; i < result.length; i++) {
-                    appendHTMLDetail = ""
-                    for (let a = 0; a < result[i].length; a++) {
-                        let namavariannya = "";classstatus = "avatar-label-danger";
-                        let objjsonStrjenisvarian = JSON.parse(atob(result[i][a].JSONTAMBAHAN));
-                        Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
-                            value.forEach((variandetail) => {
-                                namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'kds/loadkds',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODEPESANAN : kodepesanan,
+                TANGGALAWAL : tanggalawal,
+                TANGGALAKHIR : tanggalakhir,
+                KONDISI : kondisi,
+                KATEGORIID : kategoriid,
+            },
+            success: function (response) {
+                if (response.success == "true"){
+                    let  result = _(response.dataquery)
+                        .groupBy(item => item.PK_NOTAPENJUALAN)
+                        .sortBy(group => response.dataquery.indexOf(group["WAKTUPROSES"]))
+                        .value()
+                    $("#totalpesanannya").html(result.length);
+                    appendHTML = "<div id=\"\"><div class=\"row \">";
+                    for (let i = 0; i < result.length; i++) {
+                        appendHTMLDetail = ""
+                        for (let a = 0; a < result[i].length; a++) {
+                            let namavariannya = "";classstatus = "avatar-label-danger";
+                            let objjsonStrjenisvarian = JSON.parse(atob(result[i][a].JSONTAMBAHAN));
+                            Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
+                                value.forEach((variandetail) => {
+                                    namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+                                })
                             })
-                        })
-                        switch(result[i][a].STATUSBARANGPROSES) {
-                            case 0:
-                                classstatus = "avatar-label-danger";
-                                break;
-                            case 1:
-                                classstatus = "avatar-label-primary";
-                                break;
-                            case -1:
-                                classstatus = "avatar-label-success";
-                                break;
-                        } 
-                        appendHTMLDetail += ""
-                        +"<div class=\"portlet mb-2\">"
-                            +"<div class=\"rich-list rich-list-bordered rich-list-action\">"
-                                +"<div class=\"rich-list-item\">"
-                                    +"<div class=\"rich-list-prepend\">"
-                                        +"<div id=\"statusmasakan"+i+result[i][a].FK_BARANG+"\" class=\"avatar "+classstatus+" avatar-rounded\"><span class=\"avatar-display\">"+result[i][a].STOKBARANGKELUAR+"</span></div>"
-                                    +"</div>"
-                                    +"<div class=\"rich-list-content\">"
-                                        +"<h4 class=\"rich-list-title\" style=\"color: red; font-size: 150%;\">"+result[i][a].NAMABARANG+"</h4>"
-                                        +"<span class=\"rich-list-subtitle\">VARIAN : "+namavariannya+" </span>"
-                                        +"<span class=\"rich-list-subtitle\">KETERANGAN : "+result[i][a].CATATANPERBARANG+"</span>"
-                                    +"</div>"
-                                    +"<div style=\""+(status == '-3' ? "display:none" : "" )+"\" class=\"rich-list-append\">"
-                                        +"<div class=\"dropdown\">"
-                                            +"<button class=\"btn btn-text-secondary btn-icon\" data-toggle=\"dropdown\">"
-                                                +"<i class=\"fas fa-sliders-h\"></i>"
-                                            +"</button>"
-                                            +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
-                                                +"<a onclick=\"ubahstatuspesanan('-1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                                    +"<div class=\"dropdown-icon\">"
-                                                        +"<i class=\"fa fa-check\"></i>"
-                                                    +"</div>"
-                                                    +"<span class=\"dropdown-content\"> Selesai</span>"
-                                                +"</a>"
-                                                +"<a onclick=\"ubahstatuspesanan('1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                                    +"<div class=\"dropdown-icon\">"
-                                                        +"<i class=\"fa-solid fa-hourglass-half\"></i>"
-                                                    +"</div>"
-                                                    +"<span class=\"dropdown-content\"> Proses</span>"
-                                                +"</a>"
-                                                +"<a onclick=\"ubahstatuspesanan('0','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                                    +"<div class=\"dropdown-icon\">"
-                                                        +"<i class=\"fas fa-hourglass-start\"></i>"
-                                                    +"</div>"
-                                                    +"<span class=\"dropdown-content\"> Idle</span>"
-                                                +"</a>"
+                            switch(result[i][a].STATUSBARANGPROSES) {
+                                case 0:
+                                    classstatus = "avatar-label-danger";
+                                    break;
+                                case 1:
+                                    classstatus = "avatar-label-primary";
+                                    break;
+                                case -1:
+                                    classstatus = "avatar-label-success";
+                                    break;
+                            } 
+                            appendHTMLDetail += ""
+                            +"<div class=\"portlet mb-2\">"
+                                +"<div class=\"rich-list rich-list-bordered rich-list-action\">"
+                                    +"<div class=\"rich-list-item\">"
+                                        +"<div class=\"rich-list-prepend\">"
+                                            +"<div id=\"statusmasakan"+i+result[i][a].FK_BARANG+"\" class=\"avatar "+classstatus+" avatar-rounded\"><span class=\"avatar-display\">"+result[i][a].STOKBARANGKELUAR+"</span></div>"
+                                        +"</div>"
+                                        +"<div class=\"rich-list-content\">"
+                                            +"<h4 class=\"rich-list-title\" style=\"color: red; font-size: 150%;\">"+result[i][a].NAMABARANG+"</h4>"
+                                            +"<span class=\"rich-list-subtitle\">VARIAN : "+namavariannya+" </span>"
+                                            +"<span class=\"rich-list-subtitle\">KETERANGAN : "+result[i][a].CATATANPERBARANG+"</span>"
+                                        +"</div>"
+                                        +"<div style=\""+(status == '-3' ? "display:none" : "" )+"\" class=\"rich-list-append\">"
+                                            +"<div class=\"dropdown\">"
+                                                +"<button class=\"btn btn-text-secondary btn-icon\" data-toggle=\"dropdown\">"
+                                                    +"<i class=\"fas fa-sliders-h\"></i>"
+                                                +"</button>"
+                                                +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
+                                                    +"<a onclick=\"ubahstatuspesanan('-1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                        +"<div class=\"dropdown-icon\">"
+                                                            +"<i class=\"fa fa-check\"></i>"
+                                                        +"</div>"
+                                                        +"<span class=\"dropdown-content\"> Selesai</span>"
+                                                    +"</a>"
+                                                    +"<a onclick=\"ubahstatuspesanan('1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                        +"<div class=\"dropdown-icon\">"
+                                                            +"<i class=\"fa-solid fa-hourglass-half\"></i>"
+                                                        +"</div>"
+                                                        +"<span class=\"dropdown-content\"> Proses</span>"
+                                                    +"</a>"
+                                                    +"<a onclick=\"ubahstatuspesanan('0','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                        +"<div class=\"dropdown-icon\">"
+                                                            +"<i class=\"fas fa-hourglass-start\"></i>"
+                                                        +"</div>"
+                                                        +"<span class=\"dropdown-content\"> Idle</span>"
+                                                    +"</a>"
+                                                +"</div>"
                                             +"</div>"
                                         +"</div>"
                                     +"</div>"
                                 +"</div>"
                             +"</div>"
-                        +"</div>"
-                    }
-				appendHTML += ""
-                +"<div class=\"col-md-6 col-xl-4\">"
-                    +"<div class=\"portlet portlet-primary\">"
-                        +"<div class=\"portlet-header\">"
-                            +"<div class=\"portlet-icon\">"
-                                +"<i class=\"fa fa-chalkboard\"></i>"
-                            +"</div>"
-                            +"<h3 class=\"portlet-title\">Berjalan : <span class=\"waktuberjalan\" id=\"waktuberjalan"+i+"\">Mengkalkulasi Waktu</span></h3>"
-                            +"<div class=\"portlet-addon\">"
-                                +"<div class=\"dropdown\">"
-                                    +"<button class=\"btn btn-label-light dropdown-toggle\" data-toggle=\"dropdown\">#"+result[i][0].PK_NOTAPENJUALAN.split('#')[1]+"</button>"
-                                    +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
-                                        +"<a onclick=\"cetakulangnotakds('"+result[i][0].PK_NOTAPENJUALAN+"','"+result[i][0].KODEAI+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                            +"<div class=\"dropdown-icon\">"
-                                                +"<i class=\"fa fa-print\"></i>"
-                                            +"</div>"
-                                            +"<span class=\"dropdown-content\">Cetak Nota Dapur</span>"
-                                        +"</a>"
+                        }
+                    appendHTML += ""
+                    +"<div class=\"col-md-6 col-xl-4\">"
+                        +"<div class=\"portlet portlet-primary\">"
+                            +"<div class=\"portlet-header\">"
+                                +"<div class=\"portlet-icon\">"
+                                    +"<i class=\"fa fa-chalkboard\"></i>"
+                                +"</div>"
+                                +"<h3 class=\"portlet-title\">Berjalan : <span class=\"waktuberjalan\" id=\"waktuberjalan"+i+"\">Mengkalkulasi Waktu</span></h3>"
+                                +"<div class=\"portlet-addon\">"
+                                    +"<div class=\"dropdown\">"
+                                        +"<button class=\"btn btn-label-light dropdown-toggle\" data-toggle=\"dropdown\">#"+result[i][0].PK_NOTAPENJUALAN.split('#')[1]+"</button>"
+                                        +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
+                                            +"<a onclick=\"cetakulangnotakds('"+result[i][0].PK_NOTAPENJUALAN+"','"+result[i][0].KODEAI+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                +"<div class=\"dropdown-icon\">"
+                                                    +"<i class=\"fa fa-print\"></i>"
+                                                +"</div>"
+                                                +"<span class=\"dropdown-content\">Cetak Nota Dapur</span>"
+                                            +"</a>"
+                                        +"</div>"
                                     +"</div>"
                                 +"</div>"
                             +"</div>"
-                        +"</div>"
-                        +"<div class=\"portlet-body\">"+appendHTMLDetail+"</div>"
-                        +"<div class=\"portlet-footer portlet-header-bordered\">NAMA MEMBER : "+result[i][0].NAMA+"<br>KETERANGAN TRX : "+result[i][0].KETERANGANITEM+"<br>TRX ID : "+result[i][0].PK_NOTAPENJUALAN+"<hr>"
-                            +"<h3 class=\"portlet-title\>"
-                                +"<button class=\"btn btn-label-light\"></button>"
-                                +"<button onclick=\"sundulpesanan('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"')\" class=\"btn btn-label-light\"><i class=\"fa-solid fa-arrow-up\"></i> Sundul Pesanan</button>"
-                                +"<button onclick=\"tandaisemuaselesai('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"','')\" class=\"btn btn-success float-right\"><i class=\"fa fa-check\"></i> Siap Sajikan</button>"
-                            +"</h3>"
+                            +"<div class=\"portlet-body\">"+appendHTMLDetail+"</div>"
+                            +"<div class=\"portlet-footer portlet-header-bordered\">NAMA MEMBER : "+result[i][0].NAMA+"<br>KETERANGAN TRX : "+result[i][0].KETERANGANITEM+"<br>TRX ID : "+result[i][0].PK_NOTAPENJUALAN+"<hr>"
+                                +"<h3 class=\"portlet-title\>"
+                                    +"<button class=\"btn btn-label-light\"></button>"
+                                    +"<button onclick=\"sundulpesanan('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"')\" class=\"btn btn-label-light\"><i class=\"fa-solid fa-arrow-up\"></i> Sundul Pesanan</button>"
+                                    +"<button onclick=\"tandaisemuaselesai('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"','')\" class=\"btn btn-success float-right\"><i class=\"fa fa-check\"></i> Siap Sajikan</button>"
+                                +"</h3>"
+                            +"</div>"
                         +"</div>"
                     +"</div>"
-                +"</div>"
-                function updateClock() {
-                    counttanggalwal = moment(new Date());
-                    counttanggalkhir = moment((moment(result[i][0].TANGGALPROSES).format('YYYY-MM-DD'))+'T'+result[i][0].WAKTUPROSES);
-                    $("#waktuberjalan"+i).html(counttanggalwal.diff(counttanggalkhir, 'hours')+" Jam, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'minutes') % 60)+" Menit, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'seconds') % 60)+" Detik")
+                    function updateClock() {
+                        counttanggalwal = moment(new Date());
+                        counttanggalkhir = moment((moment(result[i][0].TANGGALPROSES).format('YYYY-MM-DD'))+'T'+result[i][0].WAKTUPROSES);
+                        $("#waktuberjalan"+i).html(counttanggalwal.diff(counttanggalkhir, 'hours')+" Jam, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'minutes') % 60)+" Menit, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'seconds') % 60)+" Detik")
+                    }
+                    timernya[i] = setInterval(updateClock, 1000);
+                    }
+                    appendHTML += "</div></div>";
+                    $('#detailkds').empty().append(appendHTML);
+                }else{
+                    $('#detailkds').html('<div class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Pencarian Berdasarkan Katakunci Yang Anda Cari Tidak Ditemukan, Silahkan Periksa Katakunci Yang Anda Tentukan</h4><!-- BEGIN Avatar --><img src="'+baseurljavascript+'images/avatar/output-onlinepngtools.png">');
                 }
-                timernya[i] = setInterval(updateClock, 1000);
-				}
-                appendHTML += "</div></div>";
-                $('#detailkds').empty().append(appendHTML);
-			}else{
-                $('#detailkds').html('<div class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Pencarian Berdasarkan Katakunci Yang Anda Cari Tidak Ditemukan, Silahkan Periksa Katakunci Yang Anda Tentukan</h4><!-- BEGIN Avatar --><img src="'+baseurljavascript+'images/avatar/output-onlinepngtools.png">');
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-		}
-	});
+        });
+    });
 }
 function cetakulangnotakds(nomortransaksi,kodeai){
     let keranjangarray = [],inforkartubarang = []
@@ -376,93 +389,86 @@ function cetakulangnotakds(nomortransaksi,kodeai){
         cancelButtonText: "Skip. Tidak cetak nota!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'penjualan/cetakulangtransaksikasir',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    KODEAI : kodeai,
-                },
-                success: function (response) {
-                    if (response.success == "true"){
-                        let namavariannya = "";
-                        for (let i = 0; i < response.totaldata; i++) {
-                            Object.keys(response.dataquery[i]).forEach(function(k){
-                                if (k == "NAMABARANG" || k == "HARGAJUAL") inforkartubarang.push(response.dataquery[i][k])
-                                if (k == "PRINCIPAL_ID") inforkartubarang.push((response.dataquery[i]["HARGAJUAL"] * response.dataquery[i]["STOKBARANGKELUAR"]))
-                                if (k == "DARIPERUSAHAAN" || k == "FK_BARANG" || k == "STOKBARANGKELUAR") inforkartubarang.push(response.dataquery[i][k])
-                                if (k == "CATATANPERBARANG") inforkartubarang.push(response.dataquery[i][k])
-                                if (k == "JSONTAMBAHAN"){
-                                    let objjsonStrjenisvarian = JSON.parse(atob(response.dataquery[i].JSONTAMBAHAN));
-                                    Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
-                                        value.forEach((variandetail) => {
-                                            namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/cetakulangtransaksikasir',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        KODEAI : kodeai,
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            let namavariannya = "";
+                            for (let i = 0; i < response.totaldata; i++) {
+                                Object.keys(response.dataquery[i]).forEach(function(k){
+                                    if (k == "NAMABARANG" || k == "HARGAJUAL") inforkartubarang.push(response.dataquery[i][k])
+                                    if (k == "PRINCIPAL_ID") inforkartubarang.push((response.dataquery[i]["HARGAJUAL"] * response.dataquery[i]["STOKBARANGKELUAR"]))
+                                    if (k == "DARIPERUSAHAAN" || k == "FK_BARANG" || k == "STOKBARANGKELUAR") inforkartubarang.push(response.dataquery[i][k])
+                                    if (k == "CATATANPERBARANG") inforkartubarang.push(response.dataquery[i][k])
+                                    if (k == "JSONTAMBAHAN"){
+                                        let objjsonStrjenisvarian = JSON.parse(atob(response.dataquery[i].JSONTAMBAHAN));
+                                        Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
+                                            value.forEach((variandetail) => {
+                                                namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+                                            })
                                         })
-                                    })
-                                    inforkartubarang.push(namavariannya)
-                                }
-                                
+                                        inforkartubarang.push(namavariannya)
+                                    }
+                                    
+                                });
+                                keranjangarray.push(inforkartubarang)
+                                inforkartubarang = []
+                            }
+                            getCsrfTokenCallback(function() {
+                                $.ajax({
+                                    url: baseurljavascript + 'penjualan/cetaknotapesanan',
+                                    method: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        [csrfName]:csrfTokenGlobal,
+                                        INFORMASIBARANG : JSON.stringify(keranjangarray),
+                                        NOTAPENJUALAN : response.dataquery[0].PK_NOTAPENJUALAN,
+                                        NAMAMEMBER : response.dataquery[0].NAMAMEMBER,
+                                        NAMASALESMAN : response.dataquery[0].NAMASALESMAN,
+                                        TGLKELUAR : moment(response.dataquery[0].TGLKELUAR).format('DD-MM-YYYY'),
+                                        WAKTU : response.dataquery[0].WAKTU,
+                                        KETERANGAN : response.dataquery[0].KETERANGANTRX,
+                                        NOMINALTUNAI : response.dataquery[0].NOMINALTUNAI,
+                                        NOMINALKREDIT : response.dataquery[0].NOMINALKREDIT,
+                                        NOMINALKARTUDEBIT : response.dataquery[0].NOMINALKARTUDEBIT,
+                                        NOMORKARTUDEBIT :  response.dataquery[0].NOMORKARTUDEBIT,
+                                        BANKDEBIT :  response.dataquery[0].BANKDEBIT,
+                                        NOMINALKARTUKREDIT :  response.dataquery[0].NOMINALKARTUKREDIT,
+                                        NOMORKARTUKREDIT :  response.dataquery[0].NOMORKARTUKREDIT,
+                                        BANKKREDIT :  response.dataquery[0].BANKKREDIT,
+                                        NOMINALEMONEY :  response.dataquery[0].NOMINALEMONEY,
+                                        NAMAEMONEY :  response.dataquery[0].NAMAEMONEY,
+                                        NOMINALPOTONGAN :  response.dataquery[0].NOMINALPOTONGAN,
+                                        NOMINALPAJAKKELUAR :  response.dataquery[0].NOMINALPAJAKKELUAR,
+                                        KEMBALIAN:  response.dataquery[0].KEMBALIAN,
+                                        TOTALBELANJA:  response.dataquery[0].TOTALBELANJA,
+                                        PAJAKTOKO :  response.dataquery[0].PAJAKTOKO,
+                                        PAJAKNEGARA :  response.dataquery[0].PAJAKNEGARA,
+                                        POTONGANGLOBAL :  response.dataquery[0].POTONGANGLOBAL,
+                                        NOMINALBAYAR:  response.dataquery[0].TOTALBELANJA + response.dataquery[0].KEMBALIAN,
+                                        NAMAPENGGUNA :  response.dataquery[0].USERNAMELOGIN,
+                                    },
+                                    success: function (response) {}
+                                });
                             });
-                            keranjangarray.push(inforkartubarang)
-                            inforkartubarang = []
                         }
-                        $.ajax({
-                            url: baseurljavascript + 'penjualan/cetaknotapesanan',
-                            method: 'POST',
-                            dataType: 'json',
-                            data: {
-                                INFORMASIBARANG : JSON.stringify(keranjangarray),
-                                NOTAPENJUALAN : response.dataquery[0].PK_NOTAPENJUALAN,
-                                NAMAMEMBER : response.dataquery[0].NAMAMEMBER,
-                                NAMASALESMAN : response.dataquery[0].NAMASALESMAN,
-                                TGLKELUAR : moment(response.dataquery[0].TGLKELUAR).format('DD-MM-YYYY'),
-                                WAKTU : response.dataquery[0].WAKTU,
-                                KETERANGAN : response.dataquery[0].KETERANGANTRX,
-                                NOMINALTUNAI : response.dataquery[0].NOMINALTUNAI,
-                                NOMINALKREDIT : response.dataquery[0].NOMINALKREDIT,
-                                NOMINALKARTUDEBIT : response.dataquery[0].NOMINALKARTUDEBIT,
-                                NOMORKARTUDEBIT :  response.dataquery[0].NOMORKARTUDEBIT,
-                                BANKDEBIT :  response.dataquery[0].BANKDEBIT,
-                                NOMINALKARTUKREDIT :  response.dataquery[0].NOMINALKARTUKREDIT,
-                                NOMORKARTUKREDIT :  response.dataquery[0].NOMORKARTUKREDIT,
-                                BANKKREDIT :  response.dataquery[0].BANKKREDIT,
-                                NOMINALEMONEY :  response.dataquery[0].NOMINALEMONEY,
-                                NAMAEMONEY :  response.dataquery[0].NAMAEMONEY,
-                                NOMINALPOTONGAN :  response.dataquery[0].NOMINALPOTONGAN,
-                                NOMINALPAJAKKELUAR :  response.dataquery[0].NOMINALPAJAKKELUAR,
-                                KEMBALIAN:  response.dataquery[0].KEMBALIAN,
-                                TOTALBELANJA:  response.dataquery[0].TOTALBELANJA,
-                                PAJAKTOKO :  response.dataquery[0].PAJAKTOKO,
-                                PAJAKNEGARA :  response.dataquery[0].PAJAKNEGARA,
-                                POTONGANGLOBAL :  response.dataquery[0].POTONGANGLOBAL,
-                                NOMINALBAYAR:  response.dataquery[0].TOTALBELANJA + response.dataquery[0].KEMBALIAN,
-                                NAMAPENGGUNA :  response.dataquery[0].USERNAMELOGIN,
-                            },
-                            success: function (response) {}
-                        });
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     })   
 }
-function resizeGridItem(item){
-   grid = document.getElementsByClassName("grid")[0];
-   rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-   rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-   rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height+rowGap)/(rowHeight+rowGap));
-   item.style.gridRowEnd = "span "+rowSpan;
-}
-function resizeAllGridItems(){
-   allItems = document.getElementsByClassName("item");
-   for(x=0;x<allItems.length;x++){
-      resizeGridItem(allItems[x]);
-   }
-}
-function resizeInstance(instance){
-   item = instance.elements[0];
-   resizeGridItem(item);
-}
+
 function modalpengaturan(){
 	$('#modalpengaturan').modal('show');
 }
@@ -494,21 +500,27 @@ function sundulpesanan(totalkelompokpesanan, notapenjualan){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'kds/sundulpesanan',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NOTRANSKASI : notapenjualan,
-                },
-                success: function (response) {
-                    if (response.success == "true"){
-                        for (let i = 0; i < totalkelompokpesanan; i++) {
-                            clearInterval(timernya[i]);
-                        }  
-                        loadkdsproduct("onload","",moment().format('YYYY-MM-DD'),moment().format('YYYY-MM-DD'),"");
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'kds/sundulpesanan',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NOTRANSKASI : notapenjualan,
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            for (let i = 0; i < totalkelompokpesanan; i++) {
+                                clearInterval(timernya[i]);
+                            }  
+                            loadkdsproduct("onload","",moment().format('YYYY-MM-DD'),moment().format('YYYY-MM-DD'),"");
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     })  
@@ -523,28 +535,34 @@ function tandaisemuaselesai(totalkelompokpesanan, notapenjualan, status){
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'kds/tandaisemuaselesai',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    NOTAPESANAN : notapenjualan,
-                    STATUS : status,
-                },
-                success: function (response) {
-                    if (response.success == "true"){
-                        for (let i = 0; i < totalkelompokpesanan; i++) {
-                            clearInterval(timernya[i]);
-                        }  
-                        loadkdsproduct("onload","",moment().format('YYYY-MM-DD'),moment().format('YYYY-MM-DD'),"");
-                    }else{
-                        Swal.fire({
-                            title: "Terjadi Kesalahan",
-                            text: response.msg,
-                            icon: 'error',
-                        });
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'kds/tandaisemuaselesai',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        NOTAPESANAN : notapenjualan,
+                        STATUS : status,
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            for (let i = 0; i < totalkelompokpesanan; i++) {
+                                clearInterval(timernya[i]);
+                            }  
+                            loadkdsproduct("onload","",moment().format('YYYY-MM-DD'),moment().format('YYYY-MM-DD'),"");
+                        }else{
+                            Swal.fire({
+                                title: "Terjadi Kesalahan",
+                                text: response.msg,
+                                icon: 'error',
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     })  
@@ -570,35 +588,41 @@ function ubahstatuspesanan(statuspesan, namabarang, barangid, qty, notapesanan, 
         cancelButtonText: "Gak Jadi Ah!",
     }).then(function(result){
         if(result.isConfirmed){
-            $.ajax({
-                url: baseurljavascript + 'kds/ubahstatuspesanan',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    BARANGID : barangid,
-                    STATUSPESAN : statuspesan,
-                    NOTAPESANAN : notapesanan,
-                },
-                success: function (response) {
-                    if (response.success == "true"){
-                        let classstatus ="",classremove = "";
-                        switch(statuspesan) {
-                            case "0":
-                                classstatus = "avatar-label-danger";
-                                classremove = "avatar-label-success avatar-label-primary";
-                                break;
-                            case "1":
-                                classstatus = "avatar-label-primary";
-                                classremove = "avatar-label-success avatar-label-danger";
-                                break;
-                            case "-1":
-                                classstatus = "avatar-label-success";
-                                classremove = "avatar-label-primary avatar-label-danger";
-                                break;
-                        } 
-                        $("#statusmasakan"+bariske+barangid).removeClass(classremove).addClass(classstatus); 
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'kds/ubahstatuspesanan',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        BARANGID : barangid,
+                        STATUSPESAN : statuspesan,
+                        NOTAPESANAN : notapesanan,
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            let classstatus ="",classremove = "";
+                            switch(statuspesan) {
+                                case "0":
+                                    classstatus = "avatar-label-danger";
+                                    classremove = "avatar-label-success avatar-label-primary";
+                                    break;
+                                case "1":
+                                    classstatus = "avatar-label-primary";
+                                    classremove = "avatar-label-success avatar-label-danger";
+                                    break;
+                                case "-1":
+                                    classstatus = "avatar-label-success";
+                                    classremove = "avatar-label-primary avatar-label-danger";
+                                    break;
+                            } 
+                            $("#statusmasakan"+bariske+barangid).removeClass(classremove).addClass(classstatus); 
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     })  
@@ -629,143 +653,148 @@ function filterbystatuspesanan(idElement){
     if (idElement == "siapsaji_status_kds") status = '-2';
     if (idElement == "proses_status_kds") status = '1';
     if (idElement == "statusbaru_status_kds") status = '0';
-    $.ajax({
-        url: baseurljavascript + 'kds/filterbystatuspesanan',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            STATUSPROSES: status,
-        },
-        success: function (response) {
-            if (response.success == "true"){
-                let  result = _(response.dataquery)
-                    .groupBy(item => item.PK_NOTAPENJUALAN)
-                    .sortBy(group => response.dataquery.indexOf(group["WAKTUPROSES"]))
-                    .value()
-                $("#totalpesanannya").html(result.length);
-                appendHTML = "<div id=\"\"><div class=\"row \">";
-				for (let i = 0; i < result.length; i++) {
-                    appendHTMLDetail = "",appendHTMLButtonFotter = ""
-                    for (let a = 0; a < result[i].length; a++) {
-                        let namavariannya = "";classstatus = "avatar-label-danger";
-                        let objjsonStrjenisvarian = JSON.parse(atob(result[i][a].JSONTAMBAHAN));
-                        Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
-                            value.forEach((variandetail) => {
-                                namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'kds/filterbystatuspesanan',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                STATUSPROSES: status,
+            },
+            success: function (response) {
+                if (response.success == "true"){
+                    let  result = _(response.dataquery)
+                        .groupBy(item => item.PK_NOTAPENJUALAN)
+                        .sortBy(group => response.dataquery.indexOf(group["WAKTUPROSES"]))
+                        .value()
+                    $("#totalpesanannya").html(result.length);
+                    appendHTML = "<div id=\"\"><div class=\"row \">";
+                    for (let i = 0; i < result.length; i++) {
+                        appendHTMLDetail = "",appendHTMLButtonFotter = ""
+                        for (let a = 0; a < result[i].length; a++) {
+                            let namavariannya = "";classstatus = "avatar-label-danger";
+                            let objjsonStrjenisvarian = JSON.parse(atob(result[i][a].JSONTAMBAHAN));
+                            Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
+                                value.forEach((variandetail) => {
+                                    namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+                                })
                             })
-                        })
-                        switch(result[i][a].STATUSBARANGPROSES) {
-                            case 0:
-                                classstatus = "avatar-label-danger";
-                                break;
-                            case 1:
-                                classstatus = "avatar-label-primary";
-                                break;
-                            case -1:
-                                classstatus = "avatar-label-success";
-                                break;
-                            case -2:
-                                classstatus = "avatar-label-success";
-                                break;
-                        } 
-                        appendHTMLDetail += ""
-                        +"<div class=\"portlet mb-2\">"
-                            +"<div class=\"rich-list rich-list-bordered rich-list-action\">"
-                                +"<div class=\"rich-list-item\">"
-                                    +"<div class=\"rich-list-prepend\">"
-                                        +"<div id=\"statusmasakan"+i+result[i][a].FK_BARANG+"\" class=\"avatar "+classstatus+" avatar-rounded\"><span class=\"avatar-display\">"+result[i][a].STOKBARANGKELUAR+"</span></div>"
-                                    +"</div>"
-                                    +"<div class=\"rich-list-content\">"
-                                        +"<h4 class=\"rich-list-title\" style=\"color: red; font-size: 150%;\">"+result[i][a].NAMABARANG+"</h4>"
-                                        +"<span class=\"rich-list-subtitle\">VARIAN : "+namavariannya+" </span>"
-                                        +"<span class=\"rich-list-subtitle\">KETERANGAN : "+result[i][a].CATATANPERBARANG+"</span>"
-                                    +"</div>"
-                                    +"<div class=\"rich-list-append\">"
-                                        +"<div class=\"dropdown\">"
-                                            +"<button class=\"btn btn-text-secondary btn-icon\" data-toggle=\"dropdown\">"
-                                                +"<i class=\"fas fa-sliders-h\"></i>"
-                                            +"</button>"
-                                            +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
-                                                +"<a onclick=\"ubahstatuspesanan('-1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                                    +"<div class=\"dropdown-icon\">"
-                                                        +"<i class=\"fa fa-check\"></i>"
-                                                    +"</div>"
-                                                    +"<span class=\"dropdown-content\"> Selesai</span>"
-                                                +"</a>"
-                                                +"<a onclick=\"ubahstatuspesanan('1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                                    +"<div class=\"dropdown-icon\">"
-                                                        +"<i class=\"fa-solid fa-hourglass-half\"></i>"
-                                                    +"</div>"
-                                                    +"<span class=\"dropdown-content\"> Proses</span>"
-                                                +"</a>"
-                                                +"<a onclick=\"ubahstatuspesanan('0','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                                    +"<div class=\"dropdown-icon\">"
-                                                        +"<i class=\"fas fa-hourglass-start\"></i>"
-                                                    +"</div>"
-                                                    +"<span class=\"dropdown-content\"> Idle</span>"
-                                                +"</a>"
+                            switch(result[i][a].STATUSBARANGPROSES) {
+                                case 0:
+                                    classstatus = "avatar-label-danger";
+                                    break;
+                                case 1:
+                                    classstatus = "avatar-label-primary";
+                                    break;
+                                case -1:
+                                    classstatus = "avatar-label-success";
+                                    break;
+                                case -2:
+                                    classstatus = "avatar-label-success";
+                                    break;
+                            } 
+                            appendHTMLDetail += ""
+                            +"<div class=\"portlet mb-2\">"
+                                +"<div class=\"rich-list rich-list-bordered rich-list-action\">"
+                                    +"<div class=\"rich-list-item\">"
+                                        +"<div class=\"rich-list-prepend\">"
+                                            +"<div id=\"statusmasakan"+i+result[i][a].FK_BARANG+"\" class=\"avatar "+classstatus+" avatar-rounded\"><span class=\"avatar-display\">"+result[i][a].STOKBARANGKELUAR+"</span></div>"
+                                        +"</div>"
+                                        +"<div class=\"rich-list-content\">"
+                                            +"<h4 class=\"rich-list-title\" style=\"color: red; font-size: 150%;\">"+result[i][a].NAMABARANG+"</h4>"
+                                            +"<span class=\"rich-list-subtitle\">VARIAN : "+namavariannya+" </span>"
+                                            +"<span class=\"rich-list-subtitle\">KETERANGAN : "+result[i][a].CATATANPERBARANG+"</span>"
+                                        +"</div>"
+                                        +"<div class=\"rich-list-append\">"
+                                            +"<div class=\"dropdown\">"
+                                                +"<button class=\"btn btn-text-secondary btn-icon\" data-toggle=\"dropdown\">"
+                                                    +"<i class=\"fas fa-sliders-h\"></i>"
+                                                +"</button>"
+                                                +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
+                                                    +"<a onclick=\"ubahstatuspesanan('-1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                        +"<div class=\"dropdown-icon\">"
+                                                            +"<i class=\"fa fa-check\"></i>"
+                                                        +"</div>"
+                                                        +"<span class=\"dropdown-content\"> Selesai</span>"
+                                                    +"</a>"
+                                                    +"<a onclick=\"ubahstatuspesanan('1','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                        +"<div class=\"dropdown-icon\">"
+                                                            +"<i class=\"fa-solid fa-hourglass-half\"></i>"
+                                                        +"</div>"
+                                                        +"<span class=\"dropdown-content\"> Proses</span>"
+                                                    +"</a>"
+                                                    +"<a onclick=\"ubahstatuspesanan('0','"+result[i][a].NAMABARANG+"','"+result[i][a].FK_BARANG+"','"+result[i][a].STOKBARANGKELUAR+"','"+result[i][a].PK_NOTAPENJUALAN+"','"+i+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                        +"<div class=\"dropdown-icon\">"
+                                                            +"<i class=\"fas fa-hourglass-start\"></i>"
+                                                        +"</div>"
+                                                        +"<span class=\"dropdown-content\"> Idle</span>"
+                                                    +"</a>"
+                                                +"</div>"
                                             +"</div>"
                                         +"</div>"
                                     +"</div>"
                                 +"</div>"
                             +"</div>"
-                        +"</div>"
+                        }
+                    if (Number(status) > -3){
+                        appendHTMLButtonFotter = ""
+                        +"<button onclick=\"sundulpesanan('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"')\" class=\"btn btn-label-light\"><i class=\"fa-solid fa-arrow-up\"></i> Sundul Pesanan</button>"
+                        +"<button onclick=\"tandaisemuaselesai('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"','"+status+"')\" class=\"btn btn-success float-right\"><i class=\"fa fa-check\"></i> "+(status == "-2" ? "Kirim Ke Pelanggan" : "Siap Sajikan" )+"</button>"
+                    }else{
+                        appendHTMLButtonFotter = "<button onclick=\"cetakulangnotakds('"+result[i][0].PK_NOTAPENJUALAN+"','"+result[i][0].KODEAI+"')\" class=\"btn btn-block btn-warning\"><i class=\"fas fa-print\"></i> Cetak Nota Ini</button>"
                     }
-                if (Number(status) > -3){
-                    appendHTMLButtonFotter = ""
-                    +"<button onclick=\"sundulpesanan('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"')\" class=\"btn btn-label-light\"><i class=\"fa-solid fa-arrow-up\"></i> Sundul Pesanan</button>"
-                    +"<button onclick=\"tandaisemuaselesai('"+result.length+"','"+result[i][0].PK_NOTAPENJUALAN+"','"+status+"')\" class=\"btn btn-success float-right\"><i class=\"fa fa-check\"></i> "+(status == "-2" ? "Kirim Ke Pelanggan" : "Siap Sajikan" )+"</button>"
-                }else{
-                    appendHTMLButtonFotter = "<button onclick=\"cetakulangnotakds('"+result[i][0].PK_NOTAPENJUALAN+"','"+result[i][0].KODEAI+"')\" class=\"btn btn-block btn-warning\"><i class=\"fas fa-print\"></i> Cetak Nota Ini</button>"
-                }
-				appendHTML += ""
-                +"<div class=\"col-md-6 col-xl-4\">"
-                    +"<div class=\"portlet "+(status == '-3' ? "portlet-success" : "portlet-primary" )+"\">"
-                        +"<div class=\"portlet-header\">"
-                            +"<div class=\"portlet-icon\">"
-                                +"<i class=\"fa fa-chalkboard\"></i>"
-                            +"</div>"
-                            +"<h3 class=\"portlet-title\">Berjalan : <span class=\"waktuberjalan\" id=\"waktuberjalan"+i+"\">"+(Number(status) > -2 ? "Mengkalkulasi Waktu" : "Huftt.. Pesanan Selesai" )+"</span></h3>"
-                            +"<div class=\"portlet-addon\">"
-                                +"<div class=\"dropdown\">"
-                                    +"<button class=\"btn btn-label-light dropdown-toggle\" data-toggle=\"dropdown\">#"+result[i][0].PK_NOTAPENJUALAN.split('#')[1]+"</button>"
-                                    +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
-                                        +"<a onclick=\"cetakulangnotakds('"+result[i][0].PK_NOTAPENJUALAN+"','"+result[i][0].KODEAI+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
-                                            +"<div class=\"dropdown-icon\">"
-                                                +"<i class=\"fa fa-print\"></i>"
-                                            +"</div>"
-                                            +"<span class=\"dropdown-content\">Cetak Nota Dapur</span>"
-                                        +"</a>"
+                    appendHTML += ""
+                    +"<div class=\"col-md-6 col-xl-4\">"
+                        +"<div class=\"portlet "+(status == '-3' ? "portlet-success" : "portlet-primary" )+"\">"
+                            +"<div class=\"portlet-header\">"
+                                +"<div class=\"portlet-icon\">"
+                                    +"<i class=\"fa fa-chalkboard\"></i>"
+                                +"</div>"
+                                +"<h3 class=\"portlet-title\">Berjalan : <span class=\"waktuberjalan\" id=\"waktuberjalan"+i+"\">"+(Number(status) > -2 ? "Mengkalkulasi Waktu" : "Huftt.. Pesanan Selesai" )+"</span></h3>"
+                                +"<div class=\"portlet-addon\">"
+                                    +"<div class=\"dropdown\">"
+                                        +"<button class=\"btn btn-label-light dropdown-toggle\" data-toggle=\"dropdown\">#"+result[i][0].PK_NOTAPENJUALAN.split('#')[1]+"</button>"
+                                        +"<div class=\"dropdown-menu dropdown-menu-right dropdown-menu-animated\">"
+                                            +"<a onclick=\"cetakulangnotakds('"+result[i][0].PK_NOTAPENJUALAN+"','"+result[i][0].KODEAI+"')\" class=\"dropdown-item\" href=\"javascript:void(0)\">"
+                                                +"<div class=\"dropdown-icon\">"
+                                                    +"<i class=\"fa fa-print\"></i>"
+                                                +"</div>"
+                                                +"<span class=\"dropdown-content\">Cetak Nota Dapur</span>"
+                                            +"</a>"
+                                        +"</div>"
                                     +"</div>"
                                 +"</div>"
                             +"</div>"
+                            +"<div class=\"portlet-body\">"+appendHTMLDetail+"</div>"
+                            +"<div class=\"portlet-footer portlet-header-bordered\">NAMA MEMBER : "+result[i][0].NAMA+"<br>KETERANGAN TRX : "+result[i][0].KETERANGANITEM+"<br>TRX ID : "+result[i][0].PK_NOTAPENJUALAN+"<hr>"
+                                +"<h3 class=\"portlet-title\>"
+                                    +"<button class=\"btn btn-label-light\"></button>"+appendHTMLButtonFotter+"</h3>"
+                            +"</div>"
                         +"</div>"
-                        +"<div class=\"portlet-body\">"+appendHTMLDetail+"</div>"
-                        +"<div class=\"portlet-footer portlet-header-bordered\">NAMA MEMBER : "+result[i][0].NAMA+"<br>KETERANGAN TRX : "+result[i][0].KETERANGANITEM+"<br>TRX ID : "+result[i][0].PK_NOTAPENJUALAN+"<hr>"
-                            +"<h3 class=\"portlet-title\>"
-                                +"<button class=\"btn btn-label-light\"></button>"+appendHTMLButtonFotter+"</h3>"
-                        +"</div>"
-                    +"</div>"
-                +"</div>" 
-                    if (Number(status) > -1){
-                        function updateClock() {
-                            counttanggalwal = moment(new Date());
-                            counttanggalkhir = moment((moment(result[i][0].TANGGALPROSES).format('YYYY-MM-DD'))+'T'+result[i][0].WAKTUPROSES);
-                            $("#waktuberjalan"+i).html(counttanggalwal.diff(counttanggalkhir, 'hours')+" Jam, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'minutes') % 60)+" Menit, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'seconds') % 60)+" Detik")
+                    +"</div>" 
+                        if (Number(status) > -1){
+                            function updateClock() {
+                                counttanggalwal = moment(new Date());
+                                counttanggalkhir = moment((moment(result[i][0].TANGGALPROSES).format('YYYY-MM-DD'))+'T'+result[i][0].WAKTUPROSES);
+                                $("#waktuberjalan"+i).html(counttanggalwal.diff(counttanggalkhir, 'hours')+" Jam, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'minutes') % 60)+" Menit, "+ Math.floor(counttanggalwal.diff(counttanggalkhir, 'seconds') % 60)+" Detik")
+                            }
+                            timernya[i] = setInterval(updateClock, 1000);
                         }
-                        timernya[i] = setInterval(updateClock, 1000);
                     }
-				}
-                appendHTML += "</div></div>";
-                $('#detailkds').empty().append(appendHTML);
-			}else{
-                $('#detailkds').html('<div class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Pencarian Berdasarkan Katakunci Yang Anda Cari Tidak Ditemukan, Silahkan Periksa Katakunci Yang Anda Tentukan</h4><!-- BEGIN Avatar --><img src="'+baseurljavascript+'images/avatar/output-onlinepngtools.png">');
+                    appendHTML += "</div></div>";
+                    $('#detailkds').empty().append(appendHTML);
+                }else{
+                    $('#detailkds').html('<div class="d-flex flex-column align-items-center justify-content-center"><h4 style="text-align:center;"> Oopss.. Pencarian Berdasarkan Katakunci Yang Anda Cari Tidak Ditemukan, Silahkan Periksa Katakunci Yang Anda Tentukan</h4><!-- BEGIN Avatar --><img src="'+baseurljavascript+'images/avatar/output-onlinepngtools.png">');
+                }
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-        }
+        });
     });
 }
-</script>
-<script>
+
 const socketIo = io(baseurlsocket);
 socketIo.on("connect", () => {
   console.log(socketIo.id);
