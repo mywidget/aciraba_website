@@ -128,12 +128,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -142,6 +144,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -155,12 +161,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
                     DIMANA10: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -169,6 +177,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -198,33 +210,36 @@ function panggilreportmasterformat(controllerReport,jenisformatjikasama){
             $(".suplier_masteritem").html(($("#pilihsuplier").val() == null ? "SEMUA" : $("#pilihsuplier").html() ));
             $(".outlet_masteritem").html(($("#laporan_penjualan_outlet").val() == null ? "SEMUA" : $("#laporan_penjualan_outlet").val() ));
             setTimeout(function() {
-                var tabel = $("#tabel_laporan_"+controllerReport).DataTable({
-                    language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                    scrollCollapse: true,
-                    scrollY: "100%",
-                    scrollX: true,
-                    ordering: false,
-                    bFilter: true,
-                    destroy: true,
-                    pageLength: 10,
-                    lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                    ajax: {
-                        "url": baseurljavascript + 'laporan/formatlaporanmastersup',
-                        "type": "POST",
-                        "data": function (d) {
-                            d.KODESUPLIER = $("#pilihsuplier").val();
-                            d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
-                            d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
-                            d.OUTLET = $("#laporan_penjualan_outlet").val();
-                            d.KONDISI = controllerReport
+                getCsrfTokenCallback(function() {
+                    var tabel = $("#tabel_laporan_"+controllerReport).DataTable({
+                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                        scrollCollapse: true,
+                        scrollY: "100%",
+                        scrollX: true,
+                        ordering: false,
+                        bFilter: true,
+                        destroy: true,
+                        pageLength: 10,
+                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                        ajax: {
+                            "url": baseurljavascript + 'laporan/formatlaporanmastersup',
+                            "type": "POST",
+                            "data": function (d) {
+                                d.csrf_aciraba = csrfTokenGlobal;
+                                d.KODESUPLIER = $("#pilihsuplier").val();
+                                d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
+                                d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
+                                d.OUTLET = $("#laporan_penjualan_outlet").val();
+                                d.KONDISI = controllerReport
+                            }
+                        },
+                        footerCallback: function( tfoot, data, start, end, display ) {   
+                            let response = this.api().ajax.json();
+                            let $td = $(tfoot).find('th'); 
+                            var rowCount = $(tfoot).find('tr').length;
+                            if(response){}
                         }
-                    },
-                    footerCallback: function( tfoot, data, start, end, display ) {   
-                        let response = this.api().ajax.json();
-                        let $td = $(tfoot).find('th'); 
-                        var rowCount = $(tfoot).find('tr').length;
-                        if(response){}
-                    }
+                    });
                 });
             }, 100);
             $('#modal_'+controllerReport).modal('show');

@@ -168,12 +168,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -182,6 +184,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -195,6 +201,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 40,
                     DARI : "COMBOREPORTBARANG",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -202,6 +209,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -210,6 +218,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -223,6 +235,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 41,
                     DARI : "COMBOREPORTSUP",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -230,6 +243,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -238,6 +252,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -251,6 +269,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 43,
                     DARI : "COMBOREPORTKATEGORI",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -258,6 +277,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -266,6 +286,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -279,11 +303,13 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     NAMAPARAMETER: (typeof params.term === "undefined" ? "" : params.term),
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -292,6 +318,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -330,159 +360,201 @@ function panggilrepotpembelianformat(controllerReport,jenisformatjikasama){
                 if (controllerReport == "pembeliandetail"){ 
                     let collapsedGroups = {};
                     let totalkeluar = 0,totalhargabeli = 0, totaldsplay = 0,totalgudang = 0,totaldiskon1 = 0, totaldiskon2 =0,totalppn = 0, totalafterdiskon1 = 0, totalafterdiskon2 = 0, totalhpp = 0, totalbebangaji = 0, totalbebanpromo = 0,totalbebanpacking = 0, totalbebantransport = 0, totalbebanhpp = 0, subtotal = 0;
-                    let table = $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanpembeliannodatatables',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_pembelian_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_pembelian_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_pembelian_carabayar").val();
-                                d.OUTLET = $("#laporan_pembelian_outlet").val();
-                                d.KODEBARANG = $("#laporan_pembelian_barang").val();
-                                d.KODESUPLIER = $("#laporan_pembelian_supplier").val();
-                                d.KODEKATEGORI = $("#laporan_pembelian_kategori").val();
-                                d.KONDISI = controllerReport
-                            }
-                        },
-                        columns: [
-                            { "title": "",data: "KODEBARANG" },
-                            { "title": "",data: "NAMABARANG" },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return row.JUMLAHBELI+" Item";
+                    getCsrfTokenCallback(function() {
+                        let table = $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanpembeliannodatatables',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_pembelian_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_pembelian_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_pembelian_carabayar").val();
+                                    d.OUTLET = $("#laporan_pembelian_outlet").val();
+                                    d.KODEBARANG = $("#laporan_pembelian_barang").val();
+                                    d.KODESUPLIER = $("#laporan_pembelian_supplier").val();
+                                    d.KODEKATEGORI = $("#laporan_pembelian_kategori").val();
+                                    d.KONDISI = controllerReport
+                                }
+                            },
+                            columns: [
+                                { "title": "",data: "KODEBARANG" },
+                                { "title": "",data: "NAMABARANG" },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return row.JUMLAHBELI+" Item";
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.HARGABELI),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.HARGABELI),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return row.DISPLAY+" Item";
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return row.DISPLAY+" Item";
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return row.GUDANG+" Item";
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return row.GUDANG+" Item";
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.DISKON1),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.DISKON1),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.DISKON2),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.DISKON2),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.PPN),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.PPN),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.AFTERDISKON1),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.AFTERDISKON1),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.AFTERDISKON2),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.AFTERDISKON2),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.HPP),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.HPP),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang(row.SUBTOTALPEMBELIAN,'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang(row.SUBTOTALPEMBELIAN,'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.BEBANGAJI),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.BEBANGAJI),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.BEBANPROMO),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.BEBANPROMO),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.BEBANPACKING),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.BEBANPACKING),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.BEBANTRANSPORT),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.BEBANTRANSPORT),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.HPPBEBAN),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.HPPBEBAN),'id-ID','IDR');
+                                    },
                                 },
+                            ],
+                            rowGroup: {
+                                dataSrc:function(row) {
+                                    return row.NOTA;
+                                },
+                                startRender: function ( rows, group ) {
+                                    return $('<tr style="color:red">')
+                                        .append("<td>No Transaksi : "+rows.data()[0].NOTA+"<br>Dari Suplier : "+rows.data()[0].NAMASUPPLIER+"<br>Kode Item</td>")
+                                        .append("<td>Waktu Transaksi : "+moment(rows.data()[0].TANGGALTRS).format('DD-MM-YYYY HH:mm:ss')+"<br>Petugas Konfirmasi : "+rows.data()[0].NAMAPENGGUNA.toUpperCase()+"<br>Nama Item</td>")
+                                        .append("<td style='vertical-align : middle;'>Jumlah Beli</td>")
+                                        .append("<td style='vertical-align : middle;'>Harga Beli</td>")
+                                        .append("<td style='vertical-align : middle;'>Taruh Display</td>")
+                                        .append("<td style='vertical-align : middle;'>Taruh Gudang</td>")
+                                        .append("<td style='vertical-align : middle;'>Diskon 1</td>")
+                                        .append("<td style='vertical-align : middle;'>Diskon 2</td>")
+                                        .append("<td style='vertical-align : middle;'>PPN</td>")
+                                        .append("<td style='vertical-align : middle;'>After Diskon 1</td>")
+                                        .append("<td style='vertical-align : middle;'>After Diskon 2</td>")
+                                        .append("<td style='vertical-align : middle;'>HPP</td>")
+                                        .append("<td style='vertical-align : middle;'>Sub Total</td>")
+                                        .append("<td style='vertical-align : middle;'>Beban Gaji</td>")
+                                        .append("<td style='vertical-align : middle;'>Beban Promo</td>")
+                                        .append("<td style='vertical-align : middle;'>Beban Packing</td>")
+                                        .append("<td style='vertical-align : middle;'>Beban Transport</td>")
+                                        .append("<td style='vertical-align : middle;'>HPP + Beban</td>")
+                                        .append('</tr>');
+                                },
+                                endRender: function ( rows, group ) {
+                                    let totalkeluar = 0,totalhargabeli = 0, totaldsplay = 0,totalgudang = 0,totaldiskon1 = 0, totaldiskon2 =0,totalppn = 0, totalafterdiskon1 = 0, totalafterdiskon2 = 0, totalhpp = 0, totalbebangaji = 0, totalbebanpromo = 0,totalbebanpacking = 0, totalbebantransport = 0, subtotal = 0, totalbebanhpp = 0;
+                                    $.each(rows.data(), function (index,element) {
+                                        totalkeluar += element.JUMLAHBELI;
+                                        totalhargabeli += element.HARGABELI;
+                                        totaldsplay += element.DISPLAY;
+                                        totalgudang += element.GUDANG;
+                                        totaldiskon1 += element.DISKON1;
+                                        totaldiskon2 += element.DISKON2;
+                                        totalppn += element.PPN;
+                                        totalafterdiskon1 += element.AFTERDISKON1;
+                                        totalafterdiskon2 += element.AFTERDISKON2;
+                                        totalhpp += element.HPP;
+                                        totalbebangaji += element.BEBANGAJI;
+                                        totalbebanpromo += element.BEBANPROMO;
+                                        totalbebanpacking += element.BEBANPACKING;
+                                        totalbebantransport += element.BEBANPACKING;
+                                        totalbebanhpp += element.HPPBEBAN;
+                                        subtotal += element.SUBTOTALPEMBELIAN;
+                                    });
+                                    return $('<tr style="color:red">')
+                                        .append("<td colspan='2' style='text-align: right;vertical-align : middle'>SUB TOTAL</td>")
+                                        .append('<td>'+totalkeluar.toFixed(2)+' Item</td>')
+                                        .append('<td>'+formatuang(totalhargabeli,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totaldsplay,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalgudang,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totaldiskon1,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totaldiskon2,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalppn,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalafterdiskon1,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalafterdiskon2,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalhpp,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(subtotal,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalbebangaji,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalbebanpromo,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalbebanpacking,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalbebantransport,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalbebanhpp,'id-ID','IDR')+'</td>')
+                                        .append('</tr>');
+                                },     
                             },
-                        ],
-                        rowGroup: {
-                            dataSrc:function(row) {
-                                return row.NOTA;
-                            },
-                            startRender: function ( rows, group ) {
-                                return $('<tr style="color:red">')
-                                    .append("<td>No Transaksi : "+rows.data()[0].NOTA+"<br>Dari Suplier : "+rows.data()[0].NAMASUPPLIER+"<br>Kode Item</td>")
-                                    .append("<td>Waktu Transaksi : "+moment(rows.data()[0].TANGGALTRS).format('DD-MM-YYYY HH:mm:ss')+"<br>Petugas Konfirmasi : "+rows.data()[0].NAMAPENGGUNA.toUpperCase()+"<br>Nama Item</td>")
-                                    .append("<td style='vertical-align : middle;'>Jumlah Beli</td>")
-                                    .append("<td style='vertical-align : middle;'>Harga Beli</td>")
-                                    .append("<td style='vertical-align : middle;'>Taruh Display</td>")
-                                    .append("<td style='vertical-align : middle;'>Taruh Gudang</td>")
-                                    .append("<td style='vertical-align : middle;'>Diskon 1</td>")
-                                    .append("<td style='vertical-align : middle;'>Diskon 2</td>")
-                                    .append("<td style='vertical-align : middle;'>PPN</td>")
-                                    .append("<td style='vertical-align : middle;'>After Diskon 1</td>")
-                                    .append("<td style='vertical-align : middle;'>After Diskon 2</td>")
-                                    .append("<td style='vertical-align : middle;'>HPP</td>")
-                                    .append("<td style='vertical-align : middle;'>Sub Total</td>")
-                                    .append("<td style='vertical-align : middle;'>Beban Gaji</td>")
-                                    .append("<td style='vertical-align : middle;'>Beban Promo</td>")
-                                    .append("<td style='vertical-align : middle;'>Beban Packing</td>")
-                                    .append("<td style='vertical-align : middle;'>Beban Transport</td>")
-                                    .append("<td style='vertical-align : middle;'>HPP + Beban</td>")
-                                    .append('</tr>');
-                            },
-                            endRender: function ( rows, group ) {
-                                let totalkeluar = 0,totalhargabeli = 0, totaldsplay = 0,totalgudang = 0,totaldiskon1 = 0, totaldiskon2 =0,totalppn = 0, totalafterdiskon1 = 0, totalafterdiskon2 = 0, totalhpp = 0, totalbebangaji = 0, totalbebanpromo = 0,totalbebanpacking = 0, totalbebantransport = 0, subtotal = 0, totalbebanhpp = 0;
-                                $.each(rows.data(), function (index,element) {
+                            initComplete: function(settings, json) {
+                                $.each(json.data, function (index,element) {
                                     totalkeluar += element.JUMLAHBELI;
                                     totalhargabeli += element.HARGABELI;
                                     totaldsplay += element.DISPLAY;
@@ -500,121 +572,85 @@ function panggilrepotpembelianformat(controllerReport,jenisformatjikasama){
                                     totalbebanhpp += element.HPPBEBAN;
                                     subtotal += element.SUBTOTALPEMBELIAN;
                                 });
-                                return $('<tr style="color:red">')
-                                    .append("<td colspan='2' style='text-align: right;vertical-align : middle'>SUB TOTAL</td>")
-                                    .append('<td>'+totalkeluar.toFixed(2)+' Item</td>')
-                                    .append('<td>'+formatuang(totalhargabeli,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totaldsplay,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalgudang,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totaldiskon1,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totaldiskon2,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalppn,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalafterdiskon1,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalafterdiskon2,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalhpp,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(subtotal,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalbebangaji,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalbebanpromo,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalbebanpacking,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalbebantransport,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalbebanhpp,'id-ID','IDR')+'</td>')
-                                    .append('</tr>');
-                            },     
-                        },
-                        initComplete: function(settings, json) {
-                            $.each(json.data, function (index,element) {
-                                totalkeluar += element.JUMLAHBELI;
-                                totalhargabeli += element.HARGABELI;
-                                totaldsplay += element.DISPLAY;
-                                totalgudang += element.GUDANG;
-                                totaldiskon1 += element.DISKON1;
-                                totaldiskon2 += element.DISKON2;
-                                totalppn += element.PPN;
-                                totalafterdiskon1 += element.AFTERDISKON1;
-                                totalafterdiskon2 += element.AFTERDISKON2;
-                                totalhpp += element.HPP;
-                                totalbebangaji += element.BEBANGAJI;
-                                totalbebanpromo += element.BEBANPROMO;
-                                totalbebanpacking += element.BEBANPACKING;
-                                totalbebantransport += element.BEBANPACKING;
-                                totalbebanhpp += element.HPPBEBAN;
-                                subtotal += element.SUBTOTALPEMBELIAN;
-                            });
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {   
-                            setTimeout(function() {
-                                let $td = $(tfoot).find('th'); 
-                                $td.eq(1).html(totalkeluar.toFixed(2)+" Item");
-                                $td.eq(2).html(formatuang(totalhargabeli,'id-ID','IDR'));
-                                $td.eq(3).html(formatuang(totaldsplay,'id-ID','IDR'));
-                                $td.eq(4).html(formatuang(totalgudang,'id-ID','IDR'));
-                                $td.eq(5).html(formatuang(totaldiskon1,'id-ID','IDR'));
-                                $td.eq(6).html(formatuang(totaldiskon2,'id-ID','IDR'));
-                                $td.eq(7).html(formatuang(totalppn,'id-ID','IDR'));
-                                $td.eq(8).html(formatuang(totalafterdiskon1,'id-ID','IDR'));
-                                $td.eq(9).html(formatuang(totalafterdiskon2,'id-ID','IDR'));
-                                $td.eq(10).html(formatuang(totalhpp,'id-ID','IDR'));
-                                $td.eq(11).html(formatuang(subtotal,'id-ID','IDR'));
-                                $td.eq(12).html(formatuang(totalbebangaji,'id-ID','IDR'));
-                                $td.eq(13).html(formatuang(totalbebanpromo,'id-ID','IDR'));
-                                $td.eq(14).html(formatuang(totalbebanpacking,'id-ID','IDR'));
-                                $td.eq(15).html(formatuang(totalbebantransport,'id-ID','IDR'));
-                                $td.eq(16).html(formatuang(totalbebanhpp,'id-ID','IDR'));
-                            },500)
-                           
-                        }
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {   
+                                setTimeout(function() {
+                                    let $td = $(tfoot).find('th'); 
+                                    $td.eq(1).html(totalkeluar.toFixed(2)+" Item");
+                                    $td.eq(2).html(formatuang(totalhargabeli,'id-ID','IDR'));
+                                    $td.eq(3).html(formatuang(totaldsplay,'id-ID','IDR'));
+                                    $td.eq(4).html(formatuang(totalgudang,'id-ID','IDR'));
+                                    $td.eq(5).html(formatuang(totaldiskon1,'id-ID','IDR'));
+                                    $td.eq(6).html(formatuang(totaldiskon2,'id-ID','IDR'));
+                                    $td.eq(7).html(formatuang(totalppn,'id-ID','IDR'));
+                                    $td.eq(8).html(formatuang(totalafterdiskon1,'id-ID','IDR'));
+                                    $td.eq(9).html(formatuang(totalafterdiskon2,'id-ID','IDR'));
+                                    $td.eq(10).html(formatuang(totalhpp,'id-ID','IDR'));
+                                    $td.eq(11).html(formatuang(subtotal,'id-ID','IDR'));
+                                    $td.eq(12).html(formatuang(totalbebangaji,'id-ID','IDR'));
+                                    $td.eq(13).html(formatuang(totalbebanpromo,'id-ID','IDR'));
+                                    $td.eq(14).html(formatuang(totalbebanpacking,'id-ID','IDR'));
+                                    $td.eq(15).html(formatuang(totalbebantransport,'id-ID','IDR'));
+                                    $td.eq(16).html(formatuang(totalbebanhpp,'id-ID','IDR'));
+                                },500)
+                            
+                            }
+                        });
                     });
                 }else{
-                    $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanpembelian',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_pembelian_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_pembelian_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_pembelian_carabayar").val();
-                                d.OUTLET = $("#laporan_pembelian_outlet").val();
-                                d.KODEBARANG = $("#laporan_pembelian_barang").val();
-                                d.KODESUPLIER = $("#laporan_pembelian_supplier").val();
-                                d.KODEKATEGORI = $("#laporan_pembelian_kategori").val();
-                                d.KONDISI = controllerReport
-                            }
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {    
-                            let response = this.api().ajax.json();
-                            let $td = $(tfoot).find('th');
-                            if(response){
-                                if (controllerReport == "pembelianperfaktur"){
-                                    $td.eq(1).text(response.jumlahitem+" Item");
-                                    $td.eq(2).text();
-                                    $td.eq(3).text(response.diskon1);
-                                    $td.eq(4).text(response.diskon2);
-                                    $td.eq(5).text(response.ppn);
-                                    $td.eq(6).text(response.adiskon1);
-                                    $td.eq(7).text(response.adiskon2);
-                                    $td.eq(8).text(response.totalpembelian);
-                                    $td.eq(9).text(response.totalbeban);
-                                    $td.eq(10).text(response.totalhutang);
-                                }else if (controllerReport == "pembelianperbarang" || controllerReport == "pembelianpertanggal"){
-                                    $td.eq(1).text(response.jumlahitem+" Item");
-                                    $td.eq(2).text(response.diskon1);
-                                    $td.eq(3).text(response.diskon2);
-                                    $td.eq(4).text(response.ppn);
-                                    $td.eq(5).text(response.adiskon1);
-                                    $td.eq(6).text(response.adiskon2);
-                                    $td.eq(7).text(response.totalpembelian);
+                    getCsrfTokenCallback(function() {
+                        $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanpembelian',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_pembelian_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_pembelian_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_pembelian_carabayar").val();
+                                    d.OUTLET = $("#laporan_pembelian_outlet").val();
+                                    d.KODEBARANG = $("#laporan_pembelian_barang").val();
+                                    d.KODESUPLIER = $("#laporan_pembelian_supplier").val();
+                                    d.KODEKATEGORI = $("#laporan_pembelian_kategori").val();
+                                    d.KONDISI = controllerReport
+                                }
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {    
+                                let response = this.api().ajax.json();
+                                let $td = $(tfoot).find('th');
+                                if(response){
+                                    if (controllerReport == "pembelianperfaktur"){
+                                        $td.eq(1).text(response.jumlahitem+" Item");
+                                        $td.eq(2).text();
+                                        $td.eq(3).text(response.diskon1);
+                                        $td.eq(4).text(response.diskon2);
+                                        $td.eq(5).text(response.ppn);
+                                        $td.eq(6).text(response.adiskon1);
+                                        $td.eq(7).text(response.adiskon2);
+                                        $td.eq(8).text(response.totalpembelian);
+                                        $td.eq(9).text(response.totalbeban);
+                                        $td.eq(10).text(response.totalhutang);
+                                    }else if (controllerReport == "pembelianperbarang" || controllerReport == "pembelianpertanggal"){
+                                        $td.eq(1).text(response.jumlahitem+" Item");
+                                        $td.eq(2).text(response.diskon1);
+                                        $td.eq(3).text(response.diskon2);
+                                        $td.eq(4).text(response.ppn);
+                                        $td.eq(5).text(response.adiskon1);
+                                        $td.eq(6).text(response.adiskon2);
+                                        $td.eq(7).text(response.totalpembelian);
+                                    }
                                 }
                             }
-                        }
+                        });
                     });
                 }
             }, 100);

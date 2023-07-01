@@ -234,6 +234,7 @@ $('#cmblokasioutletasal').select2({
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -242,7 +243,12 @@ $('#cmblokasioutletasal').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
+
     },
 });
 $('#cmblokasioutlettujuan').select2({
@@ -255,12 +261,14 @@ $('#cmblokasioutlettujuan').select2({
         delay: 500,
         data: function (params) {
             return {
-                KATAKUNCIPENCARIAN: "",
+                csrf_aciraba: csrfTokenGlobal,
+                KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                 KODEUNIKMEMBER: session_kodeunikmember,
             }
         },
         processResults: function (data) {
             parseJSON = JSON.parse(data);
+            getCsrfTokenCallback(function() {});
             return {
                 results: $.map(parseJSON, function (item) {
                     return {
@@ -269,6 +277,10 @@ $('#cmblokasioutlettujuan').select2({
                     }
                 })
             }
+        },
+        error: function(xhr, status, error) {
+            getCsrfTokenCallback(function() {});
+            toastr["error"](xhr.responseJSON.message);
         }
     },
 });
@@ -395,7 +407,6 @@ function tambahkeranjangmutasi(NOMORMUTASI,KODEBARANG,NAMABARANG,UNIT,STOKAWAL,S
     });
 }
 function hapusperbarang(kodebarang,namabarang,ai){
-    getCsrfTokenCallback(function() {
         swal.fire({
             title: "Apakah Yakin ?",
             text: "Apakah yakin ingin menghapus barang "+namabarang+" pada keranjang ini.",
@@ -405,30 +416,31 @@ function hapusperbarang(kodebarang,namabarang,ai){
             cancelButtonText: "Gak Jadi Ah!",
         }).then(function(result){
             if(result.isConfirmed){
-                $.ajax({
-                    url: baseurljavascript + 'penyesuaian/hapusperbarangmutasi',
-                    method: 'POST',
-                    dataType: 'json',
-                    data: {
-                        [csrfName]:csrfTokenGlobal,
-                        AI: ai,
-                    },
-                    success: function (response) {
-                        var obj = JSON.parse(response);
-                        if (obj.status == "true"){
-                            $('#keranjangmutasi').DataTable().ajax.reload();
-                        }else{
-                            Swal.fire({
-                                title: "Gagal... Cek Koneksi Local DB Kasir",
-                                text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
-                                icon: 'warning',
-                            });
+                getCsrfTokenCallback(function() {
+                    $.ajax({
+                        url: baseurljavascript + 'penyesuaian/hapusperbarangmutasi',
+                        method: 'POST',
+                        dataType: 'json',
+                        data: {
+                            [csrfName]:csrfTokenGlobal,
+                            AI: ai,
+                        },
+                        success: function (response) {
+                            var obj = JSON.parse(response);
+                            if (obj.status == "true"){
+                                $('#keranjangmutasi').DataTable().ajax.reload();
+                            }else{
+                                Swal.fire({
+                                    title: "Gagal... Cek Koneksi Local DB Kasir",
+                                    text: "Silahkan Hubungi Teknisi Untuk Permasalahan Ini",
+                                    icon: 'warning',
+                                });
+                            }
                         }
-                    }
+                    });
                 });
             }
         });
-    });
 }
 function kosongkankeranjanglokal(){
     getCsrfTokenCallback(function() {

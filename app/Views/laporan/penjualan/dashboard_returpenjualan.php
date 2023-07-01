@@ -130,7 +130,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $("#toggleCollapse").click(function(){$("#maxmin").toggleClass("fa-maximize fa-minimize");}); 
@@ -152,12 +151,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -166,6 +167,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -179,6 +184,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 39,
                     DARI : "COMBOREPORTCUSTOMER",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -186,6 +192,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -194,6 +201,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -207,6 +218,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 40,
                     DARI : "COMBOREPORTBARANG",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -214,6 +226,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -222,6 +235,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -235,6 +252,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 43,
                     DARI : "COMBOREPORTKATEGORI",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -242,6 +260,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -250,6 +269,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -281,150 +304,156 @@ function panggilreportreturpenjualanformat(controllerReport,jenisformatjikasama)
             setTimeout(function() {
                 let totalbarangkeluar = 0,totalppn =0,totalhargabeli=0,totalhargajual=0,totalselisih =0;
                 if (controllerReport == "returpenjualanperfakturdetail"){ 
-                    let table = $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanreturpenjualannodatatables',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
-                                d.OUTLET = $("#laporan_penjualan_outlet").val();
-                                d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
-                                d.KODEBARANG = $("#laporan_penjualan_barang").val();
-                                d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
-                                d.KONDISI = controllerReport
-                            }
-                        },
-                        columns: [
-                            { "title": "",data: "KODEBARANG" },
-                            { "title": "",data: "NAMABARANG" },
-                            { "title": "",data: "TANGGALRETUR" },
-                            { "title": "",data: "JUMLAHRETUR" },
-                            { "title": "",data: "PPN" },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return "@HB : "+formatuang((row.HARGABELI),'id-ID','IDR')+"<br>Σ SUB : "+formatuang((row.HARGABELI * row.JUMLAHRETUR),'id-ID','IDR');
+                    getCsrfTokenCallback(function() {
+                        let table = $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanreturpenjualannodatatables',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
+                                    d.OUTLET = $("#laporan_penjualan_outlet").val();
+                                    d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
+                                    d.KODEBARANG = $("#laporan_penjualan_barang").val();
+                                    d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
+                                    d.KONDISI = controllerReport
+                                }
+                            },
+                            columns: [
+                                { "title": "",data: "KODEBARANG" },
+                                { "title": "",data: "NAMABARANG" },
+                                { "title": "",data: "TANGGALRETUR" },
+                                { "title": "",data: "JUMLAHRETUR" },
+                                { "title": "",data: "PPN" },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return "@HB : "+formatuang((row.HARGABELI),'id-ID','IDR')+"<br>Σ SUB : "+formatuang((row.HARGABELI * row.JUMLAHRETUR),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return "@HJ : "+formatuang((row.HARGAJUAL),'id-ID','IDR')+"<br>Σ SUB : "+formatuang((row.HARGAJUAL * row.JUMLAHRETUR),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return "@HJ : "+formatuang((row.HARGAJUAL),'id-ID','IDR')+"<br>Σ SUB : "+formatuang((row.HARGAJUAL * row.JUMLAHRETUR),'id-ID','IDR');
+                                    },
                                 },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return "Σ SUB HB : "+formatuang((row.HARGABELI * row.JUMLAHRETUR),'id-ID','IDR')+"<br>"
-                                    +"Σ SUB HJ : "+formatuang(((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN),'id-ID','IDR')+"<br>"
-                                    +"Σ SUB SELISIH : "+formatuang((((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN)) - (row.HARGABELI * row.JUMLAHRETUR) < 0 ? (((((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN)) - (row.HARGABELI * row.JUMLAHRETUR)) * -1) : (((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN)) - (row.HARGABELI * row.JUMLAHRETUR),'id-ID','IDR');
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return "Σ SUB HB : "+formatuang((row.HARGABELI * row.JUMLAHRETUR),'id-ID','IDR')+"<br>"
+                                        +"Σ SUB HJ : "+formatuang(((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN),'id-ID','IDR')+"<br>"
+                                        +"Σ SUB SELISIH : "+formatuang((((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN)) - (row.HARGABELI * row.JUMLAHRETUR) < 0 ? (((((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN)) - (row.HARGABELI * row.JUMLAHRETUR)) * -1) : (((row.HARGAJUAL * row.JUMLAHRETUR) + row.PPN)) - (row.HARGABELI * row.JUMLAHRETUR),'id-ID','IDR');
+                                    },
                                 },
+                            ],
+                            rowGroup: {
+                                dataSrc:function(row) {
+                                return row.NOTRXRETUR;
+                                },
+                                startRender: function ( rows, group ) {
+                                    return $('<tr style="color:red">')
+                                        .append("<td style='vertical-align : middle;'>Nama Kasir : "+rows.data()[0].NAMAPENGGUNA+"<br>No Transaksi : "+group+"<br>Kode Item</td>")
+                                        .append("<td style='vertical-align : middle;'>Nama Pelanggan : " + rows.data()[0].NAMA +"<br>Nama Item</td>")
+                                        .append("<td style='vertical-align : middle;'>Tanggal Trx</td>")
+                                        .append("<td style='vertical-align : middle;'>Σ Item</td>")
+                                        .append("<td style='vertical-align : middle;'>Σ PPN</td>")
+                                        .append("<td style='vertical-align : middle;'>Σ Harga Beli</td>")
+                                        .append("<td style='vertical-align : middle;'>Σ Harga Jual</td>")
+                                        .append("<td style='vertical-align : middle;'>Sub Total</td>")
+                                        .append('</tr>');
+                                },
+                                endRender: function ( rows, group ) {
+                                    let totalbarangkeluar = 0,totalppn =0,totalhargabeli=0,totalhargajual=0,totalselisih =0;
+                                    $.each(rows.data(), function (index,element) {
+                                        totalbarangkeluar += element.JUMLAHRETUR;
+                                        totalppn += element.PPN;
+                                        totalhargabeli += (element.HARGABELI * element.JUMLAHRETUR);
+                                        totalhargajual += (element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN;
+                                        totalselisih += ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR)) < 0 ? ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR))) * -1 : ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR))) )
+                                    });
+                                    return $('<tr style="color:red">')
+                                        .append("<td colspan='3' style='text-align: right;'>SUB TOTAL</td>")
+                                        .append('<td>'+totalbarangkeluar.toFixed(2)+'</td>')
+                                        .append('<td>'+formatuang(totalppn,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalhargabeli,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalhargajual,'id-ID','IDR')+'</td>')
+                                        .append('<td>Σ SUB HB : '+formatuang(totalhargabeli,'id-ID','IDR')+'<br>Σ SUB HJ : '+formatuang(totalhargajual,'id-ID','IDR')+'<br>Σ SUB SELISIH : '+formatuang(totalselisih,'id-ID','IDR')+'</td>')
+                                        .append('</tr>');
+                                },      
                             },
-                        ],
-                        rowGroup: {
-                            dataSrc:function(row) {
-                               return row.NOTRXRETUR;
-                            },
-                            startRender: function ( rows, group ) {
-                                return $('<tr style="color:red">')
-                                    .append("<td style='vertical-align : middle;'>Nama Kasir : "+rows.data()[0].NAMAPENGGUNA+"<br>No Transaksi : "+group+"<br>Kode Item</td>")
-                                    .append("<td style='vertical-align : middle;'>Nama Pelanggan : " + rows.data()[0].NAMA +"<br>Nama Item</td>")
-                                    .append("<td style='vertical-align : middle;'>Tanggal Trx</td>")
-                                    .append("<td style='vertical-align : middle;'>Σ Item</td>")
-                                    .append("<td style='vertical-align : middle;'>Σ PPN</td>")
-                                    .append("<td style='vertical-align : middle;'>Σ Harga Beli</td>")
-                                    .append("<td style='vertical-align : middle;'>Σ Harga Jual</td>")
-                                    .append("<td style='vertical-align : middle;'>Sub Total</td>")
-                                    .append('</tr>');
-                            },
-                            endRender: function ( rows, group ) {
-                                let totalbarangkeluar = 0,totalppn =0,totalhargabeli=0,totalhargajual=0,totalselisih =0;
-                                $.each(rows.data(), function (index,element) {
+                            initComplete: function(settings, json) {
+                                $.each(json.data, function (index,element) {
+                                    console.log(element.JUMLAHRETUR)
                                     totalbarangkeluar += element.JUMLAHRETUR;
                                     totalppn += element.PPN;
                                     totalhargabeli += (element.HARGABELI * element.JUMLAHRETUR);
                                     totalhargajual += (element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN;
                                     totalselisih += ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR)) < 0 ? ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR))) * -1 : ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR))) )
                                 });
-                                return $('<tr style="color:red">')
-                                    .append("<td colspan='3' style='text-align: right;'>SUB TOTAL</td>")
-                                    .append('<td>'+totalbarangkeluar.toFixed(2)+'</td>')
-                                    .append('<td>'+formatuang(totalppn,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalhargabeli,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalhargajual,'id-ID','IDR')+'</td>')
-                                    .append('<td>Σ SUB HB : '+formatuang(totalhargabeli,'id-ID','IDR')+'<br>Σ SUB HJ : '+formatuang(totalhargajual,'id-ID','IDR')+'<br>Σ SUB SELISIH : '+formatuang(totalselisih,'id-ID','IDR')+'</td>')
-                                    .append('</tr>');
-                            },      
-                        },
-                        initComplete: function(settings, json) {
-                            $.each(json.data, function (index,element) {
-                                console.log(element.JUMLAHRETUR)
-                                totalbarangkeluar += element.JUMLAHRETUR;
-                                totalppn += element.PPN;
-                                totalhargabeli += (element.HARGABELI * element.JUMLAHRETUR);
-                                totalhargajual += (element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN;
-                                totalselisih += ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR)) < 0 ? ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR))) * -1 : ((((element.HARGAJUAL * element.JUMLAHRETUR) + element.PPN) - (element.HARGABELI * element.JUMLAHRETUR))) )
-                            });
-                            
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {   
-                            setTimeout(function() {
-                                let $td = $(tfoot).find('th'); 
-                                $td.eq(1).html(totalbarangkeluar.toFixed(2));
-                                $td.eq(2).html(formatuang(totalppn,'id-ID','IDR'));
-                                $td.eq(3).html(formatuang(totalhargabeli,'id-ID','IDR'));
-                                $td.eq(4).html(formatuang(totalhargajual,'id-ID','IDR'));
-                                $td.eq(5).html('Σ SUB HB : '+formatuang(totalhargabeli,'id-ID','IDR')+'<br>Σ SUB HJ : '+formatuang(totalhargajual,'id-ID','IDR')+'<br>Σ SUB SELISIH : '+formatuang(totalselisih,'id-ID','IDR'));
-                            },500)
-                        }
+                                
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {   
+                                setTimeout(function() {
+                                    let $td = $(tfoot).find('th'); 
+                                    $td.eq(1).html(totalbarangkeluar.toFixed(2));
+                                    $td.eq(2).html(formatuang(totalppn,'id-ID','IDR'));
+                                    $td.eq(3).html(formatuang(totalhargabeli,'id-ID','IDR'));
+                                    $td.eq(4).html(formatuang(totalhargajual,'id-ID','IDR'));
+                                    $td.eq(5).html('Σ SUB HB : '+formatuang(totalhargabeli,'id-ID','IDR')+'<br>Σ SUB HJ : '+formatuang(totalhargajual,'id-ID','IDR')+'<br>Σ SUB SELISIH : '+formatuang(totalselisih,'id-ID','IDR'));
+                                },500)
+                            }
+                        });
                     });
                 }else if (controllerReport == "returpenjualanperfaktur"){ 
-                    $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanreturpenjualan',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
-                                d.OUTLET = $("#laporan_penjualan_outlet").val();
-                                d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
-                                d.KODEBARANG = $("#laporan_penjualan_barang").val();
-                                d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
-                                d.KONDISI = controllerReport
+                    getCsrfTokenCallback(function() {
+                        $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanreturpenjualan',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
+                                    d.OUTLET = $("#laporan_penjualan_outlet").val();
+                                    d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
+                                    d.KODEBARANG = $("#laporan_penjualan_barang").val();
+                                    d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
+                                    d.KONDISI = controllerReport
+                                }
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {    
+                                let response = this.api().ajax.json();
+                                let $td = $(tfoot).find('th');
+                                if(response){
+                                    $td.eq(1).html(response.totalitem);
+                                    $td.eq(2).html(response.totalppn);
+                                    $td.eq(3).html(response.subtotalhb);
+                                    $td.eq(4).html(response.subtotalhj);
+                                    $td.eq(5).html(response.subtotalselisih);
+                                }
                             }
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {    
-                            let response = this.api().ajax.json();
-                            let $td = $(tfoot).find('th');
-                            if(response){
-                                $td.eq(1).html(response.totalitem);
-                                $td.eq(2).html(response.totalppn);
-                                $td.eq(3).html(response.subtotalhb);
-                                $td.eq(4).html(response.subtotalhj);
-                                $td.eq(5).html(response.subtotalselisih);
-                            }
-                        }
+                        });
                     });
                 }
             }, 100);

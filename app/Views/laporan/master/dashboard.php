@@ -158,7 +158,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $("#toggleCollapse").click(function(){$("#maxmin").toggleClass("fa-maximize fa-minimize");}); 
@@ -175,12 +174,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -189,6 +190,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -202,6 +207,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 40,
                     DARI : "COMBOREPORTBARANG",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -209,6 +215,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -217,6 +224,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -230,12 +241,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     NAMAPERUSAHAAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -244,6 +257,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -257,12 +274,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     NAMAPRINCIPAL: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -271,6 +290,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -284,12 +307,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
                     DIMANA10: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -298,6 +323,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -311,12 +340,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     DIMANA1: (typeof params.term === "undefined" ? "" : params.term),
                     DIMANA10: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -325,6 +356,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -338,12 +373,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     NAMABRAND: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -352,6 +389,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -387,77 +428,80 @@ function panggilreportmasterformat(controllerReport,jenisformatjikasama){
             $(".status_masteritem").html(($("input[name=rb_statusbarangtambahitem]:checked").parent().text().trim() == "" ? "Barang Aktif" : $("input[name=rb_statusbarangtambahitem]:checked").parent().text().trim()));
             $(".outlet_masteritem").html(($("#laporan_penjualan_outlet").val() == null ? "SEMUA" : $("#laporan_penjualan_outlet").val() ));
             setTimeout(function() {
-                var tabel = $("#tabel_laporan_"+controllerReport).DataTable({
-                    language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                    scrollCollapse: true,
-                    scrollY: "100%",
-                    scrollX: true,
-                    ordering: false,
-                    bFilter: true,
-                    destroy: true,
-                    pageLength: 10,
-                    lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                    ajax: {
-                        "url": baseurljavascript + 'laporan/formatlaporanmaster',
-                        "type": "POST",
-                        "data": function (d) {
-                            d.KODENAMABARANG = $("#kodenamabarang").val();
-                            d.KODEPERUSAHAAN = $("#pilihperusahaan").val();
-                            d.KODEPINCIPAL = $("#pilihprincipal").val();
-                            d.KODEUSUPLIER = $("#pilihsuplier").val();
-                            d.KODEKATEGORI = $("#pilihkategori").val();
-                            d.KODEBRAND = $("#pilihbrand").val();
-                            d.KODEOUTLET = $("#laporan_penjualan_outlet").val();
-                            d.STOKAWAL =  $("#stokawal_laporanmasteritem").val();
-                            d.STOKAKHIR =  $("#stokakhir_laporanmasteritem").val();
-                            d.LOKASISTOK =  $("#lokasistok").val();
-                            d.STATUSBARANG =  (typeof $('input[name=rb_statusbarangtambahitem]:checked').val() === "undefined" ? "1" : $('input[name=rb_statusbarangtambahitem]:checked').val());
-                            d.KONDISI = controllerReport
-                        }
-                    },
-                    footerCallback: function( tfoot, data, start, end, display ) {   
-                        let response = this.api().ajax.json();
-                        let $td = $(tfoot).find('th'); 
-                        var rowCount = $(tfoot).find('tr').length;
-                        $(".totalpersediaanpokok").html(" Menghitung....");
-                        $(".totalpersediaanjual").html(" Menghitung....");
-                        $(".perkiraanlabakotor").html(" Menghitung....");
-                        if (controllerReport == "masteritem_informasibarang"){
-                            $td.eq(1).html("Rp 0");
-                            $td.eq(2).html("Rp 0");
-                            $td.eq(3).html(0);
-                            $td.eq(4).html(0);
-                            $td.eq(5).html(0);
-                            $td.eq(6).html(0);
-                        }else if (controllerReport == "masteritem_stokopname"){
-                            $td.eq(1).html(0);
-                            $td.eq(3).html(0);
-                            $td.eq(5).html(0);
-                        }
-                        if(response){
-                            if (controllerReport == "masteritem_informasibarang"){
-                                $td.eq(1).html(response.sumhargabeli);
-                                $td.eq(2).html(response.sumhargajual);
-                                $td.eq(3).html(response.sumdisplay);
-                                $td.eq(4).html(response.sumgudang);
-                                $td.eq(5).html(response.sumretur);
-                                $td.eq(6).html(response.sumsubtotalstok);
-                            }else if (controllerReport == "masteritem_stokopname"){
-                                $td.eq(1).html(response.sumdisplay);
-                                $td.eq(3).html(response.sumgudang);
-                                $td.eq(5).html(response.sumretur);
-                            }else if (controllerReport == "masteritem_daftaritem"){
-                                $td.eq(1).html("HARGA BELI : "+response.sumhargabeli+"<br>HARGA JUAL : "+response.sumhargajual);
-                                $td.eq(3).html(response.sumdisplay);
-                                $td.eq(4).html(response.sumgudang);
-                                $td.eq(5).html(response.sumretur);
-                                $td.eq(6).html(response.sumsubtotalstok);
+                getCsrfTokenCallback(function() {
+                    var tabel = $("#tabel_laporan_"+controllerReport).DataTable({
+                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                        scrollCollapse: true,
+                        scrollY: "100%",
+                        scrollX: true,
+                        ordering: false,
+                        bFilter: true,
+                        destroy: true,
+                        pageLength: 10,
+                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                        ajax: {
+                            "url": baseurljavascript + 'laporan/formatlaporanmaster',
+                            "type": "POST",
+                            "data": function (d) {
+                                d.csrf_aciraba = csrfTokenGlobal;
+                                d.KODENAMABARANG = $("#kodenamabarang").val();
+                                d.KODEPERUSAHAAN = $("#pilihperusahaan").val();
+                                d.KODEPINCIPAL = $("#pilihprincipal").val();
+                                d.KODEUSUPLIER = $("#pilihsuplier").val();
+                                d.KODEKATEGORI = $("#pilihkategori").val();
+                                d.KODEBRAND = $("#pilihbrand").val();
+                                d.KODEOUTLET = $("#laporan_penjualan_outlet").val();
+                                d.STOKAWAL =  $("#stokawal_laporanmasteritem").val();
+                                d.STOKAKHIR =  $("#stokakhir_laporanmasteritem").val();
+                                d.LOKASISTOK =  $("#lokasistok").val();
+                                d.STATUSBARANG =  (typeof $('input[name=rb_statusbarangtambahitem]:checked').val() === "undefined" ? "1" : $('input[name=rb_statusbarangtambahitem]:checked').val());
+                                d.KONDISI = controllerReport
                             }
-                            $(".totalpersediaanpokok").html(response.totalpersedianpokok);
-                            $(".totalpersediaanjual").html(response.totalpersedianjual);
-                            $(".perkiraanlabakotor").html(response.perkiraanlaba);
+                        },
+                        footerCallback: function( tfoot, data, start, end, display ) {   
+                            let response = this.api().ajax.json();
+                            let $td = $(tfoot).find('th'); 
+                            var rowCount = $(tfoot).find('tr').length;
+                            $(".totalpersediaanpokok").html(" Menghitung....");
+                            $(".totalpersediaanjual").html(" Menghitung....");
+                            $(".perkiraanlabakotor").html(" Menghitung....");
+                            if (controllerReport == "masteritem_informasibarang"){
+                                $td.eq(1).html("Rp 0");
+                                $td.eq(2).html("Rp 0");
+                                $td.eq(3).html(0);
+                                $td.eq(4).html(0);
+                                $td.eq(5).html(0);
+                                $td.eq(6).html(0);
+                            }else if (controllerReport == "masteritem_stokopname"){
+                                $td.eq(1).html(0);
+                                $td.eq(3).html(0);
+                                $td.eq(5).html(0);
+                            }
+                            if(response){
+                                if (controllerReport == "masteritem_informasibarang"){
+                                    $td.eq(1).html(response.sumhargabeli);
+                                    $td.eq(2).html(response.sumhargajual);
+                                    $td.eq(3).html(response.sumdisplay);
+                                    $td.eq(4).html(response.sumgudang);
+                                    $td.eq(5).html(response.sumretur);
+                                    $td.eq(6).html(response.sumsubtotalstok);
+                                }else if (controllerReport == "masteritem_stokopname"){
+                                    $td.eq(1).html(response.sumdisplay);
+                                    $td.eq(3).html(response.sumgudang);
+                                    $td.eq(5).html(response.sumretur);
+                                }else if (controllerReport == "masteritem_daftaritem"){
+                                    $td.eq(1).html("HARGA BELI : "+response.sumhargabeli+"<br>HARGA JUAL : "+response.sumhargajual);
+                                    $td.eq(3).html(response.sumdisplay);
+                                    $td.eq(4).html(response.sumgudang);
+                                    $td.eq(5).html(response.sumretur);
+                                    $td.eq(6).html(response.sumsubtotalstok);
+                                }
+                                $(".totalpersediaanpokok").html(response.totalpersedianpokok);
+                                $(".totalpersediaanjual").html(response.totalpersedianjual);
+                                $(".perkiraanlabakotor").html(response.perkiraanlaba);
+                            }
                         }
-                    }
+                    });
                 });
             }, 100);
             $('#modal_'+controllerReport).modal('show');

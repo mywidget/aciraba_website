@@ -135,12 +135,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -149,6 +151,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -162,6 +168,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 40,
                     DARI : "COMBOREPORTBARANG",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -169,6 +176,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -177,6 +185,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -190,6 +202,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 41,
                     DARI : "COMBOREPORTSUP",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -197,6 +210,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -205,6 +219,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -218,6 +236,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 43,
                     DARI : "COMBOREPORTKATEGORI",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -225,6 +244,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -233,6 +253,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -246,11 +270,13 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     NAMAPARAMETER: (typeof params.term === "undefined" ? "" : params.term),
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -259,6 +285,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -290,6 +320,7 @@ function panggilreportreturpembelianformat(controllerReport,jenisformatjikasama)
             setTimeout(function() {
                 let totalbarangkeluar = 0,totalhargabeli =0,totalpotongan=0,totalppn=0,subtotal =0;
                 if (controllerReport == "returpembelianperfakturdetail"){ 
+                    getCsrfTokenCallback(function() {
                     let table = $("#tabel_laporan_"+controllerReport).DataTable({
                         language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
                         scrollCollapse: true,
@@ -304,6 +335,7 @@ function panggilreportreturpembelianformat(controllerReport,jenisformatjikasama)
                             "url": baseurljavascript + 'laporan/formatlaporanreturpembeliannodatatables',
                             "type": "POST",
                             "data": function (d) {
+                                d.csrf_aciraba = csrfTokenGlobal;
                                 d.PERIODEAWAL = $("#laporan_pembelian_tanggalwal").val().split("-").reverse().join("-");
                                 d.PERIODEAKHIR = $("#laporan_pembelian_tanggalakhir").val().split("-").reverse().join("-");
                                 d.CARABAYAR = $("#laporan_pembelian_carabayar").val();
@@ -418,40 +450,44 @@ function panggilreportreturpembelianformat(controllerReport,jenisformatjikasama)
                             },500)
                         }
                     });
+                });
                 }else if (controllerReport == "returpembelianperfaktur"){ 
-                    $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanreturpembelian',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_pembelian_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_pembelian_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_pembelian_carabayar").val();
-                                d.OUTLET = $("#laporan_pembelian_outlet").val();
-                                d.KODEBARANG = $("#laporan_pembelian_barang").val();
-                                d.KODESUPLIER = $("#laporan_pembelian_supplier").val();
-                                d.KODEKATEGORI = $("#laporan_pembelian_kategori").val();
-                                d.KONDISI = controllerReport
+                    getCsrfTokenCallback(function() {
+                        $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanreturpembelian',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_pembelian_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_pembelian_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_pembelian_carabayar").val();
+                                    d.OUTLET = $("#laporan_pembelian_outlet").val();
+                                    d.KODEBARANG = $("#laporan_pembelian_barang").val();
+                                    d.KODESUPLIER = $("#laporan_pembelian_supplier").val();
+                                    d.KODEKATEGORI = $("#laporan_pembelian_kategori").val();
+                                    d.KONDISI = controllerReport
+                                }
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {    
+                                let response = this.api().ajax.json();
+                                let $td = $(tfoot).find('th');
+                                if(response){
+                                    $td.eq(1).html(response.jumlahitem+" Item");
+                                    $td.eq(2).html(response.totalpotongan);
+                                    $td.eq(3).html(response.totalsubtotal);
+                                }
                             }
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {    
-                            let response = this.api().ajax.json();
-                            let $td = $(tfoot).find('th');
-                            if(response){
-                                $td.eq(1).html(response.jumlahitem+" Item");
-                                $td.eq(2).html(response.totalpotongan);
-                                $td.eq(3).html(response.totalsubtotal);
-                            }
-                        }
+                        });
                     });
                 }
             }, 100);

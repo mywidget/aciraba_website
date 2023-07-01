@@ -220,7 +220,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 <script src="https://momentjs.com/downloads/moment.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
 $("#toggleCollapse").click(function(){$("#maxmin").toggleClass("fa-maximize fa-minimize");}); 
@@ -242,12 +241,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -256,6 +257,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -269,6 +274,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 39,
                     DARI : "COMBOREPORTCUSTOMER",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -276,6 +282,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -284,6 +291,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -297,6 +308,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 40,
                     DARI : "COMBOREPORTBARANG",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -304,6 +316,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -312,6 +325,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -325,6 +342,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 41,
                     DARI : "COMBOREPORTSUP",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -332,6 +350,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -340,6 +359,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -353,6 +376,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 42,
                     DARI : "COMBOREPORTGROUPMEMBER",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -360,6 +384,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -368,6 +393,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -381,6 +410,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 43,
                     DARI : "COMBOREPORTKATEGORI",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -388,6 +418,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -396,6 +427,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -452,202 +487,208 @@ function panggilreportpenjualanformat(controllerReport,jenisformatjikasama){
                     } 
                     let collapsedGroups = {};
                     var totalkeluar = 0,totalpenjualan = 0,totalhpp = 0,totallaba = 0, satuan = "";
-                    let table = $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        columnDefs: [
-                            { "visible": false, "targets": 7 }
-                        ],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanpenjualannodatatables',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.DIMANA2 = $("#daftaritem_katakunci_panggil").val();
-                                d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
-                                d.OUTLET = $("#laporan_penjualan_outlet").val();
-                                d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
-                                d.KODEBARANG = $("#laporan_penjualan_barang").val();
-                                d.KODESUPLIER = $("#laporan_penjualan_supplier").val();
-                                d.GROUPELANGGAN = $("#laporan_penjualan_groumember").val();
-                                d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
-                                d.KONDISI = controllerReport
-                            }
-                        },
-                        columns: [
-                            { "title": "",data: "FK_BARANG" },
-                            { "title": "",data: "NAMABARANG" },
-                            { "title": "",data: (jenisformatjikasama == "tanggal" ? "PK_NOTAPENJUALAN" : "NAMAKATEGORI" ) },
-                            { "title": "",data: "TOTALKELUAR" },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.HARGAJUAL + row.PAJAKTOKO + row.PAJAKNEGARA - row.POTONGANGLOBAL),'id-ID','IDR');
-                                },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.HARGABELI),'id-ID','IDR');
-                                },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.HARGAJUAL + row.PAJAKTOKO + row.PAJAKNEGARA - row.POTONGANGLOBAL) - (row.HARGABELI),'id-ID','IDR');
-                                },
-                            },
-                            { "title": "",data: "PK_NOTAPENJUALAN" },
-                        ],
-                        rowGroup: {
-                            dataSrc:function(row) {
-                                if (jenisformatjikasama == "notapenjualan") return row.PK_NOTAPENJUALAN;
-                                if (jenisformatjikasama == "tanggal") return row.TGLKELUAR;
-                            },
-                            startRender: function ( rows, group ) {
-                                let stringkolom1, stringkolom2, stringkolom3;
-                                if (jenisformatjikasama == "notapenjualan"){
-                                    stringkolom1 = "<td style='vertical-align : middle;'>Waktu Trx : "+rows.data()[0].FULLWAKTU+"<br>No Trx : "+ group + "<br>Kode Item</td>"
-                                    stringkolom2 = "<td style='vertical-align : middle;'>Nama Kasir : "+rows.data()[0].NAMAPENGGUNA+"<br>Nama Pelanggan : " + rows.data()[0].NAMA + "<br>Nama Item</td>"
-                                    stringkolom3 = "<td style='vertical-align : middle;'>Kategori</td>"
-                                }else{
-                                    stringkolom1 = "<td style='vertical-align : middle;'>Waktu Trx : "+group+"<br>Kode Item</td>"
-                                    stringkolom2 = "<td style='vertical-align : middle;'>Nama Kasir : "+rows.data()[0].NAMAPENGGUNA+"<br>Nama Pelanggan : " + rows.data()[0].NAMA + "<br>Nama Item</td>"
-                                    stringkolom3 = "<td style='vertical-align : middle;'>No Transaksi</td>"
+                    getCsrfTokenCallback(function() {
+                        let table = $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            columnDefs: [
+                                { "visible": false, "targets": 7 }
+                            ],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanpenjualannodatatables',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.DIMANA2 = $("#daftaritem_katakunci_panggil").val();
+                                    d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
+                                    d.OUTLET = $("#laporan_penjualan_outlet").val();
+                                    d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
+                                    d.KODEBARANG = $("#laporan_penjualan_barang").val();
+                                    d.KODESUPLIER = $("#laporan_penjualan_supplier").val();
+                                    d.GROUPELANGGAN = $("#laporan_penjualan_groumember").val();
+                                    d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
+                                    d.KONDISI = controllerReport
                                 }
-                                return $('<tr style="color:red">')
-                                    .append(stringkolom1)
-                                    .append(stringkolom2)
-                                    .append(stringkolom3)
-                                    .append("<td style='vertical-align : middle;'>Σ Barang Keluar</td>")
-                                    .append("<td style='vertical-align : middle;'>Σ Penjualan</td>")
-                                    .append("<td style='vertical-align : middle;'>Σ Hpp</td>")
-                                    .append("<td style='vertical-align : middle;'>Σ Laba</td>")
-                                    .append('</tr>');
                             },
-                            endRender: function ( rows, group ) {
-                                let totalkeluar = 0,totalpenjualan = 0,totalhpp = 0,totallaba = 0;
-                                $.each(rows.data(), function (index,element) {
+                            columns: [
+                                { "title": "",data: "FK_BARANG" },
+                                { "title": "",data: "NAMABARANG" },
+                                { "title": "",data: (jenisformatjikasama == "tanggal" ? "PK_NOTAPENJUALAN" : "NAMAKATEGORI" ) },
+                                { "title": "",data: "TOTALKELUAR" },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.HARGAJUAL + row.PAJAKTOKO + row.PAJAKNEGARA - row.POTONGANGLOBAL),'id-ID','IDR');
+                                    },
+                                },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.HARGABELI),'id-ID','IDR');
+                                    },
+                                },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.HARGAJUAL + row.PAJAKTOKO + row.PAJAKNEGARA - row.POTONGANGLOBAL) - (row.HARGABELI),'id-ID','IDR');
+                                    },
+                                },
+                                { "title": "",data: "PK_NOTAPENJUALAN" },
+                            ],
+                            rowGroup: {
+                                dataSrc:function(row) {
+                                    if (jenisformatjikasama == "notapenjualan") return row.PK_NOTAPENJUALAN;
+                                    if (jenisformatjikasama == "tanggal") return row.TGLKELUAR;
+                                },
+                                startRender: function ( rows, group ) {
+                                    let stringkolom1, stringkolom2, stringkolom3;
+                                    if (jenisformatjikasama == "notapenjualan"){
+                                        stringkolom1 = "<td style='vertical-align : middle;'>Waktu Trx : "+rows.data()[0].FULLWAKTU+"<br>No Trx : "+ group + "<br>Kode Item</td>"
+                                        stringkolom2 = "<td style='vertical-align : middle;'>Nama Kasir : "+rows.data()[0].NAMAPENGGUNA+"<br>Nama Pelanggan : " + rows.data()[0].NAMA + "<br>Nama Item</td>"
+                                        stringkolom3 = "<td style='vertical-align : middle;'>Kategori</td>"
+                                    }else{
+                                        stringkolom1 = "<td style='vertical-align : middle;'>Waktu Trx : "+group+"<br>Kode Item</td>"
+                                        stringkolom2 = "<td style='vertical-align : middle;'>Nama Kasir : "+rows.data()[0].NAMAPENGGUNA+"<br>Nama Pelanggan : " + rows.data()[0].NAMA + "<br>Nama Item</td>"
+                                        stringkolom3 = "<td style='vertical-align : middle;'>No Transaksi</td>"
+                                    }
+                                    return $('<tr style="color:red">')
+                                        .append(stringkolom1)
+                                        .append(stringkolom2)
+                                        .append(stringkolom3)
+                                        .append("<td style='vertical-align : middle;'>Σ Barang Keluar</td>")
+                                        .append("<td style='vertical-align : middle;'>Σ Penjualan</td>")
+                                        .append("<td style='vertical-align : middle;'>Σ Hpp</td>")
+                                        .append("<td style='vertical-align : middle;'>Σ Laba</td>")
+                                        .append('</tr>');
+                                },
+                                endRender: function ( rows, group ) {
+                                    let totalkeluar = 0,totalpenjualan = 0,totalhpp = 0,totallaba = 0;
+                                    $.each(rows.data(), function (index,element) {
+                                        totalkeluar += element.STOKBARANGKELUAR;
+                                        totalpenjualan += (element.HARGAJUAL * element.STOKBARANGKELUAR) + element.PAJAKTOKO + element.PAJAKNEGARA - element.POTONGANGLOBAL;
+                                        totalhpp += element.HARGABELI;
+                                        totallaba += (((element.HARGAJUAL  * element.STOKBARANGKELUAR) + element.PAJAKTOKO + element.PAJAKNEGARA - element.POTONGANGLOBAL) - element.HARGABELI);
+                                        satuan = element.SATUAN;
+                                    });
+                                    return $('<tr style="color:red">')
+                                        .append("<td colspan='3' style='text-align: right;vertical-align : middle;'>SUB TOTAL</td>")
+                                        .append('<td>'+totalkeluar.toFixed(2)+' '+rows.data()[0].SATUAN +'</td>')
+                                        .append('<td>'+formatuang(totalpenjualan,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalhpp,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totallaba,'id-ID','IDR')+'</td>')
+                                        .append('</tr>');
+                                },      
+                            },
+                            initComplete: function(settings, json) {
+                                $.each(json.data, function (index,element) {
                                     totalkeluar += element.STOKBARANGKELUAR;
                                     totalpenjualan += (element.HARGAJUAL * element.STOKBARANGKELUAR) + element.PAJAKTOKO + element.PAJAKNEGARA - element.POTONGANGLOBAL;
                                     totalhpp += element.HARGABELI;
                                     totallaba += (((element.HARGAJUAL  * element.STOKBARANGKELUAR) + element.PAJAKTOKO + element.PAJAKNEGARA - element.POTONGANGLOBAL) - element.HARGABELI);
-                                    satuan = element.SATUAN;
                                 });
-                                return $('<tr style="color:red">')
-                                    .append("<td colspan='3' style='text-align: right;vertical-align : middle;'>SUB TOTAL</td>")
-                                    .append('<td>'+totalkeluar.toFixed(2)+' '+rows.data()[0].SATUAN +'</td>')
-                                    .append('<td>'+formatuang(totalpenjualan,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalhpp,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totallaba,'id-ID','IDR')+'</td>')
-                                    .append('</tr>');
-                            },      
-                        },
-                        initComplete: function(settings, json) {
-                            $.each(json.data, function (index,element) {
-                                totalkeluar += element.STOKBARANGKELUAR;
-                                totalpenjualan += (element.HARGAJUAL * element.STOKBARANGKELUAR) + element.PAJAKTOKO + element.PAJAKNEGARA - element.POTONGANGLOBAL;
-                                totalhpp += element.HARGABELI;
-                                totallaba += (((element.HARGAJUAL  * element.STOKBARANGKELUAR) + element.PAJAKTOKO + element.PAJAKNEGARA - element.POTONGANGLOBAL) - element.HARGABELI);
-                            });
+                                
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {   
+                                setTimeout(function() {
+                                    let $td = $(tfoot).find('th'); 
+                                    $td.eq(1).html(totalkeluar.toFixed(2)+" "+satuan);
+                                    $td.eq(2).html(formatuang(totalpenjualan,'id-ID','IDR'));
+                                    $td.eq(3).html(formatuang(totalhpp,'id-ID','IDR'));
+                                    $td.eq(4).html(formatuang(totallaba,'id-ID','IDR'));
+                                },500)
                             
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {   
-                            setTimeout(function() {
-                                let $td = $(tfoot).find('th'); 
-                                $td.eq(1).html(totalkeluar.toFixed(2)+" "+satuan);
-                                $td.eq(2).html(formatuang(totalpenjualan,'id-ID','IDR'));
-                                $td.eq(3).html(formatuang(totalhpp,'id-ID','IDR'));
-                                $td.eq(4).html(formatuang(totallaba,'id-ID','IDR'));
-                            },500)
-                           
-                        }
+                            }
+                        });
                     });
                 }else{
-                    $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanpenjualan',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.DIMANA2 = $("#daftaritem_katakunci_panggil").val();
-                                d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
-                                d.OUTLET = $("#laporan_penjualan_outlet").val();
-                                d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
-                                d.KODEBARANG = $("#laporan_penjualan_barang").val();
-                                d.KODESUPLIER = $("#laporan_penjualan_supplier").val();
-                                d.GROUPELANGGAN = $("#laporan_penjualan_groumember").val();
-                                d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
-                                d.KONDISI = controllerReport
-                            }
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {    
-                            let response = this.api().ajax.json();
-                            let $td = $(tfoot).find('th');
-                            if(response){
-                                if (controllerReport == "penjualanperfaktur"){
-                                    $td.eq(1).html(response.jumlahitem);
-                                    $td.eq(2).html(response.subtotal);
-                                    $td.eq(3).html(response.pajaktoko);
-                                    $td.eq(4).html(response.pajaknegara);
-                                    $td.eq(5).html(response.potonganglobal);
-                                    $td.eq(6).html(response.jumlah);
-                                }else if (controllerReport == "penjualanperbarang"){
-                                    $td.eq(1).html(response.jumlahitem);
-                                    $td.eq(2).html(response.totaljual);
-                                    $td.eq(3).html(response.totalbeli);
-                                    $td.eq(4).html(response.totallaba);
-                                }else if (controllerReport == "penjualanperpelanggan"){
-                                    $td.eq(1).html(response.tunai);
-                                    $td.eq(2).html(response.uangmuka);
-                                    $td.eq(3).html(response.kredit);
-                                    $td.eq(4).html(response.kdebit);
-                                    $td.eq(5).html(response.kkredit);
-                                    $td.eq(6).html(response.emoney);
-                                    $('tr:eq(1) th:eq(1)', this.api().table().footer()).html(response.grandtotal);
-                                }else if (controllerReport == "penjualanperjenistransaksi"){
-                                    $td.eq(1).html(response.grandtotaljenistrasnaksi);
-                                }else if (controllerReport == "penjualanperkasir"){
-                                    $td.eq(1).html(response.tunai);
-                                    $td.eq(2).html(response.uangmuka);
-                                    $td.eq(3).html(response.kredit);
-                                    $td.eq(4).html(response.kdebit);
-                                    $td.eq(5).html(response.kkredit);
-                                    $td.eq(6).html(response.emoney);
-                                    $td.eq(7).html(response.grandtotal);
-                                }else if (controllerReport == "penjualanpertanggal"){
-                                    $td.eq(1).html(response.jumlahitem);
-                                    $td.eq(2).html(response.pajaktoko);
-                                    $td.eq(3).html(response.pajaknegara);
-                                    $td.eq(4).html(response.potonganglobal);
-                                    $td.eq(5).html(response.tunai);
-                                    $td.eq(6).html(response.uangmuka);
-                                    $td.eq(7).html(response.kredit);
-                                    $td.eq(8).html(response.kdebit);
-                                    $td.eq(9).html(response.kkredit);
-                                    $td.eq(10).html(response.emoney);
-                                    $td.eq(11).html(response.grandtotal);
+                    getCsrfTokenCallback(function() {
+                        $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanpenjualan',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.DIMANA2 = $("#daftaritem_katakunci_panggil").val();
+                                    d.PERIODEAWAL = $("#laporan_penjualan_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_penjualan_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_penjualan_carabayar").val();
+                                    d.OUTLET = $("#laporan_penjualan_outlet").val();
+                                    d.IDPELANGGAN = $("#laporan_penjualan_customer").val();
+                                    d.KODEBARANG = $("#laporan_penjualan_barang").val();
+                                    d.KODESUPLIER = $("#laporan_penjualan_supplier").val();
+                                    d.GROUPELANGGAN = $("#laporan_penjualan_groumember").val();
+                                    d.KODEKATEGORI = $("#laporan_penjualan_kategori").val();
+                                    d.KONDISI = controllerReport
+                                }
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {    
+                                let response = this.api().ajax.json();
+                                let $td = $(tfoot).find('th');
+                                if(response){
+                                    if (controllerReport == "penjualanperfaktur"){
+                                        $td.eq(1).html(response.jumlahitem);
+                                        $td.eq(2).html(response.subtotal);
+                                        $td.eq(3).html(response.pajaktoko);
+                                        $td.eq(4).html(response.pajaknegara);
+                                        $td.eq(5).html(response.potonganglobal);
+                                        $td.eq(6).html(response.jumlah);
+                                    }else if (controllerReport == "penjualanperbarang"){
+                                        $td.eq(1).html(response.jumlahitem);
+                                        $td.eq(2).html(response.totaljual);
+                                        $td.eq(3).html(response.totalbeli);
+                                        $td.eq(4).html(response.totallaba);
+                                    }else if (controllerReport == "penjualanperpelanggan"){
+                                        $td.eq(1).html(response.tunai);
+                                        $td.eq(2).html(response.uangmuka);
+                                        $td.eq(3).html(response.kredit);
+                                        $td.eq(4).html(response.kdebit);
+                                        $td.eq(5).html(response.kkredit);
+                                        $td.eq(6).html(response.emoney);
+                                        $('tr:eq(1) th:eq(1)', this.api().table().footer()).html(response.grandtotal);
+                                    }else if (controllerReport == "penjualanperjenistransaksi"){
+                                        $td.eq(1).html(response.grandtotaljenistrasnaksi);
+                                    }else if (controllerReport == "penjualanperkasir"){
+                                        $td.eq(1).html(response.tunai);
+                                        $td.eq(2).html(response.uangmuka);
+                                        $td.eq(3).html(response.kredit);
+                                        $td.eq(4).html(response.kdebit);
+                                        $td.eq(5).html(response.kkredit);
+                                        $td.eq(6).html(response.emoney);
+                                        $td.eq(7).html(response.grandtotal);
+                                    }else if (controllerReport == "penjualanpertanggal"){
+                                        $td.eq(1).html(response.jumlahitem);
+                                        $td.eq(2).html(response.pajaktoko);
+                                        $td.eq(3).html(response.pajaknegara);
+                                        $td.eq(4).html(response.potonganglobal);
+                                        $td.eq(5).html(response.tunai);
+                                        $td.eq(6).html(response.uangmuka);
+                                        $td.eq(7).html(response.kredit);
+                                        $td.eq(8).html(response.kdebit);
+                                        $td.eq(9).html(response.kkredit);
+                                        $td.eq(10).html(response.emoney);
+                                        $td.eq(11).html(response.grandtotal);
+                                    }
                                 }
                             }
-                        }
+                        });
                     });
                 }
             }, 100);

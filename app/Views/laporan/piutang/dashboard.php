@@ -168,12 +168,14 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
                     KODEUNIKMEMBER: session_kodeunikmember,
                 }
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -182,6 +184,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -195,6 +201,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 39,
                     DARI : "COMBOREPORTCUSTOMER",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -202,6 +209,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -210,6 +218,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -223,6 +235,7 @@ $(document).ready(function () {
             delay: 500,
             data: function (params) {
                 return {
+                    csrf_aciraba: csrfTokenGlobal,
                     KONDISI : 42,
                     DARI : "COMBOREPORTGROUPMEMBER",
                     KATAKUNCIPENCARIAN: (typeof params.term === "undefined" ? "" : params.term),
@@ -230,6 +243,7 @@ $(document).ready(function () {
             },
             processResults: function (data) {
                 parseJSON = JSON.parse(data);
+                etCsrfTokenCallback(function() {});
                 return {
                     results: $.map(parseJSON, function (item) {
                         return {
@@ -238,6 +252,10 @@ $(document).ready(function () {
                         }
                     })
                 }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
             }
         },
     });
@@ -274,226 +292,235 @@ function panggilreportpiutang(controllerReport,jenisformatjikasama){
             setTimeout(function() {
                 if (controllerReport == "piutangberedar"){ 
                     totalpiutangfooter = 0,totalsisapiutangfooter = 0, totalterbayarfooter = 0;
-                    tableDT = $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanpiutangnodatatables',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_piutang_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_piutang_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_piutang_carabayar").val();
-                                d.OUTLET = $("#laporan_piutang_outlet").val();
-                                d.IDPELANGGAN = $("#laporan_piutang_customer").val();
-                                d.GROUPELANGGAN = $("#laporan_piutang_groumember").val();
-                                d.KONDISI = controllerReport
-                                d.KONDISIPIUTANG = kondisipiutang
-                            }
-                        },
-                        columns: [
-                            { "title": "",data: "PK_NOTAPENJUALAN" },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return moment(row.TRXKELUAR).format('DD-MM-YYYY HH:mm:ss');
+                    getCsrfTokenCallback(function() {
+                        tableDT = $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanpiutangnodatatables',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_piutang_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_piutang_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_piutang_carabayar").val();
+                                    d.OUTLET = $("#laporan_piutang_outlet").val();
+                                    d.IDPELANGGAN = $("#laporan_piutang_customer").val();
+                                    d.GROUPELANGGAN = $("#laporan_piutang_groumember").val();
+                                    d.KONDISI = controllerReport
+                                    d.KONDISIPIUTANG = kondisipiutang
+                                }
+                            },
+                            columns: [
+                                { "title": "",data: "PK_NOTAPENJUALAN" },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return moment(row.TRXKELUAR).format('DD-MM-YYYY HH:mm:ss');
+                                    },
+                                },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return moment(row.JATUHTEMPOHUTANG).format('DD-MM-YYYY');
+                                    },
+                                },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        let stringjatuhtempo = "";
+                                        if (row.RENTANGWAKTU < 0){
+                                            stringjatuhtempo = "Tempo Melebihi "+(row.RENTANGWAKTU * -1)+" Hari Yang Lalu"
+                                        }else{
+                                            stringjatuhtempo = "Tempo Akan Datang "+row.RENTANGWAKTU+" Hari Lagi"
+                                        }
+                                        return stringjatuhtempo;
+                                    },
+                                },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.TOTALKREDIT),'id-ID','IDR');
+                                    },
+                                },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.SISAKREDIT),'id-ID','IDR');
+                                    },
+                                },
+                            ],
+                            rowGroup: {
+                                dataSrc:function(row) {
+                                    return row.FK_MEMBER;
+                                },
+                                startRender: function ( rows, group ) {
+                                    return $('<tr style="color:red">')
+                                        .append("<td>Nama Member : "+rows.data()[0].NAMAMEMBER.toUpperCase()+"<br>No Transaksi Keluar</td>")
+                                        .append("<td>Petugas Kasir : "+rows.data()[0].NAMAPENGGUNA.toUpperCase()+"<br>Waktu Transaksi</td>")
+                                        .append("<td style='vertical-align : middle;'>Tanggal Jatuh Tempo</td>")
+                                        .append("<td style='vertical-align : middle;'>Keterangan Tempo</td>")
+                                        .append("<td style='vertical-align : middle;'>Total Hutang</td>")
+                                        .append("<td style='vertical-align : middle;'>Sisa Hutang</td>")
+                                        .append('</tr>');
+                                },
+                                endRender: function ( rows, group ) {
+                                    let totalpiutang = 0,totalsisapiutang = 0, totalterbayar = 0;
+                                    $.each(rows.data(), function (index,element) {
+                                        totalpiutang += element.TOTALKREDIT;
+                                        totalsisapiutang += element.SISAKREDIT;
+                                        totalterbayar += element.TERBAYAR;
+                                        totalpiutangfooter += element.TOTALKREDIT;
+                                        totalsisapiutangfooter += element.SISAKREDIT;
+                                        totalterbayarfooter += element.TERBAYAR;
+                                    });
+                                    return $('<tr style="color:red">')
+                                        .append("<td colspan='4' style='text-align: right;vertical-align : middle'>SUB TOTAL</td>")
+                                        .append('<td>'+formatuang(totalpiutang,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalsisapiutang,'id-ID','IDR')+'</td>')
+                                        .append('</tr>');
                                 },
                             },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return moment(row.JATUHTEMPOHUTANG).format('DD-MM-YYYY');
-                                },
+                            footerCallback: function( tfoot, data, start, end, display ) {   
+                                setTimeout(function() {
+                                    let $td = $(tfoot).find('th'); 
+                                    $td.eq(1).html(formatuang(totalpiutangfooter,'id-ID','IDR'));
+                                    $td.eq(2).html(formatuang(totalsisapiutangfooter,'id-ID','IDR'));
+                                    $td.eq(3).html(formatuang(totalterbayarfooter,'id-ID','IDR'));
+                                },500)
                             },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    let stringjatuhtempo = "";
-                                    if (row.RENTANGWAKTU < 0){
-                                        stringjatuhtempo = "Tempo Melebihi "+(row.RENTANGWAKTU * -1)+" Hari Yang Lalu"
-                                    }else{
-                                        stringjatuhtempo = "Tempo Akan Datang "+row.RENTANGWAKTU+" Hari Lagi"
-                                    }
-                                    return stringjatuhtempo;
-                                },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.TOTALKREDIT),'id-ID','IDR');
-                                },
-                            },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.SISAKREDIT),'id-ID','IDR');
-                                },
-                            },
-                        ],
-                        rowGroup: {
-                            dataSrc:function(row) {
-                                return row.FK_MEMBER;
-                            },
-                            startRender: function ( rows, group ) {
-                                return $('<tr style="color:red">')
-                                    .append("<td>Nama Member : "+rows.data()[0].NAMAMEMBER.toUpperCase()+"<br>No Transaksi Keluar</td>")
-                                    .append("<td>Petugas Kasir : "+rows.data()[0].NAMAPENGGUNA.toUpperCase()+"<br>Waktu Transaksi</td>")
-                                    .append("<td style='vertical-align : middle;'>Tanggal Jatuh Tempo</td>")
-                                    .append("<td style='vertical-align : middle;'>Keterangan Tempo</td>")
-                                    .append("<td style='vertical-align : middle;'>Total Hutang</td>")
-                                    .append("<td style='vertical-align : middle;'>Sisa Hutang</td>")
-                                    .append('</tr>');
-                            },
-                            endRender: function ( rows, group ) {
-                                let totalpiutang = 0,totalsisapiutang = 0, totalterbayar = 0;
-                                $.each(rows.data(), function (index,element) {
-                                    totalpiutang += element.TOTALKREDIT;
-                                    totalsisapiutang += element.SISAKREDIT;
-                                    totalterbayar += element.TERBAYAR;
-                                    totalpiutangfooter += element.TOTALKREDIT;
-                                    totalsisapiutangfooter += element.SISAKREDIT;
-                                    totalterbayarfooter += element.TERBAYAR;
-                                });
-                                return $('<tr style="color:red">')
-                                    .append("<td colspan='4' style='text-align: right;vertical-align : middle'>SUB TOTAL</td>")
-                                    .append('<td>'+formatuang(totalpiutang,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalsisapiutang,'id-ID','IDR')+'</td>')
-                                    .append('</tr>');
-                            },
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {   
-                            setTimeout(function() {
-                                let $td = $(tfoot).find('th'); 
-                                $td.eq(1).html(formatuang(totalpiutangfooter,'id-ID','IDR'));
-                                $td.eq(2).html(formatuang(totalsisapiutangfooter,'id-ID','IDR'));
-                                $td.eq(3).html(formatuang(totalterbayarfooter,'id-ID','IDR'));
-                            },500)
-                        },
+                        });
                     });
                 }else if (controllerReport == "bukubantupiutang"){ 
                     totalpiutangfooter = 0,totalsisapiutangfooter = 0, totalterbayarfooter = 0;
-                    tableDT = $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanpiutangnodatatables',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_piutang_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_piutang_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_piutang_carabayar").val();
-                                d.OUTLET = $("#laporan_piutang_outlet").val();
-                                d.IDPELANGGAN = $("#laporan_piutang_customer").val();
-                                d.GROUPELANGGAN = $("#laporan_piutang_groumember").val();
-                                d.KONDISI = controllerReport
-                                d.KONDISIPIUTANG = kondisipiutang
-                            }
-                        },
-                        columns: [
-                            { "title": "",data: "NOTATRANSAKSI" },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return moment(row.WAKTUTRANSAKSI).format('DD-MM-YYYY HH:mm:ss');
+                    getCsrfTokenCallback(function() {
+                        tableDT = $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanpiutangnodatatables',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_piutang_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_piutang_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_piutang_carabayar").val();
+                                    d.OUTLET = $("#laporan_piutang_outlet").val();
+                                    d.IDPELANGGAN = $("#laporan_piutang_customer").val();
+                                    d.GROUPELANGGAN = $("#laporan_piutang_groumember").val();
+                                    d.KONDISI = controllerReport
+                                    d.KONDISIPIUTANG = kondisipiutang
+                                }
+                            },
+                            columns: [
+                                { "title": "",data: "NOTATRANSAKSI" },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return moment(row.WAKTUTRANSAKSI).format('DD-MM-YYYY HH:mm:ss');
+                                    },
+                                },
+                                { "title": "",data: "KETERANGAN" },
+                                { "title": "",data: "KONDISI" },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.DEBET),'id-ID','IDR');
+                                    },
+                                },
+                                { 
+                                    "title": "",
+                                    "render": function (data, type, row, meta) {
+                                        return formatuang((row.KREDIT),'id-ID','IDR');
+                                    },
+                                },
+                            ],
+                            rowGroup: {
+                                dataSrc:function(row) {
+                                    return row.KODEMEMBER;
+                                },
+                                startRender: function ( rows, group ) {
+                                    return $('<tr style="color:red">')
+                                        .append("<td>Kode Member : "+group+"<br>No Transaksi</td>")
+                                        .append("<td>Nama Suplier : "+rows.data()[0].NAMAPELANGGAN+"<br>Waktu Pembelian</td>")
+                                        .append("<td style='vertical-align : middle;'>Ket. Transaksi</td>")
+                                        .append("<td style='vertical-align : middle;'>Status</td>")
+                                        .append("<td style='vertical-align : middle;'>Debit</td>")
+                                        .append("<td style='vertical-align : middle;'>Kredit</td>")
+                                        .append('</tr>');
+                                },
+                                endRender: function ( rows, group ) {
+                                    let totalpiutang = 0,totalsisapiutang = 0, totalterbayar = 0;
+                                    $.each(rows.data(), function (index,element) {
+                                        totalpiutang += element.DEBET;
+                                        totalsisapiutang += element.KREDIT;
+                                    });
+                                    return $('<tr style="color:red">')
+                                        .append("<td colspan='4' style='text-align: right;vertical-align : middle'>SUB TOTAL</td>")
+                                        .append('<td>'+formatuang(totalpiutang,'id-ID','IDR')+'</td>')
+                                        .append('<td>'+formatuang(totalsisapiutang,'id-ID','IDR')+'</td>')
+                                        .append('</tr>');
                                 },
                             },
-                            { "title": "",data: "KETERANGAN" },
-                            { "title": "",data: "KONDISI" },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.DEBET),'id-ID','IDR');
-                                },
+                            footerCallback: function( tfoot, data, start, end, display ) {   
                             },
-                            { 
-                                "title": "",
-                                "render": function (data, type, row, meta) {
-                                    return formatuang((row.KREDIT),'id-ID','IDR');
-                                },
-                            },
-                        ],
-                        rowGroup: {
-                            dataSrc:function(row) {
-                                return row.KODEMEMBER;
-                            },
-                            startRender: function ( rows, group ) {
-                                return $('<tr style="color:red">')
-                                    .append("<td>Kode Member : "+group+"<br>No Transaksi</td>")
-                                    .append("<td>Nama Suplier : "+rows.data()[0].NAMAPELANGGAN+"<br>Waktu Pembelian</td>")
-                                    .append("<td style='vertical-align : middle;'>Ket. Transaksi</td>")
-                                    .append("<td style='vertical-align : middle;'>Status</td>")
-                                    .append("<td style='vertical-align : middle;'>Debit</td>")
-                                    .append("<td style='vertical-align : middle;'>Kredit</td>")
-                                    .append('</tr>');
-                            },
-                            endRender: function ( rows, group ) {
-                                let totalpiutang = 0,totalsisapiutang = 0, totalterbayar = 0;
-                                $.each(rows.data(), function (index,element) {
-                                    totalpiutang += element.DEBET;
-                                    totalsisapiutang += element.KREDIT;
-                                });
-                                return $('<tr style="color:red">')
-                                    .append("<td colspan='4' style='text-align: right;vertical-align : middle'>SUB TOTAL</td>")
-                                    .append('<td>'+formatuang(totalpiutang,'id-ID','IDR')+'</td>')
-                                    .append('<td>'+formatuang(totalsisapiutang,'id-ID','IDR')+'</td>')
-                                    .append('</tr>');
-                            },
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {   
-                        },
+                        });
                     });
                 }else{
-                    $("#tabel_laporan_"+controllerReport).DataTable({
-                        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-                        scrollCollapse: true,
-                        scrollY: "100%",
-                        scrollX: true,
-                        ordering: false,
-                        bFilter: true,
-                        destroy: true,
-                        pageLength: -1,
-                        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-                        ajax: {
-                            "url": baseurljavascript + 'laporan/formatlaporanpiutang',
-                            "type": "POST",
-                            "data": function (d) {
-                                d.PERIODEAWAL = $("#laporan_piutang_tanggalwal").val().split("-").reverse().join("-");
-                                d.PERIODEAKHIR = $("#laporan_piutang_tanggalakhir").val().split("-").reverse().join("-");
-                                d.CARABAYAR = $("#laporan_piutang_carabayar").val();
-                                d.OUTLET = $("#laporan_piutang_outlet").val();
-                                d.IDPELANGGAN = $("#laporan_piutang_customer").val();
-                                d.GROUPELANGGAN = $("#laporan_piutang_groumember").val();
-                                d.KONDISI = controllerReport
-                                d.KONDISIPIUTANG = kondisipiutang
-                            }
-                        },
-                        footerCallback: function( tfoot, data, start, end, display ) {    
-                            let response = this.api().ajax.json();
-                            let $td = $(tfoot).find('th');
-                            if(response){
-                                if (controllerReport == "pembayaranpiutang"){
-                                    $td.eq(1).html(response.totalpembayaran);
-                                }else if (controllerReport == "piutangmember") {
-                                    $td.eq(1).text(response.totalkredit);
-                                    $td.eq(2).text(response.totalterbayarkan);
-                                    $td.eq(3).text(response.totalsisakredit);
+                    getCsrfTokenCallback(function() {
+                        $("#tabel_laporan_"+controllerReport).DataTable({
+                            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+                            scrollCollapse: true,
+                            scrollY: "100%",
+                            scrollX: true,
+                            ordering: false,
+                            bFilter: true,
+                            destroy: true,
+                            pageLength: -1,
+                            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+                            ajax: {
+                                "url": baseurljavascript + 'laporan/formatlaporanpiutang',
+                                "type": "POST",
+                                "data": function (d) {
+                                    d.csrf_aciraba = csrfTokenGlobal;
+                                    d.PERIODEAWAL = $("#laporan_piutang_tanggalwal").val().split("-").reverse().join("-");
+                                    d.PERIODEAKHIR = $("#laporan_piutang_tanggalakhir").val().split("-").reverse().join("-");
+                                    d.CARABAYAR = $("#laporan_piutang_carabayar").val();
+                                    d.OUTLET = $("#laporan_piutang_outlet").val();
+                                    d.IDPELANGGAN = $("#laporan_piutang_customer").val();
+                                    d.GROUPELANGGAN = $("#laporan_piutang_groumember").val();
+                                    d.KONDISI = controllerReport
+                                    d.KONDISIPIUTANG = kondisipiutang
+                                }
+                            },
+                            footerCallback: function( tfoot, data, start, end, display ) {    
+                                let response = this.api().ajax.json();
+                                let $td = $(tfoot).find('th');
+                                if(response){
+                                    if (controllerReport == "pembayaranpiutang"){
+                                        $td.eq(1).html(response.totalpembayaran);
+                                    }else if (controllerReport == "piutangmember") {
+                                        $td.eq(1).text(response.totalkredit);
+                                        $td.eq(2).text(response.totalterbayarkan);
+                                        $td.eq(3).text(response.totalsisakredit);
+                                    }
                                 }
                             }
-                        }
+                        });
                     });
                 }
             }, 100);

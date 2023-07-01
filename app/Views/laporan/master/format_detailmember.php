@@ -305,9 +305,9 @@
 	<!-- END Scroll To Top -->
 <script type="text/javascript" src="<?= base_url() ;?>scripts/mandatory.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/dashboard1.js"></script>
-<script type="text/javascript" src="<?= base_url() ;?>scripts/dashboard3.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/core.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/vendor.js"></script>
+<script src="<?=base_url();?>scripts/globalfn.js" type="text/javascript" ></script>
 <script>
 var baseurljavascript = '<?= DYBASESEURL;?>';
 var baseurlsocket = '<?= BASEURLAPI;?>';
@@ -334,33 +334,36 @@ window.addEventListener('scroll', function() {
 function panggillogmember(kondisi){
     tabeldata = "penjualan";
     $("#welcome_arrow").hide();
-    $("#tabel_laporan_"+tabeldata).DataTable({
-        language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
-        scrollCollapse: true,
-        scrollY: "100%",
-        scrollX: true,
-        ordering: false,
-        bFilter: true,
-        destroy: true,
-        pageLength: -1,
-        lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
-        ajax: {
-            "url": baseurljavascript + 'laporan/formatlaporandetaimembertabel',
-            "type": "POST",
-            "data": function (d) {
-                d.KODEMEMBER = "<?= $DATAPOST["KODEMEMBER"] ;?>";
-                d.PERIODEAWAL = "<?= $DATAPOST["PERIODEAWAL"] ;?>";
-                d.PERIODEAKHIR =  "<?= $DATAPOST["PERIODEAKHIR"] ;?>";
-                d.STATUSTRANSAKSI = kondisi;
-                d.OUTLET = "<?= $DATAPOST["OUTLET"] ;?>";
+    getCsrfTokenCallback(function() {
+        $("#tabel_laporan_"+tabeldata).DataTable({
+            language:{"url":"https://cdn.datatables.net/plug-ins/1.10.25/i18n/Indonesian.json"},
+            scrollCollapse: true,
+            scrollY: "100%",
+            scrollX: true,
+            ordering: false,
+            bFilter: true,
+            destroy: true,
+            pageLength: -1,
+            lengthMenu: [[10, 50, 100 , 500, -1], [10, 50, 100, 500, "All"]],
+            ajax: {
+                "url": baseurljavascript + 'laporan/formatlaporandetaimembertabel',
+                "type": "POST",
+                "data": function (d) {
+                    d.csrf_aciraba = csrfTokenGlobal;
+                    d.KODEMEMBER = "<?= $DATAPOST["KODEMEMBER"] ;?>";
+                    d.PERIODEAWAL = "<?= $DATAPOST["PERIODEAWAL"] ;?>";
+                    d.PERIODEAKHIR =  "<?= $DATAPOST["PERIODEAKHIR"] ;?>";
+                    d.STATUSTRANSAKSI = kondisi;
+                    d.OUTLET = "<?= $DATAPOST["OUTLET"] ;?>";
+                }
+            },
+            footerCallback: function( tfoot, data, start, end, display ) {   
+                let response = this.api().ajax.json();
+                let $td = $(tfoot).find('th'); 
+                var rowCount = $(tfoot).find('tr').length;
+                if(response){}
             }
-        },
-        footerCallback: function( tfoot, data, start, end, display ) {   
-            let response = this.api().ajax.json();
-            let $td = $(tfoot).find('th'); 
-            var rowCount = $(tfoot).find('tr').length;
-            if(response){}
-        }
+        });
     });
 }
 </script>

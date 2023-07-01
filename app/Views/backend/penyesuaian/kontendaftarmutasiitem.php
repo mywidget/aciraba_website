@@ -14,7 +14,7 @@
                     </div>
                     <div class="portlet-body">
                         <!-- BEGIN Form Row -->
-                        <p align="justify">Mutasi Stock adalah perpindahan item atau barang dari satu tempat penyimpanan menuju tempat penyimpanan lain. Suatu contoh untuk mutasi barang dari gudang menuju toko maka secara otomatis stock yang ada pada gudang akan berkurang dan stock yang ada di toko akan bertambah.</p>
+                        <p class="text-center">Mutasi Stock adalah perpindahan item atau barang dari satu tempat penyimpanan menuju tempat penyimpanan lain. Suatu contoh untuk mutasi barang dari gudang menuju toko maka secara otomatis stock yang ada pada gudang akan berkurang dan stock yang ada di toko akan bertambah.</p>
                         <hr>
                         <div class="form-row">
                             <div class="col-md-3 mb-1 col-sm-12">
