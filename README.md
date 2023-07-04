@@ -55,6 +55,18 @@ Press Control-C to stop.
 [DEMO ACIRABA](https://aciraba.seirasetyawan.com)<br>
 username : seira<br>
 password : salam1jiwa<br>
+## .env format
+```bash
+URLAPISERVER= sesuaikan dengan alamat host server pada aplikasi aciraba_server terinstall
+API_KEY_PANDAWA= "1C9925D3E1DC6162847B" <-- Gunakan ini saya buat DEMO
+PRODUK_ID="9C46DEAE"<-- Gunakan ini saya buat DEMO
+LISENSI="4BAA0 -E5682 -BACD4 -B1672"<-- Gunakan ini saya buat DEMO
+NAMA_PEMILIK="DEMO_API"<-- Gunakan ini saya buat DEMO
+DOMAIN_REGISTER="https://seirasetyawan.com"<-- Gunakan ini saya buat DEMO
+TOKENAPI="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYyNDI2MTk1NywiZXhwIjoxNjM5ODEzOTU3fQ.MSLX2hbVGle88bofGlCAgMdkUjs54ntyinQljs6_RCI" <-- Gunakan ini saya buat DEMO
+TOKENRAJAONGKIR= beli aja di RAJAONGKIR.COM fitur ini masih dikembangkan 
+TOKENAPIGOOGLEMAPS= beli aja di cloud.google.com fitur ini masih dikembangkan
+```
 ## Persyaratan Perangkat
 Diperlukan PHP versi 7.4 atau lebih tinggi, dengan ekstensi berikut wajib terpasang:
 - [intl](http://php.net/manual/en/intl.requirements.php)
