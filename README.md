@@ -67,8 +67,20 @@ TOKENAPI="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTYyNDI2MTk1N
 TOKENRAJAONGKIR= beli aja di RAJAONGKIR.COM fitur ini masih dikembangkan 
 TOKENAPIGOOGLEMAPS= beli aja di cloud.google.com fitur ini masih dikembangkan
 ```
+## ERROR SAAT APLIKASI DI JALANKAN ?
+Warning: Undefined array key "URLAPISERVER" in /www/wwwroot/aciraba.seirasetyawan.com/aciraba_website/app/Config/Constants.php on line 112
+ini_set(): Session ini settings cannot be changed after headers have already been sent
+Coba tambahkan code ini pada ./app/Config/Constants.php pada awal setelah tag PHP
+```bash
+use Dotenv\Dotenv;
+$rootPath = realpath(__DIR__ . '/../..');
+require_once $rootPath . '/vendor/autoload.php';
+$dotenv = Dotenv::createImmutable($rootPath);
+$dotenv->load();
+```
+
 ## Persyaratan Perangkat
-Diperlukan PHP versi 7.4 atau lebih tinggi, dengan ekstensi berikut wajib terpasang:
+Diperlukan PHP versi 8.0 atau lebih tinggi, dengan ekstensi berikut wajib terpasang:
 - [intl](http://php.net/manual/en/intl.requirements.php)
 - [mbstring](http://php.net/manual/en/mbstring.installation.php)
   
