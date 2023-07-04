@@ -68,9 +68,9 @@ TOKENRAJAONGKIR= beli aja di RAJAONGKIR.COM fitur ini masih dikembangkan
 TOKENAPIGOOGLEMAPS= beli aja di cloud.google.com fitur ini masih dikembangkan
 ```
 ## ERROR SAAT APLIKASI DI JALANKAN ?
-Warning: Undefined array key "URLAPISERVER" in /www/wwwroot/aciraba.seirasetyawan.com/aciraba_website/app/Config/Constants.php on line 112
-ini_set(): Session ini settings cannot be changed after headers have already been sent
-Coba tambahkan code ini pada ./app/Config/Constants.php pada awal setelah tag PHP
+Warning: Undefined array key "URLAPISERVER" in ./../aciraba_website/app/Config/Constants.php on line 112 <br>
+ini_set(): Session ini settings cannot be changed after headers have already been sent<br>
+Coba tambahkan code ini pada ./app/Config/Constants.php pada awal setelah tag PHP<br>
 ```bash
 use Dotenv\Dotenv;
 $rootPath = realpath(__DIR__ . '/../..');
