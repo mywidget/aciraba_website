@@ -31,15 +31,14 @@
     </script>
     <script type="text/javascript" src="<?= base_url() ;?>scripts/globalfn.js"></script>
     <script type="text/javascript">
-        var baseurljavascript = '<?= DYBASESEURL;?>';
-        var baseurlsocket = '<?= BASEURLAPI;?>';
-        var session_kodeunikmember='<?= session('kodeunikmember');?>';
-        var session_pengguna_id='<?= session('pengguna_id');?>';
-        var session_namapengguna='<?= session('namapengguna');?>';
-        var session_outlet='<?= session('outlet');?>';
-        var statusbarang = 1;
-        var csrfName = '<?= csrf_token() ?>';
-        var csrfHash = '<?= csrf_hash() ?>';  
+    var baseurljavascript = '<?= DYBASESEURL;?>';
+    var baseurlsocket = '<?= BASEURLAPI;?>';
+    var session_kodeunikmember='<?= session('kodeunikmember');?>';
+    var session_pengguna_id='<?= session('pengguna_id');?>';
+    var session_namapengguna='<?= session('namapengguna');?>';
+    var session_outlet='<?= session('outlet');?>';
+    var statusbarang = 1;
+    var csrfName = '<?= csrf_token() ?>';
     </script>
     <title>Halaman KDS</title>
 </head>

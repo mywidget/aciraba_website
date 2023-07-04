@@ -47,9 +47,6 @@ function proseslogin(){
                 }else{
                     window.location = baseurljavascript;
                 }
-            },
-            error: function(xhr, status, error) {
-                toastr["error"](xhr.responseJSON.message);
             }
         });
     });

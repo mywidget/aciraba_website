@@ -28,7 +28,6 @@
 	var session_statusmember='<?= session('jenismerchant');?>';
 	var statusbarang = 1;
 	var csrfName = '<?= csrf_token() ?>';
-    var csrfHash = '<?= csrf_hash() ?>';  
 	var jsonMenu = '<?= session('jsonmenu');?>';
 	</script>
 	<title>Panel Administrator System</title>

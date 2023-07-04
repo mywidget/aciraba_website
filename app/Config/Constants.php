@@ -108,6 +108,6 @@ if ($server_name == "localhost" || $server_name == "localhost:8080" || $server_n
   $urlWithoutPort = preg_replace('#:(\d+)#', '', $hostdynamic);
   define('BASEURLAPI',str_replace("/:",":",$urlWithoutPort.':1111/'));
 }else{
-  define('BASEURLAPI','https://api.seirasetyawan.com/');
+  define('BASEURLAPI',$_ENV['URLAPISERVER']);
 }
 define('BASEROOTFILE',$_SERVER['DOCUMENT_ROOT']."/upload/");

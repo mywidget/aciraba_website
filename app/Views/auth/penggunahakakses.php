@@ -11,7 +11,7 @@
         <div class="portlet">
             <div class="portlet-header portlet-header-bordered">
                 <h3 class="portlet-title">INFORMASI PEGAWAI 
-                    <a href="<?= base_url().'auth/hakakses';?>"><button id="hakakseskontrol" class="btn btn-danger float-right"> <i class="fas fa-dolly-flatbed"></i> Kelompok Hak Akses</button></a>
+                    <a href="<?= base_url().'auth/hakakses';?>"><button id="hakakseskontrol" class="btn btn-danger float-right"> <i class="fas fa-cogs"></i> Kelompok Hak Akses</button></a>
                 </h3>
             </div>
             <div class="portlet-body">
@@ -139,9 +139,6 @@
                                         <label for="statuspegawai" class="col-sm-2 col-form-label">Status Pegawai</label>
                                         <div class="col-sm-10">                                          
                                             <select class="form-control" name="statuspegawai" id="statuspegawai">
-                                                <option value="ADM">Admin</option>
-                                                <option value="KSR">Kasir</option>
-                                                <option value="KDS">Kitchen Display</option>
                                             </select>
                                         </div>
                                     </div>
@@ -149,50 +146,8 @@
                                         <label for="keterangan">Keterangan</label>
                                         <textarea class="form-control" id="keterangan" rows="3"></textarea>
                                     </div>
-                                    <div style="display:none" id="bungkushakakses">
-                                        <h5 class="my-4">HAK AKSES PEGAWAI</h5>
-                                        <!-- END Form Group -->
-                                        <table id="hakakses" class="table table-striped mb-1">
-                                            <thead>
-                                                <tr>
-                                                    <th style="text-align: center; vertical-align: middle;">Fitur</th>
-                                                    <th style="text-align: center; vertical-align: middle;">Keterangan</th>
-                                                    <th style="text-align: center; vertical-align: middle;">Aksi</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr><td style="text-align: center; vertical-align: middle;" colspan=4>Dashboard</td></tr>
-                                            <tr>
-                                                <td class="cellhakseswhere" style="text-align: left; ">Akses Dashboard</td>
-                                                <td style="text-align: justify; ">Digunakan untuk mengakses dashboard dalam aplikasi ACIRABA - ACIPAY</td>
-                                                <td style="text-align: center;"><input id="ha_aksesdasboard" class="form-check-input" type="checkbox" /></td>
-                                            </tr>
-                                            <tr><td style="text-align: center; vertical-align: middle;" colspan=4>Master Data</td></tr>
-                                            <tr>
-                                                <td class="cellhakseswhere" style="text-align: left; ">Daftar Item</td>
-                                                <td style="text-align: justify; ">Berisikan informasi mengenai item yang dimiliki oleh Oulet</td>
-                                                <td style="text-align: center;"><input id="ha_daftaritem" class="form-check-input" type="checkbox" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cellhakseswhere" style="text-align: center; ">Tambah Item</td>
-                                                <td style="text-align: justify; ">User diizinkan untuk menambah item baru pada outlet tersebut</td>
-                                                <td style="text-align: center;"><input id="ha_tambahitem" class="form-check-input" type="checkbox" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cellhakseswhere" style="text-align: center; ">Tambah Bulk Item</td>
-                                                <td style="text-align: justify; ">User diizinkan untuk menambah item baru secara bersamaan pada outlet tersebut</td>
-                                                <td style="text-align: center;"><input id="ha_bulkimtem" class="form-check-input" type="checkbox" /></td>
-                                            </tr>
-                                            <tr>
-                                                <td class="cellhakseswhere" style="text-align: center; ">Ubah Informasi Item</td>
-                                                <td style="text-align: justify; ">User dapat mengubah informasi item yang di pilih baik nama, harga, foto, dll</td>
-                                                <td style="text-align: center;"><input id="ha_ubahinformasi_masteritem" class="form-check-input" type="checkbox" /></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                        <button id="simpanpenggunamerchant" class="mt-2 btn btn-primary">Simpan Informasi</button>
-                                        <button id="bersihkan" class="mt-2 btn btn-primary">Bersihkan Formulir</button>
-                                    </div>
+                                    <button id="simpanpenggunamerchant" class="mt-2 btn btn-primary">Simpan Informasi</button>
+                                    <button id="bersihkan" class="mt-2 btn btn-primary">Bersihkan Formulir</button>
                                 <!-- END Form -->
                                 </div>
                             </div>
@@ -246,15 +201,39 @@
 <script>
 let colorCSS;
 $(document).ready(function () {
-    getCsrfTokenCallback(function() {
-        loaddaftarpewagawai()
-    }); 
-    getCsrfTokenCallback(function() {
-        loadidmember();
-    }); 
-    $("#hakakses").on('click', '.form-check-input', function() {
-        let currentRow = $(this).closest("tr");
-        if (ha.includes(currentRow.find(".cellhakseswhere").html()) === false) ha.push(currentRow.find(".cellhakseswhere").html());
+    getCsrfTokenCallback(function() {loaddaftarpewagawai()}); 
+    getCsrfTokenCallback(function() {loadidmember();}); 
+    $('#statuspegawai').select2({
+        allowClear: true,
+        placeholder: 'Tentukan Hak Akses Untuk Pengguna Ini',
+        ajax: {
+            url: baseurljavascript + 'auth/pilihstatuspegawai',
+            method: 'POST',
+            dataType: 'json',
+            delay: 500,
+            data: function(params) {
+                return {
+                    csrf_aciraba: csrfTokenGlobal,
+                    KATAKUNCI: (typeof params.term === "undefined" ? "" : params.term),
+                };
+            },
+            processResults: function (data) {
+                parseJSON = JSON.parse(data);
+                getCsrfTokenCallback(function() {});
+                return {
+                    results: $.map(parseJSON, function (item) {
+                        return {
+                            text: "[" + item.kodeai + "] HAK AKSES : " + item.namahakases,
+                            id: item.kodeai,
+                        }
+                    })
+                }
+            },
+            error: function(xhr, status, error) {
+                getCsrfTokenCallback(function() {});
+                toastr["error"](xhr.responseJSON.message);
+            }
+        },
     });
 });
 $(document).on('click', '.toggle-passworda', function() {

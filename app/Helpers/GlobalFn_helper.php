@@ -67,7 +67,7 @@ function leakLisensi($kondisi){
             'LB-URL' => $_ENV['DOMAIN_REGISTER'],
             'LB-IP' => $_SERVER['REMOTE_ADDR'],
             'LB-LANG' => "INDONESIA",
-            'Content-Type' => 'application/x-www-form-urlencoded'
+            'Content-Type: application/json',
         ],
         'form_params' => $datapost
     ]);

@@ -21,12 +21,8 @@ getCsrfTokenCallback(function() {
             KODEUNIKMEMBER: session_kodeunikmember,
         },
         success: function (response) {
-            if (response.success == 'false') {
-                $('#idpegawai').val("MBM"+session_outlet+session_kodeunikmember+moment().format('YYYYMMDD')+"#1");
-            }else{
-                $('#idpegawai').val(response.nomornota)
-            }
-            
+            console.log(response)
+            $('#idpegawai').val(response.nomornota)
         },
         error: function(xhr, status, error) {
             toastr["error"](xhr.responseJSON.message);
@@ -40,16 +36,8 @@ $("#bersihkan").on("click", function(){
         loadidmember();
     }); 
 });
-$('#statuspegawai').on('change', function() {
-    if ($(this).val() == "ADM"){
-        $("#bungkushakakses").show();
-    }else{
-        $("#bungkushakakses").hide();
-    }
-    
-}).change();
 $("#simpanpenggunamerchant").on("click", function(){
-    /*if ($("#idpegawai").val() == "" || $("#urlfoto").val() == "" || $("#namadepan").val() == "" || $("#namabelakang").val() == "" || $("#alamat").val() == "" || $("#notelp").val() == "" || $("#username").val() == "" || $("#password").val() == "" || $("#pintrx").val() == "" || $("#latlong").val() == "" || $("#keterangan").val() == "" || $("#emailaktif").val() == "" || $("#kodeunikmember").val() == "" || $("#statuspegawai").val() == ""){
+    if ($("#idpegawai").val() == "" || $("#urlfoto").val() == "" || $("#namadepan").val() == "" || $("#namabelakang").val() == "" || $("#alamat").val() == "" || $("#notelp").val() == "" || $("#username").val() == "" || $("#password").val() == "" || $("#pintrx").val() == "" || $("#latlong").val() == "" || $("#keterangan").val() == "" || $("#emailaktif").val() == "" || $("#kodeunikmember").val() == "" || $("#statuspegawai").val() == ""){
         return Swal.fire({
             icon: 'error',
             html: 'Silahkan lengkapi semua formulir <br>yang disajikan secara <strong>AKURAT dan TEPAT</strong><br>karena dibutuhkan untuk verifikasi MERCHANT',
@@ -58,19 +46,7 @@ $("#simpanpenggunamerchant").on("click", function(){
             timer: 1500,
             position: 'top-end',
         });
-    }*/
-    jsonStrMenuAkses = '{"menuakses":[]}';
-    let obj = JSON.parse(jsonStrMenuAkses);
-    $('#hakakses [type="checkbox"]').each(function(i, chk) { 
-        if (chk.checked == true) {
-            obj['menuakses'].push({"menuke":chk.id,"status":"1"});
-        }else{
-            obj['menuakses'].push({"menuke":chk.id,"status":"0"});
-        }
-    });
-    jsonStrMenuAkses = JSON.stringify(obj);
-    console.log(jsonStrMenuAkses)
-    return true;
+    }
     Swal.fire({
         title: "Simpam Informasi",
         text: "Apakah anda ingin menyimpan INFORMASI "+$("#namadepan").val()+" "+$("#namabelakang").val()+" dengan ID "+$("#idpegawai").val(),
@@ -81,106 +57,138 @@ $("#simpanpenggunamerchant").on("click", function(){
         confirmButtonText: 'Oke.. Kirim Informasi'
     }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                url: baseurljavascript + 'masterdata/tambahmerchant',
-                method: 'POST',
-                dataType: 'json',
-                data: {
-                    PENGGUNA_ID : $('#idpegawai').val(),
-                    NAMAPENGGUNA: $('#username').val(),
-                    PASSWORD: $('#password').val(),
-                    URLFOTO : $('#urlfoto').val(),
-                    HAKAKSESID: "NEWBIE",
-                    NAMA: $('#namadepan').val()+"::"+$('#namabelakang').val(),
-                    ALAMAT : $('#alamat').val(),
-                    NOTELP: $('#notelp').val(),
-                    KODEUNIKMEMBER: $('#kodeunikmember').val(),
-                    STATUSMEMBER : "PGW",
-                    KETERANGAN: $('#keterangan').val(),
-                    NAMAOUTLET: $('#namaoutlet').val(),
-                    PASSWORDWEB: $('#password').val(),
-                    TOTALDEPOSIT: "0",
-                    JSONMENU : jsonStrMenuAkses,
-                    OUTLET: "GDPST",
-                    PIN: $('#pintrx').val(),
-                    LATLONG: $('#latlong').val(),
-                    NOMOR: $('#idpegawai').val().split('#')[1],
-                    EMAILAKIIF: $('#emailaktif').val(),
-                },
-                success: function (response) {
-                    if (response.status == "true"){
-                        Swal.fire({
-                            title: "Berhasil Horeee!!!",
-                            html: response.msg,
-                            icon: 'success',
-                        });
-                        loadidmember();
-                    }else{
-                        Swal.fire({
-                            title: "Gagal... Uhhh",
-                            html: response.msg,
-                            icon: 'warning',
-                        });
+            $('#simpanpenggunamerchant').prop("disabled",true);
+            $('#simpanpenggunamerchant').html('<i class="fa fa-spin fa-spinner"></i> Proses Simpan');
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'masterdata/tambahmerchant',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        PENGGUNA_ID : $('#idpegawai').val(),
+                        NAMA: $('#namadepan').val()+"::"+$('#namabelakang').val(),
+                        NAMAPENGGUNA: $('#username').val(),
+                        PASSWORD: $('#password').val(),
+                        KODEUNIKMEMBER: $('#kodeunikmember').val(),
+                        URLFOTO : $('#urlfoto').val(),
+                        ALAMAT : $('#alamat').val(),
+                        NOTELP: $('#notelp').val(),
+                        NOREKENING: "",
+                        KETERANGAN: $('#keterangan').val(),
+                        TOTALDEPOSIT: "0",
+                        IDHAKAKSES : $('#statuspegawai').val(),
+                        PIN: $('#pintrx').val(),
+                        LATLONG: $('#latlong').val(),
+                        NAMAOUTLET: $('#namaoutlet').val(),
+                        EMAIL: $('#emailaktif').val(),
+                        TOKENKEY:Math.random(),
+                        STATUSAKTIF:0,
+                        NOMOR: $('#idpegawai').val().split('#')[1],
+                    },
+                    complete:function(){
+                        $('#simpanpenggunamerchant').prop("disabled",false);
+                        $('#simpanpenggunamerchant').html('Simpan Informasi');
+                    },
+                    success: function (response) {
+                        if (response.success == "true"){
+                            Swal.fire({
+                                title: "Berhasil Horeee!!!",
+                                html: response.msg,
+                                icon: 'success',
+                            });
+                            bersihkanform()
+                            getCsrfTokenCallback(function() {loadidmember()}); 
+                            getCsrfTokenCallback(function() {loaddaftarpewagawai()}); 
+                        }else{
+                            Swal.fire({
+                                title: "Gagal... Uhhh",
+                                html: response.msg,
+                                icon: 'warning',
+                            });
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        toastr["error"](xhr.responseJSON.message);
                     }
-                }
+                });
             });
         }
     });
 });
+function bersihkanform(){
+    $('#idpegawai').val("")
+    $('#namadepan').val("")
+    $('#namabelakang').val("")
+    $('#username').val("")
+    $('#password').val("")
+    $('#kodeunikmember').val("")
+    $('#urlfoto').val("")
+    $('#alamat').val("")
+    $('#notelp').val("")
+    $('#keterangan').val("")
+    $('#statuspegawai').val("")
+    $('#pintrx').val("")
+    $('#latlong').val("")
+    $('#namaoutlet').val("")
+    $('#emailaktif').val("")
+}
 function loaddaftarpewagawai(){
     $("#daftarpegawai").html(loadingAnimation());
     let daftarpegawai = "";
-    $.ajax({
-        url:baseurljavascript+'auth/daftarpegawai',
-        type:'POST',
-        dataType:'json',
-        data: {
-            [csrfName]:csrfTokenGlobal,
-        },
-        success:function(response){
-            if (response.jumlahdata > 0){
-                daftarpegawai = "<section class=\"container\"><div class=\"row active-with-click\">";
-                for (let i = 0; i < response.jumlahdata; i++) {
-                if (response.data[i].STATUSAKTIF == 1) colorCSS = "Blue"
-                if (response.data[i].STATUSAKTIF == 0) colorCSS = "Red"
-                daftarpegawai +=
-                    "<div class=\"col-md-4 col-sm-6 col-xs-12\">" +
-                    "<article id=\"artikelid"+response.data[i].PENGGUNA_ID+"\" class=\"material-card "+colorCSS+"\">" +
-                    "<h2><span>NAMA PENGGUNA : " + response.data[i].NAMA + "</span><strong><i class=\"fa fa-fw fa-star\"></i> STATUS JABATAN : " + response.data[i].HAKAKSESID + "</strong></h2>" +
-                    "<div class=\"mc-content\">" +
-                    "<div class=\"img-container\">" +
-                    (response.data[i].URLFOTO == "" ? "<img class=\"img-responsive img-thumbnail\" src=\"https://sm.ign.com/ign_ap/cover/a/avatar-gen/avatar-generations_hugw.jpg\">" : "<img class=\"img-responsive img-thumbnail\" src=\"" + response.data[i].URLFOTO + "\">") +
-                    "</div>" +
-                    "<div style=\"font-family: 'Irish Grover', cursive;\" class=\"mc-description\">" +
-                    "<h4>NAMA : "+response.data[i].NAMA+"</h4>" +
-                    "<h4>DARI TOKO : "+response.data[i].NAMAOUTLET+"</h4>" +
-                    "<h4>NAMA PENGGUNA : "+response.data[i].NAMAPENGGUNA+"</h4>" +
-                    "<h4>TENANT ID : "+response.data[i].KODEUNIKMEMBER+"</h4>" +
-                    "<h4>KONTAK PERSON : "+response.data[i].ALAMAT+" ["+response.data[i].NOTELP+"]</h4>" +
-                    "<h4>E-MAIL : "+response.data[i].EMAIL+"</h4>" +
-                    "<h4>NO REKEING : "+response.data[i].NOREKENING+"</h4>" +
-                    "<h4>KETERANGAN : "+response.data[i].KETERANGAN+"</h4>" +
-                    "</div>" +
-                    "</div>" +
-                    "<a class=\"mc-btn-action\"><i class=\"fa fa-bars\" style=\"color:white\"></i></a>" +
-                    "<div class=\"mc-footer\">" +
-                    "<div class=\"btn-group btn-group-lg mb-2\">" +
-                    "<button onclick=\"statuspengguna('0','"+response.data[i].PENGGUNA_ID+"','"+response.data[i].NAMA+"','"+response.data[i].NAMAOUTLET+"')\" class=\"btn btn-danger\"> Block </button>" +
-                    "<button onclick=\"statuspengguna('1','"+response.data[i].PENGGUNA_ID+"','"+response.data[i].NAMA+"','"+response.data[i].NAMAOUTLET+"')\" class=\"btn btn-success\"> Aktifkan </button>" +
-                    "<button class=\"btn btn-primary\"> Cek Hak Akses </button>" +
-                    "<button onclick=\"ubahpassword('"+response.data[i].PENGGUNA_ID+"','"+response.data[i].NAMA+"','"+response.data[i].NAMAOUTLET+"')\" class=\"btn btn-secondary\"> Ubah Kata Sandi </button>" +
-                    "</div>" +
-                    "</div>" +
-                    "</article>" +
-                    "</div>";
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url:baseurljavascript+'auth/daftarpegawai',
+            type:'POST',
+            dataType:'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+            },
+            success:function(response){
+                if (response.jumlahdata > 0){
+                    daftarpegawai = "<section class=\"container\"><div class=\"row active-with-click\">";
+                    for (let i = 0; i < response.jumlahdata; i++) {
+                    if (response.data[i].STATUSAKTIF == 1) colorCSS = "Blue"
+                    if (response.data[i].STATUSAKTIF == 0) colorCSS = "Red"
+                    daftarpegawai +=
+                        "<div class=\"col-md-4 col-sm-6 col-xs-12\">" +
+                        "<article id=\"artikelid"+response.data[i].PENGGUNA_ID+"\" class=\"material-card "+colorCSS+"\">" +
+                        "<h2><span>NAMA PENGGUNA : " + response.data[i].NAMAPENGGUNA + "</span><strong><i class=\"fa fa-fw fa-star\"></i> STATUS JABATAN : " + response.data[i].HAKAKSESID + "</strong></h2>" +
+                        "<div class=\"mc-content\">" +
+                        "<div class=\"img-container \">" +
+                        (response.data[i].URLFOTO == "" ? "<img class=\"img-responsive img-thumbnail\" src=\"https://sm.ign.com/ign_ap/cover/a/avatar-gen/avatar-generations_hugw.jpg\">" : "<div class=\"image-container\"><img class=\"img-responsive img-thumbnail\" src=\"" + response.data[i].URLFOTO + "\" style=\"width: 100%; height: 100%; object-fit: cover;\"></div>") +
+                        "</div>" +
+                        "<div style=\"font-family: 'Irish Grover', cursive;\" class=\"mc-description\">" +
+                        "<h4>NAMA : "+response.data[i].NAMA+"</h4>" +
+                        "<h4>DARI TOKO : "+response.data[i].NAMAOUTLET+"</h4>" +
+                        "<h4>NAMA PENGGUNA : "+response.data[i].NAMAPENGGUNA+"</h4>" +
+                        "<h4>TENANT ID : "+response.data[i].KODEUNIKMEMBER+"</h4>" +
+                        "<h4>KONTAK PERSON : "+response.data[i].ALAMAT+" ["+response.data[i].NOTELP+"]</h4>" +
+                        "<h4>E-MAIL : "+response.data[i].EMAIL+"</h4>" +
+                        "<h4>NO REKEING : "+response.data[i].NOREKENING+"</h4>" +
+                        "<h4>KETERANGAN : "+response.data[i].KETERANGAN+"</h4>" +
+                        "</div>" +
+                        "</div>" +
+                        "<a class=\"mc-btn-action\"><i class=\"fa fa-bars\" style=\"color:white\"></i></a>" +
+                        "<div class=\"mc-footer\">" +
+                        "<div class=\"btn-group btn-group-lg mb-2\">" +
+                        "<button onclick=\"statuspengguna('0','"+response.data[i].PENGGUNA_ID+"','"+response.data[i].NAMA+"','"+response.data[i].NAMAOUTLET+"')\" class=\"btn btn-danger\"> Block </button>" +
+                        "<button onclick=\"statuspengguna('1','"+response.data[i].PENGGUNA_ID+"','"+response.data[i].NAMA+"','"+response.data[i].NAMAOUTLET+"')\" class=\"btn btn-success\"> Aktifkan </button>" +
+                        "<button class=\"btn btn-primary\"> Ubah Informasi </button>" +
+                        "<button onclick=\"ubahpassword('"+response.data[i].PENGGUNA_ID+"','"+response.data[i].NAMA+"','"+response.data[i].NAMAOUTLET+"')\" class=\"btn btn-secondary\"> Ubah Kata Sandi </button>" +
+                        "</div>" +
+                        "</div>" +
+                        "</article>" +
+                        "</div>";
+                    }
+                    daftarpegawai += "</div></div></section>";
                 }
-                daftarpegawai += "</div></div></section>";
+                $("#daftarpegawai").html(daftarpegawai)
+            },
+            error: function(xhr, status, error) {
+                toastr["error"](xhr.responseJSON.message);
             }
-            $("#daftarpegawai").html(daftarpegawai)
-        },
-        error: function(xhr, status, error) {
-            toastr["error"](xhr.responseJSON.message);
-        }
+        });
     });
 }
 function statuspengguna(kondisiaksi, penggunaid, namapengguna, namaoutlet){

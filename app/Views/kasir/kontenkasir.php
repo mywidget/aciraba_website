@@ -1331,7 +1331,6 @@ var berapaorang_rev = new AutoNumeric("#berapaorang_rev", {decimalCharacter : ',
 var jsonStrjenisvarian = '{"jenisvarian":[]}';
 let informasikasir = '{"keranjangbelanjaarray":[]}';
 var csrfName = '<?= csrf_token() ?>';
-var csrfHash = '<?= csrf_hash() ?>';  
 $(document).ready(function() {
     idleInterval;
     initializeDataTables();

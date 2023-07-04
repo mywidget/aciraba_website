@@ -201,8 +201,7 @@
 <script src="scripts/globalfn.js"></script>
 <script>
 var baseurljavascript = "<?=DYBASESEURL;?>";
-var csrfName = '<?= csrf_token() ?>';
-var csrfHash = '<?= csrf_hash() ?>';  
+var csrfName = '<?= csrf_token() ?>'; 
 $(document).on('click', '.toggle-password', function() {
     $(this).toggleClass("fa-eye fa-eye-slash");
     var input = $("#login_password");

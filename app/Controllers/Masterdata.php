@@ -2350,29 +2350,48 @@ class Masterdata extends BaseController{
 		];
 		return view('auth/penggunahakakses',$data);
 	}
+	public function simpanhakakses(){
+		$client = \Config\Services::curlrequest();
+		$datapost = [
+			'KODEUNIKMEMBER' => $this->session->get("kodeunikmember"),
+			'NAMAHAKAKSES' => service('request')->getPost('NAMAHAKAKSES'),
+			'JSONMENU' => service('request')->getPost('JSONMENU'),
+			'KONDISI' => service('request')->getPost('KONDISI'),
+			'AI' => service('request')->getPost('AI'),
+		];
+		$json_data = $client->request("POST", BASEURLAPI."auth/simpanhakakses", [
+			"headers" => [
+				"Accept" => "application/json",
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
+			],
+			"form_params" => $datapost
+		]);
+		$datajson = json_decode($json_data->getBody());
+		return json_encode($datajson->hasiljson[0]);
+	}
 	public function tambahmerchant(){
 		$client = \Config\Services::curlrequest();
 		$datapost = [
 			'PENGGUNA_ID' => service('request')->getPost('PENGGUNA_ID'),
+			'NAMA' => service('request')->getPost('NAMA'),
+			'NAMAOUTLET' => "",
 			'NAMAPENGGUNA' => service('request')->getPost('NAMAPENGGUNA'),
 			'PASSWORD' => service('request')->getPost('PASSWORD'),
+			'KODEUNIKMEMBER' => service('request')->getPost('KODEUNIKMEMBER'),
 			'URLFOTO' => service('request')->getPost('URLFOTO'),
-			'HAKAKSESID' => "NEWBIE",
-			'NAMA' => service('request')->getPost('NAMA'),
+			'HAKAKSESID' => "PEGAWAI",
 			'ALAMAT' => service('request')->getPost('ALAMAT'),
 			'NOTELP' => service('request')->getPost('NOTELP'),
-			'KODEUNIKMEMBER' => service('request')->getPost('KODEUNIKMEMBER'),
-			'STATUSMEMBER' => service('request')->getPost('STATUSMEMBER'),
+			'NOREKENING' => service('request')->getPost('NOREKENING'),
 			'KETERANGAN' => service('request')->getPost('KETERANGAN'),
-			'NAMAOUTLET' => service('request')->getPost('NAMAOUTLET'),
-			'PASSWORDWEB' => service('request')->getPost('PASSWORDWEB'),
 			'TOTALDEPOSIT' => service('request')->getPost('TOTALDEPOSIT'),
-			'JSONMENU' => service('request')->getPost('JSONMENU'),
-			'OUTLET' => 'GDPST',
+			'IDHAKAKSES' => service('request')->getPost('IDHAKAKSES'),
 			'PIN' => service('request')->getPost('PIN'),
 			'LATLONG' => service('request')->getPost('LATLONG'),
+			'EMAIL' => service('request')->getPost('EMAIL'),
+			'TOKENKEY' => service('request')->getPost('TOKENKEY'),
+			'STATUSAKTIF' => service('request')->getPost('STATUSAKTIF'),
 			'NOMOR' => service('request')->getPost('NOMOR'),
-			'EMAILAKIIF' => service('request')->getPost('EMAILAKIIF'),
 		];
 		$json_data = $client->request("POST", BASEURLAPI."auth/registerapps", [
 			"headers" => [
@@ -2382,14 +2401,7 @@ class Masterdata extends BaseController{
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
-		if ($datajson->registerapps[0]->success == "true"){
-			$jsonobj = '{"status":"true","msg":"'.$datajson->registerapps[0]->msg.'"}';
-		}else{
-			$jsonobj = '{"status":"false","msg":"'.$datajson->registerapps[0]->msg.'"}';
-		}
-		$arrne = [['csrfName' => csrf_token()],['csrfHash' => csrf_hash()]];
-		$jsonbaru = array_merge(json_decode($jsonobj,TRUE), $arrne);
-		return json_encode($jsonbaru);
+		return json_encode($datajson->registerapps[0]);
 	}
 	public function daftarpembayarannontunai(){
 		if ($this->session->get("kodeunikmember") == ""){

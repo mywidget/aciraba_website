@@ -64,7 +64,14 @@ class Auth extends BaseController{
 	}
 	public function ajax_login(){
 		$result = leakLisensi("cek_lisensi");
-		if (isset($result->code) == "200_LC"){
+		if ($result->status == "false"){
+			$arraysession = [
+				'pesan_lisensi'=> $result->message,
+				'code_lisensi'=> isset($result->code),
+			];
+			$this->session->set($arraysession);
+			return json_encode($result);
+		}else{
 			$datapost = [];
 			$client = \Config\Services::curlrequest();
 			$datapost = [
@@ -99,14 +106,6 @@ class Auth extends BaseController{
 				$this->session->set($arraysession);
 			}
 			return json_encode($datajson->loginapps);
-		}
-		if ($result->status == "false"){
-			$arraysession = [
-				'pesan_lisensi'=> $result->message,
-				'code_lisensi'=> isset($result->code),
-			];
-			$this->session->set($arraysession);
-			return json_encode($result);
 		}
 	}
 	public function aktivasilisensi_key(){
@@ -280,5 +279,93 @@ class Auth extends BaseController{
 		];
 		return view('auth/kelolahakakses',$data);
 		
+	}
+	public function daftarhakakses(){
+		$client = \Config\Services::curlrequest();
+		$datapost = [
+			'KODEUNIKMEMBER' => $this->session->get("kodeunikmember"),
+		];
+		$json_data = $client->request("POST", BASEURLAPI."auth/daftarhakakses", [
+			"headers" => [
+				"Accept" => "application/json",
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
+			],
+			"form_params" => $datapost
+		]);
+		$datajson = json_decode($json_data->getBody());
+		if ($datajson->hasiljson[0]->success == "false"){
+			$outputDT = [
+				"draw" => 0,
+				"recordsTotal" => 0,
+				"recordsFiltered" => 0,
+				"data" => [],
+			];
+		}else{
+			for ($no = 0; $no < $datajson->hasiljson[0]->totaldata; $no++) {
+				$data = [];
+				$json = $datajson->hasiljson[0]->data[$no]->JSONMENU;
+				$datajsonbtn = json_decode($json);
+				$row = [];
+				$row[] = "<h3 class=\"text-center\">".$datajson->hasiljson[0]->data[$no]->NAMAHAKAKSES."</h3><br><button onclick=\"ubahhakases('".$datajson->hasiljson[0]->data[$no]->AI."','".$datajson->hasiljson[0]->data[$no]->NAMAHAKAKSES."','".base64_encode($datajson->hasiljson[0]->data[$no]->JSONMENU)."')\" class=\"btn btn-success btn-block\">Ubah Informasi</button>";
+				$buttonsHtml = '';
+				$buttonsHtml1 = '';
+				foreach ($datajsonbtn->menuakses as $menu) {
+					if ($menu->status == "1") {
+						$buttonsHtml .= '
+						<div class="col-4">
+							<button class="btn btn-block btn-primary m-2">' . $menu->menuke . '</button>
+						</div>';
+					}
+					if ($menu->status == "0") {
+						$buttonsHtml1 .= '
+						<div class="col-4">
+							<button class="btn btn-block btn-primary m-2">' . $menu->menuke . '</button>
+						</div>';
+					}
+				}
+				$row[] = '
+				<div class="">
+					<div class="row" id="buttonsRow">
+						' . $buttonsHtml . '
+					</div>
+				</div>';
+				$row[] = '
+				<div class="">
+					<div class="row" id="buttonsRow">
+						' . $buttonsHtml1 . '
+					</div>
+				</div>';
+				$data[] = $row;
+			}
+			$outputDT = [
+				"draw" => 1,
+				"recordsTotal" => $datajson->hasiljson[0]->totaldata,
+				"recordsFiltered" => $datajson->hasiljson[0]->totaldata,
+				"data" => $data,
+			];
+		}
+		return json_encode($outputDT);
+	}
+	public function pilihstatuspegawai(){
+		$client = \Config\Services::curlrequest();
+		$datapost = [
+			'KODEUNIKMEMBER' => $this->session->get("kodeunikmember"),
+			'KATAKUNCI' => service('request')->getPost('KATAKUNCI'),
+		];
+		$json_data = $client->request("POST", BASEURLAPI."auth/daftarhakakses", [
+			"headers" => [
+				"Accept" => "application/json",
+				"Authorization" => "Bearer ".$_ENV['TOKENAPI'],
+			],
+			"form_params" => $datapost
+		]);
+		$datajson = json_decode($json_data->getBody());
+		$jsontext = "[";
+		for ($no = 0; $no < $datajson->hasiljson[0]->totaldata; $no++) {
+			$jsontext .= '{"kodeai": "'.$datajson->hasiljson[0]->data[$no]->AI.'", "namahakases": "'.$datajson->hasiljson[0]->data[$no]->NAMAHAKAKSES.'"},';	
+		}
+		$jsontext = substr_replace($jsontext, '', -1); 
+		$jsontext .= "]";
+		return json_encode($jsontext);
 	}
 }

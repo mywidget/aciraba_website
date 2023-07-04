@@ -26,6 +26,9 @@
   <!-- Template Main CSS File -->
   <link href="<?= base_url() ;?>app/landing_aktivasi/assets/css/style.css" rel="stylesheet">
   <link href="<?= base_url() ;?>styles/ltr-vendor.css" rel="stylesheet">
+  <script>
+  var csrfName = '<?= csrf_token() ?>'; 
+  </script>
 </head>
 
 <body>

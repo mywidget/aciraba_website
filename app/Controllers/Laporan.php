@@ -1215,6 +1215,7 @@ class Laporan extends BaseController{
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
+		if ($datajson->hasiljson[0]->success == 'false') return json_encode(['data' => []]);
 		return json_encode($datajson->hasiljson[0]);
 	}
 	public function formatlaporanhutang(){
@@ -1329,6 +1330,7 @@ class Laporan extends BaseController{
 			"form_params" => $datapost
 		]);
 		$datajson = json_decode($json_data->getBody());
+		if ($datajson->hasiljson[0]->success == 'false') return json_encode(['data' => []]);
 		return json_encode($datajson->hasiljson[0]);
 	}
 	public function formatlaporanpiutang(){
