@@ -183,12 +183,12 @@ input[type=checkbox] {
                                             <tr>
                                                 <td class="cellhakseswhere" style="text-align: left; ">Daftar Pembelian</td>
                                                 <td style="text-align: justify; ">Untuk melihat daftar pembelian yang outlet anda lakukan terhadap suplier terkait</td>
-                                                <td style="text-align: center;"><input id="ha_daftaritem" class="form-check-input" type="checkbox" /></td>
+                                                <td style="text-align: center;"><input id="ha_daftarpembelian" class="form-check-input" type="checkbox" /></td>
                                             </tr>
                                             <tr>
                                                 <td class="cellhakseswhere" style="text-align: left; ">History Harga Beli</td>
                                                 <td style="text-align: justify; ">Untuk melihat perubahan harga yang diberikan oleh suplier apakah naik atau turun sehingga item ini layak untuk dibeli dan dijual</td>
-                                                <td style="text-align: center;"><input id="ha_daftarpembelian" class="form-check-input" type="checkbox" /></td>
+                                                <td style="text-align: center;"><input id="ha_daftarhishargabeli" class="form-check-input" type="checkbox" /></td>
                                             </tr>
                                             <tr>
                                                 <td class="cellhakseswhere" style="text-align: left; ">Daftar Hutang Suplier</td>

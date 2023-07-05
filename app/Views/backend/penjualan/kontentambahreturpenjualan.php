@@ -124,7 +124,7 @@
                                     <!-- BEGIN Nav -->
                                     <div class="nav nav-lines" id="nav1-tab">
                                         <a class="nav-item nav-link active" id="nav1-home-tab" data-toggle="tab" href="#nav1-home">Barang Yang Diretur</a>
-                                        <a class="nav-item nav-link" id="nav1-profile-tab" data-toggle="tab" href="#nav1-profile">Potong Piutang&nbsp;<span id="namapelanggan1"></span></a>
+                                        <a class="nav-item nav-link" id="potongpiutangtab" data-toggle="tab" href="#nav1-profile">Potong Piutang&nbsp;<span id="namapelanggan1"></span></a>
                                     </div>
                                     <!-- END Nav -->
                                 </div>
@@ -559,6 +559,9 @@ function hitungpotongpiutang(index){
     let data = tabelreturpotongpiutang.rows().data();
     subtotalpiutang[index].set(sisakreditpiutang[index].getNumber() - potongpiutang[index].getNumber())
 }
+$("#potongpiutangtab").on('click', debounce(function (e) {
+    hitunginformasi()
+}, 100));
 $('#qtyretur').keypress(function (e) {let key = e.which; if(key == 13){$('#kodeitemretur').focus();return false;}});
 $('#kodeitemretur').keypress(function (e) {let key = e.which; if(key == 13 && $('#kodeitemretur').val() == ""){$('#qtyretur').focus();return false;}});
 </script>

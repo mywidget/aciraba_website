@@ -1,16 +1,10 @@
 <?php
 
 namespace App\Controllers;
+use App\Helpers\HakAksesHelper;
 
 class Masterdata extends BaseController{
-	protected $session,$breadcrumb,$sidetitle = "Master Data",$hakakses = [];
-	function __construct(){
-		$this->session = \Config\Services::session();
-        $this->session->start();
-		if ($this->session->get("punyaoutlet") > 0){
-			header('Location: '.base_url());
-		}
-	}
+	protected $session,$breadcrumb,$sidetitle = "Master Data";
 	public function panggilbarangglobal(){
 		helper('number');
 		$client = \Config\Services::curlrequest();
@@ -75,14 +69,9 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar item */
 	public function daftaritem(){
-		/*if ($this->session->get("hakakses") != "OW" && $this->session->get("hakakses") != "ADM"){
-			header('Location: '.base_url().'auth/area403/');
-			exit(); 
+		if (!(new HakAksesHelper("ha_daftaritem", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
 		}
-		if (searchForMenu("ha_daftaritem",$this->hakakses->menuakses) == "0"){
-			header('Location: '.base_url().'auth/area403/');
-			exit(); 
-		}*/
 		$this->breadcrumb  = array( 
 			"Daftar Item" => base_url()."masterdata/daftaritem",
 		);
@@ -831,8 +820,8 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma kartu stok */
 	public function daftarkartustok(){
-		helper('url');
-		
+		$helper = new HakAksesHelper("ha_kartustok",$this->hakakses, $this->session);
+        if (!$helper->checkPermission()) {return redirect()->to('/auth/area403');}
 		$this->breadcrumb  = array( 
 			"Kartu Stok" => base_url()."masterdata/daftarkartustok",
 		);
@@ -1050,7 +1039,8 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma kupon diskon barang */
 	public function daftarkuponbelanja(){
-		
+		$helper = new HakAksesHelper("ha_kuponbelanja",$this->hakakses, $this->session);
+        if (!$helper->checkPermission()) {return redirect()->to('/auth/area403');}
 		$this->breadcrumb  = array( 
 			"Kupon Belanja" => base_url()."masterdata/daftarkuponbelanja",
 	   	);
@@ -1181,7 +1171,8 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar suplier */
 	public function daftarsuplier(){
-		
+		$helper = new HakAksesHelper("ha_dafatarsuplier",$this->hakakses, $this->session);
+        if (!$helper->checkPermission()) {return redirect()->to('/auth/area403');}
 		$this->breadcrumb  = array( 
 			"Daftar Suplier" => base_url()."masterdata/daftarsuplier",
 	   	);
@@ -1363,7 +1354,8 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar member */
 	public function daftarmember(){
-		
+		$helper = new HakAksesHelper("ha_daftarmember",$this->hakakses, $this->session);
+        if (!$helper->checkPermission()) {return redirect()->to('/auth/area403');}
 		$this->breadcrumb  = array( 
 			"Daftar Suplier" => base_url()."masterdata/daftarmember",
 		);
@@ -1782,7 +1774,9 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar sales */
 	public function daftarsales(){
-		
+		if (!(new HakAksesHelper("ha_daftarsales", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Sales" => base_url()."masterdata/daftarsales",
 	   	);
@@ -1963,7 +1957,9 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar satuan item */
 	public function daftarsatuan(){
-		
+		if (!(new HakAksesHelper("ha_daftarsatuan", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Satuan Item" => base_url()."masterdata/daftarsatuan",
 		);
@@ -2065,7 +2061,9 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar satuan item */
 	public function daftarkategoribarang(){
-		
+		if (!(new HakAksesHelper("ha_kategoriitem", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Kategori Barang" => base_url()."masterdata/daftarkategoribarang",
 	   	);
@@ -2206,7 +2204,9 @@ class Masterdata extends BaseController{
 	
 	/* area algoritma daftar metode pembayaran */
 	public function daftarmetodepembayaran(){
-		
+		if (!(new HakAksesHelper("ha_metodepembayaran", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Metode Pembayaran" => base_url()."masterdata/daftarmetodepembayaran",
 	   	);
@@ -2222,7 +2222,9 @@ class Masterdata extends BaseController{
 	}
 	/* area algoritma daftar kategori member */
 	public function daftarkategorimember(){
-		
+		if (!(new HakAksesHelper("ha_kategorianggota", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Kategori Member" => base_url()."masterdata/daftarkategorimember",
 	   	);
@@ -2424,7 +2426,9 @@ class Masterdata extends BaseController{
 		return json_encode($datajson);
 	}
 	public function brand(){
-		
+		if (!(new HakAksesHelper("ha_databrand", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Brand" => base_url()."masterdata/brand",
 		);
@@ -2513,7 +2517,9 @@ class Masterdata extends BaseController{
 		return json_encode($datajson->hasiljson[0]);
 	}
 	public function principal(){
-		
+		if (!(new HakAksesHelper("ha_dataprincipal", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}		
 		$this->breadcrumb  = array( 
 			"Daftar Principal" => base_url()."masterdata/principal",
 		);

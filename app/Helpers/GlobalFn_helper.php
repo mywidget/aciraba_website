@@ -32,14 +32,7 @@ function slugify($text, string $divider = '-')
     }
     return $text;
 }
-function searchForMenu($id, $array) {
-    foreach ($array as $key => $val) {
-        if ($val->menuke === $id) {
-            return $val->status;
-        }
-    }
-    return false;
-}
+
 function leakLisensi($kondisi){
     $leakLisensi = \Config\Services::curlrequest();
     $request = service('request');

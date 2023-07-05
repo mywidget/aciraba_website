@@ -173,6 +173,7 @@ function hapuskeranjangretur(){
     });
 }
 $("#simpanretur").on("click", function () {
+    hitunginformasi()
     let table = $('#dataretur').DataTable();let numRows = table.rows().count();pesanpotonghutang ="",apakahedit = "false";
     let d = new Date(); let timenow = d.toLocaleTimeString();
     if (numRows == 0 ){

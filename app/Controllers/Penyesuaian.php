@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\PenyesuaianModel;
+use App\Helpers\HakAksesHelper;
 use Config\Services;
 
 class Penyesuaian extends BaseController
@@ -25,8 +26,10 @@ class Penyesuaian extends BaseController
 		);
     }
 	/* area algoritma pesanan pembelian */
-	public function stokopname()
-	{
+	public function stokopname(){
+		if (!(new HakAksesHelper("ha_penyesuaianstok", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Stok Opname" => base_url()."penyesuaian/stokopname",
 		);
@@ -262,8 +265,10 @@ class Penyesuaian extends BaseController
 		return json_encode($outputDT);
 	}
     /* area algoritma retur pembelian */
-	public function mutasibarang()
-	{
+	public function mutasibarang(){
+		if (!(new HakAksesHelper("ha_mutasistok", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Mutasi Item" => base_url()."pembelian/mutasibarang",
 		);

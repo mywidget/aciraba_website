@@ -122,7 +122,7 @@
                                     <!-- BEGIN Nav -->
                                     <div class="nav nav-lines" id="nav1-tab">
                                         <a class="nav-item nav-link active" id="nav1-home-tab" data-toggle="tab" href="#nav1-home">Barang Yang Diretur</a>
-                                        <a class="nav-item nav-link" id="nav1-profile-tab" data-toggle="tab" href="#nav1-profile">Potong Piutang&nbsp;<span id="namapelanggan1"></span></a>
+                                        <a class="nav-item nav-link" id="potonghutangtab" data-toggle="tab" href="#nav1-profile">Potong Hutang&nbsp;<span id="namapelanggan1"></span></a>
                                     </div>
                                     <!-- END Nav -->
                                 </div>
@@ -179,8 +179,8 @@
                                                     <th>Nota Penjualan</th>
                                                     <th>jatuh Tempo</th>
                                                     <th>Total Kredit</th>
-                                                    <th>Sisa Piutang / Trx</th>
-                                                    <th>Potong Piutang</th>
+                                                    <th>Sisa Hutang / Trx</th>
+                                                    <th>Potong Hutang</th>
                                                     <th>Sub Total</th>
                                                     <th>Keterangan</th>
                                                     <th>Nominal Bayar</th>
@@ -676,7 +676,7 @@ $('#nominalpotonghutang').on('input', debounce(function (e) {
 function bayarsesuairetur(){
     if (notepembayaranhutangtxt.getNumber() > Number($('#totalpiutangtersedia').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim())){
         swal.fire({
-            title: "Perhitungan Potong Piutang Salah!",
+            title: "Perhitungan Potong Hutang Salah!",
             icon: 'warning',
             text: "Pastikan nominal bayar yang anda masukan tidak melebihi dari total transaksi piutang. Maksimal nominal adalah "+formatuang(Number($('#totalpiutangtersedia').html().replace('Rp&nbsp;', '').replaceAll('.', '').replace(',', '.').trim()),'id-ID','IDR'),
             //imageUrl: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMzhiMTE3M2RjM2U1ZWI3OWFjMjVjYjUxZjI4NjZhYTk2NzZiNmNiZCZjdD1z/jn27S7H3ARZVHex8z6/giphy.gif',
@@ -745,6 +745,7 @@ function hitungpotongpiutang(index){
     subtotalhutang[index].set(sisakredithutang[index].getNumber() - potonghutang[index].getNumber())
 }
 $("#simpanretur").on("click", function () {
+    hitunginformasi();
     let table = $('#dataretur').DataTable();let numRows = table.rows().count();pesanpotonghutang ="",apakahedit = "false";
     let d = new Date(); let timenow = d.toLocaleTimeString();
     if (numRows == 0 ){
@@ -885,6 +886,9 @@ $("#notrxreturpembelian").on('input change click', debounce(function (e) {
         $('#tabeltransaksi').DataTable().ajax.reload();
     });
 }, 500));
+$("#potonghutangtab").on('click', debounce(function (e) {
+    hitunginformasi()
+}, 100));
 $('#qtyretur').keypress(function (e) {let key = e.which; if(key == 13){$('#kodeitemretur').focus();return false;}});
 $('#kodeitemretur').keypress(function (e) {let key = e.which; if(key == 13 && $('#kodeitemretur').val() == ""){$('#qtyretur').focus();return false;}});
 </script>

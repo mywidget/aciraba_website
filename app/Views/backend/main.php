@@ -88,7 +88,7 @@
 						<h2 class="menu-section-text">Master Data</h2>
 					</div>
 					<!-- END Menu Section -->
-					<div class="menu-item">
+					<div id="menu_daftaritem" class="menu-item">
 						<button class="menu-item-link menu-item-toggle <?= $menuaktif == 1 ? "active" : "nonactive" ;?>">
 							<div class="menu-item-icon">
 								<i class="fa fa-pallet"></i>
@@ -611,6 +611,7 @@
 <script type="text/javascript" src="<?= base_url() ;?>scripts/dashboard1.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/core.js"></script>
 <script type="text/javascript" src="<?= base_url() ;?>scripts/vendor.js"></script>
+<script type="text/javascript" src="<?= base_url() ;?>scripts/hakakses.js"></script>
 <script type="text/javascript">
 function launchCalc(){
 	window.open('Calculator:///');

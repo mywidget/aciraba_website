@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Helpers\HakAksesHelper;
 
 class Laporan extends BaseController{
 	protected $session,$sidetitle = "LAPORAN";
@@ -10,6 +11,9 @@ class Laporan extends BaseController{
 		helper('form');
     }
 	public function masteritem(){
+		if (!(new HakAksesHelper("ha_laporanmasteritem", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Master" => base_url()."laporan/masteritem",
@@ -25,6 +29,9 @@ class Laporan extends BaseController{
         return view('laporan/master/dashboard',$data);
 	}
 	public function mastersup(){
+		if (!(new HakAksesHelper("ha_laporanmastersuplier", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Master" => base_url()."laporan/mastersup",
@@ -40,6 +47,9 @@ class Laporan extends BaseController{
         return view('laporan/master/dashboard_suplier',$data);
 	}
 	public function mastermember(){
+		if (!(new HakAksesHelper("ha_laporanmastermember", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Master" => base_url()."laporan/mastermember",
@@ -55,6 +65,9 @@ class Laporan extends BaseController{
         return view('laporan/master/dashboard_member',$data);
 	}
 	public function penjualan(){
+		if (!(new HakAksesHelper("ha_laporanpenjualana", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Penjualan" => base_url()."laporan/penjualan",
@@ -70,6 +83,9 @@ class Laporan extends BaseController{
         return view('laporan/penjualan/dashboard',$data);
     }
 	public function returpenjualan(){
+		if (!(new HakAksesHelper("ha_laporanpenjualanretur", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Penjualan" => base_url()."laporan/returpenjualan",
@@ -85,6 +101,9 @@ class Laporan extends BaseController{
         return view('laporan/penjualan/dashboard_returpenjualan',$data);
     }
 	public function pembelian(){
+		if (!(new HakAksesHelper("ha_laporanpembeliana", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Penjualan" => base_url()."laporan/pembelian",
@@ -100,6 +119,9 @@ class Laporan extends BaseController{
         return view('laporan/pembelian/dashboard',$data);
     }
 	public function returpembelian(){
+		if (!(new HakAksesHelper("ha_laporanpembelianretur", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Penjualan" => base_url()."laporan/returpembelian",
@@ -115,6 +137,9 @@ class Laporan extends BaseController{
         return view('laporan/pembelian/dashboard_returpembelian',$data);
     }
 	public function hutang(){
+		if (!(new HakAksesHelper("ha_laporanhutang", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Penjualan" => base_url()."laporan/hutang",
@@ -130,6 +155,9 @@ class Laporan extends BaseController{
         return view('laporan/hutang/dashboard',$data);
     }
 	public function piutang(){
+		if (!(new HakAksesHelper("ha_laporanpiutang", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Beranda" => base_url(),
 			"Penjualan" => base_url()."laporan/piutang",

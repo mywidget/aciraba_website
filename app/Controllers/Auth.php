@@ -62,7 +62,7 @@ class Auth extends BaseController{
 		$datajson = json_decode($posts_data->getBody());
 		return json_encode($datajson->hasiljson);
 	}
-	public function ajax_login(){
+	public function proseslogin(){
 		$result = leakLisensi("cek_lisensi");
 		if ($result->status == "false"){
 			$arraysession = [

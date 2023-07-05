@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 use App\Models\PembelianModel;
+use App\Helpers\HakAksesHelper;
 
 class Pembelian extends BaseController
 {
@@ -14,8 +15,7 @@ class Pembelian extends BaseController
 		$this->session = \Config\Services::session();
         $this->session->start();
 		if ($this->session->get("kodeunikmember") == ""){
-			header('Location: '.base_url().'auth');
-			exit(); 
+			return redirect()->to('/auth');
 		}
 		array_push($this->datasessionparameter,
 			$this->session->get("outlet"),
@@ -37,8 +37,10 @@ class Pembelian extends BaseController
 		return view('backend/pembelian/kontendaftarpesananpembelian',$data);
 	}
     /* area algoritma retur pembelian */
-	public function daftarreturpembelian()
-	{
+	public function daftarreturpembelian(){
+		if (!(new HakAksesHelper("ha_returpembelian", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			 "Daftar Retur Pembelian" => base_url()."pembelian/daftarreturpembelian",
 		);
@@ -406,8 +408,10 @@ class Pembelian extends BaseController
 		return json_encode($datajson->hasiljson);
 	}
 	/* area algoritma daftar pembelian */
-	public function daftarpembelian()
-	{
+	public function daftarpembelian(){
+		if (!(new HakAksesHelper("ha_daftarpembelian", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			 "Daftar Pembelian" => base_url()."pembelian/daftarpembelian",
 		);
@@ -844,8 +848,10 @@ class Pembelian extends BaseController
 		return json_encode($datajson->hasiljson);
 	}
 	/* area algoritma history harga beli */
-	public function daftarhistoryhargabeli()
-	{
+	public function daftarhistoryhargabeli(){
+		if (!(new HakAksesHelper("ha_daftarhishargabeli", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}		
 		$this->breadcrumb  = array( 
 			"Histori Harga Beli" => base_url()."pembelian/daftarhistoryhargabeli",
 		);
@@ -911,8 +917,10 @@ class Pembelian extends BaseController
 		return json_encode($outputDT);
 	}
 	/* area algoritma hutang suplier */
-	public function daftarhutangsuplier()
-	{
+	public function daftarhutangsuplier(){
+		if (!(new HakAksesHelper("ha_daftarhutangsuplier", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			 "Hutang Ke Suplier" => base_url()."pembelian/daftarhutangsuplier",
 		);

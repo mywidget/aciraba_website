@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\KasirModel;
 use App\Models\PenjualanModel;
+use App\Helpers\HakAksesHelper;
 
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 use Mike42\Escpos\CapabilityProfile;
@@ -201,7 +202,9 @@ class Penjualan extends BaseController{
 	}
     /* area algoritma retur penjualan */
 	public function daftarreturpenjualan(){
-
+		if (!(new HakAksesHelper("ha_returpenjualan", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Retur Penjualan" => base_url()."penjualan/daftarreturpenjualan",
 		);
@@ -583,7 +586,9 @@ class Penjualan extends BaseController{
 	}
 	/* area algoritma daftar penjualan */
 	public function daftarpenjualan()	{
-		
+		if (!(new HakAksesHelper("ha_datapenjualan", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			 "Daftar Penjualan" => base_url()."penjualan/daftarpenjualan",
 		);
@@ -1038,7 +1043,10 @@ class Penjualan extends BaseController{
 		return json_encode($datajson->hasiljson);
 	}
 	/* area algoritma history hargajual */
-	public function daftarhistoryhargajual()	{
+	public function daftarhistoryhargajual(){
+		if (!(new HakAksesHelper("ha_datahishargajual", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Penjualan" => base_url()."penjualan/daftarhistoryhargajual",
 		);
@@ -1054,6 +1062,9 @@ class Penjualan extends BaseController{
 	}
 	/* area algoritma daftar piutang */
 	public function daftarpiutang()	{
+		if (!(new HakAksesHelper("ha_datapiutanganggota", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Daftar Piutang" => base_url()."penjualan/daftarpiutang",
 		);

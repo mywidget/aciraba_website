@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\KasirModel;
 use App\Models\PenjualanModel;
+use App\Helpers\HakAksesHelper;
 
 class Resto extends BaseController{
     protected $kasirModel,$penjualanModel,$session,$breadcrumb,$sidetitle = "Penjualan";
@@ -20,7 +21,9 @@ class Resto extends BaseController{
     }
 	/* area algoritma pesanan penjualan */
 	public function daftarmeja(){
-		
+		if (!(new HakAksesHelper("ha_daftarpesanan", $this->hakakses, $this->session))->checkPermission()) {
+			return redirect()->to('/auth/area403');
+		}
 		$this->breadcrumb  = array( 
 			"Kelola Pesanan" => base_url()."resto/daftarmeja",
 		);

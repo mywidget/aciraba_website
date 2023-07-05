@@ -5,21 +5,8 @@ namespace App\Controllers;
 class Home extends BaseController
 {
 	protected $session,$sidetitle = "BERANDA";
-	function __construct()
-    {
-		$this->session = \Config\Services::session();
-        $this->session->start();
-		if ($this->session->get("kodeunikmember") == ""){
-			header('Location: '.base_url().'auth');
-			exit(); 
-		}
-    }
 	public function index()
 	{
-		if ($this->session->get("hakakses") != "OWNER" && $this->session->get("hakakses") != "ADMIN"){
-			header('Location: '.base_url().'auth/area403/');
-			exit(); 
-		}
 		$this->breadcrumb  = array("Dashboard" => "home",);
 		$data = [
 			"titleheader"=> ($this->session->get("punyaoutlet") > 0 ? "DASHBORD REPORT" : "OUTLET TERDAFTAR" ),

@@ -22,7 +22,7 @@ function proseslogin(){
     $('#login_prosesmasuk').html('<i class="fa fa-spin fa-spinner"></i> Proses Masuk');
     getCsrfTokenCallback(function() { 
         $.ajax({
-            url:baseurljavascript+'auth/ajax_login',
+            url:baseurljavascript+'auth/proseslogin',
             type:'POST',
             dataType:'json',
             data: {

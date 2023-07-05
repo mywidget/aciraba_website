@@ -1,5 +1,9 @@
 <?php
-
+use Dotenv\Dotenv;
+$rootPath = realpath(__DIR__ . '/../..');
+require_once $rootPath . '/vendor/autoload.php';
+$dotenv = Dotenv::createImmutable($rootPath);
+$dotenv->load();
 /*
  | --------------------------------------------------------------------
  | App Namespace
