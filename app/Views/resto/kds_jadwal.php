@@ -75,39 +75,42 @@ buttonText:{
     list:'Daftar'
 },
 events: (dates, callback) => {
+    getCsrfTokenCallback(function() {
         $.ajax({
-        url: baseurljavascript + 'resto/ajaxfullcalendarevent',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            TANGGALAWAL : moment(dates.startStr).format('YYYY-MM-DD'),
-            TANGGALAKHIR : moment(dates.endStr).format('YYYY-MM-DD'),
-        },
-        success: function(response) {
-            if (response.success == "true"){
-                let events = [];
-                for (let i = 0; i < response.totaldata; i++) {
-                    events.push({
-                        title: response.dataquery[i].PEMESAN+" ["+response.dataquery[i].KODEMENUPESANAN+"]",
-                        start: moment(response.dataquery[i].TANGGAL).format('YYYY-MM-DD')+" "+response.dataquery[i].WAKTU,
-                        end: moment(response.dataquery[i].TANGGALAKHIR).format('YYYY-MM-DD')+" "+response.dataquery[i].WAKTUAKHIR,
-                        description: response.dataquery[i].PEMESAN,
-                        color: "#"+response.dataquery[i].WARNAMEMO,
-                        id: response.dataquery[i].KODEPESAN,
+            url: baseurljavascript + 'resto/ajaxfullcalendarevent',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                TANGGALAWAL : moment(dates.startStr).format('YYYY-MM-DD'),
+                TANGGALAKHIR : moment(dates.endStr).format('YYYY-MM-DD'),
+            },
+            success: function(response) {
+                if (response.success == "true"){
+                    let events = [];
+                    for (let i = 0; i < response.totaldata; i++) {
+                        events.push({
+                            title: response.dataquery[i].PEMESAN+" ["+response.dataquery[i].KODEMENUPESANAN+"]",
+                            start: moment(response.dataquery[i].TANGGAL).format('YYYY-MM-DD')+" "+response.dataquery[i].WAKTU,
+                            end: moment(response.dataquery[i].TANGGALAKHIR).format('YYYY-MM-DD')+" "+response.dataquery[i].WAKTUAKHIR,
+                            description: response.dataquery[i].PEMESAN,
+                            color: "#"+response.dataquery[i].WARNAMEMO,
+                            id: response.dataquery[i].KODEPESAN,
+                        });
+                    }
+                    callback(events);
+                }else{
+                    Swal.fire({
+                        title: "Tidak Ada Event",
+                        text: "Jangan sedih ya. Tidak ada event yang ditemukan. Ayoo semangat",
+                        icon: 'error',
                     });
                 }
-                callback(events);
-            }else{
-                Swal.fire({
-                    title: "Tidak Ada Event",
-                    text: "Jangan sedih ya. Tidak ada event yang ditemukan. Ayoo semangat",
-                    icon: 'error',
-                });
-            }
-        },
-        eventRender: function(info){
-            info.el.innerHTML += info.event.extendedProps.description;
-        },
+            },
+            eventRender: function(info){
+                info.el.innerHTML += info.event.extendedProps.description;
+            },
+        });
     });
 },
 eventClick: function(info) {

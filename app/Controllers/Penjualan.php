@@ -700,6 +700,7 @@ class Penjualan extends BaseController{
 			$datapost = [
 				'KONDISI' => "4",
 				'DIMANA1' => $this->request->uri->getSegment(3),
+				'DIMANA2' => $this->session->get("kodeunikmember"),
 			];
 			$json_data = $client->request("POST", BASEURLAPI."penjualan/detailkasirpenjualan", [
 				"headers" => [
