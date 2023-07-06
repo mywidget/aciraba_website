@@ -1478,65 +1478,68 @@ function pilihsalesman(kodesales,namasales){
 }
 function pilihbank(kondisi,jenisbank){
     let htmlnya = '';
-    $.ajax({
-        url: baseurljavascript + 'masterdata/daftarpembayarannontunai',
-        method: 'POST',
-        dataType: 'json',
-        data: {
-            KODEUNIKMEMBER: session_kodeunikmember,
-            JENISNONTUNAI: jenisbank,
-        },
-        success: function (response) {
-            if (kondisi == "D"){
-                htmlnya = '<div class="row mt-2" style="display:none" id="pilihbankdebitdaftar">';
-            }else if (kondisi == "K"){
-                htmlnya = '<div class="row mt-2" style="display:none" id="pilihbankkreditdaftar">';
-            }else{
-                htmlnya = '<div class="row mt-2" style="display:none" id="pilihemoneyaftar">';
-            }
-            for (let i = 0; i < response.daftarpembayarannontunai[0].totaldatadataquery; i++) {
-                htmlnya += "<div onclick=\"pilihbankterpilih('"+kondisi+"','"+response.daftarpembayarannontunai[0].dataquery[i].BANK_ID+"')\" style=\"cursor:pointer\" class=\"card mt-1 mx-auto\"><img style=\"max-height:50px\" src=\""+response.daftarpembayarannontunai[0].dataquery[i].URLLOGO+"\" class=\"img-thumbnail p-2 card-img-top\" alt=\"Logo Bank\"><div class=\"card-body\"><h5 class=\"text-center card-title\">\""+response.daftarpembayarannontunai[0].dataquery[i].NAMABANK+"\"</h5><a id=\"btnpilihbankcss"+kondisi+""+""+response.daftarpembayarannontunai[0].dataquery[i].BANK_ID+"\"  onclick=\"pilihbankterpilih('"+kondisi+"','"+response.daftarpembayarannontunai[0].dataquery[i].BANK_ID+"')\" href=\"javascript:void(0)\" class=\"butonbank"+kondisi+" btn btn-primary btn-block\">Pilih Bank Ini</a></div></div>";
-            }
-           
-            htmlnya += '</div>'
-            if (kondisi == "D"){
-                $("#daftarbankdebit").append(htmlnya)
-                if ($("#pilihbankdebitdaftar").is(':visible')){
-                    if (iseditkasir == "true" && nomorkartudebit.getNumber() > 0){
+    getCsrfTokenCallback(function() {
+        $.ajax({
+            url: baseurljavascript + 'masterdata/daftarpembayarannontunai',
+            method: 'POST',
+            dataType: 'json',
+            data: {
+                [csrfName]:csrfTokenGlobal,
+                KODEUNIKMEMBER: session_kodeunikmember,
+                JENISNONTUNAI: jenisbank,
+            },
+            success: function (response) {
+                if (kondisi == "D"){
+                    htmlnya = '<div class="row mt-2" style="display:none" id="pilihbankdebitdaftar">';
+                }else if (kondisi == "K"){
+                    htmlnya = '<div class="row mt-2" style="display:none" id="pilihbankkreditdaftar">';
+                }else{
+                    htmlnya = '<div class="row mt-2" style="display:none" id="pilihemoneyaftar">';
+                }
+                for (let i = 0; i < response.daftarpembayarannontunai[0].totaldatadataquery; i++) {
+                    htmlnya += "<div onclick=\"pilihbankterpilih('"+kondisi+"','"+response.daftarpembayarannontunai[0].dataquery[i].BANK_ID+"')\" style=\"cursor:pointer\" class=\"card mt-1 mx-auto\"><img style=\"max-height:50px\" src=\""+response.daftarpembayarannontunai[0].dataquery[i].URLLOGO+"\" class=\"img-thumbnail p-2 card-img-top\" alt=\"Logo Bank\"><div class=\"card-body\"><h5 class=\"text-center card-title\">\""+response.daftarpembayarannontunai[0].dataquery[i].NAMABANK+"\"</h5><a id=\"btnpilihbankcss"+kondisi+""+""+response.daftarpembayarannontunai[0].dataquery[i].BANK_ID+"\"  onclick=\"pilihbankterpilih('"+kondisi+"','"+response.daftarpembayarannontunai[0].dataquery[i].BANK_ID+"')\" href=\"javascript:void(0)\" class=\"butonbank"+kondisi+" btn btn-primary btn-block\">Pilih Bank Ini</a></div></div>";
+                }
+            
+                htmlnya += '</div>'
+                if (kondisi == "D"){
+                    $("#daftarbankdebit").append(htmlnya)
+                    if ($("#pilihbankdebitdaftar").is(':visible')){
+                        if (iseditkasir == "true" && nomorkartudebit.getNumber() > 0){
+                            $("#pilihbankdebitdaftar").show();
+                        }else{
+                            $("#pilihbankdebitdaftar").hide();
+                            $(".butonbank"+kondisi).css({"color": "","background-color": "","border-color": ""});
+                        }
+                    }else{
                         $("#pilihbankdebitdaftar").show();
-                    }else{
-                        $("#pilihbankdebitdaftar").hide();
-                        $(".butonbank"+kondisi).css({"color": "","background-color": "","border-color": ""});
                     }
-                }else{
-                    $("#pilihbankdebitdaftar").show();
-                }
-            }else if (kondisi == "K"){
-                $("#daftarbankkredit").append(htmlnya)
-                if ($("#pilihbankkreditdaftar").is(':visible')){
-                    if (iseditkasir == "true" && nomorkartukredit.getNumber() > 0){
+                }else if (kondisi == "K"){
+                    $("#daftarbankkredit").append(htmlnya)
+                    if ($("#pilihbankkreditdaftar").is(':visible')){
+                        if (iseditkasir == "true" && nomorkartukredit.getNumber() > 0){
+                            $("#pilihbankkreditdaftar").show();
+                        }else{
+                            $("#pilihbankkreditdaftar").hide();
+                            $(".butonbank"+kondisi).css({"color": "","background-color": "","border-color": ""});
+                        }
+                    }else{
                         $("#pilihbankkreditdaftar").show();
-                    }else{
-                        $("#pilihbankkreditdaftar").hide();
-                         $(".butonbank"+kondisi).css({"color": "","background-color": "","border-color": ""});
                     }
                 }else{
-                    $("#pilihbankkreditdaftar").show();
-                }
-            }else{
-                $("#daftaremoney").append(htmlnya)
-                if ($("#pilihemoneyaftar").is(':visible')){
-                    if (iseditkasir == "true" && nominalemoney.getNumber() > 0){
+                    $("#daftaremoney").append(htmlnya)
+                    if ($("#pilihemoneyaftar").is(':visible')){
+                        if (iseditkasir == "true" && nominalemoney.getNumber() > 0){
+                            $("#pilihemoneyaftar").show();
+                        }else{
+                            $("#pilihemoneyaftar").hide();
+                            $(".butonbank"+kondisi).css({"color": "","background-color": "","border-color": ""});
+                        }
+                    }else{
                         $("#pilihemoneyaftar").show();
-                    }else{
-                        $("#pilihemoneyaftar").hide();
-                        $(".butonbank"+kondisi).css({"color": "","background-color": "","border-color": ""});
                     }
-                }else{
-                    $("#pilihemoneyaftar").show();
                 }
             }
-        }
+        });
     });
 }
 function daftarpenjualan(){
@@ -1670,14 +1673,51 @@ function ubahhargajual(tambahanharga,namavarian,idElement){
             _.remove(output, {qty: 0});
             _.remove(output, {qty: -1});
             jsonStrjenisvarian = '{"jenisvarian":'+JSON.stringify(output)+'}';
+            getCsrfTokenCallback(function() {
+                $.ajax({
+                    url: baseurljavascript + 'penjualan/updatekasirsementara',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        [csrfName]:csrfTokenGlobal,
+                        BARANG_ID : $("#kodebarangv").val(),
+                        QTY : qtyv.getNumber(),
+                        HARGAJUAL : hasilhargabaru,
+                        PAKSAUPDTE : paksaupdatehj,
+                        DARIUBAHHJDETAIL : (idElement == "hargajualv" ? "UBAHHJNYA" : "YA"),
+                        JSONVARIAN : btoa(jsonStrjenisvarian),
+                        KETERANGAN : $('#catatanperbarang').val(),
+                    },
+                    success: function (response) {
+                        let namavariannya = "";
+                        let objjsonStrjenisvarian = JSON.parse(jsonStrjenisvarian);
+                        Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
+                            value.forEach((variandetail) => {
+                                namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
+                            })
+                        })
+                        $("#subtotalbarang"+$("#kodebarangv").val()).html(formatter.format(qtyv.getNumber() * hasilhargabaru));
+                        $("#hargajual"+$("#kodebarangv").val()).html(formatuang(hasilhargabaru,'id-ID','IDR'));
+                        $("#hargajualbarudetail").html(formatuang(hasilhargabaru,'id-ID','IDR'));
+                        $("#jsonjenisvarian"+$("#kodebarangv").val()).html(jsonStrjenisvarian);
+                        $("#varian"+$("#kodebarangv").val()).html(namavariannya);
+                        $("#hargajualubah"+$("#kodebarangv").val()).html(hargajualasliv.getNumber())
+                        grandtotalkasir();
+                    }
+                });
+            });
+        })
+    }else{
+        getCsrfTokenCallback(function() {
             $.ajax({
                 url: baseurljavascript + 'penjualan/updatekasirsementara',
                 method: 'POST',
                 dataType: 'json',
                 data: {
+                    [csrfName]:csrfTokenGlobal,
                     BARANG_ID : $("#kodebarangv").val(),
                     QTY : qtyv.getNumber(),
-                    HARGAJUAL : hasilhargabaru,
+                    HARGAJUAL : (hargajualv.getNumber() != hasilhargabaru ? hasilhargabaru : hargajualv.getNumber()),
                     PAKSAUPDTE : paksaupdatehj,
                     DARIUBAHHJDETAIL : (idElement == "hargajualv" ? "UBAHHJNYA" : "YA"),
                     JSONVARIAN : btoa(jsonStrjenisvarian),
@@ -1691,8 +1731,8 @@ function ubahhargajual(tambahanharga,namavarian,idElement){
                             namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
                         })
                     })
-                    $("#subtotalbarang"+$("#kodebarangv").val()).html(formatter.format(qtyv.getNumber() * hasilhargabaru));
-                    $("#hargajual"+$("#kodebarangv").val()).html(formatuang(hasilhargabaru,'id-ID','IDR'));
+                    $("#subtotalbarang"+$("#kodebarangv").val()).html(formatter.format(qtyv.getNumber() * hargajualv.getNumber()));
+                    $("#hargajual"+$("#kodebarangv").val()).html(formatter.format(hargajualv.getNumber()));
                     $("#hargajualbarudetail").html(formatuang(hasilhargabaru,'id-ID','IDR'));
                     $("#jsonjenisvarian"+$("#kodebarangv").val()).html(jsonStrjenisvarian);
                     $("#varian"+$("#kodebarangv").val()).html(namavariannya);
@@ -1700,37 +1740,6 @@ function ubahhargajual(tambahanharga,namavarian,idElement){
                     grandtotalkasir();
                 }
             });
-        })
-    }else{
-        $.ajax({
-            url: baseurljavascript + 'penjualan/updatekasirsementara',
-            method: 'POST',
-            dataType: 'json',
-            data: {
-                BARANG_ID : $("#kodebarangv").val(),
-                QTY : qtyv.getNumber(),
-                HARGAJUAL : (hargajualv.getNumber() != hasilhargabaru ? hasilhargabaru : hargajualv.getNumber()),
-                PAKSAUPDTE : paksaupdatehj,
-                DARIUBAHHJDETAIL : (idElement == "hargajualv" ? "UBAHHJNYA" : "YA"),
-                JSONVARIAN : btoa(jsonStrjenisvarian),
-                KETERANGAN : $('#catatanperbarang').val(),
-            },
-            success: function (response) {
-                let namavariannya = "";
-                let objjsonStrjenisvarian = JSON.parse(jsonStrjenisvarian);
-                Object.entries(objjsonStrjenisvarian).forEach(([key, value]) => {
-                    value.forEach((variandetail) => {
-                        namavariannya += variandetail.namavarian+" ("+variandetail.qty+"x) , "
-                    })
-                })
-                $("#subtotalbarang"+$("#kodebarangv").val()).html(formatter.format(qtyv.getNumber() * hargajualv.getNumber()));
-                $("#hargajual"+$("#kodebarangv").val()).html(formatter.format(hargajualv.getNumber()));
-                $("#hargajualbarudetail").html(formatuang(hasilhargabaru,'id-ID','IDR'));
-                $("#jsonjenisvarian"+$("#kodebarangv").val()).html(jsonStrjenisvarian);
-                $("#varian"+$("#kodebarangv").val()).html(namavariannya);
-                $("#hargajualubah"+$("#kodebarangv").val()).html(hargajualasliv.getNumber())
-                grandtotalkasir();
-            }
         });
     }
 }
